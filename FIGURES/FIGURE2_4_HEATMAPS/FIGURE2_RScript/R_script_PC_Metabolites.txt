@@ -1,0 +1,61 @@
+install.packages("viridis")
+
+
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(readxl)
+library(tidyr)
+library(ggrepel)
+library(viridis)  # For a vibrant color palette
+
+# Read the data
+dat <- read_excel("E:\\16GBBACKUPUSB\\BACKUP_USB_SEPTEMBER2014\\May Baydoun_folder\\UK_BIOBANK_PROJECT\\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\\MANUSCRIPT\\GITHUB\\FIGURES\\FIGURE2_4_HEATMAPS\\FIGURE2_PCA_METABOLITES\\Supplementarydatasheet1_small.xlsx", sheet = 1)
+
+# Reshape the data to long format
+dat_l <- dat %>%
+  select(`Short label`, starts_with("Comp"), Unexplained) %>%
+  pivot_longer(cols = c(starts_with("Comp"), "Unexplained"),
+               names_to = "component",
+               values_to = "value")
+
+# Set component levels to control the order in the plot
+dat_l$component <- factor(dat_l$component, 
+                          levels = c(paste0("Comp", 1:15), "Unexplained"))
+
+# Filter labels to include only those with value above +0.20 or below -0.20
+top_bottom_labels <- dat_l %>%
+  filter(value > 0.20 | value < -0.20)
+
+# Set radial grid values for y-axis clarity
+y_grid_values <- c(-0.50, -0.25, -0.10, 0, 0.10, 0.25, 0.50)
+
+# Create the circular bubble plot with radial y-axis indicators and filtered labels
+ggplot(dat_l, aes(x = component, y = value)) +
+  geom_point(aes(size = abs(value), color = component), shape = 21, stroke = 0.5, fill = "white", show.legend = FALSE) +
+  geom_text_repel(data = top_bottom_labels, aes(label = `Short label`), 
+                  size = 3, nudge_y = 0.2, box.padding = 0.3, point.padding = 0.3, 
+                  segment.color = "grey50") +
+  scale_size_continuous(range = c(1, 10)) +
+  scale_color_viridis_d(option = "plasma") +  # Change to a vibrant color palette
+  coord_polar() +  # Apply polar coordinates for circular layout
+  theme_minimal() +
+  # Add radial y-axis grid lines and labels for component loading values
+  geom_hline(yintercept = y_grid_values, color = "grey70", linetype = "dashed") +
+  annotate("text", x = 1, y = y_grid_values, label = y_grid_values, color = "grey50", size = 3, hjust = -0.3) +
+  # Position Comp labels much further outside
+  geom_text(aes(x = component, y = max(y_grid_values) + 1.2, label = component), 
+            angle = 0, size = 3, color = "black") +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_blank(),  # Remove default x-axis labels since they are now customized
+    axis.title.x = element_blank(),  # Remove x-axis title for a cleaner circular look
+    axis.title.y = element_text(size = 10)
+  ) +
+  labs(title = "PCA Loadings Circular Bubble Plot with Radial Y-Axis Indicators and Thresholded Labels",
+       y = "Component Loading",
+       color = "Component")
+
+
+output<-"E:\\Output"
+ggsave("output\\Figure2.pdf")

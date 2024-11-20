@@ -1,0 +1,1355 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\OUTPUT\DATA_MANAGEMENT10.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 Oct 2024, 07:05:54
+{txt}
+{com}. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", clear  
+{txt}
+{com}. 
+. 
+. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", replace  
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. 
+. //STEP 16: DETERMINE FINAL ANALYTIC SAMPLE SIZE/////
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+{txt}
+{com}. 
+. 
+. 
+. **Sample 1, excluding withdrawals**
+. 
+. capture drop sample1
+{txt}
+{com}. gen sample1=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample1=1 if baselineage~=. & withdrew==.
+{txt}(502,156 real changes made)
+
+{com}. replace sample1=0 if sample1~=1
+{txt}(253 real changes made)
+
+{com}. 
+. tab sample1
+
+    {txt}sample1 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        253        0.05        0.05
+{txt}          1 {c |}{res}    502,156       99.95      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    502,409      100.00
+{txt}
+{com}. 
+. **Sample 2: >=50 y**
+. 
+. capture drop sample2
+{txt}
+{com}. gen sample2=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample2=1 if baselineage>=50 & baselineage~=. & sample1==1
+{txt}(384,487 real changes made)
+
+{com}. replace sample2=0 if sample2~=1 & sample1==1
+{txt}(117,669 real changes made)
+
+{com}. 
+. tab sample2
+
+    {txt}sample2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}    117,669       23.43       23.43
+{txt}          1 {c |}{res}    384,487       76.57      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    502,156      100.00
+{txt}
+{com}. 
+. **Sample 3: exclude those with missing exposures and covariates**
+. 
+. capture drop sample3
+{txt}
+{com}. gen sample3=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample3=1 if baselineage>=50 & baselineage~=. & LE8_TOTALSCORE~=. & townsend~=. & householdsize~=. & SES~=. & ethnicity2~=.  & comorbid~=. & srhbr~=. & gfap~=. & nefl~=. & AIRPOLLUTION1~=. & AIRPOLLUTION2~=. &  sample2==1
+{txt}(33,630 real changes made)
+
+{com}. replace sample3=0 if sample3~=1 & sample2==1
+{txt}(350,857 real changes made)
+
+{com}. 
+. tab sample3
+
+    {txt}sample3 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}    350,857       91.25       91.25
+{txt}          1 {c |}{res}     33,630        8.75      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    384,487      100.00
+{txt}
+{com}. 
+. 
+. 
+. **Sample 4: final sample: exclude prevalent dementia cases and incident dementia cases within a year**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}        253{txt}  event time missing (Age_dementia>=.){col 61}PROBABLE ERROR
+{res}        226{txt}  observations end on or before {bf:enter()}
+{hline 74}
+{res}    501,930{txt}  observations remaining, representing
+{res}    501,930{txt}  subjects
+{res}      9,819{txt}  failures in single-failure-per-subject data
+{res}  7,190,328{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 37.41821
+                                          {txt}Last observed exit t = {res} 89.80151
+{txt}
+{com}. 
+. 
+. capture drop sample4
+{txt}
+{com}. gen sample4=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample4=1 if (sample3==1 & _t_dementia~=.) | (sample3==1 & time01_1Ayearsdem>1 & time01_1Ayearsdem~=. & dem_diag==1 & _t_dementia~=.) 
+{txt}(33,594 real changes made)
+
+{com}. replace sample4=0 if sample4~=1 & sample3==1
+{txt}(36 real changes made)
+
+{com}. 
+. 
+. tab sample4
+
+    {txt}sample4 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}         36        0.11        0.11
+{txt}          1 {c |}{res}     33,594       99.89      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     33,630      100.00
+{txt}
+{com}. 
+. **Sample 5: final sample: exclude prevalent PD cases and incident PD cases within a year**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}        253{txt}  event time missing (Age_PD>=.){col 61}PROBABLE ERROR
+{res}        900{txt}  observations end on or before {bf:enter()}
+{hline 74}
+{res}    501,256{txt}  observations remaining, representing
+{res}    501,256{txt}  subjects
+{res}      3,514{txt}  failures in single-failure-per-subject data
+{res}  7,196,325{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 37.41821
+                                          {txt}Last observed exit t = {res} 89.80151
+{txt}
+{com}. 
+. 
+. capture drop sample5
+{txt}
+{com}. gen sample5=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample5=1 if (sample4==1 & _t_PD~=.) | (sample4==1 & time01_1AyearsPD>1 & time01_1AyearsPD~=. & PD_diag==1 & _t_PD~=.) 
+{txt}(33,472 real changes made)
+
+{com}. replace sample5=0 if sample5~=1 & sample4==1
+{txt}(122 real changes made)
+
+{com}. 
+. 
+. tab sample5
+
+    {txt}sample5 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        122        0.36        0.36
+{txt}          1 {c |}{res}     33,472       99.64      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}     33,594      100.00
+{txt}
+{com}. 
+. 
+. 
+. *************************************
+. 
+. capture drop sample_final
+{txt}
+{com}. gen sample_final=.
+{txt}(502,409 missing values generated)
+
+{com}. replace sample_final=1 if sample4==1 & sample5==1
+{txt}(33,472 real changes made)
+
+{com}. replace sample_final=0 if sample_final~=1
+{txt}(468,937 real changes made)
+
+{com}. 
+. tab sample_final
+
+{txt}sample_fina {c |}
+          l {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}    468,937       93.34       93.34
+{txt}          1 {c |}{res}     33,472        6.66      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    502,409      100.00
+{txt}
+{com}. 
+. stset Age_dementia if sample_final==1, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+{col 7}{txt}Keep observations 
+{col 17}{help j_st_ifvsoptif:{bf:if} {it:exp}}: {res}sample_final==1
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}    468,937{txt}  ignored at outset because of {bf:if} {it:exp}
+{hline 74}
+{res}     33,472{txt}  observations remaining, representing
+{res}     33,472{txt}  subjects
+{res}      1,116{txt}  failures in single-failure-per-subject data
+{res} 467,079.59{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. stdescribe if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 36}{c LT}{hline 14} Per subject {hline 14}{c RT}
+Category{col 28}Total{col 41}Mean{col 54}Min{col 62}Median{col 76}Max
+{hline 78}
+Number of subjects    {res}     33472   
+{txt}Number of records     {res}     33472           1           1          1          1
+
+{txt}Entry time (first)                 {res} 60.84061    50.00137   61.31964   70.98973
+{txt}Exit time (final)                  {res} 74.79494    51.43327   75.21423   86.71594
+
+{txt}Subjects with gap     {res}         0   
+{txt}Time on gap           {res}         0           .           .          .          .
+{txt}Time at risk          {res} 467079.58    13.95434    .0246391   14.61738    17.7358
+
+{txt}Failures              {res}      1116    .0333413           0          0          1
+{txt}{hline 78}
+
+{com}. 
+. stset Age_PD if sample_final==1, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+{col 7}{txt}Keep observations 
+{col 17}{help j_st_ifvsoptif:{bf:if} {it:exp}}: {res}sample_final==1
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}    468,937{txt}  ignored at outset because of {bf:if} {it:exp}
+{hline 74}
+{res}     33,472{txt}  observations remaining, representing
+{res}     33,472{txt}  subjects
+{res}        650{txt}  failures in single-failure-per-subject data
+{res} 466,935.91{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. stdescribe if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 36}{c LT}{hline 14} Per subject {hline 14}{c RT}
+Category{col 28}Total{col 41}Mean{col 54}Min{col 62}Median{col 76}Max
+{hline 78}
+Number of subjects    {res}     33472   
+{txt}Number of records     {res}     33472           1           1          1          1
+
+{txt}Entry time (first)                 {res} 60.84061    50.00137   61.31964   70.98973
+{txt}Exit time (final)                  {res} 74.79065    51.43327   75.21423   86.71594
+
+{txt}Subjects with gap     {res}         0   
+{txt}Time on gap           {res}         0           .           .          .          .
+{txt}Time at risk          {res} 466935.91    13.95005     .002739   14.62012    17.7358
+
+{txt}Failures              {res}       650    .0194192           0          0          1
+{txt}{hline 78}
+
+{com}. 
+. stset Age_death if sample_final==1, failure(died==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+{col 7}{txt}Keep observations 
+{col 17}{help j_st_ifvsoptif:{bf:if} {it:exp}}: {res}sample_final==1
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}    468,937{txt}  ignored at outset because of {bf:if} {it:exp}
+{hline 74}
+{res}     33,472{txt}  observations remaining, representing
+{res}     33,472{txt}  subjects
+{res}      4,203{txt}  failures in single-failure-per-subject data
+{res} 470,756.43{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. stdescribe if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 36}{c LT}{hline 14} Per subject {hline 14}{c RT}
+Category{col 28}Total{col 41}Mean{col 54}Min{col 62}Median{col 76}Max
+{hline 78}
+Number of subjects    {res}     33472   
+{txt}Number of records     {res}     33472           1           1          1          1
+
+{txt}Entry time (first)                 {res} 60.84061    50.00137   61.31964   70.98973
+{txt}Exit time (final)                  {res} 74.90479    51.43327   75.38124   86.71594
+
+{txt}Subjects with gap     {res}         0   
+{txt}Time on gap           {res}         0           .           .          .          .
+{txt}Time at risk          {res} 470756.43    14.06419    .0246391   14.64203    17.7358
+
+{txt}Failures              {res}      4203    .1255676           0          0          1
+{txt}{hline 78}
+
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. ***********************Exclude those without metabolomics data************************
+. 
+. su ln*
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+ln_n_23400~s {c |}{res}    274,246    2.141007    .2216408   .2721746   3.188573
+{txt}ln_n_23401~s {c |}{res}    274,246    1.803696    .2330053   .6384513   2.885308
+{txt}ln_n_23402~s {c |}{res}    274,246    1.237453     .167642   .5266118   2.006016
+{txt}ln_n_23403~s {c |}{res}    274,246     .836332    .1461981   .2520972   1.486271
+{txt}ln_n_23404~s {c |}{res}    274,246    1.580368    .2341419          0   2.618148
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23405~s {c |}{res}    274,246    1.311391    .1687943   9.79e-07   2.080216
+{txt}ln_n_23406~s {c |}{res}    274,246    1.142726    .1396296   .3246382   1.805381
+{txt}ln_n_23407~s {c |}{res}    274,246    1.122663    .2432146   .4233556   2.164602
+{txt}ln_n_23408~s {c |}{res}    274,246    .9306123    .2449798   .3374907   1.950513
+{txt}ln_n_23409~s {c |}{res}    274,246    .3801634    .0513415   .0863111   .6053594
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23410~s {c |}{res}    274,246    .3763304     .061241   .0729911   .6407105
+{txt}ln_n_23411~s {c |}{res}    274,246    1.708368    .1392322    .772606   2.393825
+{txt}ln_n_23412~s {c |}{res}    274,246    .6755547    .1318164   .1928471   1.251759
+{txt}ln_n_23413~s {c |}{res}    274,246    .7757027    .0910361   .3435986    1.20179
+{txt}ln_n_23414~s {c |}{res}    274,246    1.242987    .1268039   .4767914   1.856394
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23415~s {c |}{res}    274,246    1.825274    .1873486   .7160726   2.714756
+{txt}ln_n_23416~s {c |}{res}    274,246    .6460463    .1099005   .2020322   1.133887
+{txt}ln_n_23417~s {c |}{res}    274,246    1.122929    .1447832   4.97e-07   1.789385
+{txt}ln_n_23418~s {c |}{res}    274,246    1.007727    .1243173   .2063831   1.602186
+{txt}ln_n_23419~s {c |}{res}    274,246    1.118799    .1207956   .4796874   1.692011
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23420~s {c |}{res}    274,246    .5304534    .0998622   .1507846   .9699124
+{txt}ln_n_23421~s {c |}{res}    274,246    .6768139    .0906389   8.44e-07   1.083051
+{txt}ln_n_23422~s {c |}{res}    274,246     .538502    .0660737   .2300826   .8452692
+{txt}ln_n_23423~s {c |}{res}    274,246    2.968879    .2790903   1.232477   4.312076
+{txt}ln_n_23424~s {c |}{res}    274,246     1.42653    .2939934   .4997599   2.702961
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23425~s {c |}{res}    274,246    1.571251    .1918215   .4806558   2.461991
+{txt}ln_n_23426~s {c |}{res}    274,246    1.731663     .182256   .7306299    2.59823
+{txt}ln_n_23427~s {c |}{res}    274,246    .1298653    .0098536   .0625955   .1786085
+{txt}ln_n_23428~s {c |}{res}    274,246    .0119128    .0018479   .0048665   .0203192
+{txt}ln_n_23429~s {c |}{res}    274,246     .034431    .0040941   .0098477   .0536787
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23430~s {c |}{res}    274,246    .1233203    .0099292   .0487678   .1720552
+{txt}ln_n_23431~s {c |}{res}    274,246    6.214427    .1017287   5.787055     6.7193
+{txt}ln_n_23432~s {c |}{res}    274,246    4.891479    .0091305   4.838285   4.926155
+{txt}ln_n_23433~s {c |}{res}    274,246    3.104479    .0327262   3.006609   3.295451
+{txt}ln_n_23434~s {c |}{res}    274,246    1.508719    .1329663   .3308021   2.155435
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23435~s {c |}{res}    274,246    .7448265    .1474036   .3298788    1.41545
+{txt}ln_n_23436~s {c |}{res}    274,246    1.599744    .1295081   .5834209   2.239799
+{txt}ln_n_23437~s {c |}{res}    274,246    1.446014    .1305219          0   2.079159
+{txt}ln_n_23438~s {c |}{res}    274,246    .6696964    .0542119   .3394702   .9333006
+{txt}ln_n_23439~s {c |}{res}    274,246    .9151691    .1088332   .3928359   1.430559
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23440~s {c |}{res}    274,246    1.205014    .1003567   .5513529   1.702058
+{txt}ln_n_23441~s {c |}{res}    274,246    .7640605    .1064892   .2540138    1.25873
+{txt}ln_n_23442~s {c |}{res}    274,246    3.456696    .3435673   1.705902   5.076909
+{txt}ln_n_23443~s {c |}{res}    274,246    1.164291    .0347868   .9586449   1.347071
+{txt}ln_n_23444~s {c |}{res}    274,246    .7136107    .1462009   .0315105   1.314572
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23445~s {c |}{res}    274,246    2.117609    .1615389   1.002647   2.916539
+{txt}ln_n_23446~s {c |}{res}    274,246     2.23831    .1798111   1.003145   3.119199
+{txt}ln_n_23447~s {c |}{res}    274,246    1.686247    .2346128   .0023487   2.725271
+{txt}ln_n_23448~s {c |}{res}    274,246    2.017136    .2301393   .0042538   3.061732
+{txt}ln_n_23449~s {c |}{res}    274,246    1.851782    .1849547   .0699578   2.728204
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23450~s {c |}{res}    274,246    .4787914    .0820539   .0158682   .8205974
+{txt}ln_n_23451~s {c |}{res}    274,246    2.060523    .3535993   .1195031   3.529872
+{txt}ln_n_23452~s {c |}{res}    274,246    6.145441    .3010483   4.210938   7.249414
+{txt}ln_n_23453~s {c |}{res}    274,246    6.492516    .2956508   4.562675   7.663094
+{txt}ln_n_23454~s {c |}{res}    274,246    4.864926    .2722668   3.168438   6.258195
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23455~s {c |}{res}    274,246    5.830052    .1668593   4.938522   6.692982
+{txt}ln_n_23456~s {c |}{res}    274,246    5.366089    .3242198   3.079967   6.932027
+{txt}ln_n_23457~s {c |}{res}    274,246    1.391618     .232714   .0661634   2.354888
+{txt}ln_n_23458~s {c |}{res}    274,246    1.341585    .1290936    .749273    1.95141
+{txt}ln_n_23459~s {c |}{res}    274,246    3.061108    .5648134   1.107565    5.36125
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23460~s {c |}{res}    274,246    .5396365    .0708045    .247552   .8738822
+{txt}ln_n_23461~s {c |}{res}    274,246     .740907    .0574564   .2905753    1.01951
+{txt}ln_n_23462~s {c |}{res}    274,246    .4052515    .0810859          0    .704443
+{txt}ln_n_23463~s {c |}{res}    274,246    .2550416    .0204109    .145451    .356118
+{txt}ln_n_23464~s {c |}{res}    274,246    .6004142    .0691852    .328664   .9123322
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23465~s {c |}{res}    274,246    .2226999    .0376794          0   .3786291
+{txt}ln_n_23466~s {c |}{res}    274,246    .3196522    .0427912   .1170128   .5060533
+{txt}ln_n_23467~s {c |}{res}    274,246    .4561803    .0463061   .2595843   .6733647
+{txt}ln_n_23468~s {c |}{res}    274,246    .2159386    .0241637   .0719743    .326374
+{txt}ln_n_23469~s {c |}{res}    274,246    .2494243    .0281206   .0742375   .3786819
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23470~s {c |}{res}    274,246    1.887359    .2079357   .5380892   2.777589
+{txt}ln_n_23471~s {c |}{res}    274,246    1.967618     .273701      .8498    3.19875
+{txt}ln_n_23472~s {c |}{res}    274,246    .2796485    .0489969   .0323342    .479385
+{txt}ln_n_23473~s {c |}{res}    274,246    .2544469    .0253023   .0581816   .3754331
+{txt}ln_n_23474~s {c |}{res}    274,246    .2196849    .0746909          0   .4738565
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23475~s {c |}{res}    274,246    .1219799    .0254132          0   .2202567
+{txt}ln_n_23476~s {c |}{res}    274,246    .1031274    .0380353          0   .2308073
+{txt}ln_n_23477~s {c |}{res}    274,246    .1167088    .0165027   .0482545   .1839402
+{txt}ln_n_23478~s {c |}{res}    274,246    .2579026    .0245449   .1238749   .3794074
+{txt}ln_n_23479~s {c |}{res}    274,246    6.266087    .2671789   4.562346   7.620564
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23480~s {c |}{res}    274,246    .8986885    .0661796   .5241755   1.230041
+{txt}ln_n_23481~s {c |}{res}    274,246    .0011385    .0005909   .0000634   .0031828
+{txt}ln_n_23482~s {c |}{res}    274,246     .420684    .2098368   .0105271   1.167005
+{txt}ln_n_23483~s {c |}{res}    274,246    .1645568    .0876449   .0003512   .4615625
+{txt}ln_n_23484~s {c |}{res}    274,246    .2164022    .0907352   .0103668   .5496362
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23485~s {c |}{res}    274,246    .1613684    .0681576   .0005813   .4114243
+{txt}ln_n_23486~s {c |}{res}    274,246    .1435353    .0613759   .0092043   .3667697
+{txt}ln_n_23487~s {c |}{res}    274,246    .3157784    .1767336   .0000521   .9179488
+{txt}ln_n_23488~s {c |}{res}    274,246    .0017678    .0006253   .0000893   .0041467
+{txt}ln_n_23489~s {c |}{res}    274,246    .4274054    .1511032   .0298816   1.004589
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23490~s {c |}{res}    274,246    .1840459    .0699303   .0004603   .4430914
+{txt}ln_n_23491~s {c |}{res}    274,246    .2233537     .064236   .0175137   .4781108
+{txt}ln_n_23492~s {c |}{res}    274,246     .168321    .0444182   .0050619   .3461358
+{txt}ln_n_23493~s {c |}{res}    274,246    .1461837    .0483114   .0001528   .3332417
+{txt}ln_n_23494~s {c |}{res}    274,246    .3122577    .1230016   .0000628   .7683814
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23495~s {c |}{res}    274,246    .0031034    .0008762   .0001384   .0066711
+{txt}ln_n_23496~s {c |}{res}    274,246    .5581802    .1563412   .0582898   1.194194
+{txt}ln_n_23497~s {c |}{res}    274,246    .2464154    .0813228   .0001843   .5575751
+{txt}ln_n_23498~s {c |}{res}    274,246    .3040371    .0794089   .0350542   .6269529
+{txt}ln_n_23499~s {c |}{res}    274,246    .2208195     .054092   .0108849   .4397954
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23500~s {c |}{res}    274,246     .208557    .0596447   .0259278   .4491325
+{txt}ln_n_23501~s {c |}{res}    274,246    .3963392    .1130709   .0000926   .8546052
+{txt}ln_n_23502~s {c |}{res}    274,246    .0058192    .0010543    .001194   .0104374
+{txt}ln_n_23503~s {c |}{res}    274,246    .7498611    .1377024   .1513043   1.356945
+{txt}ln_n_23504~s {c |}{res}    274,246    .3535003    .0675673   .0001589   .6430163
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23505~s {c |}{res}    274,246    .4057685    .0815173   .0155493   .7488725
+{txt}ln_n_23506~s {c |}{res}    274,246    .2955786    .0673362   .0002424   .5658887
+{txt}ln_n_23507~s {c |}{res}    274,246    .2766883    .0532571   .0154835   .5063793
+{txt}ln_n_23508~s {c |}{res}    274,246     .517714    .1111385   .0006887    .997542
+{txt}ln_n_23509~s {c |}{res}    274,246    .0062239     .001034   .0024009   .0108476
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23510~s {c |}{res}    274,246    .6375266    .1024894   .2227016   1.096996
+{txt}ln_n_23511~s {c |}{res}    274,246    .3093594    .0485465   .1026986   .5255569
+{txt}ln_n_23512~s {c |}{res}    274,246    .3914516    .0653933   .0974346   .6825833
+{txt}ln_n_23513~s {c |}{res}    274,246    .3092458    .0532132   .0485386   .5443069
+{txt}ln_n_23514~s {c |}{res}    274,246    .2398209    .0391221    .054025   .4138116
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23515~s {c |}{res}    274,246    .3943376    .0762491   .0462785   .7253482
+{txt}ln_n_23516~s {c |}{res}    274,246    .0073571    .0009186   .0035785   .0116456
+{txt}ln_n_23517~s {c |}{res}    274,246    .5948492    .0736724   .2669438   .9350936
+{txt}ln_n_23518~s {c |}{res}    274,246    .3216467    .0406303    .089627   .5085666
+{txt}ln_n_23519~s {c |}{res}    274,246    .4251216     .057754   .1858978   .6898478
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23520~s {c |}{res}    274,246    .3519616    .0499105   .1436245   .5770528
+{txt}ln_n_23521~s {c |}{res}    274,246    .2382115    .0307464   .0986813   .3801316
+{txt}ln_n_23522~s {c |}{res}    274,246    .2616262    .0397057   .0713793   .4339816
+{txt}ln_n_23523~s {c |}{res}    274,246     .017418     .002169   .0090766   .0276601
+{txt}ln_n_23524~s {c |}{res}    274,246    1.102342    .1315803   .4189988   1.717294
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23525~s {c |}{res}    274,246    .5376515    .0616598   .2225983   .8269885
+{txt}ln_n_23526~s {c |}{res}    274,246    .9079491    .1191136   .3072849   1.447964
+{txt}ln_n_23527~s {c |}{res}    274,246    .7801843    .1031117   .1904075   1.251519
+{txt}ln_n_23528~s {c |}{res}    274,246    .4642357    .0611003   .1843258   .7444528
+{txt}ln_n_23529~s {c |}{res}    274,246    .3151273    .0399593   .0975131   .4944997
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23530~s {c |}{res}    274,246    .0269908    .0032649    .009413   .0422741
+{txt}ln_n_23531~s {c |}{res}    274,246    1.253723    .1518047   .3603332   1.954994
+{txt}ln_n_23532~s {c |}{res}    274,246    .5942229    .0698491   .2526618    .915691
+{txt}ln_n_23533~s {c |}{res}    274,246    1.058275    .1357024          0   1.677886
+{txt}ln_n_23534~s {c |}{res}    274,246    .9101607    .1159631          0   1.441804
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23535~s {c |}{res}    274,246    .5396728    .0726755          0   .8669948
+{txt}ln_n_23536~s {c |}{res}    274,246    .3111833    .0394255   .0650999   .4868675
+{txt}ln_n_23537~s {c |}{res}    274,246     .016985    .0022255   .0023616   .0273229
+{txt}ln_n_23538~s {c |}{res}    274,246    .7831208    .1062153       .171   1.270669
+{txt}ln_n_23539~s {c |}{res}    274,246    .4002752    .0528205   .1156287   .6442903
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23540~s {c |}{res}    274,246    .6479891    .0915426   6.84e-07   1.051428
+{txt}ln_n_23541~s {c |}{res}    274,246    .5493609    .0803221          0    .909912
+{txt}ln_n_23542~s {c |}{res}    274,246    .3431071    .0479494   3.74e-07   .5550135
+{txt}ln_n_23543~s {c |}{res}    274,246    .1802115    .0269844   .0249502     .29564
+{txt}ln_n_23544~s {c |}{res}    274,246    .0129467    .0014347   .0016717   .0198116
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23545~s {c |}{res}    274,246    .5314349    .0615471   .1564449   .8205669
+{txt}ln_n_23546~s {c |}{res}    274,246    .2966418    .0318166   .0003977   .4445335
+{txt}ln_n_23547~s {c |}{res}    274,246     .422892    .0525228   6.49e-07   .6670532
+{txt}ln_n_23548~s {c |}{res}    274,246    .3602027    .0458749   4.37e-07   .5733847
+{txt}ln_n_23549~s {c |}{res}    274,246    .2211062     .029298   4.79e-07   .3523634
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23550~s {c |}{res}    274,246    .1228967    .0214823   .0508832    .213965
+{txt}ln_n_23551~s {c |}{res}    274,246    .0148474     .002944   .0004721   .0264902
+{txt}ln_n_23552~s {c |}{res}    274,246    .3951741    .0925885   .0402157   .7508861
+{txt}ln_n_23553~s {c |}{res}    274,246    .2663956    .0778052   .0000804   .5502999
+{txt}ln_n_23554~s {c |}{res}    274,246     .277891    .0582844   .0003811   .5058557
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23555~s {c |}{res}    274,246    .2335369    .0555016   .0000445   .4475712
+{txt}ln_n_23556~s {c |}{res}    274,246    .1499336    .0230258   .0003533   .2421322
+{txt}ln_n_23557~s {c |}{res}    274,246      .08309    .0153978   .0015174   .1475466
+{txt}ln_n_23558~s {c |}{res}    274,246    .0360472    .0099762   .0000661   .0759506
+{txt}ln_n_23559~s {c |}{res}    274,246    .7824273    .1936095    .107912   1.578987
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23560~s {c |}{res}    274,246    .5543549    .1297311   .0002711   1.094943
+{txt}ln_n_23561~s {c |}{res}    274,246    .5220276    .1504755   .0001185   1.120669
+{txt}ln_n_23562~s {c |}{res}    274,246    .4586882    .1334511   .0000893   .9880688
+{txt}ln_n_23563~s {c |}{res}    274,246    .2488365    .0708892    .000078   .5260894
+{txt}ln_n_23564~s {c |}{res}    274,246     .170829    .0341959   .0005428   .3130383
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23565~s {c |}{res}    274,246    .0619904    .0074708   .0001263   .0969711
+{txt}ln_n_23566~s {c |}{res}    274,246    1.016835    .1104465   .1302306   1.541363
+{txt}ln_n_23567~s {c |}{res}    274,246    .6972979    .0719153   .0057104   1.037593
+{txt}ln_n_23568~s {c |}{res}    274,246    .7018893    .0871201   .0005577   1.114451
+{txt}ln_n_23569~s {c |}{res}    274,246    .6372769    .0771827   .0003458   1.003892
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23570~s {c |}{res}    274,246    .2939639    .0417545   .0004376    .484221
+{txt}ln_n_23571~s {c |}{res}    274,246    .2298715    .0406421   .0002307   .4018457
+{txt}ln_n_23572~s {c |}{res}    274,246    .0986607    .0067266    .045439   .1318711
+{txt}ln_n_23573~s {c |}{res}    274,246    1.079488     .073922   .5192591   1.444403
+{txt}ln_n_23574~s {c |}{res}    274,246    .8154435    .0574569   .3462513   1.098271
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23575~s {c |}{res}    274,246    .6685105    .0465123   .3226608   .8986379
+{txt}ln_n_23576~s {c |}{res}    274,246    .5754557    .0418992   .2340705   .7794293
+{txt}ln_n_23577~s {c |}{res}    274,246    .3399793    .0242157   .1871363   .4597282
+{txt}ln_n_23578~s {c |}{res}    274,246    .2278928    .0384585   .0313168   .3932811
+{txt}ln_n_23579~s {c |}{res}    274,246    3.970051       .2988   2.321444   5.104704
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23580~s {c |}{res}    274,246    5.248641    .7306793   1.885524   8.192679
+{txt}ln_n_23581~s {c |}{res}    274,246    3.900878    .6793488   .5262319   6.531692
+{txt}ln_n_23582~s {c |}{res}    274,246    3.490255    .4302677   .7406821   5.157422
+{txt}ln_n_23583~s {c |}{res}    274,246    7.490274     .719486   3.537937   9.820132
+{txt}ln_n_23584~s {c |}{res}    274,246    4.304163    .2069602   3.230789   5.180444
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23585~s {c |}{res}    274,246    5.371897    .6616666   1.719506   8.289572
+{txt}ln_n_23586~s {c |}{res}    274,246    4.098503    .7021994   .2273214   7.044289
+{txt}ln_n_23587~s {c |}{res}    274,246    3.450911    .2284905   1.901105    4.48096
+{txt}ln_n_23588~s {c |}{res}    274,246    7.212427    .5734874   3.251769   9.756639
+{txt}ln_n_23589~s {c |}{res}    274,246    4.393589    .2913155   2.946184   5.522137
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23590~s {c |}{res}    274,246    5.477616    .3954253   2.309242   7.401486
+{txt}ln_n_23591~s {c |}{res}    274,246    4.008568    .4267251   .3651438   6.062838
+{txt}ln_n_23592~s {c |}{res}    274,246    3.732529    .1664683   2.806172   4.483414
+{txt}ln_n_23593~s {c |}{res}    274,246    7.104729     .369727   4.816327   8.824908
+{txt}ln_n_23594~s {c |}{res}    274,246    4.710193    .1950111   3.429577   5.715767
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23595~s {c |}{res}    274,246    5.430641    .6596338    .835811   8.080223
+{txt}ln_n_23596~s {c |}{res}    274,246    3.967766     .711987    .002538   6.242916
+{txt}ln_n_23597~s {c |}{res}    274,246    3.690387    .2436589   1.819945   4.798333
+{txt}ln_n_23598~s {c |}{res}    274,246    6.890611    .6117151   .0125622   9.964989
+{txt}ln_n_23599~s {c |}{res}    274,246    4.859827    .2156878   3.408665   5.948445
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23600~s {c |}{res}    274,246    6.144924    .3908979    3.10129   7.757964
+{txt}ln_n_23601~s {c |}{res}    274,246    4.848797     .292962   2.644372    5.93675
+{txt}ln_n_23602~s {c |}{res}    274,246    3.771841    .3007173   1.221434   5.092642
+{txt}ln_n_23603~s {c |}{res}    274,246    6.174926    .5412263   2.078076   8.764474
+{txt}ln_n_23604~s {c |}{res}    274,246    5.406638    .0839381    4.90622   5.858925
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23605~s {c |}{res}    274,246    7.142472    .3369175   4.994897   8.467349
+{txt}ln_n_23606~s {c |}{res}    274,246    5.913054    .3703465   3.353357   7.362676
+{txt}ln_n_23607~s {c |}{res}    274,246    4.002881    .0763864   3.578128   4.365662
+{txt}ln_n_23608~s {c |}{res}    274,246    4.406823    .4611265   1.914523   6.526408
+{txt}ln_n_23609~s {c |}{res}    274,246    4.881467    .0921261   4.297906   5.373733
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23610~s {c |}{res}    274,246    8.225663    .1825696    7.17642   8.634003
+{txt}ln_n_23611~s {c |}{res}    274,246    7.067279    .1744188   6.048223   7.643167
+{txt}ln_n_23612~s {c |}{res}    274,246    4.206926    .1331162   3.386739   4.862921
+{txt}ln_n_23613~s {c |}{res}    274,246    2.878675    .3866976    1.50313   4.547527
+{txt}ln_n_23614~s {c |}{res}    274,246    4.742046    .0802023    4.31196   5.199327
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23615~s {c |}{res}    274,246    8.436309    .0943839    7.91328   8.722557
+{txt}ln_n_23616~s {c |}{res}    274,246    7.255506    .0804343    6.76003   7.615248
+{txt}ln_n_23617~s {c |}{res}    274,246     4.30071    .1513601   3.374759   4.747104
+{txt}ln_n_23618~s {c |}{res}    274,246    2.494703    .3024714   1.447446   3.815888
+{txt}ln_n_23619~s {c |}{res}    274,246    5.114496    .0792398   4.650376   5.570009
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23620~s {c |}{res}    274,246    8.269936    .0919683   7.781966   8.547572
+{txt}ln_n_23621~s {c |}{res}    274,246    7.005602    .1376786   6.178106   7.612556
+{txt}ln_n_23622~s {c |}{res}    274,246    4.386073    .2230411   2.981359   5.257946
+{txt}ln_n_23623~s {c |}{res}    274,246    2.312557    .2889556   1.349037   3.583574
+{txt}ln_n_23624~s {c |}{res}    274,246    5.589427    .1561566   4.613567   6.414125
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23625~s {c |}{res}    274,246    7.950954    .1226989   7.255136   8.437358
+{txt}ln_n_23626~s {c |}{res}    274,246    6.769826    .1525543   5.850214   7.601776
+{txt}ln_n_23627~s {c |}{res}    274,246    4.163126    .2410785   2.672265   4.752473
+{txt}ln_n_23628~s {c |}{res}    274,246     2.31672    .3426706   1.297112   3.790514
+{txt}ln_n_23629~s {c |}{res}    274,246    6.675643    .4605658   3.698107   7.736731
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23630~s {c |}{res}    274,246    7.071141     .315952   5.102058   8.567788
+{txt}ln_n_23631~s {c |}{res}    274,246    5.913488    .2627677   4.542356   7.034842
+{txt}ln_n_23632~s {c |}{res}    274,246    3.867318    .4022156   .0367138   5.794912
+{txt}ln_n_23633~s {c |}{res}    274,246    2.181779    .5815848   .0414065   4.503776
+{txt}ln_n_23634~s {c |}{res}    274,246    7.108775    .2015598   5.913206   8.123239
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23635~s {c |}{res}    274,246    6.613546    .4201663    3.98221   8.543712
+{txt}ln_n_23636~s {c |}{res}    274,246    5.808431    .4245713   3.081039    7.16917
+{txt}ln_n_23637~s {c |}{res}    274,246    3.159543    .1682838   2.202521    3.90922
+{txt}ln_n_23638~s {c |}{res}    274,246    2.272527    .5813538   .0163138    4.60847
+{txt}ln_n_23639~s {c |}{res}    274,246    6.862152    .0921579   6.513985   7.387625
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23640~s {c |}{res}    274,246    6.893537    .2181546   5.454356   7.560225
+{txt}ln_n_23641~s {c |}{res}    274,246    6.261779    .2101311   4.903876   7.006069
+{txt}ln_n_23642~s {c |}{res}    274,246    2.881154    .1204557   2.077739   3.440203
+{txt}ln_n_23643~s {c |}{res}    274,246    2.274741    .3984416   .0076269   4.029392
+{txt}ln_n_23644~s {c |}{res}    274,246    7.553475    .0820413   7.087101   8.002874
+{txt}{hline 13}{c +}{hline 57}
+ln_n_23645~s {c |}{res}    274,246    6.194262      .15315    5.24166    6.93044
+{txt}ln_n_23646~s {c |}{res}    274,246    5.332461    .1775552   4.216159   6.018056
+{txt}ln_n_23647~s {c |}{res}    274,246    3.149439    .0818472   2.778291   3.569174
+{txt}ln_n_23648~s {c |}{res}    274,246    2.108996     .311684   .3165912   3.496999
+{txt}{space 2}lnNO2_2010 {c |}{res}    494,784    3.245313    .2849497    2.55955   4.686658
+{txt}{hline 13}{c +}{hline 57}
+{space 2}lnNOX_2010 {c |}{res}    494,784    3.732728    .3253853   2.982647   5.583271
+{txt}lnPM2~5_2010 {c |}{res}    460,870    2.296357    .1034227   2.100469   3.059176
+{txt}{space 1}lnPM10_2010 {c |}{res}    460,870    2.780656    .1151493   2.466403   3.446489
+{txt}lnPM2~0_2010 {c |}{res}    460,870    1.852154    .1264706   1.717395   2.551006
+{txt}lnPM2~s_2010 {c |}{res}    460,870     .148395    .2064263  -.1863296   1.526056
+{txt}
+{com}. 
+. capture drop sample_metab
+{txt}
+{com}. gen sample_metab=1 if ln_n_23648_0_0_no_outlier~=.
+{txt}(228,163 missing values generated)
+
+{com}. replace sample_metab=0 if sample_metab~=1
+{txt}(228,163 real changes made)
+
+{com}. 
+. tab sample_metab
+
+{txt}sample_meta {c |}
+          b {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}    228,163       45.41       45.41
+{txt}          1 {c |}{res}    274,246       54.59      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    502,409      100.00
+{txt}
+{com}. 
+. capture drop sample_final2
+{txt}
+{com}. gen sample_final2=1 if sample_final==1 & sample_metab==1
+{txt}(482,764 missing values generated)
+
+{com}. replace sample_final2=0 if sample_final2~=1
+{txt}(482,764 real changes made)
+
+{com}. 
+. tab sample_final2
+
+{txt}sample_fina {c |}
+         l2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}    482,764       96.09       96.09
+{txt}          1 {c |}{res}     19,645        3.91      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}    502,409      100.00
+{txt}
+{com}. 
+. 
+. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. //STEP 17: stset for dementia and PD incidence and estimate median age and percentiles, plus incidence rates across sex and racial groups//
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+{txt}
+{com}. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. **************RACE_ETHN****************************
+. capture drop RACE_ETHN
+{txt}
+{com}. gen RACE_ETHN=ethnicity2
+{txt}(246 missing values generated)
+
+{com}. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. 
+. 
+. 
+. *************stsum code******************************
+. 
+. 
+. 
+. **DEMENTIA INCIDENCE**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}        253{txt}  event time missing (Age_dementia>=.){col 61}PROBABLE ERROR
+{res}        226{txt}  observations end on or before {bf:enter()}
+{hline 74}
+{res}    501,930{txt}  observations remaining, representing
+{res}    501,930{txt}  subjects
+{res}      9,819{txt}  failures in single-failure-per-subject data
+{res}  7,190,328{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 37.41821
+                                          {txt}Last observed exit t = {res} 89.80151
+{txt}
+{com}. 
+. 
+. stsum if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 467,079.585   .0023893{col 40}    33472          .         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 443,903.949   .0024194{col 40}    31799          .         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 315,955.471   .0010698{col 40}    22264          .         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 211,816.062   .0026721{col 40}    15464          .         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 255,263.523   .0021546{col 40}    18008          .         .         .
+{txt}
+{com}. 
+. stptime if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 467079.58{col 29}    1116{col 39} .00238931{col 51} .0022532{col 63} .0025337
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 443903.95{col 29}    1074{col 39} .00241944{col 51}  .002279{col 63} .0025686
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 315955.47{col 29}     338{col 39} .00106977{col 51} .0009616{col 63} .0011901
+{txt}
+{com}. 
+. stptime if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 211816.06{col 29}     566{col 39} .00267213{col 51} .0024608{col 63} .0029016
+{txt}
+{com}. stptime if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 255263.52{col 29}     550{col 39} .00215464{col 51} .0019819{col 63} .0023424
+{txt}
+{com}. 
+. capture drop NoneWhite
+{txt}
+{com}. gen NoneWhite=.
+{txt}(502,409 missing values generated)
+
+{com}. replace NoneWhite=1 if RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+{txt}(29,777 real changes made)
+
+{com}. replace NoneWhite=0 if RACE_ETHN==0
+{txt}(472,386 real changes made)
+
+{com}. 
+. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. **PARKINSON'S DISEASE**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}        253{txt}  event time missing (Age_PD>=.){col 61}PROBABLE ERROR
+{res}        900{txt}  observations end on or before {bf:enter()}
+{hline 74}
+{res}    501,256{txt}  observations remaining, representing
+{res}    501,256{txt}  subjects
+{res}      3,514{txt}  failures in single-failure-per-subject data
+{res}  7,196,325{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 37.41821
+                                          {txt}Last observed exit t = {res} 89.80151
+{txt}
+{com}. 
+. 
+. stsum if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res}  466,935.91   .0013921{col 40}    33472          .         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 443,759.708   .0014084{col 40}    31799          .         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 316,321.844   .0003888{col 40}    22245          .         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 211,319.629   .0019402{col 40}    15464          .         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 255,616.281   .0009389{col 40}    18008          .         .         .
+{txt}
+{com}. 
+. stptime if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 466935.91{col 29}     650{col 39} .00139205{col 51}  .001289{col 63} .0015033
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 443759.71{col 29}     625{col 39} .00140842{col 51} .0013022{col 63} .0015233
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 316321.84{col 29}     123{col 39} .00038884{col 51} .0003259{col 63}  .000464
+{txt}
+{com}. 
+. stptime if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 211319.63{col 29}     410{col 39} .00194019{col 51} .0017612{col 63} .0021374
+{txt}
+{com}. stptime if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 255616.28{col 29}     240{col 39} .00093891{col 51} .0008273{col 63} .0010655
+{txt}
+{com}. 
+. **MORTALITY**
+. 
+. stset Age_death, failure(died==1) enter(baselineage) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time baselineage
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}    502,409{txt}  total observations
+{res}        253{txt}  event time missing (Age_death>=.){col 61}PROBABLE ERROR
+{hline 74}
+{res}    502,156{txt}  observations remaining, representing
+{res}    502,156{txt}  subjects
+{res}     44,500{txt}  failures in single-failure-per-subject data
+{res}  7,221,314{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 37.41821
+                                          {txt}Last observed exit t = {res} 89.80151
+{txt}
+{com}. 
+. 
+. stsum if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 470,756.428   .0089282{col 40}    33472   82.05886         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 447,400.267   .0090344{col 40}    31799   82.05339         .         .
+{txt}
+{com}. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 317,255.232   .0046272{col 40}    22276   84.17249         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 213,561.431    .011725{col 40}    15464   79.73443         .         .
+{txt}
+{com}. stsum if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}{col 10}{c |}{col 26}Incidence{col 40}Number of{col 52}{c LT}{hline 6} Survival time {hline 5}{c RT}
+        {col 10}{c |} Time at risk{col 31}rate{col 41}subjects{col 57}25%{col 67}50%{col 77}75%
+{hline 9}{c +}{hline 69}
+   Total {c |} {res} 257,194.997   .0066059{col 40}    18008          .         .         .
+{txt}
+{com}. 
+. stptime if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 470756.43{col 29}    4203{col 39} .00892818{col 51} .0086623{col 63} .0092022
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==0
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 447400.27{col 29}    4042{col 39} .00903442{col 51} .0087601{col 63} .0093173
+{txt}
+{com}. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 317255.23{col 29}    1468{col 39} .00462719{col 51} .0043964{col 63} .0048701
+{txt}
+{com}. 
+. stptime if sample_final==1 & sex==1
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res} 213561.43{col 29}    2504{col 39} .01172496{col 51} .0112746{col 63} .0121933
+{txt}
+{com}. stptime if sample_final==1 & sex==2
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time baselineage
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Estimated person-time and incidence rate
+
+    Cohort{col 12}{c |}{col 15}Person-time{col 29}Failures{col 45}Rate{col 52}[95% conf. interval]
+{hline 11}{c +}{hline 59}
+     Total{col 12}{c |}{col 16}{res}    257195{col 29}    1699{col 39} .00660588{col 51} .0062991{col 63} .0069276
+{txt}
+{com}. 
+. 
+. 
+. 
+. 
+. //STEP 18: DETERMINE DIFFERENCES IN FINAL ANALYTIC SAMPLE VS. EXCLUDED SAMPLE BY BASIC SOCIO-DEMOGRAPHICS//
+. 
+. logistic sample_final baselineage sex i.RACE_ETHN if baselineage>=50 & baselineage~=.
+{res}
+{txt}{col 1}Logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:384,487}
+{txt}{col 56}{lalign 13:LR chi2({res:5})}{col 69} = {res}{ralign 7:173.68}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-113595.84}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0008}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}sample_final{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}baselineage {c |}{col 14}{res}{space 2} 1.010167{col 26}{space 2} .0010682{col 37}{space 1}    9.57{col 46}{space 3}0.000{col 54}{space 4} 1.008076{col 67}{space 3} 1.012263
+{txt}{space 9}sex {c |}{col 14}{res}{space 2} .9832214{col 26}{space 2} .0112986{col 37}{space 1}   -1.47{col 46}{space 3}0.141{col 54}{space 4}  .961324{col 67}{space 3} 1.005618
+{txt}{space 12} {c |}
+{space 3}RACE_ETHN {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 1.556457{col 26}{space 2} .0714386{col 37}{space 1}    9.64{col 46}{space 3}0.000{col 54}{space 4} 1.422553{col 67}{space 3} 1.702965
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .9493575{col 26}{space 2} .0446461{col 37}{space 1}   -1.11{col 46}{space 3}0.269{col 54}{space 4} .8657643{col 67}{space 3} 1.041022
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .9931324{col 26}{space 2} .0422042{col 37}{space 1}   -0.16{col 46}{space 3}0.871{col 54}{space 4} .9137649{col 67}{space 3} 1.079394
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0527014{col 26}{space 2} .0035715{col 37}{space 1}  -43.43{col 46}{space 3}0.000{col 54}{space 4} .0461463{col 67}{space 3} .0601877
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+. logistic sample_final2 baselineage sex i.RACE_ETHN if baselineage>=50 & baselineage~=.
+{res}
+{txt}{col 1}Logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:384,487}
+{txt}{col 56}{lalign 13:LR chi2({res:5})}{col 69} = {res}{ralign 7:106.36}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-77507.118}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0007}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}sample_final2{col 15}{c |} Odds ratio{col 27}   Std. err.{col 39}      z{col 47}   P>|z|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 2}baselineage {c |}{col 15}{res}{space 2} 1.011038{col 27}{space 2} .0013704{col 38}{space 1}    8.10{col 47}{space 3}0.000{col 55}{space 4} 1.008356{col 68}{space 3} 1.013728
+{txt}{space 10}sex {c |}{col 15}{res}{space 2} .9953073{col 27}{space 2} .0146472{col 38}{space 1}   -0.32{col 47}{space 3}0.749{col 55}{space 4} .9670094{col 68}{space 3} 1.024433
+{txt}{space 13} {c |}
+{space 4}RACE_ETHN {c |}
+{space 11}1  {c |}{col 15}{res}{space 2} 1.281511{col 27}{space 2} .0800959{col 38}{space 1}    3.97{col 47}{space 3}0.000{col 55}{space 4}  1.13376{col 68}{space 3} 1.448516
+{txt}{space 11}2  {c |}{col 15}{res}{space 2} .7584486{col 27}{space 2} .0504976{col 38}{space 1}   -4.15{col 47}{space 3}0.000{col 55}{space 4} .6656609{col 68}{space 3} .8641701
+{txt}{space 11}3  {c |}{col 15}{res}{space 2}  .879742{col 27}{space 2} .0503978{col 38}{space 1}   -2.24{col 47}{space 3}0.025{col 55}{space 4} .7863077{col 68}{space 3} .9842788
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2} .0279319{col 27}{space 2}  .002428{col 38}{space 1}  -41.16{col 47}{space 3}0.000{col 55}{space 4} .0235565{col 68}{space 3} .0331201
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. //STEP 19: CREATE LE8 TOTAL SCORE TERTILES////
+. 
+. ***********************LE8 TOTAL SCORE TERTILES*********************
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+{txt}
+{com}. 
+. capture drop LE8_TOTALSCOREtert
+{txt}
+{com}. xtile LE8_TOTALSCOREtert=LE8_TOTALSCORE if sample_final==1, nq(3)
+{txt}
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

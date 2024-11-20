@@ -1,0 +1,117 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. 
+. ************************************************************************************************************************
+. 
+. **Format time-series variables using the do file**
+. 
+. use n_eid withdrew s_53* s_40000* n_40007*  s_42018_0_0 s_42018_0_0 s_42020_0_0 s_42030_0_0 s_42032_0_0 using "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\SMALLERDATASETUKBfin.dta",clear
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\DATES_SMALL.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\DATES_SMALL.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. capture gen double ts_53_0_0 = date(s_53_0_0,"YMD")
+{txt}
+{com}. capture format ts_53_0_0 %td
+{txt}
+{com}. capture label variable ts_53_0_0 "Date of attending assessment centre"
+{txt}
+{com}. 
+. capture gen double ts_53_1_0 = date(s_53_1_0,"YMD")
+{txt}
+{com}. capture format ts_53_1_0 %td
+{txt}
+{com}. capture label variable ts_53_1_0 "Date of attending assessment centre"
+{txt}
+{com}. 
+. capture gen double ts_53_2_0 = date(s_53_2_0,"YMD")
+{txt}
+{com}. capture format ts_53_2_0 %td
+{txt}
+{com}. capture label variable ts_53_2_0 "Date of attending assessment centre"
+{txt}
+{com}. 
+. capture gen double ts_53_3_0 = date(s_53_3_0,"YMD")
+{txt}
+{com}. capture format ts_53_3_0 %td
+{txt}
+{com}. capture label variable ts_53_3_0 "Date of attending assessment centre"
+{txt}
+{com}. 
+. capture gen double ts_40000_0_0 = date(s_40000_0_0,"YMD")
+{txt}
+{com}. capture format ts_40000_0_0 %td
+{txt}
+{com}. capture label variable ts_40000_0_0 "Date of death"
+{txt}
+{com}. 
+. capture gen double ts_40000_1_0 = date(s_40000_1_0,"YMD")
+{txt}
+{com}. capture format ts_40000_1_0 %td
+{txt}
+{com}. capture label variable ts_40000_1_0 "Date of death"
+{txt}
+{com}. 
+. 
+. format %18.14f n_40007_0_0
+{txt}
+{com}. format %18.14f n_40007_1_0
+{txt}
+{com}. 
+. **Dementia and Alzheimer's Disease**
+. 
+. capture gen double ts_42018_0_0 = date(s_42018_0_0,"YMD")
+{txt}
+{com}. capture format ts_42018_0_0 %td
+{txt}
+{com}. capture label variable ts_42018_0_0 "Date of all cause dementia report"
+{txt}
+{com}. 
+. capture gen double ts_42020_0_0 = date(s_42020_0_0,"YMD")
+{txt}
+{com}. capture format ts_42020_0_0 %td
+{txt}
+{com}. capture label variable ts_42020_0_0 "Date of alzheimers disease report"
+{txt}
+{com}. 
+. 
+. **Parkinson's and all-cause Parkinsonism***
+. 
+. capture gen double ts_42030_0_0 = date(s_42030_0_0,"YMD")
+{txt}
+{com}. capture format ts_42030_0_0 %td
+{txt}
+{com}. capture label variable ts_42030_0_0 "Date of all cause parkinsonism report"
+{txt}
+{com}. 
+. capture gen double ts_42032_0_0 = date(s_42032_0_0,"YMD")
+{txt}
+{com}. capture format ts_42032_0_0 %td
+{txt}
+{com}. capture label variable ts_42032_0_0 "Date of parkinsons disease report"
+{txt}
+{com}. 
+. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\DATES_SMALL.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\DATES_SMALL.dta{rm}
+saved
+{p_end}
+
+{com}.  
+. 
+. 
+. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

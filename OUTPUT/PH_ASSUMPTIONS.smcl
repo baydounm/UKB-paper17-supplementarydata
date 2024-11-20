@@ -1,0 +1,648 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\finaldata_unimputedfin",clear
+{txt}
+{com}. 
+. 
+. ****************************NEFL************************
+. 
+. **Dementia**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        692{txt}  failures in single-failure-per-subject data
+{res} 274,705.47{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox neflbr  if sample_final==1, 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-6202.3614
+{txt}Iteration 1:  Log likelihood = {res} -6154.206
+{txt}Iteration 2:  Log likelihood = {res}-6153.4868
+{txt}Iteration 3:  Log likelihood = {res}-6153.4863
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-6153.4863
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:692}
+{txt}Time at risk    = {res}{ralign 11:274,705.469}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:97.75}
+{txt}Log likelihood = {res}-6153.4863{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.371392{col 26}{space 2} .2218936{col 37}{space 1}    9.23{col 46}{space 3}0.000{col 54}{space 4} 1.974039{col 67}{space 3}  2.84873
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}neflbr{col 14}{c |}{res}{col 18}-0.09452{col 26}     6.41{col 39}    1{col 51}0.0113
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     6.41{col 39}    1{col 51}0.0113
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch1dem
+{txt}
+{com}. predict scaledsch1dem if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch1dem _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch1demnfl.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch1demnfl.gph} saved
+
+{com}. 
+. 
+. **AD**
+. 
+. stset Age_AD, failure(ad_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}ad_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_AD[_n-1], Age_AD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        332{txt}  failures in single-failure-per-subject data
+{res} 275,852.95{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox neflbr  if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}ad_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_AD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-2950.6445
+{txt}Iteration 1:  Log likelihood = {res} -2927.265
+{txt}Iteration 2:  Log likelihood = {res} -2926.855
+{txt}Iteration 3:  Log likelihood = {res}-2926.8546
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-2926.8546
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:332}
+{txt}Time at risk    = {res}{ralign 11:275,852.952}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:47.58}
+{txt}Log likelihood = {res}-2926.8546{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.415926{col 26}{space 2} .3327839{col 37}{space 1}    6.40{col 46}{space 3}0.000{col 54}{space 4} 1.844311{col 67}{space 3} 3.164704
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}neflbr{col 14}{c |}{res}{col 18}-0.07332{col 26}     1.82{col 39}    1{col 51}0.1775
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     1.82{col 39}    1{col 51}0.1775
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch2AD
+{txt}
+{com}. predict scaledsch2AD if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch2AD _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch2ADnfl.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch2ADnfl.gph} saved
+
+{com}. 
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        400{txt}  failures in single-failure-per-subject data
+{res} 274,785.88{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. stcox neflbr  if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-3696.0631
+{txt}Iteration 1:  Log likelihood = {res}-3675.3266
+{txt}Iteration 2:  Log likelihood = {res}-3675.2553
+{txt}Iteration 3:  Log likelihood = {res}-3675.2553
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3675.2553
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:274,785.877}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:41.62}
+{txt}Log likelihood = {res}-3675.2553{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2}  2.00291{col 26}{space 2} .2233665{col 37}{space 1}    6.23{col 46}{space 3}0.000{col 54}{space 4} 1.609662{col 67}{space 3} 2.492231
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}neflbr{col 14}{c |}{res}{col 18}-0.07005{col 26}     2.03{col 39}    1{col 51}0.1541
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     2.03{col 39}    1{col 51}0.1541
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch3PD
+{txt}
+{com}. predict scaledsch3PD if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch3PD _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch3PDnfl.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch3PDnfl.gph} saved
+
+{com}. 
+. 
+. 
+. **Mortality**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}      2,515{txt}  failures in single-failure-per-subject data
+{res} 277,033.77{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox neflbr  if sample_final==1 
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22921.706
+{txt}Iteration 1:  Log likelihood = {res}-22843.354
+{txt}Iteration 2:  Log likelihood = {res}-22843.131
+{txt}Iteration 3:  Log likelihood = {res}-22843.131
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22843.131
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:2,515}
+{txt}Time at risk    = {res}{ralign 11:277,033.765}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:157.15}
+{txt}Log likelihood = {res}-22843.131{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 1.715792{col 26}{space 2} .0759369{col 37}{space 1}   12.20{col 46}{space 3}0.000{col 54}{space 4} 1.573231{col 67}{space 3} 1.871272
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}neflbr{col 14}{c |}{res}{col 18}-0.01852{col 26}     0.88{col 39}    1{col 51}0.3491
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     0.88{col 39}    1{col 51}0.3491
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch4MORT
+{txt}
+{com}. predict scaledsch4MORT if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch4MORT _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch4MORTnfl.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch4MORTnfl.gph} saved
+
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\finaldata_unimputedfin.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. ****************************GFAP************************
+. 
+. **Dementia**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        692{txt}  failures in single-failure-per-subject data
+{res} 274,705.47{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox gfapbr  if sample_final==1, 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-6202.3614
+{txt}Iteration 1:  Log likelihood = {res}-6152.5395
+{txt}Iteration 2:  Log likelihood = {res}-6151.9419
+{txt}Iteration 3:  Log likelihood = {res}-6151.9415
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-6151.9415
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:692}
+{txt}Time at risk    = {res}{ralign 11:274,705.469}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:100.84}
+{txt}Log likelihood = {res}-6151.9415{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 2.348391{col 26}{space 2} .2129097{col 37}{space 1}    9.42{col 46}{space 3}0.000{col 54}{space 4} 1.966069{col 67}{space 3} 2.805059
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}gfapbr{col 14}{c |}{res}{col 18}-0.01789{col 26}     0.22{col 39}    1{col 51}0.6374
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     0.22{col 39}    1{col 51}0.6374
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch1dem
+{txt}
+{com}. predict scaledsch1dem if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch1dem _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch1demgfap.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch1demgfap.gph} saved
+
+{com}. 
+. 
+. **AD**
+. 
+. stset Age_AD, failure(ad_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}ad_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_AD[_n-1], Age_AD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        332{txt}  failures in single-failure-per-subject data
+{res} 275,852.95{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox gfapbr  if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}ad_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_AD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-2950.6445
+{txt}Iteration 1:  Log likelihood = {res}-2907.5145
+{txt}Iteration 2:  Log likelihood = {res}-2906.1662
+{txt}Iteration 3:  Log likelihood = {res}  -2906.16
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}  -2906.16
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:332}
+{txt}Time at risk    = {res}{ralign 11:275,852.952}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:88.97}
+{txt}Log likelihood = {res}-2906.16{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 3.462381{col 26}{space 2} .5141949{col 37}{space 1}    8.36{col 46}{space 3}0.000{col 54}{space 4} 2.587997{col 67}{space 3} 4.632186
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}gfapbr{col 14}{c |}{res}{col 18}-0.11072{col 26}     4.15{col 39}    1{col 51}0.0417
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     4.15{col 39}    1{col 51}0.0417
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch2AD
+{txt}
+{com}. predict scaledsch2AD if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch2AD _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch2ADgfap.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch2ADgfap.gph} saved
+
+{com}. 
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}        400{txt}  failures in single-failure-per-subject data
+{res} 274,785.88{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. stcox gfapbr  if sample_final==1
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-3696.0631
+{txt}Iteration 1:  Log likelihood = {res}-3696.0424
+{txt}Iteration 2:  Log likelihood = {res}-3696.0424
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3696.0424
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:274,785.877}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:0.04}
+{txt}Log likelihood = {res}-3696.0424{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.8385}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2}  .979474{col 26}{space 2} .0996201{col 37}{space 1}   -0.20{col 46}{space 3}0.838{col 54}{space 4} .8024521{col 67}{space 3} 1.195547
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}gfapbr{col 14}{c |}{res}{col 18}-0.03676{col 26}     0.55{col 39}    1{col 51}0.4582
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     0.55{col 39}    1{col 51}0.4582
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch3PD
+{txt}
+{com}. predict scaledsch3PD if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch3PD _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch3PDgfap.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch3PDgfap.gph} saved
+
+{com}. 
+. 
+. 
+. **Mortality**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1)
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,645{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,645{txt}  observations remaining, representing
+{res}     19,645{txt}  subjects
+{res}      2,515{txt}  failures in single-failure-per-subject data
+{res} 277,033.77{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. stcox gfapbr  if sample_final==1 
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22921.706
+{txt}Iteration 1:  Log likelihood = {res}-22921.465
+{txt}Iteration 2:  Log likelihood = {res}-22921.465
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22921.465
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:19,645}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:19,645}
+{txt}No. of failures = {res}{ralign 11:2,515}
+{txt}Time at risk    = {res}{ralign 11:277,033.765}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:0.48}
+{txt}Log likelihood = {res}-22921.465{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.4872}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 1.028782{col 26}{space 2} .0420401{col 37}{space 1}    0.69{col 46}{space 3}0.487{col 54}{space 4} .9495983{col 67}{space 3} 1.114569
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. estat phtest, rank detail
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 7}gfapbr{col 14}{c |}{res}{col 18} 0.04547{col 26}     5.13{col 39}    1{col 51}0.0235
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}     5.13{col 39}    1{col 51}0.0235
+{txt}{hline 13}{c BT}{hline 42}
+
+{com}. capture drop scaledsch4MORT
+{txt}
+{com}. predict scaledsch4MORT if sample_final==1, scaledsch
+{txt}
+{com}. lowess scaledsch4MORT _t, mean noweight title("") note("") m(o)
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch4MORTgfap.gph",replace
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES\scaledsch4MORTgfap.gph} saved
+
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\finaldata_unimputedfin.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

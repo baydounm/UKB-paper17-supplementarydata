@@ -1,0 +1,1683 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA\finaldata_unimputedfin_MULTISTATE",clear
+{txt}
+{com}. 
+. ***********************************GFAP********************************
+. 
+. 
+. ******TRANSITION 1**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-3488.2456}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-3386.5659}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-3333.5293}  
+Iteration 4:{space 2}Log likelihood = {res:-3236.3193}  
+Iteration 5:{space 2}Log likelihood = {res: -3133.497}  
+Iteration 6:{space 2}Log likelihood = {res:-3032.9729}  
+Iteration 7:{space 2}Log likelihood = {res:-2964.8683}  
+Iteration 8:{space 2}Log likelihood = {res:-2911.5256}  
+Iteration 9:{space 2}Log likelihood = {res:-2890.0391}  
+Iteration 10:{space 1}Log likelihood = {res:-2862.7443}  
+Iteration 11:{space 1}Log likelihood = {res:-2848.5869}  
+Iteration 12:{space 1}Log likelihood = {res:-2839.0316}  
+Iteration 13:{space 1}Log likelihood = {res:-2833.1236}  
+Iteration 14:{space 1}Log likelihood = {res:-2829.4945}  
+Iteration 15:{space 1}Log likelihood = {res:-2827.9862}  
+Iteration 16:{space 1}Log likelihood = {res: -2827.699}  
+Iteration 17:{space 1}Log likelihood = {res:-2827.6839}  
+Iteration 18:{space 1}Log likelihood = {res:-2827.6825}  
+Iteration 19:{space 1}Log likelihood = {res:-2827.6825}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2827.6825}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0499216{col 26}{space 2} .1079478{col 37}{space 1}   -0.46{col 46}{space 3}0.644{col 55}{space 3}-.2614955{col 67}{space 3} .1616522
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} -.160976{col 26}{space 2}  .056869{col 37}{space 1}   -2.83{col 46}{space 3}0.005{col 55}{space 3}-.2724372{col 67}{space 3}-.0495148
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7616941{col 26}{space 2} .1110668{col 37}{space 1}   -6.86{col 46}{space 3}0.000{col 55}{space 3}-.9793812{col 67}{space 3}-.5440071
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0015436{col 26}{space 2} .0136122{col 37}{space 1}   -0.11{col 46}{space 3}0.910{col 55}{space 3}-.0282229{col 67}{space 3} .0251358
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .1528065{col 26}{space 2} .2706305{col 37}{space 1}    0.56{col 46}{space 3}0.572{col 55}{space 3}-.3776196{col 67}{space 3} .6832325
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0386685{col 26}{space 2} .0616583{col 37}{space 1}   -0.63{col 46}{space 3}0.531{col 55}{space 3}-.1595164{col 67}{space 3} .0821795
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}  .088368{col 26}{space 2} .1027487{col 37}{space 1}    0.86{col 46}{space 3}0.390{col 55}{space 3}-.1130157{col 67}{space 3} .2897518
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0177221{col 26}{space 2} .0536788{col 37}{space 1}    0.33{col 46}{space 3}0.741{col 55}{space 3}-.0874864{col 67}{space 3} .1229307
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0748947{col 26}{space 2} .0249518{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 55}{space 3}   .02599{col 67}{space 3} .1237994
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3480852{col 26}{space 2} .0794465{col 37}{space 1}    4.38{col 46}{space 3}0.000{col 55}{space 3} .1923729{col 67}{space 3} .5037974
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-45.01023{col 26}{space 2} 1.919796{col 37}{space 1}  -23.45{col 46}{space 3}0.000{col 55}{space 3}-48.77296{col 67}{space 3} -41.2475
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2} 2.255246{col 26}{space 2} .0499819{col 37}{space 1}   45.12{col 46}{space 3}0.000{col 55}{space 3} 2.157283{col 67}{space 3} 2.353209
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-2827.682{col 50}    12{col 58} 5679.365{col 69} 5773.992
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(exponential)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-3488.4025}  
+Iteration 2:{space 2}Log likelihood = {res:-3348.6486}  
+Iteration 3:{space 2}Log likelihood = {res:-3346.5973}  
+Iteration 4:{space 2}Log likelihood = {res:-3346.5888}  
+Iteration 5:{space 2}Log likelihood = {res:-3346.5888}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3346.5888}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0642334{col 26}{space 2} .1081095{col 37}{space 1}   -0.59{col 46}{space 3}0.552{col 55}{space 3}-.2761242{col 67}{space 3} .1476573
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.1629565{col 26}{space 2} .0568525{col 37}{space 1}   -2.87{col 46}{space 3}0.004{col 55}{space 3}-.2743854{col 67}{space 3}-.0515276
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7087239{col 26}{space 2} .1110208{col 37}{space 1}   -6.38{col 46}{space 3}0.000{col 55}{space 3}-.9263206{col 67}{space 3}-.4911272
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0997246{col 26}{space 2} .0121534{col 37}{space 1}    8.21{col 46}{space 3}0.000{col 55}{space 3} .0759043{col 67}{space 3} .1235449
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .1537827{col 26}{space 2} .2705246{col 37}{space 1}    0.57{col 46}{space 3}0.570{col 55}{space 3}-.3764358{col 67}{space 3} .6840011
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0392874{col 26}{space 2} .0606053{col 37}{space 1}   -0.65{col 46}{space 3}0.517{col 55}{space 3}-.1580716{col 67}{space 3} .0794968
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .0917831{col 26}{space 2} .1030077{col 37}{space 1}    0.89{col 46}{space 3}0.373{col 55}{space 3}-.1101083{col 67}{space 3} .2936745
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0006275{col 26}{space 2} .0538958{col 37}{space 1}   -0.01{col 46}{space 3}0.991{col 55}{space 3}-.1062613{col 67}{space 3} .1050063
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0646187{col 26}{space 2} .0249975{col 37}{space 1}    2.59{col 46}{space 3}0.010{col 55}{space 3} .0156244{col 67}{space 3}  .113613
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}  .285579{col 26}{space 2} .0788531{col 37}{space 1}    3.62{col 46}{space 3}0.000{col 55}{space 3} .1310298{col 67}{space 3} .4401282
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-14.21508{col 26}{space 2} .8537823{col 37}{space 1}  -16.65{col 46}{space 3}0.000{col 55}{space 3}-15.88847{col 67}{space 3} -12.5417
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3346.589{col 50}    11{col 58} 6715.178{col 69} 6801.919
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(go)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4.034e+08}  
+Iteration 1:{space 2}Log likelihood = {res:-3653.2586}  
+Iteration 2:{space 2}Log likelihood = {res:-2980.1901}  
+Iteration 3:{space 2}Log likelihood = {res:-2862.3411}  
+Iteration 4:{space 2}Log likelihood = {res:-2843.1951}  
+Iteration 5:{space 2}Log likelihood = {res:-2842.9423}  
+Iteration 6:{space 2}Log likelihood = {res:-2842.9419}  
+Iteration 7:{space 2}Log likelihood = {res:-2842.9419}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2842.9419}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0497153{col 26}{space 2}  .107992{col 37}{space 1}   -0.46{col 46}{space 3}0.645{col 55}{space 3}-.2613757{col 67}{space 3} .1619452
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.1604419{col 26}{space 2} .0568774{col 37}{space 1}   -2.82{col 46}{space 3}0.005{col 55}{space 3}-.2719196{col 67}{space 3}-.0489642
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7628079{col 26}{space 2}  .111063{col 37}{space 1}   -6.87{col 46}{space 3}0.000{col 55}{space 3}-.9804873{col 67}{space 3}-.5451285
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0060695{col 26}{space 2} .0136317{col 37}{space 1}   -0.45{col 46}{space 3}0.656{col 55}{space 3}-.0327872{col 67}{space 3} .0206481
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .1495624{col 26}{space 2} .2706556{col 37}{space 1}    0.55{col 46}{space 3}0.581{col 55}{space 3}-.3809129{col 67}{space 3} .6800377
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.040009{col 26}{space 2} .0617904{col 37}{space 1}   -0.65{col 46}{space 3}0.517{col 55}{space 3} -.161116{col 67}{space 3}  .081098
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .0897461{col 26}{space 2} .1027902{col 37}{space 1}    0.87{col 46}{space 3}0.383{col 55}{space 3}-.1117189{col 67}{space 3} .2912112
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0176019{col 26}{space 2} .0536808{col 37}{space 1}    0.33{col 46}{space 3}0.743{col 55}{space 3}-.0876105{col 67}{space 3} .1228144
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0751537{col 26}{space 2} .0249396{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 55}{space 3}  .026273{col 67}{space 3} .1240343
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3499174{col 26}{space 2} .0794464{col 37}{space 1}    4.40{col 46}{space 3}0.000{col 55}{space 3} .1942052{col 67}{space 3} .5056295
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2} -15.3569{col 26}{space 2} .8642175{col 37}{space 1}  -17.77{col 46}{space 3}0.000{col 55}{space 3}-17.05074{col 67}{space 3}-13.66307
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2} .1298214{col 26}{space 2} .0064901{col 37}{space 1}   20.00{col 46}{space 3}0.000{col 55}{space 3}  .117101{col 67}{space 3} .1425419
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-2842.942{col 50}    12{col 58} 5709.884{col 69} 5804.511
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(pwe) knots(3)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:  -3488.37}  
+Iteration 2:{space 2}Log likelihood = {res:-3339.9899}  
+Iteration 3:{space 2}Log likelihood = {res: -3333.639}  
+Iteration 4:{space 2}Log likelihood = {res:-3332.2742}  
+Iteration 5:{space 2}Log likelihood = {res:-3331.9605}  
+Iteration 6:{space 2}Log likelihood = {res:-3331.8942}  
+Iteration 7:{space 2}Log likelihood = {res:-3331.8824}  
+Iteration 8:{space 2}Log likelihood = {res:-3331.8812}  
+Iteration 9:{space 2}Log likelihood = {res:-3331.8809}  
+Iteration 10:{space 1}Log likelihood = {res:-3331.8809}  
+Iteration 11:{space 1}Log likelihood = {res:-3331.8808}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3331.8808}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0641458{col 26}{space 2} .1081076{col 37}{space 1}   -0.59{col 46}{space 3}0.553{col 55}{space 3}-.2760327{col 67}{space 3} .1477411
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.1629544{col 26}{space 2} .0568524{col 37}{space 1}   -2.87{col 46}{space 3}0.004{col 55}{space 3}-.2743831{col 67}{space 3}-.0515257
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7091123{col 26}{space 2} .1110204{col 37}{space 1}   -6.39{col 46}{space 3}0.000{col 55}{space 3}-.9267082{col 67}{space 3}-.4915163
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0992507{col 26}{space 2} .0121549{col 37}{space 1}    8.17{col 46}{space 3}0.000{col 55}{space 3} .0754275{col 67}{space 3} .1230739
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}  .153731{col 26}{space 2} .2705233{col 37}{space 1}    0.57{col 46}{space 3}0.570{col 55}{space 3}-.3764849{col 67}{space 3} .6839469
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0392862{col 26}{space 2} .0606131{col 37}{space 1}   -0.65{col 46}{space 3}0.517{col 55}{space 3}-.1580858{col 67}{space 3} .0795133
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .0917541{col 26}{space 2} .1030047{col 37}{space 1}    0.89{col 46}{space 3}0.373{col 55}{space 3}-.1101314{col 67}{space 3} .2936397
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} -.000513{col 26}{space 2}  .053894{col 37}{space 1}   -0.01{col 46}{space 3}0.992{col 55}{space 3}-.1061433{col 67}{space 3} .1051173
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0646844{col 26}{space 2} .0249973{col 37}{space 1}    2.59{col 46}{space 3}0.010{col 55}{space 3} .0156907{col 67}{space 3} .1136781
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2859994{col 26}{space 2} .0788563{col 37}{space 1}    3.63{col 46}{space 3}0.000{col 55}{space 3} .1314439{col 67}{space 3}  .440555
+{col 1}{text}       dap:1{col 14}{c |}{result}{space 2}-29.41624{col 26}{space 2}  534.358{col 37}{space 1}   -0.06{col 46}{space 3}0.956{col 55}{space 3}-1076.739{col 67}{space 3} 1017.906
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2} -14.1457{col 26}{space 2}  .853886{col 37}{space 1}  -16.57{col 46}{space 3}0.000{col 55}{space 3}-15.81929{col 67}{space 3}-12.47212
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3331.881{col 50}    12{col 58} 6687.762{col 69} 6782.389
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2743.0624}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0602967{col 26}{space 2} .1085775{col 37}{space 1}   -0.56{col 46}{space 3}0.579{col 55}{space 3}-.2731046{col 67}{space 3} .1525112
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.1586989{col 26}{space 2} .0570555{col 37}{space 1}   -2.78{col 46}{space 3}0.005{col 55}{space 3}-.2705255{col 67}{space 3}-.0468722
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7478592{col 26}{space 2} .1110489{col 37}{space 1}   -6.73{col 46}{space 3}0.000{col 55}{space 3}-.9655109{col 67}{space 3}-.5302074
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0533675{col 26}{space 2} .0123145{col 37}{space 1}    4.33{col 46}{space 3}0.000{col 55}{space 3} .0292315{col 67}{space 3} .0775034
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .0985255{col 26}{space 2} .2709036{col 37}{space 1}    0.36{col 46}{space 3}0.716{col 55}{space 3}-.4324358{col 67}{space 3} .6294867
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.055902{col 26}{space 2} .0627283{col 37}{space 1}   -0.89{col 46}{space 3}0.373{col 55}{space 3}-.1788472{col 67}{space 3} .0670432
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .0911709{col 26}{space 2} .1030424{col 37}{space 1}    0.88{col 46}{space 3}0.376{col 55}{space 3}-.1107885{col 67}{space 3} .2931304
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0052768{col 26}{space 2} .0539094{col 37}{space 1}    0.10{col 46}{space 3}0.922{col 55}{space 3}-.1003837{col 67}{space 3} .1109372
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0734345{col 26}{space 2}   .02499{col 37}{space 1}    2.94{col 46}{space 3}0.003{col 55}{space 3}  .024455{col 67}{space 3} .1224141
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3339268{col 26}{space 2} .0793434{col 37}{space 1}    4.21{col 46}{space 3}0.000{col 55}{space 3} .1784165{col 67}{space 3} .4894371
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .0912596{col 26}{space 2} .0089307{col 37}{space 1}   10.22{col 46}{space 3}0.000{col 55}{space 3} .0737558{col 67}{space 3} .1087633
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-7.571615{col 26}{space 2} .8639715{col 37}{space 1}   -8.76{col 46}{space 3}0.000{col 55}{space 3}-9.264968{col 67}{space 3}-5.878262
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-2743.062{col 50}    15{col 58} 5516.125{col 69} 5634.408
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2741.1813}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0640303{col 26}{space 2} .1087318{col 37}{space 1}   -0.59{col 46}{space 3}0.556{col 55}{space 3}-.2771408{col 67}{space 3} .1490801
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} -.156737{col 26}{space 2} .0570789{col 37}{space 1}   -2.75{col 46}{space 3}0.006{col 55}{space 3}-.2686096{col 67}{space 3}-.0448645
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.7424982{col 26}{space 2} .1110601{col 37}{space 1}   -6.69{col 46}{space 3}0.000{col 55}{space 3}-.9601719{col 67}{space 3}-.5248244
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .2023796{col 26}{space 2} .0237798{col 37}{space 1}    8.51{col 46}{space 3}0.000{col 55}{space 3}  .155772{col 67}{space 3} .2489872
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .0916144{col 26}{space 2} .2709506{col 37}{space 1}    0.34{col 46}{space 3}0.735{col 55}{space 3} -.439439{col 67}{space 3} .6226679
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.060469{col 26}{space 2} .0629401{col 37}{space 1}   -0.96{col 46}{space 3}0.337{col 55}{space 3}-.1838294{col 67}{space 3} .0628914
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .0971555{col 26}{space 2} .1031403{col 37}{space 1}    0.94{col 46}{space 3}0.346{col 55}{space 3}-.1049958{col 67}{space 3} .2993067
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0038612{col 26}{space 2} .0539612{col 37}{space 1}    0.07{col 46}{space 3}0.943{col 55}{space 3}-.1019008{col 67}{space 3} .1096232
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0728052{col 26}{space 2} .0250366{col 37}{space 1}    2.91{col 46}{space 3}0.004{col 55}{space 3} .0237344{col 67}{space 3}  .121876
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3322674{col 26}{space 2} .0793458{col 37}{space 1}    4.19{col 46}{space 3}0.000{col 55}{space 3} .1767524{col 67}{space 3} .4877824
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2}  .133756{col 26}{space 2} .0147937{col 37}{space 1}    9.04{col 46}{space 3}0.000{col 55}{space 3} .1047608{col 67}{space 3} .1627512
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-8.922634{col 26}{space 2} 1.002782{col 37}{space 1}   -8.90{col 46}{space 3}0.000{col 55}{space 3}-10.88805{col 67}{space 3}-6.957217
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .7024589{col 26}{space 2} .0739531{col 37}{space 1}    9.50{col 46}{space 3}0.000{col 55}{space 3} .5575135{col 67}{space 3} .8474043
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .1120235{col 26}{space 2} .0489718{col 37}{space 1}    2.29{col 46}{space 3}0.022{col 55}{space 3} .0160405{col 67}{space 3} .2080065
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-19.74364{col 26}{space 2} 1.633578{col 37}{space 1}  -12.09{col 46}{space 3}0.000{col 55}{space 3} -22.9454{col 67}{space 3}-16.54189
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-2741.181{col 50}    15{col 58} 5512.363{col 69} 5630.646
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+. 
+. ******TRANSITION 2**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-5491.0117}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-5048.6304}  
+Iteration 3:{space 2}Log likelihood = {res:-4647.7861}  
+Iteration 4:{space 2}Log likelihood = {res:-4359.1123}  
+Iteration 5:{space 2}Log likelihood = {res:-4262.1379}  
+Iteration 6:{space 2}Log likelihood = {res:-4104.8461}  
+Iteration 7:{space 2}Log likelihood = {res:-4057.4021}  
+Iteration 8:{space 2}Log likelihood = {res:-3993.4089}  
+Iteration 9:{space 2}Log likelihood = {res: -3946.804}  
+Iteration 10:{space 1}Log likelihood = {res:-3906.6746}  
+Iteration 11:{space 1}Log likelihood = {res:-3894.0947}  
+Iteration 12:{space 1}Log likelihood = {res:-3853.2522}  
+Iteration 13:{space 1}Log likelihood = {res:-3850.5665}  
+Iteration 14:{space 1}Log likelihood = {res: -3843.701}  (not concave)
+Iteration 15:{space 1}Log likelihood = {res:-3843.5421}  
+Iteration 16:{space 1}Log likelihood = {res:-3842.7591}  
+Iteration 17:{space 1}Log likelihood = {res:-3840.1453}  
+Iteration 18:{space 1}Log likelihood = {res:-3839.6822}  
+Iteration 19:{space 1}Log likelihood = {res:-3839.4231}  
+Iteration 20:{space 1}Log likelihood = {res:-3839.4031}  
+Iteration 21:{space 1}Log likelihood = {res:-3839.3976}  
+Iteration 22:{space 1}Log likelihood = {res:-3839.3976}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3839.3976}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9749478{col 26}{space 2} .1034433{col 37}{space 1}    9.42{col 46}{space 3}0.000{col 55}{space 3} .7722027{col 67}{space 3} 1.177693
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.0073986{col 26}{space 2} .0445776{col 37}{space 1}   -0.17{col 46}{space 3}0.868{col 55}{space 3}-.0947691{col 67}{space 3} .0799719
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2154339{col 26}{space 2} .0833689{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 55}{space 3} -.378834{col 67}{space 3}-.0520338
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0152917{col 26}{space 2} .0132964{col 37}{space 1}    1.15{col 46}{space 3}0.250{col 55}{space 3}-.0107687{col 67}{space 3} .0413521
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.2672041{col 26}{space 2} .2514205{col 37}{space 1}   -1.06{col 46}{space 3}0.288{col 55}{space 3}-.7599792{col 67}{space 3} .2255711
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0085309{col 26}{space 2} .0350993{col 37}{space 1}    0.24{col 46}{space 3}0.808{col 55}{space 3}-.0602624{col 67}{space 3} .0773243
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.2112079{col 26}{space 2} .0861256{col 37}{space 1}   -2.45{col 46}{space 3}0.014{col 55}{space 3}-.3800109{col 67}{space 3}-.0424048
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1190368{col 26}{space 2}  .040813{col 37}{space 1}    2.92{col 46}{space 3}0.004{col 55}{space 3} .0390448{col 67}{space 3} .1990289
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0623574{col 26}{space 2}  .019186{col 37}{space 1}    3.25{col 46}{space 3}0.001{col 55}{space 3} .0247535{col 67}{space 3} .0999612
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3834331{col 26}{space 2} .0626617{col 37}{space 1}    6.12{col 46}{space 3}0.000{col 55}{space 3} .2606185{col 67}{space 3} .5062477
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2} -68.7543{col 26}{space 2} 2.147774{col 37}{space 1}  -32.01{col 46}{space 3}0.000{col 55}{space 3}-72.96386{col 67}{space 3}-64.54474
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2} 2.670746{col 26}{space 2} .0383153{col 37}{space 1}   69.70{col 46}{space 3}0.000{col 55}{space 3} 2.595649{col 67}{space 3} 2.745842
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3839.398{col 50}    12{col 58} 7702.795{col 69} 7797.422
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(exponential)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-5491.4554}  
+Iteration 2:{space 2}Log likelihood = {res:-5178.4246}  
+Iteration 3:{space 2}Log likelihood = {res:-4935.6539}  
+Iteration 4:{space 2}Log likelihood = {res:-4930.9198}  
+Iteration 5:{space 2}Log likelihood = {res:-4930.5622}  
+Iteration 6:{space 2}Log likelihood = {res:-4930.5608}  
+Iteration 7:{space 2}Log likelihood = {res:-4930.5608}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-4930.5608}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9542725{col 26}{space 2} .1035684{col 37}{space 1}    9.21{col 46}{space 3}0.000{col 55}{space 3} .7512822{col 67}{space 3} 1.157263
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.0098902{col 26}{space 2} .0446646{col 37}{space 1}   -0.22{col 46}{space 3}0.825{col 55}{space 3}-.0974311{col 67}{space 3} .0776507
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1229906{col 26}{space 2} .0833084{col 37}{space 1}   -1.48{col 46}{space 3}0.140{col 55}{space 3} -.286272{col 67}{space 3} .0402908
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1715792{col 26}{space 2} .0113143{col 37}{space 1}   15.16{col 46}{space 3}0.000{col 55}{space 3} .1494036{col 67}{space 3} .1937547
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.2604114{col 26}{space 2} .2507541{col 37}{space 1}   -1.04{col 46}{space 3}0.299{col 55}{space 3}-.7518804{col 67}{space 3} .2310576
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0076668{col 26}{space 2} .0342106{col 37}{space 1}    0.22{col 46}{space 3}0.823{col 55}{space 3}-.0593848{col 67}{space 3} .0747184
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.2031343{col 26}{space 2} .0860399{col 37}{space 1}   -2.36{col 46}{space 3}0.018{col 55}{space 3}-.3717695{col 67}{space 3}-.0344991
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0967123{col 26}{space 2} .0410724{col 37}{space 1}    2.35{col 46}{space 3}0.019{col 55}{space 3}  .016212{col 67}{space 3} .1772127
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0466435{col 26}{space 2} .0192201{col 37}{space 1}    2.43{col 46}{space 3}0.015{col 55}{space 3} .0089728{col 67}{space 3} .0843143
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2891445{col 26}{space 2} .0619603{col 37}{space 1}    4.67{col 46}{space 3}0.000{col 55}{space 3} .1677046{col 67}{space 3} .4105844
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2} -20.0165{col 26}{space 2} .7779029{col 37}{space 1}  -25.73{col 46}{space 3}0.000{col 55}{space 3}-21.54116{col 67}{space 3}-18.49184
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-4930.561{col 50}    11{col 58} 9883.122{col 69} 9969.863
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(go)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4.034e+08}  
+Iteration 1:{space 2}Log likelihood = {res:-5617.3531}  
+Iteration 2:{space 2}Log likelihood = {res:-3974.4766}  
+Iteration 3:{space 2}Log likelihood = {res: -3914.856}  
+Iteration 4:{space 2}Log likelihood = {res:-3852.0925}  
+Iteration 5:{space 2}Log likelihood = {res:-3851.5449}  
+Iteration 6:{space 2}Log likelihood = {res:-3851.5446}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3851.5446}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9762089{col 26}{space 2} .1034852{col 37}{space 1}    9.43{col 46}{space 3}0.000{col 55}{space 3} .7733816{col 67}{space 3} 1.179036
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.0072975{col 26}{space 2} .0445792{col 37}{space 1}   -0.16{col 46}{space 3}0.870{col 55}{space 3} -.094671{col 67}{space 3} .0800761
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2161303{col 26}{space 2} .0833676{col 37}{space 1}   -2.59{col 46}{space 3}0.010{col 55}{space 3}-.3795278{col 67}{space 3}-.0527328
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0116548{col 26}{space 2} .0132606{col 37}{space 1}    0.88{col 46}{space 3}0.379{col 55}{space 3}-.0143356{col 67}{space 3} .0376451
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.2707608{col 26}{space 2} .2514517{col 37}{space 1}   -1.08{col 46}{space 3}0.282{col 55}{space 3}-.7635972{col 67}{space 3} .2220755
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0079037{col 26}{space 2} .0352988{col 37}{space 1}    0.22{col 46}{space 3}0.823{col 55}{space 3}-.0612806{col 67}{space 3}  .077088
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.2104654{col 26}{space 2} .0861772{col 37}{space 1}   -2.44{col 46}{space 3}0.015{col 55}{space 3}-.3793696{col 67}{space 3}-.0415612
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1187139{col 26}{space 2} .0408126{col 37}{space 1}    2.91{col 46}{space 3}0.004{col 55}{space 3} .0387227{col 67}{space 3} .1987052
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0626793{col 26}{space 2} .0191746{col 37}{space 1}    3.27{col 46}{space 3}0.001{col 55}{space 3} .0250977{col 67}{space 3} .1002609
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3847565{col 26}{space 2}  .062643{col 37}{space 1}    6.14{col 46}{space 3}0.000{col 55}{space 3} .2619785{col 67}{space 3} .5075345
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-22.02063{col 26}{space 2} .7913745{col 37}{space 1}  -27.83{col 46}{space 3}0.000{col 55}{space 3}-23.57169{col 67}{space 3}-20.46956
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2} .1892699{col 26}{space 2} .0072365{col 37}{space 1}   26.15{col 46}{space 3}0.000{col 55}{space 3} .1750865{col 67}{space 3} .2034532
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3851.545{col 50}    12{col 58} 7727.089{col 69} 7821.716
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(pwe) knots(3)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-5491.3747}  
+Iteration 2:{space 2}Log likelihood = {res:-5177.9877}  
+Iteration 3:{space 2}Log likelihood = {res:-4915.9561}  
+Iteration 4:{space 2}Log likelihood = {res:-4908.5598}  
+Iteration 5:{space 2}Log likelihood = {res:-4907.5838}  
+Iteration 6:{space 2}Log likelihood = {res:-4907.4008}  
+Iteration 7:{space 2}Log likelihood = {res:-4907.3562}  
+Iteration 8:{space 2}Log likelihood = {res:-4907.3471}  
+Iteration 9:{space 2}Log likelihood = {res:-4907.3451}  
+Iteration 10:{space 1}Log likelihood = {res:-4907.3447}  
+Iteration 11:{space 1}Log likelihood = {res:-4907.3446}  
+Iteration 12:{space 1}Log likelihood = {res:-4907.3446}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-4907.3446}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9542769{col 26}{space 2}  .103567{col 37}{space 1}    9.21{col 46}{space 3}0.000{col 55}{space 3} .7512894{col 67}{space 3} 1.157264
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.0098606{col 26}{space 2} .0446649{col 37}{space 1}   -0.22{col 46}{space 3}0.825{col 55}{space 3}-.0974022{col 67}{space 3}  .077681
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1233981{col 26}{space 2} .0833095{col 37}{space 1}   -1.48{col 46}{space 3}0.139{col 55}{space 3}-.2866816{col 67}{space 3} .0398855
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1711203{col 26}{space 2} .0113154{col 37}{space 1}   15.12{col 46}{space 3}0.000{col 55}{space 3} .1489425{col 67}{space 3} .1932981
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.2605309{col 26}{space 2} .2507616{col 37}{space 1}   -1.04{col 46}{space 3}0.299{col 55}{space 3}-.7520146{col 67}{space 3} .2309528
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0076902{col 26}{space 2} .0342079{col 37}{space 1}    0.22{col 46}{space 3}0.822{col 55}{space 3} -.059356{col 67}{space 3} .0747364
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} -.203177{col 26}{space 2} .0860401{col 37}{space 1}   -2.36{col 46}{space 3}0.018{col 55}{space 3}-.3718125{col 67}{space 3}-.0345416
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0967769{col 26}{space 2} .0410724{col 37}{space 1}    2.36{col 46}{space 3}0.018{col 55}{space 3} .0162765{col 67}{space 3} .1772773
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0466948{col 26}{space 2} .0192209{col 37}{space 1}    2.43{col 46}{space 3}0.015{col 55}{space 3} .0090224{col 67}{space 3} .0843671
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2895267{col 26}{space 2} .0619651{col 37}{space 1}    4.67{col 46}{space 3}0.000{col 55}{space 3} .1680773{col 67}{space 3} .4109762
+{col 1}{text}       dap:1{col 14}{c |}{result}{space 2} -36.5802{col 26}{space 2} 840.4339{col 37}{space 1}   -0.04{col 46}{space 3}0.965{col 55}{space 3}  -1683.8{col 67}{space 3}  1610.64
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2}-19.94796{col 26}{space 2} .7779767{col 37}{space 1}  -25.64{col 46}{space 3}0.000{col 55}{space 3}-21.47276{col 67}{space 3}-18.42315
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-4907.345{col 50}    12{col 58} 9838.689{col 69} 9933.316
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3751.5989}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9823306{col 26}{space 2} .1041177{col 37}{space 1}    9.43{col 46}{space 3}0.000{col 55}{space 3} .7782637{col 67}{space 3} 1.186398
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}-.0009544{col 26}{space 2}  .044646{col 37}{space 1}   -0.02{col 46}{space 3}0.983{col 55}{space 3}-.0884589{col 67}{space 3} .0865502
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2063429{col 26}{space 2} .0833588{col 37}{space 1}   -2.48{col 46}{space 3}0.013{col 55}{space 3}-.3697231{col 67}{space 3}-.0429628
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0320911{col 26}{space 2} .0118958{col 37}{space 1}    2.70{col 46}{space 3}0.007{col 55}{space 3} .0087756{col 67}{space 3} .0554065
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} -.348362{col 26}{space 2} .2512256{col 37}{space 1}   -1.39{col 46}{space 3}0.166{col 55}{space 3}-.8407551{col 67}{space 3} .1440312
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.003682{col 26}{space 2} .0376686{col 37}{space 1}   -0.10{col 46}{space 3}0.922{col 55}{space 3}-.0775112{col 67}{space 3} .0701472
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.2198863{col 26}{space 2} .0863683{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 55}{space 3} -.389165{col 67}{space 3}-.0506075
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1085033{col 26}{space 2} .0409265{col 37}{space 1}    2.65{col 46}{space 3}0.008{col 55}{space 3} .0282889{col 67}{space 3} .1887178
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0621341{col 26}{space 2} .0191764{col 37}{space 1}    3.24{col 46}{space 3}0.001{col 55}{space 3} .0245491{col 67}{space 3}  .099719
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3746968{col 26}{space 2} .0625399{col 37}{space 1}    5.99{col 46}{space 3}0.000{col 55}{space 3} .2521209{col 67}{space 3} .4972727
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2}  .149811{col 26}{space 2} .0122699{col 37}{space 1}   12.21{col 46}{space 3}0.000{col 55}{space 3} .1257625{col 67}{space 3} .1738595
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-8.025706{col 26}{space 2} .8006208{col 37}{space 1}  -10.02{col 46}{space 3}0.000{col 55}{space 3}-9.594894{col 67}{space 3}-6.456518
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3751.599{col 50}    15{col 58} 7533.198{col 69} 7651.482
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-3757.1664}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .9808967{col 26}{space 2} .1041065{col 37}{space 1}    9.42{col 46}{space 3}0.000{col 55}{space 3} .7768517{col 67}{space 3} 1.184942
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} -.000707{col 26}{space 2}  .044645{col 37}{space 1}   -0.02{col 46}{space 3}0.987{col 55}{space 3}-.0882095{col 67}{space 3} .0867956
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2058257{col 26}{space 2} .0833683{col 37}{space 1}   -2.47{col 46}{space 3}0.014{col 55}{space 3}-.3692246{col 67}{space 3}-.0424269
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1414392{col 26}{space 2} .0172239{col 37}{space 1}    8.21{col 46}{space 3}0.000{col 55}{space 3} .1076809{col 67}{space 3} .1751974
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.3446761{col 26}{space 2} .2512662{col 37}{space 1}   -1.37{col 46}{space 3}0.170{col 55}{space 3}-.8371488{col 67}{space 3} .1477967
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0038772{col 26}{space 2} .0375948{col 37}{space 1}   -0.10{col 46}{space 3}0.918{col 55}{space 3}-.0775616{col 67}{space 3} .0698071
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.2175733{col 26}{space 2} .0863754{col 37}{space 1}   -2.52{col 46}{space 3}0.012{col 55}{space 3} -.386866{col 67}{space 3}-.0482805
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1093245{col 26}{space 2}  .040929{col 37}{space 1}    2.67{col 46}{space 3}0.008{col 55}{space 3} .0291051{col 67}{space 3} .1895439
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0620276{col 26}{space 2} .0191876{col 37}{space 1}    3.23{col 46}{space 3}0.001{col 55}{space 3} .0244207{col 67}{space 3} .0996346
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .3739252{col 26}{space 2} .0625468{col 37}{space 1}    5.98{col 46}{space 3}0.000{col 55}{space 3} .2513358{col 67}{space 3} .4965146
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .1646475{col 26}{space 2} .0158915{col 37}{space 1}   10.36{col 46}{space 3}0.000{col 55}{space 3} .1335007{col 67}{space 3} .1957942
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-9.946022{col 26}{space 2} 1.038223{col 37}{space 1}   -9.58{col 46}{space 3}0.000{col 55}{space 3} -11.9809{col 67}{space 3}-7.911143
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .7742964{col 26}{space 2} .0768551{col 37}{space 1}   10.07{col 46}{space 3}0.000{col 55}{space 3} .6236631{col 67}{space 3} .9249297
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .0728576{col 26}{space 2} .0453936{col 37}{space 1}    1.61{col 46}{space 3}0.108{col 55}{space 3}-.0161123{col 67}{space 3} .1618275
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-16.78096{col 26}{space 2} 1.182623{col 37}{space 1}  -14.19{col 46}{space 3}0.000{col 55}{space 3}-19.09885{col 67}{space 3}-14.46306
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-3757.166{col 50}    15{col 58} 7544.333{col 69} 7662.617
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+.  
+. ******TRANSITION 3**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-18207.316}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-15354.344}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-14464.515}  (not concave)
+Iteration 4:{space 2}Log likelihood = {res:-14348.207}  
+Iteration 5:{space 2}Log likelihood = {res:-13926.874}  
+Iteration 6:{space 2}Log likelihood = {res:-13243.652}  
+Iteration 7:{space 2}Log likelihood = {res:-12657.938}  
+Iteration 8:{space 2}Log likelihood = {res:-12172.708}  
+Iteration 9:{space 2}Log likelihood = {res:-12070.802}  
+Iteration 10:{space 1}Log likelihood = {res: -11885.67}  
+Iteration 11:{space 1}Log likelihood = {res:-11782.895}  
+Iteration 12:{space 1}Log likelihood = {res:-11693.669}  
+Iteration 13:{space 1}Log likelihood = {res:-11608.424}  
+Iteration 14:{space 1}Log likelihood = {res:-11581.018}  
+Iteration 15:{space 1}Log likelihood = {res:-11559.411}  
+Iteration 16:{space 1}Log likelihood = {res:-11557.824}  
+Iteration 17:{space 1}Log likelihood = {res:-11557.824}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-11557.824}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0104838{col 26}{space 2} .0461334{col 37}{space 1}   -0.23{col 46}{space 3}0.820{col 55}{space 3}-.1009036{col 67}{space 3}  .079936
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1639215{col 26}{space 2} .0234408{col 37}{space 1}    6.99{col 46}{space 3}0.000{col 55}{space 3} .1179784{col 67}{space 3} .2098647
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.5094513{col 26}{space 2} .0461881{col 37}{space 1}  -11.03{col 46}{space 3}0.000{col 55}{space 3}-.5999783{col 67}{space 3}-.4189243
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0683371{col 26}{space 2} .0058908{col 37}{space 1}  -11.60{col 46}{space 3}0.000{col 55}{space 3}-.0798828{col 67}{space 3}-.0567914
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.0557191{col 26}{space 2} .1166845{col 37}{space 1}   -0.48{col 46}{space 3}0.633{col 55}{space 3}-.2844164{col 67}{space 3} .1729783
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0477858{col 26}{space 2} .0258455{col 37}{space 1}   -1.85{col 46}{space 3}0.064{col 55}{space 3} -.098442{col 67}{space 3} .0028704
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1736558{col 26}{space 2} .0454012{col 37}{space 1}   -3.82{col 46}{space 3}0.000{col 55}{space 3}-.2626406{col 67}{space 3} -.084671
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1190967{col 26}{space 2} .0215217{col 37}{space 1}    5.53{col 46}{space 3}0.000{col 55}{space 3} .0769149{col 67}{space 3} .1612785
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0742825{col 26}{space 2} .0099911{col 37}{space 1}    7.43{col 46}{space 3}0.000{col 55}{space 3} .0547004{col 67}{space 3} .0938646
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4973928{col 26}{space 2} .0331408{col 37}{space 1}   15.01{col 46}{space 3}0.000{col 55}{space 3}  .432438{col 67}{space 3} .5623476
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-50.71368{col 26}{space 2} .9724351{col 37}{space 1}  -52.15{col 46}{space 3}0.000{col 55}{space 3}-52.61962{col 67}{space 3}-48.80774
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2} 2.487446{col 26}{space 2} .0210035{col 37}{space 1}  118.43{col 46}{space 3}0.000{col 55}{space 3}  2.44628{col 67}{space 3} 2.528612
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-11557.82{col 50}    12{col 58} 23139.65{col 69} 23234.27
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(exponential)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-18212.345}  
+Iteration 2:{space 2}Log likelihood = {res:-15415.863}  
+Iteration 3:{space 2}Log likelihood = {res:-15265.857}  
+Iteration 4:{space 2}Log likelihood = {res:-14888.327}  
+Iteration 5:{space 2}Log likelihood = {res: -14887.01}  
+Iteration 6:{space 2}Log likelihood = {res:-14887.009}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-14887.009}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0254431{col 26}{space 2} .0462248{col 37}{space 1}   -0.55{col 46}{space 3}0.582{col 55}{space 3} -.116042{col 67}{space 3} .0651558
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1612503{col 26}{space 2} .0234252{col 37}{space 1}    6.88{col 46}{space 3}0.000{col 55}{space 3} .1153379{col 67}{space 3} .2071628
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.4373701{col 26}{space 2} .0461548{col 37}{space 1}   -9.48{col 46}{space 3}0.000{col 55}{space 3}-.5278318{col 67}{space 3}-.3469084
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0632301{col 26}{space 2} .0049257{col 37}{space 1}   12.84{col 46}{space 3}0.000{col 55}{space 3} .0535759{col 67}{space 3} .0728842
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.0583586{col 26}{space 2} .1166241{col 37}{space 1}   -0.50{col 46}{space 3}0.617{col 55}{space 3}-.2869376{col 67}{space 3} .1702205
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0472015{col 26}{space 2} .0254942{col 37}{space 1}   -1.85{col 46}{space 3}0.064{col 55}{space 3}-.0971692{col 67}{space 3} .0027663
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1691707{col 26}{space 2} .0455447{col 37}{space 1}   -3.71{col 46}{space 3}0.000{col 55}{space 3}-.2584368{col 67}{space 3}-.0799046
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0947757{col 26}{space 2} .0216391{col 37}{space 1}    4.38{col 46}{space 3}0.000{col 55}{space 3} .0523638{col 67}{space 3} .1371875
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0620997{col 26}{space 2} .0100733{col 37}{space 1}    6.16{col 46}{space 3}0.000{col 55}{space 3} .0423565{col 67}{space 3} .0818429
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4216386{col 26}{space 2} .0329278{col 37}{space 1}   12.80{col 46}{space 3}0.000{col 55}{space 3} .3571014{col 67}{space 3} .4861758
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-10.98293{col 26}{space 2} .3465658{col 37}{space 1}  -31.69{col 46}{space 3}0.000{col 55}{space 3}-11.66219{col 67}{space 3}-10.30368
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-14887.01{col 50}    11{col 58} 29796.02{col 69} 29882.76
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(go)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4.034e+08}  
+Iteration 1:{space 2}Log likelihood = {res:-19779.049}  
+Iteration 2:{space 2}Log likelihood = {res:-14410.105}  (backed up)
+Iteration 3:{space 2}Log likelihood = {res:-11989.968}  
+Iteration 4:{space 2}Log likelihood = {res: -11615.72}  
+Iteration 5:{space 2}Log likelihood = {res:-11606.347}  
+Iteration 6:{space 2}Log likelihood = {res:-11606.317}  
+Iteration 7:{space 2}Log likelihood = {res:-11606.317}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-11606.317}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0102648{col 26}{space 2} .0461611{col 37}{space 1}   -0.22{col 46}{space 3}0.824{col 55}{space 3}-.1007389{col 67}{space 3} .0802093
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1648351{col 26}{space 2} .0234485{col 37}{space 1}    7.03{col 46}{space 3}0.000{col 55}{space 3}  .118877{col 67}{space 3} .2107933
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2} -.510546{col 26}{space 2} .0461844{col 37}{space 1}  -11.05{col 46}{space 3}0.000{col 55}{space 3}-.6010659{col 67}{space 3}-.4200262
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} -.073818{col 26}{space 2} .0059164{col 37}{space 1}  -12.48{col 46}{space 3}0.000{col 55}{space 3}-.0854139{col 67}{space 3}-.0622221
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.0611308{col 26}{space 2}  .116703{col 37}{space 1}   -0.52{col 46}{space 3}0.600{col 55}{space 3}-.2898644{col 67}{space 3} .1676027
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0489089{col 26}{space 2} .0258683{col 37}{space 1}   -1.89{col 46}{space 3}0.059{col 55}{space 3}-.0996099{col 67}{space 3} .0017921
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1716697{col 26}{space 2} .0454287{col 37}{space 1}   -3.78{col 46}{space 3}0.000{col 55}{space 3}-.2607084{col 67}{space 3} -.082631
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1188203{col 26}{space 2} .0215257{col 37}{space 1}    5.52{col 46}{space 3}0.000{col 55}{space 3} .0766308{col 67}{space 3} .1610099
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0746913{col 26}{space 2} .0099865{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 55}{space 3} .0551182{col 67}{space 3} .0942645
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4992123{col 26}{space 2} .0331379{col 37}{space 1}   15.06{col 46}{space 3}0.000{col 55}{space 3} .4342631{col 67}{space 3} .5641614
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-12.59615{col 26}{space 2} .3528272{col 37}{space 1}  -35.70{col 46}{space 3}0.000{col 55}{space 3}-13.28768{col 67}{space 3}-11.90462
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2} .1642579{col 26}{space 2} .0034428{col 37}{space 1}   47.71{col 46}{space 3}0.000{col 55}{space 3} .1575102{col 67}{space 3} .1710056
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-11606.32{col 50}    12{col 58} 23236.63{col 69} 23331.26
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(pwe) knots(3)
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1468886.8}  
+Iteration 1:{space 2}Log likelihood = {res:-18211.343}  
+Iteration 2:{space 2}Log likelihood = {res:-15335.834}  
+Iteration 3:{space 2}Log likelihood = {res:-15163.761}  
+Iteration 4:{space 2}Log likelihood = {res:-14807.733}  
+Iteration 5:{space 2}Log likelihood = {res:-14805.708}  
+Iteration 6:{space 2}Log likelihood = {res:-14805.369}  
+Iteration 7:{space 2}Log likelihood = {res:-14805.305}  
+Iteration 8:{space 2}Log likelihood = {res:-14805.291}  
+Iteration 9:{space 2}Log likelihood = {res:-14805.287}  
+Iteration 10:{space 1}Log likelihood = {res:-14805.287}  
+Iteration 11:{space 1}Log likelihood = {res:-14805.286}  
+Iteration 12:{space 1}Log likelihood = {res:-14805.286}  
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-14805.286}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0253573{col 26}{space 2} .0462246{col 37}{space 1}   -0.55{col 46}{space 3}0.583{col 55}{space 3}-.1159558{col 67}{space 3} .0652412
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1612565{col 26}{space 2} .0234254{col 37}{space 1}    6.88{col 46}{space 3}0.000{col 55}{space 3} .1153436{col 67}{space 3} .2071693
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.4377765{col 26}{space 2} .0461551{col 37}{space 1}   -9.48{col 46}{space 3}0.000{col 55}{space 3}-.5282388{col 67}{space 3}-.3473141
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0627438{col 26}{space 2} .0049263{col 37}{space 1}   12.74{col 46}{space 3}0.000{col 55}{space 3} .0530884{col 67}{space 3} .0723992
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.0584046{col 26}{space 2} .1166251{col 37}{space 1}   -0.50{col 46}{space 3}0.617{col 55}{space 3}-.2869856{col 67}{space 3} .1701764
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0472122{col 26}{space 2} .0254971{col 37}{space 1}   -1.85{col 46}{space 3}0.064{col 55}{space 3}-.0971855{col 67}{space 3} .0027612
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} -.169218{col 26}{space 2} .0455439{col 37}{space 1}   -3.72{col 46}{space 3}0.000{col 55}{space 3}-.2584824{col 67}{space 3}-.0799536
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0949045{col 26}{space 2} .0216386{col 37}{space 1}    4.39{col 46}{space 3}0.000{col 55}{space 3} .0524936{col 67}{space 3} .1373155
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0621681{col 26}{space 2}  .010073{col 37}{space 1}    6.17{col 46}{space 3}0.000{col 55}{space 3} .0424254{col 67}{space 3} .0819107
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4220452{col 26}{space 2} .0329291{col 37}{space 1}   12.82{col 46}{space 3}0.000{col 55}{space 3} .3575053{col 67}{space 3} .4865851
+{col 1}{text}       dap:1{col 14}{c |}{result}{space 2}-27.89644{col 26}{space 2} 533.8319{col 37}{space 1}   -0.05{col 46}{space 3}0.958{col 55}{space 3}-1074.188{col 67}{space 3} 1018.395
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2}-10.91272{col 26}{space 2} .3466091{col 37}{space 1}  -31.48{col 46}{space 3}0.000{col 55}{space 3}-11.59206{col 67}{space 3}-10.23338
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-14805.29{col 50}    12{col 58} 29634.57{col 69}  29729.2
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-11278.275}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0162634{col 26}{space 2} .0464933{col 37}{space 1}   -0.35{col 46}{space 3}0.726{col 55}{space 3}-.1073885{col 67}{space 3} .0748617
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1721941{col 26}{space 2} .0235012{col 37}{space 1}    7.33{col 46}{space 3}0.000{col 55}{space 3} .1261326{col 67}{space 3} .2182557
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.4976135{col 26}{space 2} .0461652{col 37}{space 1}  -10.78{col 46}{space 3}0.000{col 55}{space 3}-.5880956{col 67}{space 3}-.4071313
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0128741{col 26}{space 2} .0056064{col 37}{space 1}   -2.30{col 46}{space 3}0.022{col 55}{space 3}-.0238625{col 67}{space 3}-.0018858
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.1297284{col 26}{space 2} .1168506{col 37}{space 1}   -1.11{col 46}{space 3}0.267{col 55}{space 3}-.3587514{col 67}{space 3} .0992945
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.0661349{col 26}{space 2} .0262532{col 37}{space 1}   -2.52{col 46}{space 3}0.012{col 55}{space 3}-.1175903{col 67}{space 3}-.0146796
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1694379{col 26}{space 2}  .045552{col 37}{space 1}   -3.72{col 46}{space 3}0.000{col 55}{space 3}-.2587182{col 67}{space 3}-.0801576
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1079671{col 26}{space 2} .0216313{col 37}{space 1}    4.99{col 46}{space 3}0.000{col 55}{space 3} .0655706{col 67}{space 3} .1503636
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0746556{col 26}{space 2} .0100111{col 37}{space 1}    7.46{col 46}{space 3}0.000{col 55}{space 3} .0550343{col 67}{space 3} .0942769
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4866936{col 26}{space 2} .0330811{col 37}{space 1}   14.71{col 46}{space 3}0.000{col 55}{space 3} .4218557{col 67}{space 3} .5515314
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .1105192{col 26}{space 2} .0050829{col 37}{space 1}   21.74{col 46}{space 3}0.000{col 55}{space 3} .1005569{col 67}{space 3} .1204816
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-2.683751{col 26}{space 2} .3873908{col 37}{space 1}   -6.93{col 46}{space 3}0.000{col 55}{space 3}-3.443023{col 67}{space 3}-1.924479
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-11278.28{col 50}    15{col 58} 22586.55{col 69} 22704.83
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:19,645}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-11300.783}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.0176278{col 26}{space 2}  .046487{col 37}{space 1}   -0.38{col 46}{space 3}0.705{col 55}{space 3}-.1087407{col 67}{space 3} .0734851
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1725359{col 26}{space 2} .0234995{col 37}{space 1}    7.34{col 46}{space 3}0.000{col 55}{space 3} .1264777{col 67}{space 3} .2185942
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.4960651{col 26}{space 2} .0461732{col 37}{space 1}  -10.74{col 46}{space 3}0.000{col 55}{space 3} -.586563{col 67}{space 3}-.4055673
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0908961{col 26}{space 2} .0095585{col 37}{space 1}    9.51{col 46}{space 3}0.000{col 55}{space 3} .0721618{col 67}{space 3} .1096303
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.1258782{col 26}{space 2} .1168501{col 37}{space 1}   -1.08{col 46}{space 3}0.281{col 55}{space 3}-.3549001{col 67}{space 3} .1031438
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.066358{col 26}{space 2}  .026277{col 37}{space 1}   -2.53{col 46}{space 3}0.012{col 55}{space 3}  -.11786{col 67}{space 3}-.0148559
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1668311{col 26}{space 2} .0455557{col 37}{space 1}   -3.66{col 46}{space 3}0.000{col 55}{space 3}-.2561187{col 67}{space 3}-.0775435
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .1089554{col 26}{space 2}  .021629{col 37}{space 1}    5.04{col 46}{space 3}0.000{col 55}{space 3} .0665634{col 67}{space 3} .1513475
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0744994{col 26}{space 2} .0100276{col 37}{space 1}    7.43{col 46}{space 3}0.000{col 55}{space 3} .0548457{col 67}{space 3}  .094153
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .4873649{col 26}{space 2} .0330927{col 37}{space 1}   14.73{col 46}{space 3}0.000{col 55}{space 3} .4225043{col 67}{space 3} .5522255
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .1204345{col 26}{space 2} .0064093{col 37}{space 1}   18.79{col 46}{space 3}0.000{col 55}{space 3} .1078725{col 67}{space 3} .1329964
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-7.462709{col 26}{space 2} .4294634{col 37}{space 1}  -17.38{col 46}{space 3}0.000{col 55}{space 3}-8.304442{col 67}{space 3}-6.620976
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .5780947{col 26}{space 2} .0329698{col 37}{space 1}   17.53{col 46}{space 3}0.000{col 55}{space 3} .5134751{col 67}{space 3} .6427142
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .1041785{col 26}{space 2} .0210702{col 37}{space 1}    4.94{col 46}{space 3}0.000{col 55}{space 3} .0628817{col 67}{space 3} .1454753
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-11.35824{col 26}{space 2} .6539758{col 37}{space 1}  -17.37{col 46}{space 3}0.000{col 55}{space 3}-12.64001{col 67}{space 3}-10.07647
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}    19,645{col 28}        .{col 39}-11300.78{col 50}    15{col 58} 22631.57{col 69} 22749.85
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+. 
+. ******TRANSITION 4**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(weibull)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res: -311.7788}  
+Iteration 2:{space 2}Log likelihood = {res:-289.88141}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-289.40553}  
+Iteration 4:{space 2}Log likelihood = {res:-289.06317}  (not concave)
+Iteration 5:{space 2}Log likelihood = {res:-289.06214}  
+Iteration 6:{space 2}Log likelihood = {res:-289.05596}  
+Iteration 7:{space 2}Log likelihood = {res:-289.04873}  
+Iteration 8:{space 2}Log likelihood = {res:-289.03756}  
+Iteration 9:{space 2}Log likelihood = {res:-289.02181}  (not concave)
+Iteration 10:{space 1}Log likelihood = {res:-289.02144}  
+Iteration 11:{space 1}Log likelihood = {res: -289.0188}  
+Iteration 12:{space 1}Log likelihood = {res:-289.01596}  
+Iteration 13:{space 1}Log likelihood = {res:-289.01013}  
+Iteration 14:{space 1}Log likelihood = {res:-289.00666}  
+Iteration 15:{space 1}Log likelihood = {res:-289.00442}  
+Iteration 16:{space 1}Log likelihood = {res:-289.00219}  
+Iteration 17:{space 1}Log likelihood = {res:-288.99935}  
+Iteration 18:{space 1}Log likelihood = {res:-288.99817}  
+Iteration 19:{space 1}Log likelihood = {res:-288.99669}  
+Iteration 20:{space 1}Log likelihood = {res:-288.99611}  
+Iteration 21:{space 1}Log likelihood = {res:-288.99445}  
+Iteration 22:{space 1}Log likelihood = {res:-288.99368}  (not concave)
+Iteration 23:{space 1}Log likelihood = {res: -288.9936}  
+Iteration 24:{space 1}Log likelihood = {res:-288.99341}  
+Iteration 25:{space 1}Log likelihood = {res:-288.99284}  (not concave)
+Iteration 26:{space 1}Log likelihood = {res:-288.99283}  
+Iteration 27:{space 1}Log likelihood = {res:-288.99262}  
+Iteration 28:{space 1}Log likelihood = {res: -288.9923}  
+Iteration 29:{space 1}Log likelihood = {res:-288.99194}  
+Iteration 30:{space 1}Log likelihood = {res:-288.99172}  
+Iteration 31:{space 1}Log likelihood = {res:-288.99146}  
+Iteration 32:{space 1}Log likelihood = {res:-288.99131}  
+Iteration 33:{space 1}Log likelihood = {res:-288.99109}  
+Iteration 34:{space 1}Log likelihood = {res: -288.9909}  
+Iteration 35:{space 1}Log likelihood = {res:-288.99083}  
+Iteration 36:{space 1}Log likelihood = {res:-288.99071}  
+Iteration 37:{space 1}Log likelihood = {res:-288.99065}  
+Iteration 38:{space 1}Log likelihood = {res: -288.9906}  
+Iteration 39:{space 1}Log likelihood = {res:-288.99055}  
+Iteration 40:{space 1}Log likelihood = {res:-288.99052}  
+Iteration 41:{space 1}Log likelihood = {res:-288.99048}  
+Iteration 42:{space 1}Log likelihood = {res:-288.99045}  
+Iteration 43:{space 1}Log likelihood = {res:-288.99042}  (not concave)
+Iteration 44:{space 1}Log likelihood = {res:-288.99042}  
+Iteration 45:{space 1}Log likelihood = {res:-288.99041}  
+Iteration 46:{space 1}Log likelihood = {res: -288.9904}  (not concave)
+Iteration 47:{space 1}Log likelihood = {res: -288.9904}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-288.9904}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0185562{col 26}{space 2} .2472032{col 37}{space 1}    0.08{col 46}{space 3}0.940{col 55}{space 3}-.4659531{col 67}{space 3} .5030654
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0292357{col 26}{space 2} .1359279{col 37}{space 1}    0.22{col 46}{space 3}0.830{col 55}{space 3}-.2371781{col 67}{space 3} .2956495
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1650831{col 26}{space 2} .2577914{col 37}{space 1}   -0.64{col 46}{space 3}0.522{col 55}{space 3}-.6703449{col 67}{space 3} .3401787
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1060346{col 26}{space 2} .0356631{col 37}{space 1}    2.97{col 46}{space 3}0.003{col 55}{space 3} .0361362{col 67}{space 3}  .175933
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}  .639945{col 26}{space 2} .4579593{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 55}{space 3}-.2576388{col 67}{space 3} 1.537529
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .2084366{col 26}{space 2} .1418499{col 37}{space 1}    1.47{col 46}{space 3}0.142{col 55}{space 3}-.0695841{col 67}{space 3} .4864573
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3742685{col 26}{space 2}  .274371{col 37}{space 1}   -1.36{col 46}{space 3}0.173{col 55}{space 3}-.9120257{col 67}{space 3} .1634888
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0665137{col 26}{space 2} .1336678{col 37}{space 1}   -0.50{col 46}{space 3}0.619{col 55}{space 3}-.3284978{col 67}{space 3} .1954705
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0449124{col 26}{space 2} .0538722{col 37}{space 1}    0.83{col 46}{space 3}0.404{col 55}{space 3}-.0606752{col 67}{space 3}    .1505
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1908953{col 26}{space 2} .1762268{col 37}{space 1}    1.08{col 46}{space 3}0.279{col 55}{space 3}-.1545028{col 67}{space 3} .5362934
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-3.660586{col 26}{space 2}  36.4852{col 37}{space 1}   -0.10{col 46}{space 3}0.920{col 55}{space 3}-75.17026{col 67}{space 3} 67.84909
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2}-3.291207{col 26}{space 2}  32.2479{col 37}{space 1}   -0.10{col 46}{space 3}0.919{col 55}{space 3}-66.49592{col 67}{space 3} 59.91351
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-288.9904{col 50}    12{col 58} 601.9808{col 69}  648.614
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(exponential)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res: -311.7788}  
+Iteration 2:{space 2}Log likelihood = {res:-289.88162}  
+Iteration 3:{space 2}Log likelihood = {res:-289.06904}  
+Iteration 4:{space 2}Log likelihood = {res:-289.06225}  
+Iteration 5:{space 2}Log likelihood = {res:-289.06225}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-289.06225}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0188758{col 26}{space 2} .2471235{col 37}{space 1}    0.08{col 46}{space 3}0.939{col 55}{space 3}-.4654773{col 67}{space 3} .5032289
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0279987{col 26}{space 2} .1360403{col 37}{space 1}    0.21{col 46}{space 3}0.837{col 55}{space 3}-.2386353{col 67}{space 3} .2946328
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1642993{col 26}{space 2} .2577807{col 37}{space 1}   -0.64{col 46}{space 3}0.524{col 55}{space 3}-.6695402{col 67}{space 3} .3409416
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0935095{col 26}{space 2} .0320676{col 37}{space 1}    2.92{col 46}{space 3}0.004{col 55}{space 3} .0306581{col 67}{space 3} .1563608
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}  .643738{col 26}{space 2} .4574394{col 37}{space 1}    1.41{col 46}{space 3}0.159{col 55}{space 3}-.2528267{col 67}{space 3} 1.540303
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}  .207115{col 26}{space 2} .1420332{col 37}{space 1}    1.46{col 46}{space 3}0.145{col 55}{space 3} -.071265{col 67}{space 3}  .485495
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3708088{col 26}{space 2} .2747386{col 37}{space 1}   -1.35{col 46}{space 3}0.177{col 55}{space 3}-.9092865{col 67}{space 3} .1676689
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0660814{col 26}{space 2} .1337981{col 37}{space 1}   -0.49{col 46}{space 3}0.621{col 55}{space 3}-.3283209{col 67}{space 3}  .196158
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0458161{col 26}{space 2} .0538241{col 37}{space 1}    0.85{col 46}{space 3}0.395{col 55}{space 3}-.0596771{col 67}{space 3} .1513094
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1986333{col 26}{space 2} .1761307{col 37}{space 1}    1.13{col 46}{space 3}0.259{col 55}{space 3}-.1465765{col 67}{space 3} .5438431
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-10.29847{col 26}{space 2} 2.298104{col 37}{space 1}   -4.48{col 46}{space 3}0.000{col 55}{space 3}-14.80267{col 67}{space 3}-5.794272
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-289.0623{col 50}    11{col 58} 600.1245{col 69} 642.8716
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(go)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-3207864.1}  
+Iteration 1:{space 2}Log likelihood = {res:-550.86536}  
+Iteration 2:{space 2}Log likelihood = {res:-297.78618}  
+Iteration 3:{space 2}Log likelihood = {res:-289.12268}  
+Iteration 4:{space 2}Log likelihood = {res:-289.02464}  
+Iteration 5:{space 2}Log likelihood = {res:-289.02433}  
+Iteration 6:{space 2}Log likelihood = {res:-289.02433}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-289.02433}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0189077{col 26}{space 2} .2471841{col 37}{space 1}    0.08{col 46}{space 3}0.939{col 55}{space 3}-.4655642{col 67}{space 3} .5033796
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0285779{col 26}{space 2} .1359684{col 37}{space 1}    0.21{col 46}{space 3}0.834{col 55}{space 3}-.2379153{col 67}{space 3} .2950711
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1648427{col 26}{space 2} .2577946{col 37}{space 1}   -0.64{col 46}{space 3}0.523{col 55}{space 3}-.6701108{col 67}{space 3} .3404254
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1025383{col 26}{space 2} .0458775{col 37}{space 1}    2.24{col 46}{space 3}0.025{col 55}{space 3} .0126201{col 67}{space 3} .1924566
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .6411256{col 26}{space 2} .4578622{col 37}{space 1}    1.40{col 46}{space 3}0.161{col 55}{space 3}-.2562678{col 67}{space 3} 1.538519
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .2081828{col 26}{space 2} .1419554{col 37}{space 1}    1.47{col 46}{space 3}0.143{col 55}{space 3}-.0700447{col 67}{space 3} .4864103
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3735088{col 26}{space 2} .2745989{col 37}{space 1}   -1.36{col 46}{space 3}0.174{col 55}{space 3}-.9117126{col 67}{space 3} .1646951
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0663575{col 26}{space 2} .1337118{col 37}{space 1}   -0.50{col 46}{space 3}0.620{col 55}{space 3}-.3284278{col 67}{space 3} .1957128
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0451304{col 26}{space 2} .0539013{col 37}{space 1}    0.84{col 46}{space 3}0.402{col 55}{space 3}-.0605143{col 67}{space 3}  .150775
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1930106{col 26}{space 2} .1771978{col 37}{space 1}    1.09{col 46}{space 3}0.276{col 55}{space 3}-.1542908{col 67}{space 3} .5403119
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-10.15517{col 26}{space 2} 2.355839{col 37}{space 1}   -4.31{col 46}{space 3}0.000{col 55}{space 3}-14.77253{col 67}{space 3}-5.537814
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2}-.0096807{col 26}{space 2}  .035141{col 37}{space 1}   -0.28{col 46}{space 3}0.783{col 55}{space 3}-.0785558{col 67}{space 3} .0591944
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-289.0243{col 50}    12{col 58} 602.0487{col 69} 648.6819
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(pwe) knots(3)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res: -311.7788}  
+Iteration 2:{space 2}Log likelihood = {res:-289.88162}  
+Iteration 3:{space 2}Log likelihood = {res:-289.06904}  
+Iteration 4:{space 2}Log likelihood = {res:-289.06225}  
+Iteration 5:{space 2}Log likelihood = {res:-289.06225}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-289.06225}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0188758{col 26}{space 2} .2471235{col 37}{space 1}    0.08{col 46}{space 3}0.939{col 55}{space 3}-.4654773{col 67}{space 3} .5032289
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0279987{col 26}{space 2} .1360403{col 37}{space 1}    0.21{col 46}{space 3}0.837{col 55}{space 3}-.2386353{col 67}{space 3} .2946328
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1642993{col 26}{space 2} .2577807{col 37}{space 1}   -0.64{col 46}{space 3}0.524{col 55}{space 3}-.6695402{col 67}{space 3} .3409416
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0935095{col 26}{space 2} .0320676{col 37}{space 1}    2.92{col 46}{space 3}0.004{col 55}{space 3} .0306581{col 67}{space 3} .1563608
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}  .643738{col 26}{space 2} .4574394{col 37}{space 1}    1.41{col 46}{space 3}0.159{col 55}{space 3}-.2528267{col 67}{space 3} 1.540303
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}  .207115{col 26}{space 2} .1420332{col 37}{space 1}    1.46{col 46}{space 3}0.145{col 55}{space 3} -.071265{col 67}{space 3}  .485495
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3708088{col 26}{space 2} .2747386{col 37}{space 1}   -1.35{col 46}{space 3}0.177{col 55}{space 3}-.9092865{col 67}{space 3} .1676689
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0660814{col 26}{space 2} .1337981{col 37}{space 1}   -0.49{col 46}{space 3}0.621{col 55}{space 3}-.3283209{col 67}{space 3}  .196158
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0458161{col 26}{space 2} .0538241{col 37}{space 1}    0.85{col 46}{space 3}0.395{col 55}{space 3}-.0596771{col 67}{space 3} .1513094
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1986333{col 26}{space 2} .1761307{col 37}{space 1}    1.13{col 46}{space 3}0.259{col 55}{space 3}-.1465765{col 67}{space 3} .5438431
+{col 1}{text}       dap:1{col 14}{c |}{result}  (omitted)
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2}-10.29847{col 26}{space 2} 2.298104{col 37}{space 1}   -4.48{col 46}{space 3}0.000{col 55}{space 3}-14.80267{col 67}{space 3}-5.794272
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-289.0623{col 50}    11{col 58} 600.1245{col 69} 642.8716
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-286.45849}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0102415{col 26}{space 2} .2472497{col 37}{space 1}    0.04{col 46}{space 3}0.967{col 55}{space 3}-.4743591{col 67}{space 3}  .494842
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0716649{col 26}{space 2} .1390297{col 37}{space 1}    0.52{col 46}{space 3}0.606{col 55}{space 3}-.2008283{col 67}{space 3}  .344158
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1327302{col 26}{space 2} .2596681{col 37}{space 1}   -0.51{col 46}{space 3}0.609{col 55}{space 3}-.6416703{col 67}{space 3} .3762099
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}  .005537{col 26}{space 2} .0360986{col 37}{space 1}    0.15{col 46}{space 3}0.878{col 55}{space 3}-.0652149{col 67}{space 3} .0762889
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .4879627{col 26}{space 2} .4725718{col 37}{space 1}    1.03{col 46}{space 3}0.302{col 55}{space 3} -.438261{col 67}{space 3} 1.414186
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}  .185932{col 26}{space 2}  .144662{col 37}{space 1}    1.29{col 46}{space 3}0.199{col 55}{space 3}-.0976003{col 67}{space 3} .4694642
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3998942{col 26}{space 2} .2798983{col 37}{space 1}   -1.43{col 46}{space 3}0.153{col 55}{space 3}-.9484849{col 67}{space 3} .1486965
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0664582{col 26}{space 2} .1327948{col 37}{space 1}   -0.50{col 46}{space 3}0.617{col 55}{space 3}-.3267313{col 67}{space 3} .1938149
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0495144{col 26}{space 2} .0545957{col 37}{space 1}    0.91{col 46}{space 3}0.364{col 55}{space 3}-.0574912{col 67}{space 3} .1565201
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1836279{col 26}{space 2} .1781961{col 37}{space 1}    1.03{col 46}{space 3}0.303{col 55}{space 3}-.1656299{col 67}{space 3} .5328858
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .1071301{col 26}{space 2}  .042653{col 37}{space 1}    2.51{col 46}{space 3}0.012{col 55}{space 3} .0235318{col 67}{space 3} .1907284
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-2.562339{col 26}{space 2} 2.507324{col 37}{space 1}   -1.02{col 46}{space 3}0.307{col 55}{space 3}-7.476605{col 67}{space 3} 2.351926
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-286.4585{col 50}    15{col 58}  602.917{col 69} 661.2085
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-287.14342}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .0198687{col 26}{space 2}  .247806{col 37}{space 1}    0.08{col 46}{space 3}0.936{col 55}{space 3} -.465822{col 67}{space 3} .5055595
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0591524{col 26}{space 2} .1385719{col 37}{space 1}    0.43{col 46}{space 3}0.669{col 55}{space 3}-.2124435{col 67}{space 3} .3307483
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1274518{col 26}{space 2} .2597954{col 37}{space 1}   -0.49{col 46}{space 3}0.624{col 55}{space 3}-.6366415{col 67}{space 3} .3817379
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}  .166684{col 26}{space 2}  .061651{col 37}{space 1}    2.70{col 46}{space 3}0.007{col 55}{space 3} .0458502{col 67}{space 3} .2875179
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} .4996117{col 26}{space 2} .4716735{col 37}{space 1}    1.06{col 46}{space 3}0.289{col 55}{space 3}-.4248513{col 67}{space 3} 1.424075
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .2080412{col 26}{space 2} .1407379{col 37}{space 1}    1.48{col 46}{space 3}0.139{col 55}{space 3}   -.0678{col 67}{space 3} .4838824
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.3955912{col 26}{space 2} .2786475{col 37}{space 1}   -1.42{col 46}{space 3}0.156{col 55}{space 3}-.9417302{col 67}{space 3} .1505478
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2}-.0737999{col 26}{space 2} .1340222{col 37}{space 1}   -0.55{col 46}{space 3}0.582{col 55}{space 3}-.3364786{col 67}{space 3} .1888789
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2} .0518796{col 26}{space 2}  .054731{col 37}{space 1}    0.95{col 46}{space 3}0.343{col 55}{space 3}-.0553911{col 67}{space 3} .1591504
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .1998221{col 26}{space 2} .1776572{col 37}{space 1}    1.12{col 46}{space 3}0.261{col 55}{space 3}-.1483796{col 67}{space 3} .5480237
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .0745294{col 26}{space 2} .0550079{col 37}{space 1}    1.35{col 46}{space 3}0.175{col 55}{space 3}-.0332842{col 67}{space 3}  .182343
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-4.898014{col 26}{space 2} 3.577411{col 37}{space 1}   -1.37{col 46}{space 3}0.171{col 55}{space 3}-11.90961{col 67}{space 3} 2.113582
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .2404942{col 26}{space 2} .2896603{col 37}{space 1}    0.83{col 46}{space 3}0.406{col 55}{space 3}-.3272296{col 67}{space 3}  .808218
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .0236629{col 26}{space 2} .1308022{col 37}{space 1}    0.18{col 46}{space 3}0.856{col 55}{space 3}-.2327047{col 67}{space 3} .2800304
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-15.41403{col 26}{space 2} 4.288177{col 37}{space 1}   -3.59{col 46}{space 3}0.000{col 55}{space 3} -23.8187{col 67}{space 3}-7.009353
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-287.1434{col 50}    15{col 58} 604.2868{col 69} 662.5784
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+. ******TRANSITION 5**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(weibull)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res: -436.0155}  
+Iteration 2:{space 2}Log likelihood = {res: -420.5148}  
+Iteration 3:{space 2}Log likelihood = {res:  -419.232}  (not concave)
+Iteration 4:{space 2}Log likelihood = {res:-419.23144}  
+Iteration 5:{space 2}Log likelihood = {res:-419.22465}  
+Iteration 6:{space 2}Log likelihood = {res:-419.21291}  (not concave)
+Iteration 7:{space 2}Log likelihood = {res:-419.21149}  (not concave)
+Iteration 8:{space 2}Log likelihood = {res:-419.21142}  
+Iteration 9:{space 2}Log likelihood = {res:-419.20696}  
+Iteration 10:{space 1}Log likelihood = {res:-419.20177}  
+Iteration 11:{space 1}Log likelihood = {res:-419.19505}  
+Iteration 12:{space 1}Log likelihood = {res:-419.19077}  
+Iteration 13:{space 1}Log likelihood = {res:-419.18733}  
+Iteration 14:{space 1}Log likelihood = {res:-419.18392}  
+Iteration 15:{space 1}Log likelihood = {res: -419.1807}  
+Iteration 16:{space 1}Log likelihood = {res:-419.17676}  (not concave)
+Iteration 17:{space 1}Log likelihood = {res:-419.17676}  
+Iteration 18:{space 1}Log likelihood = {res:-419.17673}  
+Iteration 19:{space 1}Log likelihood = {res:-419.17537}  (not concave)
+Iteration 20:{space 1}Log likelihood = {res:-419.17536}  
+Iteration 21:{space 1}Log likelihood = {res:-419.17502}  
+Iteration 22:{space 1}Log likelihood = {res: -419.1746}  
+Iteration 23:{space 1}Log likelihood = {res:-419.17398}  
+Iteration 24:{space 1}Log likelihood = {res:-419.17394}  
+Iteration 25:{space 1}Log likelihood = {res:-419.17371}  
+Iteration 26:{space 1}Log likelihood = {res:-419.17365}  
+Iteration 27:{space 1}Log likelihood = {res: -419.1736}  
+Iteration 28:{space 1}Log likelihood = {res:-419.17356}  
+Iteration 29:{space 1}Log likelihood = {res:-419.17355}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-419.17355}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .2204941{col 26}{space 2}  .193703{col 37}{space 1}    1.14{col 46}{space 3}0.255{col 55}{space 3}-.1591569{col 67}{space 3} .6001451
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0931263{col 26}{space 2} .1105341{col 37}{space 1}    0.84{col 46}{space 3}0.400{col 55}{space 3}-.1235167{col 67}{space 3} .3097692
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2028928{col 26}{space 2} .2012315{col 37}{space 1}   -1.01{col 46}{space 3}0.313{col 55}{space 3}-.5972993{col 67}{space 3} .1915136
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1183026{col 26}{space 2} .0343676{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 55}{space 3} .0509432{col 67}{space 3} .1856619
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2} -.600188{col 26}{space 2} .6044387{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 55}{space 3}-1.784866{col 67}{space 3} .5844901
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} -.286349{col 26}{space 2} .1389593{col 37}{space 1}   -2.06{col 46}{space 3}0.039{col 55}{space 3}-.5587043{col 67}{space 3}-.0139937
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .1350891{col 26}{space 2} .2073981{col 37}{space 1}    0.65{col 46}{space 3}0.515{col 55}{space 3}-.2714038{col 67}{space 3} .5415819
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0328698{col 26}{space 2} .0999626{col 37}{space 1}    0.33{col 46}{space 3}0.742{col 55}{space 3}-.1630533{col 67}{space 3} .2287929
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1280655{col 26}{space 2} .0490035{col 37}{space 1}   -2.61{col 46}{space 3}0.009{col 55}{space 3}-.2241106{col 67}{space 3}-.0320203
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2614649{col 26}{space 2} .1326205{col 37}{space 1}    1.97{col 46}{space 3}0.049{col 55}{space 3} .0015336{col 67}{space 3} .5213962
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-6.039231{col 26}{space 2}   11.327{col 37}{space 1}   -0.53{col 46}{space 3}0.594{col 55}{space 3}-28.23974{col 67}{space 3} 16.16128
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2}-1.087193{col 26}{space 2} 5.161197{col 37}{space 1}   -0.21{col 46}{space 3}0.833{col 55}{space 3}-11.20295{col 67}{space 3} 9.028567
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-419.1736{col 50}    12{col 58} 862.3471{col 69} 908.9804
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(exponential)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res:-436.01551}  
+Iteration 2:{space 2}Log likelihood = {res: -420.5151}  
+Iteration 3:{space 2}Log likelihood = {res:-419.23308}  
+Iteration 4:{space 2}Log likelihood = {res:-419.22968}  
+Iteration 5:{space 2}Log likelihood = {res:-419.22968}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-419.22968}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .2210048{col 26}{space 2} .1936676{col 37}{space 1}    1.14{col 46}{space 3}0.254{col 55}{space 3}-.1585766{col 67}{space 3} .6005863
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0918022{col 26}{space 2} .1105946{col 37}{space 1}    0.83{col 46}{space 3}0.406{col 55}{space 3}-.1249593{col 67}{space 3} .3085636
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2026134{col 26}{space 2} .2012573{col 37}{space 1}   -1.01{col 46}{space 3}0.314{col 55}{space 3}-.5970704{col 67}{space 3} .1918436
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1096054{col 26}{space 2} .0256413{col 37}{space 1}    4.27{col 46}{space 3}0.000{col 55}{space 3} .0593493{col 67}{space 3} .1598614
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.5995676{col 26}{space 2}  .604445{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 55}{space 3}-1.784258{col 67}{space 3} .5851228
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.2886732{col 26}{space 2} .1389405{col 37}{space 1}   -2.08{col 46}{space 3}0.038{col 55}{space 3}-.5609917{col 67}{space 3}-.0163547
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .1357798{col 26}{space 2} .2076467{col 37}{space 1}    0.65{col 46}{space 3}0.513{col 55}{space 3}-.2712002{col 67}{space 3} .5427598
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0329556{col 26}{space 2} .1000703{col 37}{space 1}    0.33{col 46}{space 3}0.742{col 55}{space 3}-.1631786{col 67}{space 3} .2290898
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1271561{col 26}{space 2} .0489817{col 37}{space 1}   -2.60{col 46}{space 3}0.009{col 55}{space 3}-.2231584{col 67}{space 3}-.0311538
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2658199{col 26}{space 2} .1321606{col 37}{space 1}    2.01{col 46}{space 3}0.044{col 55}{space 3} .0067899{col 67}{space 3} .5248498
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2} -9.42152{col 26}{space 2} 1.816169{col 37}{space 1}   -5.19{col 46}{space 3}0.000{col 55}{space 3}-12.98115{col 67}{space 3}-5.861895
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-419.2297{col 50}    11{col 58} 860.4594{col 69} 903.2065
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(go)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-3207518.8}  
+Iteration 1:{space 2}Log likelihood = {res:-613.82477}  
+Iteration 2:{space 2}Log likelihood = {res:-423.77819}  
+Iteration 3:{space 2}Log likelihood = {res:-419.26558}  
+Iteration 4:{space 2}Log likelihood = {res:-419.16218}  
+Iteration 5:{space 2}Log likelihood = {res: -419.1621}  
+Iteration 6:{space 2}Log likelihood = {res: -419.1621}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-419.1621}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .2205452{col 26}{space 2}  .193707{col 37}{space 1}    1.14{col 46}{space 3}0.255{col 55}{space 3}-.1591136{col 67}{space 3}  .600204
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0929461{col 26}{space 2} .1105155{col 37}{space 1}    0.84{col 46}{space 3}0.400{col 55}{space 3}-.1236603{col 67}{space 3} .3095525
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2029927{col 26}{space 2} .2012335{col 37}{space 1}   -1.01{col 46}{space 3}0.313{col 55}{space 3}-.5974031{col 67}{space 3} .1914176
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1189302{col 26}{space 2} .0360919{col 37}{space 1}    3.30{col 46}{space 3}0.001{col 55}{space 3} .0481914{col 67}{space 3}  .189669
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.6003553{col 26}{space 2} .6044578{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 55}{space 3}-1.785071{col 67}{space 3} .5843601
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.2861778{col 26}{space 2} .1390014{col 37}{space 1}   -2.06{col 46}{space 3}0.040{col 55}{space 3}-.5586156{col 67}{space 3}  -.01374
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}   .13498{col 26}{space 2}  .207369{col 37}{space 1}    0.65{col 46}{space 3}0.515{col 55}{space 3}-.2714558{col 67}{space 3} .5414158
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0328974{col 26}{space 2} .0999558{col 37}{space 1}    0.33{col 46}{space 3}0.742{col 55}{space 3}-.1630124{col 67}{space 3} .2288073
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1281836{col 26}{space 2} .0490204{col 37}{space 1}   -2.61{col 46}{space 3}0.009{col 55}{space 3}-.2242619{col 67}{space 3}-.0321054
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2610922{col 26}{space 2} .1327527{col 37}{space 1}    1.97{col 46}{space 3}0.049{col 55}{space 3} .0009017{col 67}{space 3} .5212827
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-9.285774{col 26}{space 2} 1.853574{col 37}{space 1}   -5.01{col 46}{space 3}0.000{col 55}{space 3}-12.91871{col 67}{space 3}-5.652836
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2} -.009889{col 26}{space 2} .0268925{col 37}{space 1}   -0.37{col 46}{space 3}0.713{col 55}{space 3}-.0625973{col 67}{space 3} .0428192
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-419.1621{col 50}    12{col 58} 862.3242{col 69} 908.9575
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(pwe) knots(3)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-1959.0992}  
+Iteration 1:{space 2}Log likelihood = {res:-436.01551}  
+Iteration 2:{space 2}Log likelihood = {res: -420.5151}  
+Iteration 3:{space 2}Log likelihood = {res:-419.23308}  
+Iteration 4:{space 2}Log likelihood = {res:-419.22968}  
+Iteration 5:{space 2}Log likelihood = {res:-419.22968}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-419.22968}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .2210048{col 26}{space 2} .1936676{col 37}{space 1}    1.14{col 46}{space 3}0.254{col 55}{space 3}-.1585766{col 67}{space 3} .6005863
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0918022{col 26}{space 2} .1105946{col 37}{space 1}    0.83{col 46}{space 3}0.406{col 55}{space 3}-.1249593{col 67}{space 3} .3085636
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2026134{col 26}{space 2} .2012573{col 37}{space 1}   -1.01{col 46}{space 3}0.314{col 55}{space 3}-.5970704{col 67}{space 3} .1918436
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1096054{col 26}{space 2} .0256413{col 37}{space 1}    4.27{col 46}{space 3}0.000{col 55}{space 3} .0593493{col 67}{space 3} .1598614
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.5995676{col 26}{space 2}  .604445{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 55}{space 3}-1.784258{col 67}{space 3} .5851228
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.2886732{col 26}{space 2} .1389405{col 37}{space 1}   -2.08{col 46}{space 3}0.038{col 55}{space 3}-.5609917{col 67}{space 3}-.0163547
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .1357798{col 26}{space 2} .2076467{col 37}{space 1}    0.65{col 46}{space 3}0.513{col 55}{space 3}-.2712002{col 67}{space 3} .5427598
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0329556{col 26}{space 2} .1000703{col 37}{space 1}    0.33{col 46}{space 3}0.742{col 55}{space 3}-.1631786{col 67}{space 3} .2290898
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1271561{col 26}{space 2} .0489817{col 37}{space 1}   -2.60{col 46}{space 3}0.009{col 55}{space 3}-.2231584{col 67}{space 3}-.0311538
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2658199{col 26}{space 2} .1321606{col 37}{space 1}    2.01{col 46}{space 3}0.044{col 55}{space 3} .0067899{col 67}{space 3} .5248498
+{col 1}{text}       dap:1{col 14}{c |}{result}  (omitted)
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2} -9.42152{col 26}{space 2} 1.816169{col 37}{space 1}   -5.19{col 46}{space 3}0.000{col 55}{space 3}-12.98115{col 67}{space 3}-5.861895
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-419.2297{col 50}    11{col 58} 860.4594{col 69} 903.2065
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}{err}convergence not achieved
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-415.0562}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .1744691{col 26}{space 2} .2045522{col 37}{space 1}    0.85{col 46}{space 3}0.394{col 55}{space 3}-.2264459{col 67}{space 3}  .575384
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .1403297{col 26}{space 2} .1189049{col 37}{space 1}    1.18{col 46}{space 3}0.238{col 55}{space 3}-.0927196{col 67}{space 3}  .373379
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.2822588{col 26}{space 2} .2247696{col 37}{space 1}   -1.26{col 46}{space 3}0.209{col 55}{space 3}-.7227991{col 67}{space 3} .1582815
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0501742{col 26}{space 2} .0782937{col 37}{space 1}   -0.64{col 46}{space 3}0.522{col 55}{space 3} -.203627{col 67}{space 3} .1032786
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.5493191{col 26}{space 2} .6102014{col 37}{space 1}   -0.90{col 46}{space 3}0.368{col 55}{space 3}-1.745292{col 67}{space 3} .6466537
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.3821018{col 26}{space 2} .1728167{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 55}{space 3}-.7208162{col 67}{space 3}-.0433873
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .1613197{col 26}{space 2} .2142916{col 37}{space 1}    0.75{col 46}{space 3}0.452{col 55}{space 3}-.2586841{col 67}{space 3} .5813236
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0198941{col 26}{space 2}  .099876{col 37}{space 1}    0.20{col 46}{space 3}0.842{col 55}{space 3}-.1758592{col 67}{space 3} .2156475
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1434369{col 26}{space 2} .0562337{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 55}{space 3}-.2536529{col 67}{space 3} -.033221
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2259828{col 26}{space 2} .1317686{col 37}{space 1}    1.71{col 46}{space 3}0.086{col 55}{space 3} -.032279{col 67}{space 3} .4842446
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .0773529{col 26}{space 2} .0010706{col 37}{space 1}   72.25{col 46}{space 3}0.000{col 55}{space 3} .0752547{col 67}{space 3} .0794512
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2} 3.925019{col 26}{space 2} 5.743584{col 37}{space 1}    0.68{col 46}{space 3}0.494{col 55}{space 3}-7.332199{col 67}{space 3} 15.18224
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-415.0562{col 50}    14{col 58} 858.1124{col 69} 912.5179
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres  ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:360}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-418.67924}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2} .2176394{col 26}{space 2} .1938538{col 37}{space 1}    1.12{col 46}{space 3}0.262{col 55}{space 3} -.162307{col 67}{space 3} .5975858
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0949589{col 26}{space 2} .1119361{col 37}{space 1}    0.85{col 46}{space 3}0.396{col 55}{space 3}-.1244318{col 67}{space 3} .3143495
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.1969485{col 26}{space 2} .2015062{col 37}{space 1}   -0.98{col 46}{space 3}0.328{col 55}{space 3}-.5918933{col 67}{space 3} .1979963
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .1333048{col 26}{space 2} .0452098{col 37}{space 1}    2.95{col 46}{space 3}0.003{col 55}{space 3} .0446953{col 67}{space 3} .2219143
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.6447537{col 26}{space 2} .6071149{col 37}{space 1}   -1.06{col 46}{space 3}0.288{col 55}{space 3}-1.834677{col 67}{space 3} .5451697
+{col 1}{text}households~e{col 14}{c |}{result}{space 2}-.2849351{col 26}{space 2} .1399808{col 37}{space 1}   -2.04{col 46}{space 3}0.042{col 55}{space 3}-.5592923{col 67}{space 3}-.0105778
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2} .1133949{col 26}{space 2} .2092047{col 37}{space 1}    0.54{col 46}{space 3}0.588{col 55}{space 3}-.2966389{col 67}{space 3} .5234287
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0340982{col 26}{space 2} .1002651{col 37}{space 1}    0.34{col 46}{space 3}0.734{col 55}{space 3}-.1624177{col 67}{space 3} .2306141
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.1279214{col 26}{space 2} .0491602{col 37}{space 1}   -2.60{col 46}{space 3}0.009{col 55}{space 3}-.2242737{col 67}{space 3}-.0315692
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} .2608291{col 26}{space 2}  .133264{col 37}{space 1}    1.96{col 46}{space 3}0.050{col 55}{space 3}-.0003637{col 67}{space 3} .5220218
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .0323018{col 26}{space 2} .0438369{col 37}{space 1}    0.74{col 46}{space 3}0.461{col 55}{space 3}-.0536169{col 67}{space 3} .1182204
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-2.157721{col 26}{space 2} 2.838729{col 37}{space 1}   -0.76{col 46}{space 3}0.447{col 55}{space 3}-7.721528{col 67}{space 3} 3.406086
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .2149588{col 26}{space 2} .2331992{col 37}{space 1}    0.92{col 46}{space 3}0.357{col 55}{space 3}-.2421033{col 67}{space 3} .6720209
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .0247355{col 26}{space 2} .1130683{col 37}{space 1}    0.22{col 46}{space 3}0.827{col 55}{space 3}-.1968742{col 67}{space 3} .2463452
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-11.10022{col 26}{space 2} 3.119252{col 37}{space 1}   -3.56{col 46}{space 3}0.000{col 55}{space 3}-17.21384{col 67}{space 3}-4.986602
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       360{col 28}        .{col 39}-418.6792{col 50}    15{col 58} 867.3585{col 69}   925.65
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+. ******TRANSITION 6**************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(weibull)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-2271.3757}  
+Iteration 1:{space 2}Log likelihood = {res:-1002.6154}  
+Iteration 2:{space 2}Log likelihood = {res:-979.24589}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-978.98425}  
+Iteration 4:{space 2}Log likelihood = {res:-978.95159}  
+Iteration 5:{space 2}Log likelihood = {res:-978.94995}  
+Iteration 6:{space 2}Log likelihood = {res:-978.94693}  
+Iteration 7:{space 2}Log likelihood = {res:-978.94618}  
+Iteration 8:{space 2}Log likelihood = {res:-978.94542}  
+Iteration 9:{space 2}Log likelihood = {res:-978.94537}  
+Iteration 10:{space 1}Log likelihood = {res:-978.94508}  
+Iteration 11:{space 1}Log likelihood = {res:-978.94506}  
+Iteration 12:{space 1}Log likelihood = {res:-978.94505}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-978.94505}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1394574{col 26}{space 2} .1349492{col 37}{space 1}   -1.03{col 46}{space 3}0.301{col 55}{space 3} -.403953{col 67}{space 3} .1250382
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0041181{col 26}{space 2} .0593897{col 37}{space 1}    0.07{col 46}{space 3}0.945{col 55}{space 3}-.1122835{col 67}{space 3} .1205197
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3665621{col 26}{space 2} .1135809{col 37}{space 1}   -3.23{col 46}{space 3}0.001{col 55}{space 3}-.5891764{col 67}{space 3}-.1439477
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0239015{col 26}{space 2} .0224937{col 37}{space 1}    1.06{col 46}{space 3}0.288{col 55}{space 3}-.0201854{col 67}{space 3} .0679883
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.4383145{col 26}{space 2} .3452788{col 37}{space 1}   -1.27{col 46}{space 3}0.204{col 55}{space 3}-1.115049{col 67}{space 3} .2384195
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0373936{col 26}{space 2} .0336427{col 37}{space 1}    1.11{col 46}{space 3}0.266{col 55}{space 3}-.0285449{col 67}{space 3} .1033321
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1497899{col 26}{space 2} .1193795{col 37}{space 1}   -1.25{col 46}{space 3}0.210{col 55}{space 3}-.3837694{col 67}{space 3} .0841895
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0143336{col 26}{space 2} .0557196{col 37}{space 1}    0.26{col 46}{space 3}0.797{col 55}{space 3}-.0948747{col 67}{space 3}  .123542
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0103027{col 26}{space 2} .0239731{col 37}{space 1}   -0.43{col 46}{space 3}0.667{col 55}{space 3}-.0572891{col 67}{space 3} .0366837
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}-.0714579{col 26}{space 2} .0776819{col 37}{space 1}   -0.92{col 46}{space 3}0.358{col 55}{space 3}-.2237115{col 67}{space 3} .0807958
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-1.826531{col 26}{space 2} 6.168206{col 37}{space 1}   -0.30{col 46}{space 3}0.767{col 55}{space 3}-13.91599{col 67}{space 3} 10.26293
+{col 1}{text}  log(gamma){col 14}{c |}{result}{space 2}-.1748934{col 26}{space 2} 1.557301{col 37}{space 1}   -0.11{col 46}{space 3}0.911{col 55}{space 3}-3.227148{col 67}{space 3} 2.877361
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-978.9451{col 50}    12{col 58}  1981.89{col 69}  2035.54
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(exponential)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-2271.3757}  
+Iteration 1:{space 2}Log likelihood = {res:-1002.6154}  
+Iteration 2:{space 2}Log likelihood = {res:-979.24592}  
+Iteration 3:{space 2}Log likelihood = {res:-978.95274}  
+Iteration 4:{space 2}Log likelihood = {res:-978.95259}  
+Iteration 5:{space 2}Log likelihood = {res:-978.95259}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-978.95259}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1386567{col 26}{space 2} .1347839{col 37}{space 1}   -1.03{col 46}{space 3}0.304{col 55}{space 3}-.4028283{col 67}{space 3} .1255148
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}  .003921{col 26}{space 2}  .059354{col 37}{space 1}    0.07{col 46}{space 3}0.947{col 55}{space 3}-.1124107{col 67}{space 3} .1202527
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3681889{col 26}{space 2} .1127962{col 37}{space 1}   -3.26{col 46}{space 3}0.001{col 55}{space 3}-.5892655{col 67}{space 3}-.1471124
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0217883{col 26}{space 2}  .014469{col 37}{space 1}    1.51{col 46}{space 3}0.132{col 55}{space 3}-.0065704{col 67}{space 3}  .050147
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.4386695{col 26}{space 2} .3452689{col 37}{space 1}   -1.27{col 46}{space 3}0.204{col 55}{space 3}-1.115384{col 67}{space 3} .2380451
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0379563{col 26}{space 2} .0333107{col 37}{space 1}    1.14{col 46}{space 3}0.255{col 55}{space 3}-.0273315{col 67}{space 3}  .103244
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1502794{col 26}{space 2}   .11931{col 37}{space 1}   -1.26{col 46}{space 3}0.208{col 55}{space 3}-.3841227{col 67}{space 3} .0835638
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0146995{col 26}{space 2} .0556292{col 37}{space 1}    0.26{col 46}{space 3}0.792{col 55}{space 3}-.0943317{col 67}{space 3} .1237307
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0102511{col 26}{space 2} .0239732{col 37}{space 1}   -0.43{col 46}{space 3}0.669{col 55}{space 3}-.0572377{col 67}{space 3} .0367356
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}  -.07128{col 26}{space 2} .0776628{col 37}{space 1}   -0.92{col 46}{space 3}0.359{col 55}{space 3}-.2234964{col 67}{space 3} .0809364
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-2.557583{col 26}{space 2} .9877717{col 37}{space 1}   -2.59{col 46}{space 3}0.010{col 55}{space 3} -4.49358{col 67}{space 3}-.6215862
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-978.9526{col 50}    11{col 58} 1979.905{col 69} 2029.084
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(go)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-5140858.4}  
+Iteration 1:{space 2}Log likelihood = {res:-1144.1814}  
+Iteration 2:{space 2}Log likelihood = {res:-981.88338}  
+Iteration 3:{space 2}Log likelihood = {res:-978.95604}  
+Iteration 4:{space 2}Log likelihood = {res:-978.93612}  
+Iteration 5:{space 2}Log likelihood = {res:-978.93612}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-978.93612}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1398188{col 26}{space 2} .1349487{col 37}{space 1}   -1.04{col 46}{space 3}0.300{col 55}{space 3}-.4043134{col 67}{space 3} .1246758
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0042163{col 26}{space 2} .0593949{col 37}{space 1}    0.07{col 46}{space 3}0.943{col 55}{space 3}-.1121955{col 67}{space 3} .1206281
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3658056{col 26}{space 2} .1135697{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 55}{space 3}-.5883982{col 67}{space 3} -.143213
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0248514{col 26}{space 2} .0222218{col 37}{space 1}    1.12{col 46}{space 3}0.263{col 55}{space 3}-.0187026{col 67}{space 3} .0684054
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.4381735{col 26}{space 2} .3452753{col 37}{space 1}   -1.27{col 46}{space 3}0.204{col 55}{space 3}-1.114901{col 67}{space 3} .2385536
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0371238{col 26}{space 2} .0336486{col 37}{space 1}    1.10{col 46}{space 3}0.270{col 55}{space 3}-.0288262{col 67}{space 3} .1030738
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1494939{col 26}{space 2} .1193904{col 37}{space 1}   -1.25{col 46}{space 3}0.211{col 55}{space 3}-.3834947{col 67}{space 3} .0845069
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0141877{col 26}{space 2} .0557152{col 37}{space 1}    0.25{col 46}{space 3}0.799{col 55}{space 3} -.095012{col 67}{space 3} .1233875
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0103361{col 26}{space 2} .0239715{col 37}{space 1}   -0.43{col 46}{space 3}0.666{col 55}{space 3}-.0573194{col 67}{space 3} .0366471
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2} -.071501{col 26}{space 2} .0776786{col 37}{space 1}   -0.92{col 46}{space 3}0.357{col 55}{space 3}-.2237483{col 67}{space 3} .0807462
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-2.518534{col 26}{space 2} 1.011066{col 37}{space 1}   -2.49{col 46}{space 3}0.013{col 55}{space 3}-4.500188{col 67}{space 3}-.5368807
+{col 1}{text}       gamma{col 14}{c |}{result}{space 2}-.0031533{col 26}{space 2} .0173609{col 37}{space 1}   -0.18{col 46}{space 3}0.856{col 55}{space 3}  -.03718{col 67}{space 3} .0308734
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-978.9361{col 50}    12{col 58} 1981.872{col 69} 2035.522
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(pwe) knots(3)
+{txt}note; a delayed entry model is being fitted
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 2}Log likelihood = {res:-2271.3757}  
+Iteration 1:{space 2}Log likelihood = {res:-1002.6154}  
+Iteration 2:{space 2}Log likelihood = {res:-979.24592}  
+Iteration 3:{space 2}Log likelihood = {res:-978.95274}  
+Iteration 4:{space 2}Log likelihood = {res:-978.95259}  
+Iteration 5:{space 2}Log likelihood = {res:-978.95259}  
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-978.95259}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1386567{col 26}{space 2} .1347839{col 37}{space 1}   -1.03{col 46}{space 3}0.304{col 55}{space 3}-.4028283{col 67}{space 3} .1255148
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}  .003921{col 26}{space 2}  .059354{col 37}{space 1}    0.07{col 46}{space 3}0.947{col 55}{space 3}-.1124107{col 67}{space 3} .1202527
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3681889{col 26}{space 2} .1127962{col 37}{space 1}   -3.26{col 46}{space 3}0.001{col 55}{space 3}-.5892655{col 67}{space 3}-.1471124
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2} .0217883{col 26}{space 2}  .014469{col 37}{space 1}    1.51{col 46}{space 3}0.132{col 55}{space 3}-.0065704{col 67}{space 3}  .050147
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.4386695{col 26}{space 2} .3452689{col 37}{space 1}   -1.27{col 46}{space 3}0.204{col 55}{space 3}-1.115384{col 67}{space 3} .2380451
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0379563{col 26}{space 2} .0333107{col 37}{space 1}    1.14{col 46}{space 3}0.255{col 55}{space 3}-.0273315{col 67}{space 3}  .103244
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1502794{col 26}{space 2}   .11931{col 37}{space 1}   -1.26{col 46}{space 3}0.208{col 55}{space 3}-.3841227{col 67}{space 3} .0835638
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0146995{col 26}{space 2} .0556292{col 37}{space 1}    0.26{col 46}{space 3}0.792{col 55}{space 3}-.0943317{col 67}{space 3} .1237307
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0102511{col 26}{space 2} .0239732{col 37}{space 1}   -0.43{col 46}{space 3}0.669{col 55}{space 3}-.0572377{col 67}{space 3} .0367356
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}  -.07128{col 26}{space 2} .0776628{col 37}{space 1}   -0.92{col 46}{space 3}0.359{col 55}{space 3}-.2234964{col 67}{space 3} .0809364
+{col 1}{text}       dap:1{col 14}{c |}{result}  (omitted)
+{col 1}{text}       dap:2{col 14}{c |}{result}{space 2}-2.557583{col 26}{space 2} .9877717{col 37}{space 1}   -2.59{col 46}{space 3}0.010{col 55}{space 3} -4.49358{col 67}{space 3}-.6215862
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-978.9526{col 50}    11{col 58} 1979.905{col 69} 2029.084
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+Obtaining initial values
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-966.35319}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1341614{col 26}{space 2} .1355036{col 37}{space 1}   -0.99{col 46}{space 3}0.322{col 55}{space 3}-.3997435{col 67}{space 3} .1314208
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2} .0194169{col 26}{space 2} .0601874{col 37}{space 1}    0.32{col 46}{space 3}0.747{col 55}{space 3}-.0985482{col 67}{space 3}  .137382
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3649161{col 26}{space 2} .1140513{col 37}{space 1}   -3.20{col 46}{space 3}0.001{col 55}{space 3}-.5884526{col 67}{space 3}-.1413795
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}-.0411253{col 26}{space 2} .0177168{col 37}{space 1}   -2.32{col 46}{space 3}0.020{col 55}{space 3}-.0758496{col 67}{space 3}-.0064011
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.4043827{col 26}{space 2} .3455183{col 37}{space 1}   -1.17{col 46}{space 3}0.242{col 55}{space 3}-1.081586{col 67}{space 3} .2728208
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0286693{col 26}{space 2} .0346278{col 37}{space 1}    0.83{col 46}{space 3}0.408{col 55}{space 3}   -.0392{col 67}{space 3} .0965385
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1325382{col 26}{space 2} .1192225{col 37}{space 1}   -1.11{col 46}{space 3}0.266{col 55}{space 3}-.3662099{col 67}{space 3} .1011335
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0112296{col 26}{space 2} .0565204{col 37}{space 1}    0.20{col 46}{space 3}0.843{col 55}{space 3}-.0995485{col 67}{space 3} .1220076
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0198739{col 26}{space 2} .0242931{col 37}{space 1}   -0.82{col 46}{space 3}0.413{col 55}{space 3}-.0674875{col 67}{space 3} .0277397
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}-.0764607{col 26}{space 2} .0779327{col 37}{space 1}   -0.98{col 46}{space 3}0.327{col 55}{space 3} -.229206{col 67}{space 3} .0762847
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .1059582{col 26}{space 2} .0192696{col 37}{space 1}    5.50{col 46}{space 3}0.000{col 55}{space 3} .0681905{col 67}{space 3}  .143726
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}  3.63764{col 26}{space 2} 1.209738{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 55}{space 3} 1.266597{col 67}{space 3} 6.008683
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}    Warning: Baseline spline coefficients not shown - use ml display
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-966.3532{col 50}    15{col 58} 1962.706{col 69} 2029.768
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+{txt}note; a delayed entry model is being fitted
+{res}variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+{txt}Fitting full model:
+{res}
+{txt}{col 1}Survival model{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:646}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-974.20783}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{col 1}{result}_t:         {col 14}{text}{c |}{col 26} 
+{res}{col 1}{text}      gfapbr{col 14}{c |}{result}{space 2}-.1273504{col 26}{space 2} .1354529{col 37}{space 1}   -0.94{col 46}{space 3}0.347{col 55}{space 3}-.3928331{col 67}{space 3} .1381323
+{col 1}{text}zLE8_TO~Einv{col 14}{c |}{result}{space 2}  .004725{col 26}{space 2} .0595453{col 37}{space 1}    0.08{col 46}{space 3}0.937{col 55}{space 3}-.1119817{col 67}{space 3} .1214318
+{col 1}{text}         SEX{col 14}{c |}{result}{space 2}-.3732948{col 26}{space 2} .1137498{col 37}{space 1}   -3.28{col 46}{space 3}0.001{col 55}{space 3}-.5962403{col 67}{space 3}-.1503493
+{col 1}{text}         AGE{col 14}{c |}{result}{space 2}  .072693{col 26}{space 2} .0324117{col 37}{space 1}    2.24{col 46}{space 3}0.025{col 55}{space 3} .0091672{col 67}{space 3} .1362189
+{col 1}{text}    NonWhite{col 14}{c |}{result}{space 2}-.5077358{col 26}{space 2} .3469927{col 37}{space 1}   -1.46{col 46}{space 3}0.143{col 55}{space 3}-1.187829{col 67}{space 3} .1723575
+{col 1}{text}households~e{col 14}{c |}{result}{space 2} .0326734{col 26}{space 2} .0334202{col 37}{space 1}    0.98{col 46}{space 3}0.328{col 55}{space 3}-.0328291{col 67}{space 3} .0981759
+{col 1}{text}      SESres{col 14}{c |}{result}{space 2}-.1496017{col 26}{space 2} .1193954{col 37}{space 1}   -1.25{col 46}{space 3}0.210{col 55}{space 3}-.3836124{col 67}{space 3}  .084409
+{col 1}{text}   ztownsend{col 14}{c |}{result}{space 2} .0098747{col 26}{space 2} .0562297{col 37}{space 1}    0.18{col 46}{space 3}0.861{col 55}{space 3}-.1003334{col 67}{space 3} .1200828
+{col 1}{text}    comorbid{col 14}{c |}{result}{space 2}-.0136956{col 26}{space 2} .0241488{col 37}{space 1}   -0.57{col 46}{space 3}0.571{col 55}{space 3}-.0610264{col 67}{space 3} .0336352
+{col 1}{text}       srhbr{col 14}{c |}{result}{space 2}-.0737105{col 26}{space 2} .0781425{col 37}{space 1}   -0.94{col 46}{space 3}0.346{col 55}{space 3} -.226867{col 67}{space 3} .0794459
+{col 1}{text}   AGE#rcs(){col 14}{c |}{result}{space 2} .0604214{col 26}{space 2} .0252622{col 37}{space 1}    2.39{col 46}{space 3}0.017{col 55}{space 3} .0109084{col 67}{space 3} .1099343
+{col 1}{text}     rcs():1{col 14}{c |}{result}{space 2}-4.007137{col 26}{space 2} 1.650485{col 37}{space 1}   -2.43{col 46}{space 3}0.015{col 55}{space 3}-7.242029{col 67}{space 3}-.7722447
+{col 1}{text}     rcs():2{col 14}{c |}{result}{space 2} .3621501{col 26}{space 2} .1355369{col 37}{space 1}    2.67{col 46}{space 3}0.008{col 55}{space 3} .0965027{col 67}{space 3} .6277975
+{col 1}{text}     rcs():3{col 14}{c |}{result}{space 2} .0731002{col 26}{space 2} .0664378{col 37}{space 1}    1.10{col 46}{space 3}0.271{col 55}{space 3}-.0571155{col 67}{space 3} .2033158
+{col 1}{text}       _cons{col 14}{c |}{result}{space 2}-6.150348{col 26}{space 2} 2.232653{col 37}{space 1}   -2.75{col 46}{space 3}0.006{col 55}{space 3}-10.52627{col 67}{space 3} -1.77443
+{col 1}{text}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 9}{hline 12}{hline 12}
+{res}{txt}
+{com}. estat ic 
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       646{col 28}        .{col 39}-974.2078{col 50}    15{col 58} 1978.416{col 69} 2045.478
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] IC note}}.{p_end}
+
+{com}. 
+. 
+. 
+. ********************************************************************************************************************
+. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

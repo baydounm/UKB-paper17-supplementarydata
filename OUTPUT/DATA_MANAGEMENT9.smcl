@@ -1,0 +1,130 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. 
+. ****************************************MERGE WITH THESE DATASETS AS NEEDED***************************************************************************************************
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",clear
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",clear
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta{rm}
+saved
+{p_end}
+
+{com}. keep n_eid nefl gfap
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",clear
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta", clear
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta", clear
+{txt}
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta",replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",clear
+{txt}
+{com}. merge n_eid using "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta"
+{txt}{p}
+(you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid
+{txt}
+{com}. merge n_eid using "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta"
+{txt}{p}
+(you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+
+{com}. capture drop _merge
+{txt}
+{com}. sort n_eid 
+{txt}
+{com}. merge n_eid using "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta"
+{txt}{p}
+(you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+
+{com}. save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

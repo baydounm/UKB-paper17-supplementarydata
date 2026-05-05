@@ -1,0 +1,108 @@
+############################################################
+# DAG for UK Biobank NfL/GFAP, air pollution, metabolome,
+# dementia, Parkinson's disease, and mortality
+############################################################
+
+setwd("D://16GBBACKUPUSB//BACKUP_USB_SEPTEMBER2014//May Baydoun_folder//UK_BIOBANK_PROJECT//UKB_PAPER11_NFLGFAPDEMPDMORT_METAB//MANUSCRIPT//GITHUB//FIGURES//FIGURES1")
+
+install.packages(c("dagitty", "ggdag", "ggplot2"))
+library(dagitty)
+library(ggdag)
+library(ggplot2)
+
+dag_text <- "
+dag {
+bb=\"0,0,12,9\"
+
+Age
+Sex
+RaceEthnicity
+SES
+AirPollution
+LE8
+Comorbidity
+SelfRatedHealth
+MetabolomePCs
+NfL_GFAP [exposure]
+Dementia_PD_Mortality [outcome]
+SelectionCompleteCase
+
+Age -> NfL_GFAP
+Age -> LE8
+Age -> Comorbidity
+Age -> SelfRatedHealth
+Age -> MetabolomePCs
+Age -> Dementia_PD_Mortality
+Age -> SelectionCompleteCase
+
+Sex -> NfL_GFAP
+Sex -> LE8
+Sex -> Comorbidity
+Sex -> SelfRatedHealth
+Sex -> MetabolomePCs
+Sex -> Dementia_PD_Mortality
+Sex -> SelectionCompleteCase
+
+RaceEthnicity -> SES
+RaceEthnicity -> AirPollution
+RaceEthnicity -> LE8
+RaceEthnicity -> Comorbidity
+RaceEthnicity -> Dementia_PD_Mortality
+RaceEthnicity -> SelectionCompleteCase
+
+SES -> AirPollution
+SES -> LE8
+SES -> Comorbidity
+SES -> SelfRatedHealth
+SES -> MetabolomePCs
+SES -> NfL_GFAP
+SES -> Dementia_PD_Mortality
+SES -> SelectionCompleteCase
+
+AirPollution -> NfL_GFAP
+AirPollution -> MetabolomePCs
+AirPollution -> Dementia_PD_Mortality
+AirPollution -> SelectionCompleteCase
+
+LE8 -> Comorbidity
+LE8 -> SelfRatedHealth
+LE8 -> MetabolomePCs
+LE8 -> NfL_GFAP
+LE8 -> Dementia_PD_Mortality
+LE8 -> SelectionCompleteCase
+
+Comorbidity -> SelfRatedHealth
+Comorbidity -> NfL_GFAP
+Comorbidity -> Dementia_PD_Mortality
+Comorbidity -> SelectionCompleteCase
+
+SelfRatedHealth -> NfL_GFAP
+SelfRatedHealth -> Dementia_PD_Mortality
+SelfRatedHealth -> SelectionCompleteCase
+
+MetabolomePCs -> NfL_GFAP
+MetabolomePCs -> Dementia_PD_Mortality
+MetabolomePCs -> SelectionCompleteCase
+
+NfL_GFAP -> Dementia_PD_Mortality
+NfL_GFAP -> SelectionCompleteCase
+Dementia_PD_Mortality -> SelectionCompleteCase
+}
+"
+
+dag1 <- dagitty(dag_text)
+
+# Check adjustment sets
+adjustmentSets(dag1, exposure = "NfL_GFAP", outcome = "Dementia_PD_Mortality")
+
+# Plot DAG
+ggdag(dag1, text = FALSE, use_labels = "name") +
+  geom_dag_text(size = 3) +
+  theme_dag() +
+  ggtitle("Directed acyclic graph for NfL/GFAP and neurodegenerative transitions")
+
+# Save
+ggsave("Supplementary_Figure_DAG_NfL_GFAP_UKB.png", width = 10, height = 7, dpi = 300)
+ggsave("Supplementary_Figure_DAG_NfL_GFAP_UKB.pdf", width = 10, height = 7)
+
+

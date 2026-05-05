@@ -1,0 +1,1064 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. 
+. 
+. 
+. use "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin",clear
+{txt}
+{com}. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. *****************************************ABOVE VS. BELOW MEDIAN NFL AND GFAP**********************************************************
+. 
+. capture drop gfapbr
+{txt}
+{com}. xtile  gfapbr=gfap if sample_final==1, nq(2)
+{txt}
+{com}. 
+. bysort gfapbr: su gfap if sample_final==1
+
+{txt}{hline}
+-> gfapbr = 1
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}gfap {c |}{res}      9,820   -.3163051    .3170191   -2.23605     .08145
+
+{txt}{hline}
+-> gfapbr = 2
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}gfap {c |}{res}      9,819     .542334    .3897252      .0815    5.25285
+
+{txt}
+{com}. 
+. 
+. capture drop neflbr
+{txt}
+{com}. xtile  neflbr=nefl if sample_final==1, nq(2)
+{txt}
+{com}. 
+. bysort neflbr: su nefl if sample_final==1
+
+{txt}{hline}
+-> neflbr = 1
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}nefl {c |}{res}      9,820   -.2634369    .2932659    -2.9791      .1112
+
+{txt}{hline}
+-> neflbr = 2
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}nefl {c |}{res}      9,819    .5549288    .4160307      .1114     5.1483
+
+{txt}
+{com}. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. ****************************************KAPLAN-MEIER SURVIVAL CURVES********************************************************************
+. 
+. **********************************NEFL**********************************************
+. 
+. 
+. **DEMENTIA**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}        692{txt}  failures in single-failure-per-subject data
+{res} 274,619.59{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("NEFL vs. dementia") by (neflbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A.gph} saved
+
+{com}. sts test neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       150         276.51
+     {txt}2 {c |}{res}       540         413.49
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       690         690.00
+
+                 {txt}chi2(1) =  {res}99.75
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -6093.192
+{txt}Iteration 1:  Log likelihood = {res}-6039.8939
+{txt}Iteration 2:  Log likelihood = {res}-6039.0773
+{txt}Iteration 3:  Log likelihood = {res}-6039.0766
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-6039.0766
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,908}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,908}
+{txt}No. of failures = {res}{ralign 11:690}
+{txt}Time at risk    = {res}{ralign 11:263,332.935}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:108.23}
+{txt}Log likelihood = {res}-6039.0766{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.476777{col 26}{space 2} .2321188{col 37}{space 1}    9.68{col 46}{space 3}0.000{col 54}{space 4} 2.061171{col 67}{space 3} 2.976185
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("NEFL vs. all-cause dementia") by (neflbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A1.gph} saved
+
+{com}. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       150         276.51
+     {txt}2 {c |}{res}       540         413.49
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       690         690.00
+
+                 {txt}chi2(1) =  {res}99.75
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -6093.192
+{txt}Iteration 1:  Log likelihood = {res}-6039.8939
+{txt}Iteration 2:  Log likelihood = {res}-6039.0773
+{txt}Iteration 3:  Log likelihood = {res}-6039.0766
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-6039.0766
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,908}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,908}
+{txt}No. of failures = {res}{ralign 11:690}
+{txt}Time at risk    = {res}{ralign 11:263,332.935}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:108.23}
+{txt}Log likelihood = {res}-6039.0766{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.476777{col 26}{space 2} .2321188{col 37}{space 1}    9.68{col 46}{space 3}0.000{col 54}{space 4} 2.061171{col 67}{space 3} 2.976185
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}        400{txt}  failures in single-failure-per-subject data
+{res}    274,700{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("NEFL vs. PD") by (neflbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B.gph} saved
+
+{com}. sts test neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       121         185.41
+     {txt}2 {c |}{res}       279         214.59
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       400         400.00
+
+                 {txt}chi2(1) =  {res}43.69
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -3665.773
+{txt}Iteration 1:  Log likelihood = {res}-3643.2303
+{txt}Iteration 2:  Log likelihood = {res}-3643.1535
+{txt}Iteration 3:  Log likelihood = {res}-3643.1535
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3643.1535
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,863}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,863}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:262,718.789}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:45.24}
+{txt}Log likelihood = {res}-3643.1535{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.058182{col 26}{space 2} .2290626{col 37}{space 1}    6.49{col 46}{space 3}0.000{col 54}{space 4} 1.654819{col 67}{space 3} 2.559865
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("NEFL vs. PD") by (neflbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B1.gph} saved
+
+{com}. 
+. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       121         185.41
+     {txt}2 {c |}{res}       279         214.59
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       400         400.00
+
+                 {txt}chi2(1) =  {res}43.69
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -3665.773
+{txt}Iteration 1:  Log likelihood = {res}-3643.2303
+{txt}Iteration 2:  Log likelihood = {res}-3643.1535
+{txt}Iteration 3:  Log likelihood = {res}-3643.1535
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3643.1535
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,863}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,863}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:262,718.789}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:45.24}
+{txt}Log likelihood = {res}-3643.1535{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 2.058182{col 26}{space 2} .2290626{col 37}{space 1}    6.49{col 46}{space 3}0.000{col 54}{space 4} 1.654819{col 67}{space 3} 2.559865
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. **DEATH**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}      2,515{txt}  failures in single-failure-per-subject data
+{res} 276,947.89{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("NEFL vs. All-cause mortality") by (neflbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C.gph} saved
+
+{com}. sts test neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       778        1096.82
+     {txt}2 {c |}{res}      1728        1409.18
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}      2506        2506.00
+
+                 {txt}chi2(1) = {res}173.21
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22607.395
+{txt}Iteration 1:  Log likelihood = {res}-22518.058
+{txt}Iteration 2:  Log likelihood = {res}-22517.795
+{txt}Iteration 3:  Log likelihood = {res}-22517.795
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22517.795
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,841}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,841}
+{txt}No. of failures = {res}{ralign 11:2,506}
+{txt}Time at risk    = {res}{ralign 11:264,629.244}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:179.20}
+{txt}Log likelihood = {res}-22517.795{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 1.777692{col 26}{space 2} .0786424{col 37}{space 1}   13.00{col 46}{space 3}0.000{col 54}{space 4} 1.630049{col 67}{space 3} 1.938708
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("NEFL vs. All-cause mortality") by (neflbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C1.gph} saved
+
+{com}. 
+. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+neflbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       778        1096.82
+     {txt}2 {c |}{res}      1728        1409.18
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}      2506        2506.00
+
+                 {txt}chi2(1) = {res}173.21
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox neflbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22607.395
+{txt}Iteration 1:  Log likelihood = {res}-22518.058
+{txt}Iteration 2:  Log likelihood = {res}-22517.795
+{txt}Iteration 3:  Log likelihood = {res}-22517.795
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22517.795
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,841}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,841}
+{txt}No. of failures = {res}{ralign 11:2,506}
+{txt}Time at risk    = {res}{ralign 11:264,629.244}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:179.20}
+{txt}Log likelihood = {res}-22517.795{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}neflbr {c |}{col 14}{res}{space 2} 1.777692{col 26}{space 2} .0786424{col 37}{space 1}   13.00{col 46}{space 3}0.000{col 54}{space 4} 1.630049{col 67}{space 3} 1.938708
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. graph combine "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1A.gph" "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1B.gph" "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1C.gph"
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1NEFL.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1NEFL.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1NEFL.gph} saved
+
+{com}. 
+. 
+. 
+. **********************************GFAP**********************************************
+. 
+. 
+. **DEMENTIA**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}dem_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_dementia[_n-1], Age_dementia]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}        692{txt}  failures in single-failure-per-subject data
+{res} 274,619.59{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("GFAP vs. dementia") by (gfapbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D.gph} saved
+
+{com}. sts test gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       161         288.81
+     {txt}2 {c |}{res}       529         401.19
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       690         690.00
+
+                 {txt}chi2(1) =  {res}99.10
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -6093.192
+{txt}Iteration 1:  Log likelihood = {res}-6040.6722
+{txt}Iteration 2:  Log likelihood = {res}-6040.0504
+{txt}Iteration 3:  Log likelihood = {res}  -6040.05
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}  -6040.05
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,908}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,908}
+{txt}No. of failures = {res}{ralign 11:690}
+{txt}Time at risk    = {res}{ralign 11:263,332.935}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:106.28}
+{txt}Log likelihood = {res}-6040.05{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 2.400388{col 26}{space 2}  .217651{col 37}{space 1}    9.66{col 46}{space 3}0.000{col 54}{space 4} 2.009557{col 67}{space 3} 2.867231
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("GFAP vs. all-cause dementia") by (gfapbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D1.gph} saved
+
+{com}. 
+. sts test gfapbr if sample_final==1 & _t<84 
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       161         288.81
+     {txt}2 {c |}{res}       529         401.19
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       690         690.00
+
+                 {txt}chi2(1) =  {res}99.10
+                 {txt}Pr>chi2 = {res}0.0000
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}dem_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_dementia
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -6093.192
+{txt}Iteration 1:  Log likelihood = {res}-6040.6722
+{txt}Iteration 2:  Log likelihood = {res}-6040.0504
+{txt}Iteration 3:  Log likelihood = {res}  -6040.05
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}  -6040.05
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,908}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,908}
+{txt}No. of failures = {res}{ralign 11:690}
+{txt}Time at risk    = {res}{ralign 11:263,332.935}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:106.28}
+{txt}Log likelihood = {res}-6040.05{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 2.400388{col 26}{space 2}  .217651{col 37}{space 1}    9.66{col 46}{space 3}0.000{col 54}{space 4} 2.009557{col 67}{space 3} 2.867231
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}PD_diag==1
+{col 1}{txt}Observed time interval: {res}(Age_PD[_n-1], Age_PD]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}        400{txt}  failures in single-failure-per-subject data
+{res}    274,700{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("GFAP vs. PD") by (gfapbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E.gph} saved
+
+{com}. sts test gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       186         186.19
+     {txt}2 {c |}{res}       214         213.81
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       400         400.00
+
+                 {txt}chi2(1) =   {res}0.00
+                 {txt}Pr>chi2 = {res}0.9843
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -3665.773
+{txt}Iteration 1:  Log likelihood = {res}-3665.7728
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3665.7728
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,863}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,863}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:262,718.789}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:0.00}
+{txt}Log likelihood = {res}-3665.7728{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.9843}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 1.002007{col 26}{space 2} .1017933{col 37}{space 1}    0.02{col 46}{space 3}0.984{col 54}{space 4} .8211036{col 67}{space 3} 1.222768
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("GFAP vs. PD") by (gfapbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E1.gph} saved
+
+{com}. 
+. 
+. sts test gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}       186         186.19
+     {txt}2 {c |}{res}       214         213.81
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}       400         400.00
+
+                 {txt}chi2(1) =   {res}0.00
+                 {txt}Pr>chi2 = {res}0.9843
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}PD_diag==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_PD
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res} -3665.773
+{txt}Iteration 1:  Log likelihood = {res}-3665.7728
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-3665.7728
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,863}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,863}
+{txt}No. of failures = {res}{ralign 11:400}
+{txt}Time at risk    = {res}{ralign 11:262,718.789}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:0.00}
+{txt}Log likelihood = {res}-3665.7728{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.9843}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 1.002007{col 26}{space 2} .1017933{col 37}{space 1}    0.02{col 46}{space 3}0.984{col 54}{space 4} .8211036{col 67}{space 3} 1.222768
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. **DEATH**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1) 
+
+{txt}Survival-time data settings
+
+{col 12}ID variable: {res}n_eid
+{col 10}{txt}Failure event: {res}died==1
+{col 1}{txt}Observed time interval: {res}(Age_death[_n-1], Age_death]
+{col 6}{txt}Enter on or after: {res}time AGE
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}     19,639{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}     19,639{txt}  observations remaining, representing
+{res}     19,639{txt}  subjects
+{res}      2,515{txt}  failures in single-failure-per-subject data
+{res} 276,947.89{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res} 50.00137
+                                          {txt}Last observed exit t = {res} 86.71594
+{txt}
+{com}. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("GFAP vs. All-cause mortality") by (gfapbr) tmin(65) tmax(85) 
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F.gph} saved
+
+{com}. sts test gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}      1082        1119.20
+     {txt}2 {c |}{res}      1424        1386.80
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}      2506        2506.00
+
+                 {txt}chi2(1) =   {res}2.30
+                 {txt}Pr>chi2 = {res}0.1294
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22607.395
+{txt}Iteration 1:  Log likelihood = {res}-22606.242
+{txt}Iteration 2:  Log likelihood = {res}-22606.242
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22606.242
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,841}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,841}
+{txt}No. of failures = {res}{ralign 11:2,506}
+{txt}Time at risk    = {res}{ralign 11:264,629.244}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:2.30}
+{txt}Log likelihood = {res}-22606.242{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.1290}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 1.064001{col 26}{space 2}  .043533{col 37}{space 1}    1.52{col 46}{space 3}0.129{col 54}{space 4}  .982009{col 67}{space 3} 1.152838
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("GFAP vs. All-cause mortality") by (gfapbr) tmin(65) tmax(85) risktable
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F1.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F1.gph} saved
+
+{com}. 
+. 
+. sts test gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Equality of survivor functions
+Log-rank test
+
+{col 7} {c |}  Observed       Expected
+gfapbr {c |}    events         events
+{hline 7}{c +}{hline 25}
+     1 {c |}{res}      1082        1119.20
+     {txt}2 {c |}{res}      1424        1386.80
+{txt}{hline 7}{c +}{hline 25}
+ Total {c |}{res}      2506        2506.00
+
+                 {txt}chi2(1) =   {res}2.30
+                 {txt}Pr>chi2 = {res}0.1294
+{txt}
+{com}. stcox gfapbr if sample_final==1 & _t<84
+
+{col 10}{txt}Failure {bf:_d}: {res}died==1
+{col 4}{txt}Analysis time {bf:_t}: {res}Age_death
+{col 3}{txt}Enter on or after: {res}time AGE
+{col 9}{txt}ID variable: {res}n_eid
+
+{txt}Iteration 0:  Log likelihood = {res}-22607.395
+{txt}Iteration 1:  Log likelihood = {res}-22606.242
+{txt}Iteration 2:  Log likelihood = {res}-22606.242
+{txt}Refining estimates:
+Iteration 0:  Log likelihood = {res}-22606.242
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 11:18,841}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:18,841}
+{txt}No. of failures = {res}{ralign 11:2,506}
+{txt}Time at risk    = {res}{ralign 11:264,629.244}
+{col 57}{txt}{lalign 13:LR chi2({res:1})} = {res}{ralign 6:2.30}
+{txt}Log likelihood = {res}-22606.242{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.1290}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}gfapbr {c |}{col 14}{res}{space 2} 1.064001{col 26}{space 2}  .043533{col 37}{space 1}    1.52{col 46}{space 3}0.129{col 54}{space 4}  .982009{col 67}{space 3} 1.152838
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. graph combine "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1D.gph" "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1E.gph" "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1F.gph"
+{res}{txt}
+{com}. graph save "E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1GFAP.gph", replace
+{txt}{p 0 4 2}
+(file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1GFAP.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\FIGURE1GFAP.gph} saved
+
+{com}. 
+. 
+. save, replace
+{txt}{p 0 4 2}
+file {bf}
+E:\16GBBACKUPUSB\BACKUP_USB_SEPTEMBER2014\May Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. 
+. capture log close
+{smcl}
+{com}{sf}{ul off}

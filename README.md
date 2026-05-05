@@ -4,4 +4,4 @@ This repository contains supplementary information, script, Output and Figures f
 
 May A. Beydoun1,#; Tianyi Huang1,#; Yi-Han Hu1; Jordan Weiss2,3; Michael F. Georgescu1; Nicole  Noren Hooten1 ; Marie T. Fanelli-Kuczmarski1;  Hind A. Beydoun4,5; Minkyo Song1; Lenore J. Launer1; Michele K. Evans1; Alan B. Zonderman1 
 
-Accepted in Alzheimer and Dementia. 
+Accepted in Ecotoxicology and Environmental Safety. 

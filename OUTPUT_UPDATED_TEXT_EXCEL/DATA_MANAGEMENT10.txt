@@ -1,0 +1,1405 @@
+
+
+      name:  <unnamed>
+       log:  /opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\OUTPUT_UPDATED\DATA_MANAGEMENT10.smcl
+  log type:  smcl
+ opened on:  14 Mar 2026, 08:26:11
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", clear  
+
+. capture drop _merge
+
+. sort n_eid
+
+. 
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", replace  
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\withdrawals_final.dta", clear
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\withdrawals_final.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\withdrawals_final.dta
+saved
+
+
+. 
+. 
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", clear
+
+. capture drop withdrew
+
+. merge n_eid using "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\withdrawals_final.dta"
+
+(you are using old
+ syntax; see
+} for new syntax)
+
+
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. tab withdrew 
+
+   withdrew       Freq.     Percent        Cum.
+
+          1         479      100.00      100.00
+
+      Total         479      100.00
+
+.   
+. 
+end of do-file
+
+. do "/opt/notebooks/
+
+. 
+. /opt/notebooks/ 16: DETERMINE FINAL ANALYTIC SAMPLE SIZE/opt/notebooks/
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+
+. 
+. 
+. 
+. **Sample 1, excluding withdrawals**
+. 
+. capture drop sample1
+
+. gen sample1=.
+(502,409 missing values generated)
+
+. replace sample1=1 if baselineage~=. & withdrew==.
+(501,928 real changes made)
+
+. replace sample1=0 if sample1~=1
+(481 real changes made)
+
+. 
+. tab sample1
+
+    sample1       Freq.     Percent        Cum.
+
+          0         481        0.10        0.10
+          1     501,928       99.90      100.00
+
+      Total     502,409      100.00
+
+. 
+. **Sample 2: >=50 y**
+. 
+. capture drop sample2
+
+. gen sample2=.
+(502,409 missing values generated)
+
+. replace sample2=1 if baselineage>=50 & baselineage~=. & sample1==1
+(384,321 real changes made)
+
+. replace sample2=0 if sample2~=1 & sample1==1
+(117,607 real changes made)
+
+. 
+. tab sample2
+
+    sample2       Freq.     Percent        Cum.
+
+          0     117,607       23.43       23.43
+          1     384,321       76.57      100.00
+
+      Total     501,928      100.00
+
+. 
+. **Sample 3: exclude those with missing exposures and covariates**
+. 
+. capture drop sample3
+
+. gen sample3=.
+(502,409 missing values generated)
+
+. replace sample3=1 if baselineage>=50 & baselineage~=. & LE8_TOTALSCORE~=. & townsend~=. & householdsize~=. & SES~=. & ethnicity2~=.  & comorbid~=. & srhbr~=. & gfap~=. & nefl~=. & AIRPOLLUTION1~=. & AIRPOLLUTION2~=. &  sample2==1
+(33,617 real changes made)
+
+. replace sample3=0 if sample3~=1 & sample2==1
+(350,704 real changes made)
+
+. 
+. tab sample3
+
+    sample3       Freq.     Percent        Cum.
+
+          0     350,704       91.25       91.25
+          1      33,617        8.75      100.00
+
+      Total     384,321      100.00
+
+. 
+. 
+. 
+. **Sample 4: final sample: exclude prevalent dementia cases and incident dementia cases within a year**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_dementia>=.)PROBABLE ERROR
+        226  observations end on or before 
+
+    501,930  observations remaining, representing
+    501,930  subjects
+      9,819  failures in single-failure-per-subject data
+  7,190,328  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. capture drop sample4
+
+. gen sample4=.
+(502,409 missing values generated)
+
+. replace sample4=1 if (sample3==1 & _t_dementia~=.) | (sample3==1 & time01_1Ayearsdem>1 & time01_1Ayearsdem~=. & dem_diag==1 & _t_dementia~=.) 
+(33,581 real changes made)
+
+. replace sample4=0 if sample4~=1 & sample3==1
+(36 real changes made)
+
+. 
+. 
+. tab sample4
+
+    sample4       Freq.     Percent        Cum.
+
+          0          36        0.11        0.11
+          1      33,581       99.89      100.00
+
+      Total      33,617      100.00
+
+. 
+. **Sample 5: final sample: exclude prevalent PD cases and incident PD cases within a year**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_PD>=.)PROBABLE ERROR
+        900  observations end on or before 
+
+    501,256  observations remaining, representing
+    501,256  subjects
+      3,514  failures in single-failure-per-subject data
+  7,196,325  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. capture drop sample5
+
+. gen sample5=.
+(502,409 missing values generated)
+
+. replace sample5=1 if (sample4==1 & _t_PD~=.) | (sample4==1 & time01_1AyearsPD>1 & time01_1AyearsPD~=. & PD_diag==1 & _t_PD~=.) 
+(33,459 real changes made)
+
+. replace sample5=0 if sample5~=1 & sample4==1
+(122 real changes made)
+
+. 
+. 
+. tab sample5
+
+    sample5       Freq.     Percent        Cum.
+
+          0         122        0.36        0.36
+          1      33,459       99.64      100.00
+
+      Total      33,581      100.00
+
+. 
+. 
+. 
+. *************************************
+. 
+. capture drop sample_final
+
+. gen sample_final=.
+(502,409 missing values generated)
+
+. replace sample_final=1 if sample4==1 & sample5==1
+(33,459 real changes made)
+
+. replace sample_final=0 if sample_final~=1
+(468,950 real changes made)
+
+. 
+. tab sample_final
+
+sample_fina 
+          l       Freq.     Percent        Cum.
+
+          0     468,950       93.34       93.34
+          1      33,459        6.66      100.00
+
+      Total     502,409      100.00
+
+. 
+. stset Age_dementia if sample_final==1, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time baselineage
+Exit on or before: failure
+Keep observations 
+ }: sample_final==1
+
+
+    502,409  total observations
+    468,950  ignored at outset because of  
+
+     33,459  observations remaining, representing
+     33,459  subjects
+      1,116  failures in single-failure-per-subject data
+ 466,894.03  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. stdescribe if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+ Per subject 
+CategoryTotalMeanMinMedianMax
+
+Number of subjects         33459   
+Number of records          33459           1           1          1          1
+
+Entry time (first)                  60.84163    50.00137   61.31964   70.98973
+Exit time (final)                   74.79584    51.43327   75.21423   86.71594
+
+Subjects with gap              0   
+Time on gap                    0           .           .          .          .
+Time at risk           466894.03    13.95421    .0246391   14.61738    17.7358
+
+Failures                    1116    .0333543           0          0          1
+
+
+. 
+. stset Age_PD if sample_final==1, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time baselineage
+Exit on or before: failure
+Keep observations 
+ }: sample_final==1
+
+
+    502,409  total observations
+    468,950  ignored at outset because of  
+
+     33,459  observations remaining, representing
+     33,459  subjects
+        650  failures in single-failure-per-subject data
+ 466,750.35  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. stdescribe if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+ Per subject 
+CategoryTotalMeanMinMedianMax
+
+Number of subjects         33459   
+Number of records          33459           1           1          1          1
+
+Entry time (first)                  60.84163    50.00137   61.31964   70.98973
+Exit time (final)                   74.79155    51.43327   75.21423   86.71594
+
+Subjects with gap              0   
+Time on gap                    0           .           .          .          .
+Time at risk           466750.36    13.94992     .002739   14.62012    17.7358
+
+Failures                     650    .0194268           0          0          1
+
+
+. 
+. stset Age_death if sample_final==1, failure(died==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time baselineage
+Exit on or before: failure
+Keep observations 
+ }: sample_final==1
+
+
+    502,409  total observations
+    468,950  ignored at outset because of  
+
+     33,459  observations remaining, representing
+     33,459  subjects
+      4,203  failures in single-failure-per-subject data
+ 470,570.87  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. stdescribe if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+ Per subject 
+CategoryTotalMeanMinMedianMax
+
+Number of subjects         33459   
+Number of records          33459           1           1          1          1
+
+Entry time (first)                  60.84163    50.00137   61.31964   70.98973
+Exit time (final)                   74.90573    51.43327   75.38124   86.71594
+
+Subjects with gap              0   
+Time on gap                    0           .           .          .          .
+Time at risk           470570.87     14.0641    .0246391   14.64203    17.7358
+
+Failures                    4203    .1256164           0          0          1
+
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. ***********************Exclude those without metabolomics data************************
+. 
+. su ln*
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+ln_n_23400~s     274,246    2.141007    .2216408   .2721746   3.188573
+ln_n_23401~s     274,246    1.803696    .2330053   .6384513   2.885308
+ln_n_23402~s     274,246    1.237453     .167642   .5266118   2.006016
+ln_n_23403~s     274,246     .836332    .1461981   .2520972   1.486271
+ln_n_23404~s     274,246    1.580368    .2341419          0   2.618148
+
+ln_n_23405~s     274,246    1.311391    .1687943   9.79e-07   2.080216
+ln_n_23406~s     274,246    1.142726    .1396296   .3246382   1.805381
+ln_n_23407~s     274,246    1.122663    .2432146   .4233556   2.164602
+ln_n_23408~s     274,246    .9306123    .2449798   .3374907   1.950513
+ln_n_23409~s     274,246    .3801634    .0513415   .0863111   .6053594
+
+ln_n_23410~s     274,246    .3763304     .061241   .0729911   .6407105
+ln_n_23411~s     274,246    1.708368    .1392322    .772606   2.393825
+ln_n_23412~s     274,246    .6755547    .1318164   .1928471   1.251759
+ln_n_23413~s     274,246    .7757027    .0910361   .3435986    1.20179
+ln_n_23414~s     274,246    1.242987    .1268039   .4767914   1.856394
+
+ln_n_23415~s     274,246    1.825274    .1873486   .7160726   2.714756
+ln_n_23416~s     274,246    .6460463    .1099005   .2020322   1.133887
+ln_n_23417~s     274,246    1.122929    .1447832   4.97e-07   1.789385
+ln_n_23418~s     274,246    1.007727    .1243173   .2063831   1.602186
+ln_n_23419~s     274,246    1.118799    .1207956   .4796874   1.692011
+
+ln_n_23420~s     274,246    .5304534    .0998622   .1507846   .9699124
+ln_n_23421~s     274,246    .6768139    .0906389   8.44e-07   1.083051
+ln_n_23422~s     274,246     .538502    .0660737   .2300826   .8452692
+ln_n_23423~s     274,246    2.968879    .2790903   1.232477   4.312076
+ln_n_23424~s     274,246     1.42653    .2939934   .4997599   2.702961
+
+ln_n_23425~s     274,246    1.571251    .1918215   .4806558   2.461991
+ln_n_23426~s     274,246    1.731663     .182256   .7306299    2.59823
+ln_n_23427~s     274,246    .1298653    .0098536   .0625955   .1786085
+ln_n_23428~s     274,246    .0119128    .0018479   .0048665   .0203192
+ln_n_23429~s     274,246     .034431    .0040941   .0098477   .0536787
+
+ln_n_23430~s     274,246    .1233203    .0099292   .0487678   .1720552
+ln_n_23431~s     274,246    6.214427    .1017287   5.787055     6.7193
+ln_n_23432~s     274,246    4.891479    .0091305   4.838285   4.926155
+ln_n_23433~s     274,246    3.104479    .0327262   3.006609   3.295451
+ln_n_23434~s     274,246    1.508719    .1329663   .3308021   2.155435
+
+ln_n_23435~s     274,246    .7448265    .1474036   .3298788    1.41545
+ln_n_23436~s     274,246    1.599744    .1295081   .5834209   2.239799
+ln_n_23437~s     274,246    1.446014    .1305219          0   2.079159
+ln_n_23438~s     274,246    .6696964    .0542119   .3394702   .9333006
+ln_n_23439~s     274,246    .9151691    .1088332   .3928359   1.430559
+
+ln_n_23440~s     274,246    1.205014    .1003567   .5513529   1.702058
+ln_n_23441~s     274,246    .7640605    .1064892   .2540138    1.25873
+ln_n_23442~s     274,246    3.456696    .3435673   1.705902   5.076909
+ln_n_23443~s     274,246    1.164291    .0347868   .9586449   1.347071
+ln_n_23444~s     274,246    .7136107    .1462009   .0315105   1.314572
+
+ln_n_23445~s     274,246    2.117609    .1615389   1.002647   2.916539
+ln_n_23446~s     274,246     2.23831    .1798111   1.003145   3.119199
+ln_n_23447~s     274,246    1.686247    .2346128   .0023487   2.725271
+ln_n_23448~s     274,246    2.017136    .2301393   .0042538   3.061732
+ln_n_23449~s     274,246    1.851782    .1849547   .0699578   2.728204
+
+ln_n_23450~s     274,246    .4787914    .0820539   .0158682   .8205974
+ln_n_23451~s     274,246    2.060523    .3535993   .1195031   3.529872
+ln_n_23452~s     274,246    6.145441    .3010483   4.210938   7.249414
+ln_n_23453~s     274,246    6.492516    .2956508   4.562675   7.663094
+ln_n_23454~s     274,246    4.864926    .2722668   3.168438   6.258195
+
+ln_n_23455~s     274,246    5.830052    .1668593   4.938522   6.692982
+ln_n_23456~s     274,246    5.366089    .3242198   3.079967   6.932027
+ln_n_23457~s     274,246    1.391618     .232714   .0661634   2.354888
+ln_n_23458~s     274,246    1.341585    .1290936    .749273    1.95141
+ln_n_23459~s     274,246    3.061108    .5648134   1.107565    5.36125
+
+ln_n_23460~s     274,246    .5396365    .0708045    .247552   .8738822
+ln_n_23461~s     274,246     .740907    .0574564   .2905753    1.01951
+ln_n_23462~s     274,246    .4052515    .0810859          0    .704443
+ln_n_23463~s     274,246    .2550416    .0204109    .145451    .356118
+ln_n_23464~s     274,246    .6004142    .0691852    .328664   .9123322
+
+ln_n_23465~s     274,246    .2226999    .0376794          0   .3786291
+ln_n_23466~s     274,246    .3196522    .0427912   .1170128   .5060533
+ln_n_23467~s     274,246    .4561803    .0463061   .2595843   .6733647
+ln_n_23468~s     274,246    .2159386    .0241637   .0719743    .326374
+ln_n_23469~s     274,246    .2494243    .0281206   .0742375   .3786819
+
+ln_n_23470~s     274,246    1.887359    .2079357   .5380892   2.777589
+ln_n_23471~s     274,246    1.967618     .273701      .8498    3.19875
+ln_n_23472~s     274,246    .2796485    .0489969   .0323342    .479385
+ln_n_23473~s     274,246    .2544469    .0253023   .0581816   .3754331
+ln_n_23474~s     274,246    .2196849    .0746909          0   .4738565
+
+ln_n_23475~s     274,246    .1219799    .0254132          0   .2202567
+ln_n_23476~s     274,246    .1031274    .0380353          0   .2308073
+ln_n_23477~s     274,246    .1167088    .0165027   .0482545   .1839402
+ln_n_23478~s     274,246    .2579026    .0245449   .1238749   .3794074
+ln_n_23479~s     274,246    6.266087    .2671789   4.562346   7.620564
+
+ln_n_23480~s     274,246    .8986885    .0661796   .5241755   1.230041
+ln_n_23481~s     274,246    .0011385    .0005909   .0000634   .0031828
+ln_n_23482~s     274,246     .420684    .2098368   .0105271   1.167005
+ln_n_23483~s     274,246    .1645568    .0876449   .0003512   .4615625
+ln_n_23484~s     274,246    .2164022    .0907352   .0103668   .5496362
+
+ln_n_23485~s     274,246    .1613684    .0681576   .0005813   .4114243
+ln_n_23486~s     274,246    .1435353    .0613759   .0092043   .3667697
+ln_n_23487~s     274,246    .3157784    .1767336   .0000521   .9179488
+ln_n_23488~s     274,246    .0017678    .0006253   .0000893   .0041467
+ln_n_23489~s     274,246    .4274054    .1511032   .0298816   1.004589
+
+ln_n_23490~s     274,246    .1840459    .0699303   .0004603   .4430914
+ln_n_23491~s     274,246    .2233537     .064236   .0175137   .4781108
+ln_n_23492~s     274,246     .168321    .0444182   .0050619   .3461358
+ln_n_23493~s     274,246    .1461837    .0483114   .0001528   .3332417
+ln_n_23494~s     274,246    .3122577    .1230016   .0000628   .7683814
+
+ln_n_23495~s     274,246    .0031034    .0008762   .0001384   .0066711
+ln_n_23496~s     274,246    .5581802    .1563412   .0582898   1.194194
+ln_n_23497~s     274,246    .2464154    .0813228   .0001843   .5575751
+ln_n_23498~s     274,246    .3040371    .0794089   .0350542   .6269529
+ln_n_23499~s     274,246    .2208195     .054092   .0108849   .4397954
+
+ln_n_23500~s     274,246     .208557    .0596447   .0259278   .4491325
+ln_n_23501~s     274,246    .3963392    .1130709   .0000926   .8546052
+ln_n_23502~s     274,246    .0058192    .0010543    .001194   .0104374
+ln_n_23503~s     274,246    .7498611    .1377024   .1513043   1.356945
+ln_n_23504~s     274,246    .3535003    .0675673   .0001589   .6430163
+
+ln_n_23505~s     274,246    .4057685    .0815173   .0155493   .7488725
+ln_n_23506~s     274,246    .2955786    .0673362   .0002424   .5658887
+ln_n_23507~s     274,246    .2766883    .0532571   .0154835   .5063793
+ln_n_23508~s     274,246     .517714    .1111385   .0006887    .997542
+ln_n_23509~s     274,246    .0062239     .001034   .0024009   .0108476
+
+ln_n_23510~s     274,246    .6375266    .1024894   .2227016   1.096996
+ln_n_23511~s     274,246    .3093594    .0485465   .1026986   .5255569
+ln_n_23512~s     274,246    .3914516    .0653933   .0974346   .6825833
+ln_n_23513~s     274,246    .3092458    .0532132   .0485386   .5443069
+ln_n_23514~s     274,246    .2398209    .0391221    .054025   .4138116
+
+ln_n_23515~s     274,246    .3943376    .0762491   .0462785   .7253482
+ln_n_23516~s     274,246    .0073571    .0009186   .0035785   .0116456
+ln_n_23517~s     274,246    .5948492    .0736724   .2669438   .9350936
+ln_n_23518~s     274,246    .3216467    .0406303    .089627   .5085666
+ln_n_23519~s     274,246    .4251216     .057754   .1858978   .6898478
+
+ln_n_23520~s     274,246    .3519616    .0499105   .1436245   .5770528
+ln_n_23521~s     274,246    .2382115    .0307464   .0986813   .3801316
+ln_n_23522~s     274,246    .2616262    .0397057   .0713793   .4339816
+ln_n_23523~s     274,246     .017418     .002169   .0090766   .0276601
+ln_n_23524~s     274,246    1.102342    .1315803   .4189988   1.717294
+
+ln_n_23525~s     274,246    .5376515    .0616598   .2225983   .8269885
+ln_n_23526~s     274,246    .9079491    .1191136   .3072849   1.447964
+ln_n_23527~s     274,246    .7801843    .1031117   .1904075   1.251519
+ln_n_23528~s     274,246    .4642357    .0611003   .1843258   .7444528
+ln_n_23529~s     274,246    .3151273    .0399593   .0975131   .4944997
+
+ln_n_23530~s     274,246    .0269908    .0032649    .009413   .0422741
+ln_n_23531~s     274,246    1.253723    .1518047   .3603332   1.954994
+ln_n_23532~s     274,246    .5942229    .0698491   .2526618    .915691
+ln_n_23533~s     274,246    1.058275    .1357024          0   1.677886
+ln_n_23534~s     274,246    .9101607    .1159631          0   1.441804
+
+ln_n_23535~s     274,246    .5396728    .0726755          0   .8669948
+ln_n_23536~s     274,246    .3111833    .0394255   .0650999   .4868675
+ln_n_23537~s     274,246     .016985    .0022255   .0023616   .0273229
+ln_n_23538~s     274,246    .7831208    .1062153       .171   1.270669
+ln_n_23539~s     274,246    .4002752    .0528205   .1156287   .6442903
+
+ln_n_23540~s     274,246    .6479891    .0915426   6.84e-07   1.051428
+ln_n_23541~s     274,246    .5493609    .0803221          0    .909912
+ln_n_23542~s     274,246    .3431071    .0479494   3.74e-07   .5550135
+ln_n_23543~s     274,246    .1802115    .0269844   .0249502     .29564
+ln_n_23544~s     274,246    .0129467    .0014347   .0016717   .0198116
+
+ln_n_23545~s     274,246    .5314349    .0615471   .1564449   .8205669
+ln_n_23546~s     274,246    .2966418    .0318166   .0003977   .4445335
+ln_n_23547~s     274,246     .422892    .0525228   6.49e-07   .6670532
+ln_n_23548~s     274,246    .3602027    .0458749   4.37e-07   .5733847
+ln_n_23549~s     274,246    .2211062     .029298   4.79e-07   .3523634
+
+ln_n_23550~s     274,246    .1228967    .0214823   .0508832    .213965
+ln_n_23551~s     274,246    .0148474     .002944   .0004721   .0264902
+ln_n_23552~s     274,246    .3951741    .0925885   .0402157   .7508861
+ln_n_23553~s     274,246    .2663956    .0778052   .0000804   .5502999
+ln_n_23554~s     274,246     .277891    .0582844   .0003811   .5058557
+
+ln_n_23555~s     274,246    .2335369    .0555016   .0000445   .4475712
+ln_n_23556~s     274,246    .1499336    .0230258   .0003533   .2421322
+ln_n_23557~s     274,246      .08309    .0153978   .0015174   .1475466
+ln_n_23558~s     274,246    .0360472    .0099762   .0000661   .0759506
+ln_n_23559~s     274,246    .7824273    .1936095    .107912   1.578987
+
+ln_n_23560~s     274,246    .5543549    .1297311   .0002711   1.094943
+ln_n_23561~s     274,246    .5220276    .1504755   .0001185   1.120669
+ln_n_23562~s     274,246    .4586882    .1334511   .0000893   .9880688
+ln_n_23563~s     274,246    .2488365    .0708892    .000078   .5260894
+ln_n_23564~s     274,246     .170829    .0341959   .0005428   .3130383
+
+ln_n_23565~s     274,246    .0619904    .0074708   .0001263   .0969711
+ln_n_23566~s     274,246    1.016835    .1104465   .1302306   1.541363
+ln_n_23567~s     274,246    .6972979    .0719153   .0057104   1.037593
+ln_n_23568~s     274,246    .7018893    .0871201   .0005577   1.114451
+ln_n_23569~s     274,246    .6372769    .0771827   .0003458   1.003892
+
+ln_n_23570~s     274,246    .2939639    .0417545   .0004376    .484221
+ln_n_23571~s     274,246    .2298715    .0406421   .0002307   .4018457
+ln_n_23572~s     274,246    .0986607    .0067266    .045439   .1318711
+ln_n_23573~s     274,246    1.079488     .073922   .5192591   1.444403
+ln_n_23574~s     274,246    .8154435    .0574569   .3462513   1.098271
+
+ln_n_23575~s     274,246    .6685105    .0465123   .3226608   .8986379
+ln_n_23576~s     274,246    .5754557    .0418992   .2340705   .7794293
+ln_n_23577~s     274,246    .3399793    .0242157   .1871363   .4597282
+ln_n_23578~s     274,246    .2278928    .0384585   .0313168   .3932811
+ln_n_23579~s     274,246    3.970051       .2988   2.321444   5.104704
+
+ln_n_23580~s     274,246    5.248641    .7306793   1.885524   8.192679
+ln_n_23581~s     274,246    3.900878    .6793488   .5262319   6.531692
+ln_n_23582~s     274,246    3.490255    .4302677   .7406821   5.157422
+ln_n_23583~s     274,246    7.490274     .719486   3.537937   9.820132
+ln_n_23584~s     274,246    4.304163    .2069602   3.230789   5.180444
+
+ln_n_23585~s     274,246    5.371897    .6616666   1.719506   8.289572
+ln_n_23586~s     274,246    4.098503    .7021994   .2273214   7.044289
+ln_n_23587~s     274,246    3.450911    .2284905   1.901105    4.48096
+ln_n_23588~s     274,246    7.212427    .5734874   3.251769   9.756639
+ln_n_23589~s     274,246    4.393589    .2913155   2.946184   5.522137
+
+ln_n_23590~s     274,246    5.477616    .3954253   2.309242   7.401486
+ln_n_23591~s     274,246    4.008568    .4267251   .3651438   6.062838
+ln_n_23592~s     274,246    3.732529    .1664683   2.806172   4.483414
+ln_n_23593~s     274,246    7.104729     .369727   4.816327   8.824908
+ln_n_23594~s     274,246    4.710193    .1950111   3.429577   5.715767
+
+ln_n_23595~s     274,246    5.430641    .6596338    .835811   8.080223
+ln_n_23596~s     274,246    3.967766     .711987    .002538   6.242916
+ln_n_23597~s     274,246    3.690387    .2436589   1.819945   4.798333
+ln_n_23598~s     274,246    6.890611    .6117151   .0125622   9.964989
+ln_n_23599~s     274,246    4.859827    .2156878   3.408665   5.948445
+
+ln_n_23600~s     274,246    6.144924    .3908979    3.10129   7.757964
+ln_n_23601~s     274,246    4.848797     .292962   2.644372    5.93675
+ln_n_23602~s     274,246    3.771841    .3007173   1.221434   5.092642
+ln_n_23603~s     274,246    6.174926    .5412263   2.078076   8.764474
+ln_n_23604~s     274,246    5.406638    .0839381    4.90622   5.858925
+
+ln_n_23605~s     274,246    7.142472    .3369175   4.994897   8.467349
+ln_n_23606~s     274,246    5.913054    .3703465   3.353357   7.362676
+ln_n_23607~s     274,246    4.002881    .0763864   3.578128   4.365662
+ln_n_23608~s     274,246    4.406823    .4611265   1.914523   6.526408
+ln_n_23609~s     274,246    4.881467    .0921261   4.297906   5.373733
+
+ln_n_23610~s     274,246    8.225663    .1825696    7.17642   8.634003
+ln_n_23611~s     274,246    7.067279    .1744188   6.048223   7.643167
+ln_n_23612~s     274,246    4.206926    .1331162   3.386739   4.862921
+ln_n_23613~s     274,246    2.878675    .3866976    1.50313   4.547527
+ln_n_23614~s     274,246    4.742046    .0802023    4.31196   5.199327
+
+ln_n_23615~s     274,246    8.436309    .0943839    7.91328   8.722557
+ln_n_23616~s     274,246    7.255506    .0804343    6.76003   7.615248
+ln_n_23617~s     274,246     4.30071    .1513601   3.374759   4.747104
+ln_n_23618~s     274,246    2.494703    .3024714   1.447446   3.815888
+ln_n_23619~s     274,246    5.114496    .0792398   4.650376   5.570009
+
+ln_n_23620~s     274,246    8.269936    .0919683   7.781966   8.547572
+ln_n_23621~s     274,246    7.005602    .1376786   6.178106   7.612556
+ln_n_23622~s     274,246    4.386073    .2230411   2.981359   5.257946
+ln_n_23623~s     274,246    2.312557    .2889556   1.349037   3.583574
+ln_n_23624~s     274,246    5.589427    .1561566   4.613567   6.414125
+
+ln_n_23625~s     274,246    7.950954    .1226989   7.255136   8.437358
+ln_n_23626~s     274,246    6.769826    .1525543   5.850214   7.601776
+ln_n_23627~s     274,246    4.163126    .2410785   2.672265   4.752473
+ln_n_23628~s     274,246     2.31672    .3426706   1.297112   3.790514
+ln_n_23629~s     274,246    6.675643    .4605658   3.698107   7.736731
+
+ln_n_23630~s     274,246    7.071141     .315952   5.102058   8.567788
+ln_n_23631~s     274,246    5.913488    .2627677   4.542356   7.034842
+ln_n_23632~s     274,246    3.867318    .4022156   .0367138   5.794912
+ln_n_23633~s     274,246    2.181779    .5815848   .0414065   4.503776
+ln_n_23634~s     274,246    7.108775    .2015598   5.913206   8.123239
+
+ln_n_23635~s     274,246    6.613546    .4201663    3.98221   8.543712
+ln_n_23636~s     274,246    5.808431    .4245713   3.081039    7.16917
+ln_n_23637~s     274,246    3.159543    .1682838   2.202521    3.90922
+ln_n_23638~s     274,246    2.272527    .5813538   .0163138    4.60847
+ln_n_23639~s     274,246    6.862152    .0921579   6.513985   7.387625
+
+ln_n_23640~s     274,246    6.893537    .2181546   5.454356   7.560225
+ln_n_23641~s     274,246    6.261779    .2101311   4.903876   7.006069
+ln_n_23642~s     274,246    2.881154    .1204557   2.077739   3.440203
+ln_n_23643~s     274,246    2.274741    .3984416   .0076269   4.029392
+ln_n_23644~s     274,246    7.553475    .0820413   7.087101   8.002874
+
+ln_n_23645~s     274,246    6.194262      .15315    5.24166    6.93044
+ln_n_23646~s     274,246    5.332461    .1775552   4.216159   6.018056
+ln_n_23647~s     274,246    3.149439    .0818472   2.778291   3.569174
+ln_n_23648~s     274,246    2.108996     .311684   .3165912   3.496999
+lnNO2_2010     494,784    3.245313    .2849497    2.55955   4.686658
+
+lnNOX_2010     494,784    3.732728    .3253853   2.982647   5.583271
+lnPM2~5_2010     460,870    2.296357    .1034227   2.100469   3.059176
+lnPM10_2010     460,870    2.780656    .1151493   2.466403   3.446489
+lnPM2~0_2010     460,870    1.852154    .1264706   1.717395   2.551006
+lnPM2~s_2010     460,870     .148395    .2064263  -.1863296   1.526056
+
+. 
+. capture drop sample_metab
+
+. gen sample_metab=1 if ln_n_23648_0_0_no_outlier~=.
+(228,163 missing values generated)
+
+. replace sample_metab=0 if sample_metab~=1
+(228,163 real changes made)
+
+. 
+. tab sample_metab
+
+sample_meta 
+          b       Freq.     Percent        Cum.
+
+          0     228,163       45.41       45.41
+          1     274,246       54.59      100.00
+
+      Total     502,409      100.00
+
+. 
+. capture drop sample_final2
+
+. gen sample_final2=1 if sample_final==1 & sample_metab==1
+(482,770 missing values generated)
+
+. replace sample_final2=0 if sample_final2~=1
+(482,770 real changes made)
+
+. 
+. tab sample_final2
+
+sample_fina 
+         l2       Freq.     Percent        Cum.
+
+          0     482,770       96.09       96.09
+          1      19,639        3.91      100.00
+
+      Total     502,409      100.00
+
+. 
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. /opt/notebooks/ 17: stset for dementia and PD incidence and estimate median age and percentiles, plus incidence rates across sex and racial groups/opt/notebooks/
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. **************RACE_ETHN****************************
+. capture drop RACE_ETHN
+
+. gen RACE_ETHN=ethnicity2
+(246 missing values generated)
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. 
+. *************stsum code******************************
+. 
+. 
+. 
+. **DEMENTIA INCIDENCE**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_dementia>=.)PROBABLE ERROR
+        226  observations end on or before 
+
+    501,930  observations remaining, representing
+    501,930  subjects
+      9,819  failures in single-failure-per-subject data
+  7,190,328  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. stsum if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total    466,894.03   .0023903    33459          .         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==0
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   443,718.394   .0024205    31786          .         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   315,955.471   .0010698    22264          .         .         .
+
+. stsum if sample_final==1 & sex==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   211,774.655   .0026727    15461          .         .         .
+
+. stsum if sample_final==1 & sex==2
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   255,119.375   .0021559    17998          .         .         .
+
+. 
+. stptime if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 466894.03    1116 .00239026 .0022541 .0025347
+
+. stptime if sample_final==1  & RACE_ETHN==0
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 443718.39    1074 .00242045 .0022799 .0025696
+
+. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 315955.47     338 .00106977 .0009616 .0011901
+
+. 
+. stptime if sample_final==1 & sex==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 211774.65     566 .00267265 .0024613 .0029022
+
+. stptime if sample_final==1 & sex==2
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 255119.37     550 .00215585  .001983 .0023438
+
+. 
+. capture drop NoneWhite
+
+. gen NoneWhite=.
+(502,409 missing values generated)
+
+. replace NoneWhite=1 if RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+(29,777 real changes made)
+
+. replace NoneWhite=0 if RACE_ETHN==0
+(472,386 real changes made)
+
+. 
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. **PARKINSON'S DISEASE**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_PD>=.)PROBABLE ERROR
+        900  observations end on or before 
+
+    501,256  observations remaining, representing
+    501,256  subjects
+      3,514  failures in single-failure-per-subject data
+  7,196,325  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. stsum if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   466,750.355   .0013926    33459          .         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==0
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   443,574.153    .001409    31786          .         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   316,321.844   .0003888    22245          .         .         .
+
+. stsum if sample_final==1 & sex==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   211,278.222   .0019406    15461          .         .         .
+
+. stsum if sample_final==1 & sex==2
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   255,472.133   .0009394    17998          .         .         .
+
+. 
+. stptime if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 466750.36     650 .00139261 .0012896 .0015039
+
+. stptime if sample_final==1  & RACE_ETHN==0
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 443574.15     625 .00140901 .0013028 .0015239
+
+. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 316321.84     123 .00038884 .0003259  .000464
+
+. 
+. stptime if sample_final==1 & sex==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 211278.22     410 .00194057 .0017615 .0021378
+
+. stptime if sample_final==1 & sex==2
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 255472.13     240 .00093944 .0008278 .0010661
+
+. 
+. **MORTALITY**
+. 
+. stset Age_death, failure(died==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_death>=.)PROBABLE ERROR
+
+    502,156  observations remaining, representing
+    502,156  subjects
+     44,500  failures in single-failure-per-subject data
+  7,221,314  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. stsum if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   470,570.873   .0089317    33459   82.05886         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==0
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   447,214.711   .0090382    31786   82.05339         .         .
+
+. stsum if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   317,255.232   .0046272    22276   84.17249         .         .
+
+. stsum if sample_final==1 & sex==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   213,520.024   .0117272    15461   79.73443         .         .
+
+. stsum if sample_final==1 & sex==2
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+IncidenceNumber of Survival time 
+         Time at riskratesubjects25%50%75%
+
+   Total   257,050.849   .0066096    17998          .         .         .
+
+. 
+. stptime if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 470570.87    4203  .0089317 .0086657 .0092059
+
+. stptime if sample_final==1  & RACE_ETHN==0
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 447214.71    4042 .00903816 .0087638 .0093211
+
+. stptime if sample_final==1  & RACE_ETHN==1 | RACE_ETHN==2 | RACE_ETHN==3
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 317255.23    1468 .00462719 .0043964 .0048701
+
+. 
+. stptime if sample_final==1 & sex==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 213520.02    2504 .01172724 .0112768 .0121957
+
+. stptime if sample_final==1 & sex==2
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time baselineage
+ID variable: n_eid
+
+Estimated person-time and incidence rate
+
+    CohortPerson-timeFailuresRate[95% conf. interval]
+
+     Total 257050.85    1699 .00660959 .0063027 .0069315
+
+. 
+. 
+. 
+. 
+. 
+. /opt/notebooks/ 18: DETERMINE DIFFERENCES IN FINAL ANALYTIC SAMPLE VS. EXCLUDED SAMPLE BY BASIC SOCIO-DEMOGRAPHICS/opt/notebooks/
+. 
+. logistic sample_final baselineage sex i.RACE_ETHN if baselineage>=50 & baselineage~=.
+
+Logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+sample_final Odds ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+baselineage  1.010205 .0010684    9.600.000 1.008113 1.012302
+sex  .9828498 .0112962   -1.510.132 .9609572 1.005241
+ 
+RACE_ETHN 
+1   1.557311 .0714782    9.650.000 1.423333 1.703901
+2   .9498057 .0446674   -1.100.273 .8661727 1.041514
+3    .993644 .0422261   -0.150.881 .9142353  1.07995
+ 
+_cons  .0525878 .0035646  -43.450.000 .0460456 .0600595
+
+Note:  estimates baseline odds.
+
+. 
+. logistic sample_final2 baselineage sex i.RACE_ETHN if baselineage>=50 & baselineage~=.
+
+Logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+sample_final2 Odds ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+baselineage  1.011054 .0013707    8.110.000 1.008371 1.013744
+sex  .9951517 .0146469   -0.330.741 .9668544 1.024277
+ 
+RACE_ETHN 
+1   1.281994 .0801264    3.970.000 1.134187 1.449063
+2   .7587111 .0505152   -4.150.000 .6658911 .8644694
+3   .8800621 .0504163   -2.230.026 .7865936 .9846373
+ 
+_cons   .027903 .0024258  -41.170.000 .0235315 .0330867
+
+Note:  estimates baseline odds.
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. /opt/notebooks/ 19: CREATE LE8 TOTAL SCORE TERTILES/opt/notebooks/
+. 
+. ***********************LE8 TOTAL SCORE TERTILES*********************
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+
+. 
+. capture drop LE8_TOTALSCOREtert
+
+. xtile LE8_TOTALSCOREtert=LE8_TOTALSCORE if sample_final==1, nq(3)
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. capture log close
+

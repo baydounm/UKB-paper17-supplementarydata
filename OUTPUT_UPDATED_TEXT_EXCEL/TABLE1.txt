@@ -1,0 +1,3176 @@
+
+
+. 
+. use "/opt/notebooks/finaldata_unimputedfin",clear
+
+. 
+. **Main exposures of interest: LE8* 
+. **Main outcomes of interest: Dementia, PD and deaths 
+. **Main covariates: AGE SEX RACE_ETHN (or Non_White) SES
+. **Main effect modifiers: sex and race
+. 
+. 
+. capture drop POLYPH2
+
+. gen POLYPH2=.
+(19,639 missing values generated)
+
+. replace POLYPH2=1 if medicationnum>=5 & medicationnum~=.
+(4,630 real changes made)
+
+. replace POLYPH2=0 if POLYPH2~=1 & medicationnum~=. 
+(15,009 real changes made)
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. capture drop zLE8*
+
+. foreach x of varlist LE8* 
+  2.         egen z`x'=std(`x') if sample_final==1
+  3. 
+(144 missing values generated)
+(9 missing values generated)
+(98 missing values generated)
+(2,444 missing values generated)
+(963 missing values generated)
+(532 missing values generated)
+(5 missing values generated)
+
+. 
+. 
+. 
+. capture drop zLE8_LIFESTYLE 
+
+. capture drop zLE8_BIOLOGICAL
+
+. egen zLE8_LIFESTYLE=std(LE8_LIFESTYLE) if sample_final==1
+
+. egen zLE8_BIOLOGICAL=std(LE8_BIOLOGICAL) if sample_final==1
+(5 missing values generated)
+
+. 
+. 
+. capture drop zLE8_LIFESTYLEinv
+
+. capture drop zLE8_BIOLOGICALinv
+
+. gen zLE8_LIFESTYLEinv=zLE8_LIFESTYLE*-1
+
+. gen zLE8_BIOLOGICALinv=zLE8_LIFESTYLE*-1
+
+. 
+. 
+. 
+. capture drop zLE8_TOTALSCOREinv
+
+. gen zLE8_TOTALSCOREinv=zLE8_TOTALSCORE*-1
+
+. 
+. 
+. capture drop AD_PGStert
+
+. xtile AD_PGStert=AD_PGS if sample_final==1, nq(3)
+
+. 
+. 
+. capture drop NonWhite
+
+. gen NonWhite=.
+(19,639 missing values generated)
+
+. replace NonWhite=RACE_ETHN
+(19,639 real changes made)
+
+. recode NonWhite (0=0) (1=1) (2=1) (3=1)
+(563 changes made to )
+
+. 
+. capture drop LE8_TOTALSCOREtertinv
+
+. gen LE8_TOTALSCOREtertinv=.
+(19,639 missing values generated)
+
+. replace LE8_TOTALSCOREtertinv=1 if LE8_TOTALSCOREtert==3
+(6,519 real changes made)
+
+. replace LE8_TOTALSCOREtertinv=2 if LE8_TOTALSCOREtert==2
+(6,573 real changes made)
+
+. replace LE8_TOTALSCOREtertinv=3 if LE8_TOTALSCOREtert==1
+(6,547 real changes made)
+
+. 
+. capture drop ztownsend
+
+. egen ztownsend=std(townsend) if sample_final==1
+
+. 
+. 
+. capture drop zAIRPOLLUTION1 
+
+. capture drop zAIRPOLLUTION2
+
+. foreach x of varlist AIRPOLLUTION1 AIRPOLLUTION2 
+  2. egen z`x'=std(`x')      
+  3.         
+. 
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. 
+. ******z-scoring of METAB* variables***
+. 
+. capture drop zMETAB*
+
+. foreach var of varlist METAB* 
+  2.         egen z`var'=std(`var')
+  3. 
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. **********TABLE 1: OVERALL, BY SEX AND BY RACE ***************
+. 
+. ****OVERALL**
+. 
+. foreach x1 of varlist AGE householdsize townsend ztownsend LE8* zLE8* SES* medicationnum comorbid gfap nefl lnPM* lnNO* zAIRPOLLUTION* zMETAB*   
+  2.          mean `x1' if sample_final==1
+  3. 
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+AGE  60.88656 .0390575 60.81001 60.96312
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+householdsize  2.205713 .0077088 2.190603 2.220823
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+townsend  -1.47112 .0213665   -1.513 -1.42924
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+ztownsend  1.36e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP3NICOTINE  70.67761 .1709064 70.34261  71.0126
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP4SLEEP  88.57605 .1381646 88.30523 88.84686
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP1DIET  39.61946 .2194186 39.18938 40.04954
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP2PA  46.93467 .2540507 46.43671 47.43263
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP5BMI  67.89775 .2041335 67.49763 68.29787
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP6LIPIDS  46.14365 .2179664 45.71641 46.57088
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP7GLUC  88.70904 .1590254 88.39733 89.02074
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP8BP  35.88528 .2259105 35.44247 36.32808
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCORE  485.3303 .6629418 484.0308 486.6297
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_LIFESTYLE  245.4795 .4335632 244.6297 246.3294
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_BIOLOGICAL  239.7751 .4720133 238.8499 240.7002
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtert  1.998574 .0058205 1.987166 2.009983
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtertinv  2.001426 .0058205 1.990017 2.012834
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP3NICOTINE  4.86e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP4SLEEP  1.35e-08 .0071621-.0140383 .0140383
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP1DIET  2.26e-08 .0071374-.0139899 .0139899
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP2PA  9.67e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP5BMI  5.88e-10 .0071536-.0140217 .0140217
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP6LIPIDS -9.13e-09  .007626-.0149478 .0149478
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP7GLUC  5.62e-09 .0073174-.0143428 .0143428
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP8BP -5.09e-09 .0072344-.0141801 .0141801
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCORE -6.29e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREtert  3.97e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLE  4.74e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICAL -9.00e-10 .0071367-.0139885 .0139885
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLEinv -4.74e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICALinv -4.74e-09 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREinv  6.29e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SES  -.028095  .004981-.0378583-.0183318
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SESres  8.38e-11 .0039126 -.007669  .007669
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+medicationnum   2.92021 .0211554 2.878743 2.961676
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+comorbid  2.302103 .0147082 2.273274 2.330932
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+gfap  .1129926 .0039763 .1051987 .1207865
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+nefl  .1457251 .0038887  .138103 .1533472
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_2010  2.295529 .0007361 2.294086 2.296972
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM10_2010   2.77582 .0008031 2.774246 2.777394
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_10_2010  1.848208 .0008795 1.846484 1.849932
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_abs_2010  .1393304 .0014066 .1365734 .1420874
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNO2_2010  3.235487 .0020021 3.231562 3.239411
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNOX_2010  3.724915 .0023113 3.720384 3.729445
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION1 -2.98e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION2  3.32e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB1 -6.24e-11 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB2 -9.95e-11 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB3 -2.57e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB4  4.09e-11 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB5  1.69e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB6  1.59e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB7  3.13e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB8  1.47e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB9  1.89e-11 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB10 -2.63e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB11 -9.97e-11 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB12 -2.16e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB13 -2.70e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB14  3.64e-10 .0071358-.0139867 .0139867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB15  2.55e-11 .0071358-.0139867 .0139867
+
+
+. 
+. 
+. 
+. foreach x2 of varlist dem_diag PD_diag died SEX RACE_ETHN NonWhite educationbr householdincome occupation  srhbr 
+  2.          prop `x2' if sample_final==1
+  3. 
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+dem_diag 
+0    .964764 .0013157 .9620923 .9672538
+1    .035236 .0013157 .0327462 .0379077
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+PD_diag 
+0   .9796324  .001008   .97756  .981517
+1   .0203676  .001008  .018483   .02244
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+died 
+0   .8719385 .0023845 .8671915   .87654
+1   .1280615 .0023845   .12346 .1328085
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+SEX 
+1    .459392 .0035561 .4524302 .4663698
+2    .540608 .0035561 .5336302 .5475698
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+RACE_ETHN 
+0    .957177 .0014447 .9542542  .959921
+1   .0141555  .000843 .0125948 .0159065
+2   .0121187 .0007808 .0106801 .0137485
+3   .0165487 .0009103 .0148558 .0184309
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+NonWhite 
+0    .957177 .0014447 .9542542  .959921
+1    .042823 .0014447  .040079 .0457458
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+educationbr 
+0   .3945401 .0034979 .3877051 .4014165
+1   .3175579 .0033317 .3110637 .3241238
+2   .2879021 .0032405 .2815924 .2942952
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+householdincome 
+1   .2802317 .0034887 .2734446 .2871207
+2   .2928434  .003535 .2859627   .29982
+3   .2318972 .0032785 .2255333 .2383854
+4   .1579773 .0028332  .152503 .1636102
+5   .0370504 .0014673 .0342793 .0400363
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+occupation_group 
+1   .1622511 .0035239 .1554616 .1692776
+2   .2313174 .0040304 .2235115 .2393118
+3   .1614288 .0035167 .1546538 .1684415
+4   .1638041 .0035374 .1569876 .1708567
+5   .0750959  .002519  .070305 .0801852
+6   .0624886 .0023135 .0581045 .0671799
+7   .0394665  .001861  .035976 .0432804
+8    .049059 .0020645  .045167 .0532677
+9   .0550886 .0021807 .0509669 .0595227
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+srhbr 
+1   .1472071 .0025283 .1423201 .1522321
+2   .5760477 .0035264 .5691212 .5829443
+3   .2228219 .0029695 .2170558 .2286965
+4   .0539233 .0016117 .0508501 .0571711
+
+
+. 
+. 
+. **Among Men**
+. 
+. foreach x1 of varlist AGE householdsize townsend ztownsend LE8* zLE8* SES* medicationnum comorbid gfap nefl lnPM* lnNO* zAIRPOLLUTION* zMETAB* 
+  2.          mean `x1' if sample_final==1 & SEX==1
+  3. 
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+AGE  61.17451 .0580999 61.06062  61.2884
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+householdsize  2.273664 .0108059 2.252482 2.294846
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+townsend -1.462261 .0320707-1.525127-1.399395
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+ztownsend  .0029587 .0107106-.0180366 .0239539
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP3NICOTINE  68.84338 .2706499 68.31285 69.37392
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP4SLEEP  89.33111 .1973258  88.9443 89.71791
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP1DIET  35.17295 .3301288 34.52582 35.82008
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP2PA   48.6411 .3762696 47.90353 49.37867
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP5BMI  65.82952 .2843472 65.27214 66.38691
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP6LIPIDS  48.90287 .3157307 48.28395 49.52178
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP7GLUC   87.3224 .2523306 86.82778 87.81703
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP8BP  30.31923 .3071813 29.71709 30.92138
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCORE  474.9239 .9533067 473.0552 476.7926
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_LIFESTYLE  241.7677 .6533499  240.487 243.0484
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_BIOLOGICAL  233.0422 .6563803 231.7556 234.3289
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtert  1.913656 .0084591 1.897074 1.930237
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtertinv  2.086344 .0084591 2.069763 2.102926
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP3NICOTINE -.0765833 .0113003-.0987345-.0544322
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP4SLEEP  .0391403 .0102288 .0190895 .0591912
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP1DIET -.1446391 .0107387-.1656893-.1235889
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP2PA  .0479301 .0105686 .0272131  .068647
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP5BMI -.0724789 .0099646-.0920119-.0529459
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP6LIPIDS  .0965375 .0110465 .0748834 .1181916
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP7GLUC -.0638048 .0116108-.0865647-.0410449
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP8BP -.1782436  .009837-.1975264-.1589608
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCORE -.1120113 .0102612-.1321256 -.091897
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREtert -.1041074 .0103705 -.124436-.0837788
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLE -.0610906 .0107531-.0821691 -.040012
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICAL -.1017975 .0099242-.1212513-.0823438
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLEinv  .0610906 .0107531  .040012 .0821691
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICALinv  .0610906 .0107531  .040012 .0821691
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREinv  .1120113 .0102612  .091897 .1321256
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SES -.0064715 .0076722-.0215109 .0085678
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SESres  .0229016 .0060137 .0111134 .0346898
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+medicationnum    2.8865 .0313175  2.82511 2.947889
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+comorbid  2.260474 .0206573 2.219981 2.300967
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+gfap  .0234745 .0056645 .0123709 .0345782
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+nefl  .1711416 .0060813 .1592209 .1830622
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_2010  2.295994 .0010993 2.293839 2.298149
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM10_2010  2.776298  .001182 2.773981 2.778615
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_10_2010  1.849135 .0013045 1.846578 1.851692
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_abs_2010  .1393473 .0020784 .1352731 .1434216
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNO2_2010  3.236233 .0029766 3.230398 3.242068
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNOX_2010  3.726666 .0034501 3.719903 3.733428
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION1  .0035051 .0106222-.0173168  .024327
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION2  .0058352  .010534-.0148139 .0264843
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB1 -.0947402 .0103249-.1149793-.0745011
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB2 -.4568308 .0089381-.4743514-.4393102
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB3  .2149586 .0109018 .1935886 .2363286
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB4 -.4055191 .0098761-.4248785-.3861597
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB5 -.0410214 .0110234-.0626297-.0194131
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB6   -.27352 .0102764-.2936641-.2533759
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB7 -.2281832 .0102781-.2483307-.2080358
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB8  .2374665  .009987 .2178897 .2570432
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB9  .1313798 .0100809  .111619 .1511407
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB10 -.1495328 .0103481-.1698175-.1292482
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB11  -.114251 .0116336-.1370556-.0914464
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB12   .063122 .0106771 .0421924 .0840516
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB13  .0446726 .0101003 .0248737 .0644714
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB14 -.0584426 .0105464-.0791158-.0377693
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB15 -.0191861 .0105158-.0397995 .0014273
+
+
+. 
+. 
+. 
+. foreach x2 of varlist dem_diag PD_diag died SEX RACE_ETHN NonWhite educationbr householdincome  occupation  srhbr   
+  2.          prop `x2' if sample_final==1 & SEX==1
+  3. 
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+dem_diag 
+0   .9605409 .0020497 .9563211 .9643683
+1   .0394591 .0020497 .0356317 .0436789
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+PD_diag 
+0   .9710707 .0017646 .9674037 .9743362
+1   .0289293 .0017646 .0256638 .0325963
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+died 
+0   .8352915  .003905 .8274933 .8428042
+1   .1647085  .003905 .1571958 .1725067
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+1.SEX         1        0        .        .
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+RACE_ETHN 
+0   .9585458 .0020986  .954231 .9624698
+1   .0127466  .001181 .0106275 .0152818
+2   .0142984 .0012499 .0120443  .016967
+3   .0144092 .0012546 .0121458 .0170871
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+NonWhite 
+0   .9585458 .0020986  .954231 .9624698
+1   .0414542 .0020986 .0375302  .045769
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+educationbr 
+0   .4089033 .0051929 .3987643 .4191203
+1   .2791476 .0047382  .269955 .2885295
+2   .3119491 .0048936 .3024381 .3216213
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+householdincome 
+1   .2578475 .0048823 .2483934 .2675334
+2   .2832586 .0050289 .2735053 .2932193
+3   .2377927 .0047515 .2286044  .247232
+4   .1791231 .0042797 .1708868 .1876664
+5   .0419781 .0022382 .0378034 .0465914
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+occupation_group 
+1   .2142721 .0056678 .2033704 .2255926
+2   .2488075 .0059717 .2372855 .2606978
+3   .1434841 .0048424 .1342498 .1532411
+4   .0620111 .0033314 .0557925 .0688722
+5    .136806 .0047468 .1277637 .1463807
+6   .0255676 .0021803  .021624 .0302083
+7   .0196527 .0019173  .016226 .0237857
+8   .0908224 .0039693 .0833351 .0989097
+9   .0585766 .0032438 .0525319  .065269
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+srhbr 
+1   .1427621  .003683 .1356936  .150135
+2   .5558634 .0052311  .545587 .5660923
+3   .2381955 .0044847 .2295162 .2470978
+4   .0631789 .0025613 .0583403 .0683896
+
+
+. 
+. **Among Women**
+. 
+. foreach x1 of varlist AGE householdsize townsend ztownsend LE8* zLE8* SES* medicationnum comorbid gfap nefl lnPM* lnNO* zAIRPOLLUTION* zMETAB* 
+  2.          mean `x1' if sample_final==1 & SEX==2
+  3. 
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+AGE  60.64187 .0526319  60.5387 60.74504
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+householdsize   2.14797 .0108786 2.126646 2.169294
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+townsend -1.478648 .0286258 -1.53476-1.422536
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+ztownsend -.0025142 .0095601-.0212538 .0162255
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP3NICOTINE  72.23627 .2157649 71.81333 72.65921
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP4SLEEP  87.93054 .1927172 87.55278  88.3083
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP1DIET  43.39962 .2882864 42.83453 43.96472
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP2PA   45.4846 .3437791 44.81073 46.15847
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP5BMI  69.65022 .2890152 69.08369 70.21674
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP6LIPIDS  43.77203 .2988757 43.18617  44.3579
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP7GLUC   89.8928 .2004936  89.4998 90.28581
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_COMP8BP  40.60855 .3189986 39.98325 41.23385
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCORE  494.1732 .9119103 492.3857 495.9607
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_LIFESTYLE  248.6337 .5770101 247.5027 249.7648
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_BIOLOGICAL  245.4944 .6667258 244.1875 246.8013
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtert  2.070736 .0079491 2.055154 2.086317
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+LE8_TOTALSCOREtertinv  1.929264 .0079491 1.913683 1.944846
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP3NICOTINE  .0650782 .0090087 .0474194 .0827369
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP4SLEEP -.0334611 .0099899-.0530432-.0138789
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP1DIET  .1229638 .0093776 .1045819 .1413456
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP2PA -.0407295  .009656-.0596571-.0218018
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP5BMI  .0614132 .0101282 .0415599 .0812664
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP6LIPIDS -.0829761 .0104568-.1034738-.0624784
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP7GLUC    .05447 .0092255 .0363861 .0725539
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_COMP8BP  .1512553 .0102154 .1312311 .1712795
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCORE  .0951838 .0098156 .0759433 .1144242
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREtert  .0884673 .0097453 .0693647 .1075698
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLE  .0519129 .0094967 .0332976 .0705281
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICAL  .0864742 .0100807 .0667142 .1062342
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_LIFESTYLEinv -.0519129 .0094967-.0705281-.0332976
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_BIOLOGICALinv -.0519129 .0094967-.0705281-.0332976
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zLE8_TOTALSCOREinv -.0951838 .0098156-.1144242-.0759433
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SES   -.04647 .0065056-.0592222-.0337178
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+SESres -.0194611 .0051176-.0294926-.0094296
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+medicationnum  2.948856 .0286887  2.89262 3.005091
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+comorbid  2.337478  .020781 2.296743 2.378212
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+gfap  .1890623  .005454 .1783715 .1997531
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+nefl   .124127 .0049943 .1143373 .1339168
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_2010  2.295134 .0009906 2.293193 2.297076
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM10_2010  2.775413 .0010947 2.773267 2.777559
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_10_2010   1.84742 .0011907 1.845086 1.849754
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnPM2point5_abs_2010   .139316 .0019106  .135571 .1430611
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNO2_2010  3.234852 .0027052  3.22955 3.240155
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+lnNOX_2010  3.723427  .003112 3.717326 3.729527
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION1 -.0029785 .0096311-.0218573 .0159003
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zAIRPOLLUTION2 -.0049586 .0097006-.0239736 .0140565
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB1  .0805073 .0097943 .0613086  .099706
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB2  .3882008 .0092545 .3700601 .4063414
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB3 -.1826652 .0090317-.2003691-.1649613
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB4  .3445976 .0089137 .3271251 .3620702
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB5  .0348588 .0092866 .0166553 .0530622
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB6  .2324289 .0093221 .2141559 .2507019
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB7  .1939031 .0094996 .1752821 .2125241
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB8 -.2017917 .0096883-.2207826-.1828007
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB9 -.1116426 .0099145-.1310767-.0922084
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB10  .1270684 .0096747 .1081042 .1460326
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB11   .097087 .0086355 .0801597 .1140142
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB12 -.0536391 .0095564-.0723715-.0349067
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB13 -.0379614 .0100137-.0575901-.0183327
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB14  .0496627 .0096651 .0307174  .068608
+
+
+Mean estimation = 
+
+
+       Mean   Std. err.     [95% conf. interval]
+
+zMETAB15  .0163038 .0097123-.0027342 .0353417
+
+
+. 
+. 
+. 
+. foreach x2 of varlist dem_diag PD_diag died SEX RACE_ETHN NonWhite educationbr householdincome  occupation  srhbr  
+  2.          prop `x2' if sample_final==1 & SEX==2
+  3.                 
+. 
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+dem_diag 
+0   .9683526  .001699 .9648474 .9715187
+1   .0316474  .001699 .0284813 .0351526
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+PD_diag 
+0   .9869078 .0011032 .9845595  .988903
+1   .0130922 .0011032  .011097 .0154405
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+died 
+0     .90308 .0028712 .8973041 .9085641
+1     .09692 .0028712 .0914359 .1026959
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+2.SEX         1        0        .        .
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+RACE_ETHN 
+0   .9560139 .0019902 .9519436 .9597541
+1   .0153527 .0011933 .0131809 .0178759
+2   .0102666 .0009783 .0085159 .0123726
+3   .0183668 .0013031 .0159793 .0211033
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+NonWhite 
+0   .9560139 .0019902 .9519436 .9597541
+1   .0439861 .0019902 .0402459 .0480564
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+educationbr 
+0   .3823502 .0047288 .3731246 .3916613
+1   .3501562 .0046418 .3411129 .3593086
+2   .2674936 .0043073 .2591354 .2760209
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+householdincome 
+1    .301264 .0049636 .2916244 .3110824
+2   .3018493 .0049664  .292204 .3116727
+3   .2263577 .0045273 .2176064 .2353551
+4   .1381086 .0037326 .1309533 .1455894
+5   .0324204 .0019161 .0288675 .0363942
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+occupation_group 
+1    .114461 .0042151  .106454 .1229874
+2   .2152498 .0054414 .2047745 .2261086
+3   .1779141 .0050633  .168204  .188058
+4   .2573181 .0057877 .2461364 .2688267
+5   .0184049 .0017795 .0152222  .022238
+6   .0964067 .0039076 .0890134 .1043437
+7   .0576687 .0030863  .051908 .0640256
+8   .0106924 .0013617 .0083275 .0137195
+9   .0518843 .0029364 .0464205 .0579521
+
+
+Proportion estimation = 
+
+
+             Logit
+ Proportion   Std. err.     [95% conf. interval]
+
+srhbr 
+1   .1509843 .0034747 .1442987 .1579225
+2   .5931996 .0047675 .5838217   .60251
+3   .2097579 .0039513 .2021177 .2176082
+4   .0460582 .0020343 .0422309 .0502142
+
+
+. 
+. 
+. **Difference by sex**
+. 
+. 
+. foreach x1 of varlist AGE householdsize townsend ztownsend ztownsend LE8* zLE8* SES* medicationnum comorbid gfap nefl lnPM* lnNO* zAIRPOLLUTION* zMETAB* 
+  2.          reg `x1' SEX if sample_final==1 
+  3. 
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     46.29
+       Model   1383.72747         1  1383.72747   Prob > F        =    0.0000
+    Residual   586951.457    19,637  29.8900778   R-squared       =    0.0024
+   Adj R-squared   =    0.0023
+       Total   588335.185    19,638  29.9590174   Root MSE        =    5.4672
+
+
+         AGE Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.5326386 .0782836   -6.800.000-.6860811-.3791961
+_cons  61.70715 .1267572  486.810.000  61.4587 61.95561
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     66.25
+       Model   77.0575734         1  77.0575734   Prob > F        =    0.0000
+    Residual   22841.8614    19,637  1.16320525   R-squared       =    0.0034
+   Adj R-squared   =    0.0033
+       Total    22918.919    19,638  1.16706991   Root MSE        =    1.0785
+
+
+households~e Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1256941 .0154431   -8.140.000 -.155964-.0954243
+_cons  2.399359 .0250056   95.950.000 2.350345 2.448372
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.15
+       Model   1.30977796         1  1.30977796   Prob > F        =    0.7023
+    Residual   176068.042    19,637  8.96613747   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total   176069.351    19,638   8.9657476   Root MSE        =    2.9944
+
+
+    townsend Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0163873 .0428756   -0.380.702 -.100427 .0676525
+_cons -1.445874 .0694244  -20.830.000-1.581951-1.309796
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.15
+       Model   .146086858         1  .146086858   Prob > F        =    0.7023
+    Residual   19637.8539    19,637  1.00004348   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total        19638    19,638           1   Root MSE        =         1
+
+
+   ztownsend Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0054728 .0143191   -0.380.702-.0335396 .0225939
+_cons  .0084315 .0231856    0.360.716-.0370143 .0538773
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.15
+       Model   .146086858         1  .146086858   Prob > F        =    0.7023
+    Residual   19637.8539    19,637  1.00004348   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total        19638    19,638           1   Root MSE        =         1
+
+
+   ztownsend Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0054728 .0143191   -0.380.702-.0335396 .0225939
+_cons  .0084315 .0231856    0.360.716-.0370143 .0538773
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     98.36
+       Model   56146.7494         1  56146.7494   Prob > F        =    0.0000
+    Residual   11208904.8    19,637  570.805355   R-squared       =    0.0050
+   Adj R-squared   =    0.0049
+       Total   11265051.5    19,638  573.635376   Root MSE        =    23.892
+
+
+LE8_COMP3N~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  3.392889 .3420987    9.920.000 2.722347 4.063432
+_cons  65.45049 .5539278  118.160.000 64.36475 66.53624
+
+
+      Source        SS           df       MS      Number of obs   =    19,495
+   F(1, 19493)     =     25.56
+       Model   9501.76169         1  9501.76169   Prob > F        =    0.0000
+    Residual   7245169.25    19,493  371.680565   R-squared       =    0.0013
+   Adj R-squared   =    0.0013
+       Total   7254671.01    19,494  372.148918   Root MSE        =    19.279
+
+
+LE8_COMP4S~P Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -1.400565 .2770041   -5.060.000-1.943517-.8576134
+_cons  90.73167 .4481424  202.460.000 89.85327 91.61007
+
+
+      Source        SS           df       MS      Number of obs   =    19,630
+   F(1, 19628)     =    355.43
+       Model   329951.568         1  329951.568   Prob > F        =    0.0000
+    Residual   18220955.8    19,628  928.314438   R-squared       =    0.0178
+   Adj R-squared   =    0.0177
+       Total   18550907.4    19,629  945.076538   Root MSE        =    30.468
+
+
+LE8_COMP1D~T Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  8.226674 .4363618   18.850.000 7.371368  9.08198
+_cons  26.94628 .7065152   38.140.000 25.56145  28.3311
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     38.41
+       Model   48595.5702         1  48595.5702   Prob > F        =    0.0000
+    Residual   24843271.6    19,637  1265.12561   R-squared       =    0.0020
+   Adj R-squared   =    0.0019
+       Total   24891867.2    19,638  1267.53576   Root MSE        =    35.569
+
+
+ LE8_COMP2PA Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -3.156499 .5093006   -6.200.000-4.154772-2.158227
+_cons   51.7976 .8246619   62.810.000 50.18119 53.41401
+
+
+      Source        SS           df       MS      Number of obs   =    19,541
+   F(1, 19539)     =     87.36
+       Model   70826.3982         1  70826.3982   Prob > F        =    0.0000
+    Residual   15840263.3    19,539  810.699796   R-squared       =    0.0045
+   Adj R-squared   =    0.0044
+       Total   15911089.7    19,540  814.282994   Root MSE        =    28.473
+
+
+LE8_COMP5BMI Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  3.820696 .4087662    9.350.000 3.019479 4.621913
+_cons  62.00883  .662147   93.650.000 60.71096 63.30669
+
+
+      Source        SS           df       MS      Number of obs   =    17,195
+   F(1, 17193)     =    138.84
+       Model   112520.731         1  112520.731   Prob > F        =    0.0000
+    Residual   13933664.5    17,193  810.426596   R-squared       =    0.0080
+   Adj R-squared   =    0.0080
+       Total   14046185.2    17,194  816.923647   Root MSE        =    28.468
+
+
+LE8_COMP6L~S Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -5.130834 .4354403  -11.780.000-5.984342-4.277327
+_cons   54.0337 .7039222   76.760.000 52.65394 55.41346
+
+
+      Source        SS           df       MS      Number of obs   =    18,676
+   F(1, 18674)     =     65.13
+       Model   30655.7134         1  30655.7134   Prob > F        =    0.0000
+    Residual    8789519.2    18,674  470.682189   R-squared       =    0.0035
+   Adj R-squared   =    0.0034
+       Total   8820174.91    18,675  472.298523   Root MSE        =    21.695
+
+
+LE8_COMP7G~C Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX    2.5704 .3184995    8.070.000 1.946112 3.194688
+_cons    84.752 .5153779  164.450.000 83.74182 85.76219
+
+
+      Source        SS           df       MS      Number of obs   =    19,107
+   F(1, 19105)     =    529.38
+       Model   502322.179         1  502322.179   Prob > F        =    0.0000
+    Residual   18128628.3    19,105  948.894444   R-squared       =    0.0270
+   Adj R-squared   =    0.0269
+       Total   18630950.5    19,106  975.136111   Root MSE        =    30.804
+
+
+ LE8_COMP8BP Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  10.28932 .4472027   23.010.000 9.412762 11.16588
+_cons  20.02992 .7242559   27.660.000 18.61031 21.44952
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    211.63
+       Model   1807233.43         1  1807233.43   Prob > F        =    0.0000
+    Residual    167691888    19,637  8539.58793   R-squared       =    0.0107
+   Adj R-squared   =    0.0106
+       Total    169499122    19,638  8631.18045   Root MSE        =     92.41
+
+
+LE8_TOTALS~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  19.24928 1.323201   14.550.000 16.65569 21.84287
+_cons  455.6747 2.142533  212.680.000 451.4751 459.8742
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     62.48
+       Model    229928.56         1   229928.56   Prob > F        =    0.0000
+    Residual   72267315.9    19,637  3680.16071   R-squared       =    0.0032
+   Adj R-squared   =    0.0031
+       Total   72497244.5    19,638  3691.68166   Root MSE        =    60.664
+
+
+LE8_LIFEST~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX     6.866 .8686419    7.900.000 5.163389 8.568612
+_cons  234.9017 1.406509  167.010.000 232.1448 237.6586
+
+
+      Source        SS           df       MS      Number of obs   =    19,634
+   F(1, 19632)     =    174.36
+       Model   756048.566         1  756048.566   Prob > F        =    0.0000
+    Residual   85126291.3    19,632  4336.09878   R-squared       =    0.0088
+   Adj R-squared   =    0.0088
+       Total   85882339.9    19,633  4374.38699   Root MSE        =    65.849
+
+
+LE8_BIOLOG~L Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  12.45213 .9430146   13.200.000 10.60374 14.30052
+_cons  220.5901 1.527009  144.460.000 217.5971 223.5832
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    182.55
+       Model   120.344883         1  120.344883   Prob > F        =    0.0000
+    Residual   12945.6152    19,637  .659246076   R-squared       =    0.0092
+   Adj R-squared   =    0.0092
+       Total   13065.9601    19,638   .66534067   Root MSE        =    .81194
+
+
+LE8_TOTALS~t Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1570801  .011626   13.510.000 .1342921 .1798681
+_cons  1.756575 .0188249   93.310.000 1.719677 1.793474
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    182.55
+       Model   120.344883         1  120.344883   Prob > F        =    0.0000
+    Residual   12945.6152    19,637  .659246076   R-squared       =    0.0092
+   Adj R-squared   =    0.0092
+       Total   13065.9601    19,638   .66534067   Root MSE        =    .81194
+
+
+LE8_TOTALS~v Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1570801  .011626  -13.510.000-.1798681-.1342921
+_cons  2.243425 .0188249  119.170.000 2.206526 2.280323
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     98.36
+       Model   97.8788156         1  97.8788156   Prob > F        =    0.0000
+    Residual   19540.1218    19,637  .995066547   R-squared       =    0.0050
+   Adj R-squared   =    0.0049
+       Total   19638.0006    19,638  1.00000003   Root MSE        =    .99753
+
+
+zLE8_COMP3~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1416615 .0142835    9.920.000 .1136647 .1696583
+_cons -.2182448 .0231278   -9.440.000-.2635773-.1729122
+
+
+      Source        SS           df       MS      Number of obs   =    19,495
+   F(1, 19493)     =     25.56
+       Model   25.5321499         1  25.5321499   Prob > F        =    0.0000
+    Residual   19468.4684    19,493  .998741515   R-squared       =    0.0013
+   Adj R-squared   =    0.0013
+       Total   19494.0005    19,494  1.00000003   Root MSE        =    .99937
+
+
+zLE8_COMP4~P Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0726014 .0143591   -5.060.000-.1007465-.0444563
+_cons  .1117417 .0232305    4.810.000  .066208 .1572754
+
+
+      Source        SS           df       MS      Number of obs   =    19,630
+   F(1, 19628)     =    355.43
+       Model   349.126808         1  349.126808   Prob > F        =    0.0000
+    Residual   19279.8729    19,628  .982263751   R-squared       =    0.0178
+   Adj R-squared   =    0.0177
+       Total   19628.9997    19,629  .999999986   Root MSE        =    .99109
+
+
+zLE8_COMP1~T Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .2676029 .0141943   18.850.000 .2397809 .2954249
+_cons  -.412242  .022982  -17.940.000-.4572887-.3671953
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     38.41
+       Model   38.3386192         1  38.3386192   Prob > F        =    0.0000
+    Residual   19599.6616    19,637  .998098567   R-squared       =    0.0020
+   Adj R-squared   =    0.0019
+       Total   19638.0002    19,638  1.00000001   Root MSE        =    .99905
+
+
+zLE8_COMP2PA Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0886596 .0143052   -6.200.000 -.116699-.0606202
+_cons  .1365896 .0231631    5.900.000 .0911881 .1819912
+
+
+      Source        SS           df       MS      Number of obs   =    19,541
+   F(1, 19539)     =     87.36
+       Model   86.9800737         1  86.9800737   Prob > F        =    0.0000
+    Residual   19453.0194    19,539  .995599539   R-squared       =    0.0045
+   Adj R-squared   =    0.0044
+       Total   19539.9995    19,540  .999999973   Root MSE        =     .9978
+
+
+zLE8_COMP5~I Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1338921 .0143248    9.350.000 .1058143 .1619698
+_cons -.2063709 .0232042   -8.890.000-.2518532-.1608887
+
+
+      Source        SS           df       MS      Number of obs   =    17,195
+   F(1, 17193)     =    138.84
+       Model   137.737138         1  137.737138   Prob > F        =    0.0000
+    Residual   17056.2622    17,193  .992046891   R-squared       =    0.0080
+   Adj R-squared   =    0.0080
+       Total   17193.9993    17,194  .999999961   Root MSE        =    .99602
+
+
+zLE8_COMP6~S Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1795136 .0152348  -11.780.000-.2093754-.1496517
+_cons   .276051 .0246283   11.210.000 .2277771  .324325
+
+
+      Source        SS           df       MS      Number of obs   =    18,676
+   F(1, 18674)     =     65.13
+       Model   64.9074942         1  64.9074942   Prob > F        =    0.0000
+    Residual   18610.0921    18,674  .996577707   R-squared       =    0.0035
+   Adj R-squared   =    0.0034
+       Total   18674.9996    18,675  .999999978   Root MSE        =    .99829
+
+
+zLE8_COMP7~C Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1182748 .0146555    8.070.000 .0895487 .1470009
+_cons -.1820797 .0237147   -7.680.000-.2285626-.1355967
+
+
+      Source        SS           df       MS      Number of obs   =    19,107
+   F(1, 19105)     =    529.38
+       Model   515.130343         1  515.130343   Prob > F        =    0.0000
+    Residual   18590.8704    19,105  .973089265   R-squared       =    0.0270
+   Adj R-squared   =    0.0269
+       Total   19106.0007    19,106  1.00000004   Root MSE        =    .98645
+
+
+zLE8_COMP8BP Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .3294989 .0143209   23.010.000 .3014286 .3575693
+_cons -.5077426 .0231931  -21.890.000-.5532031 -.462282
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    211.63
+       Model   209.384271         1  209.384271   Prob > F        =    0.0000
+    Residual   19428.6158    19,637  .989388183   R-squared       =    0.0107
+   Adj R-squared   =    0.0106
+       Total        19638    19,638           1   Root MSE        =    .99468
+
+
+zLE8_TOTAL~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .2071951 .0142426   14.550.000 .1792783 .2351119
+_cons -.3192064 .0230618  -13.840.000-.3644094-.2740034
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    182.55
+       Model   180.877097         1  180.877097   Prob > F        =    0.0000
+    Residual   19457.1238    19,637  .990839935   R-squared       =    0.0092
+   Adj R-squared   =    0.0092
+       Total   19638.0009    19,638  1.00000005   Root MSE        =    .99541
+
+
+zLE8_TOTAL~t Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1925747 .0142531   13.510.000 .1646374 .2205119
+_cons -.2966821 .0230787  -12.860.000-.3419182-.2514459
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     62.48
+       Model    62.282878         1   62.282878   Prob > F        =    0.0000
+    Residual   19575.7173    19,637  .996879221   R-squared       =    0.0032
+   Adj R-squared   =    0.0031
+       Total   19638.0001    19,638  1.00000001   Root MSE        =    .99844
+
+
+zLE8_LIFES~E Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1130034 .0142965    7.900.000 .0849812 .1410257
+_cons  -.174094 .0231489   -7.520.000-.2194678-.1287202
+
+
+      Source        SS           df       MS      Number of obs   =    19,634
+   F(1, 19632)     =    174.36
+       Model   172.835319         1  172.835319   Prob > F        =    0.0000
+    Residual   19460.1646    19,632  .991247179   R-squared       =    0.0088
+   Adj R-squared   =    0.0088
+       Total   19632.9999    19,633  .999999997   Root MSE        =    .99561
+
+
+zLE8_BIOLO~L Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1882717  .014258   13.200.000 .1603247 .2162187
+_cons -.2900692 .0230878  -12.560.000-.3353233-.2448151
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     62.48
+       Model    62.282878         1   62.282878   Prob > F        =    0.0000
+    Residual   19575.7173    19,637  .996879221   R-squared       =    0.0032
+   Adj R-squared   =    0.0031
+       Total   19638.0001    19,638  1.00000001   Root MSE        =    .99844
+
+
+zLE8_LIFES~v Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1130034 .0142965   -7.900.000-.1410257-.0849812
+_cons   .174094 .0231489    7.520.000 .1287202 .2194678
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     62.48
+       Model    62.282878         1   62.282878   Prob > F        =    0.0000
+    Residual   19575.7173    19,637  .996879221   R-squared       =    0.0032
+   Adj R-squared   =    0.0031
+       Total   19638.0001    19,638  1.00000001   Root MSE        =    .99844
+
+
+zLE8_BIOLO~v Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1130034 .0142965   -7.900.000-.1410257-.0849812
+_cons   .174094 .0231489    7.520.000 .1287202 .2194678
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    211.63
+       Model   209.384271         1  209.384271   Prob > F        =    0.0000
+    Residual   19428.6158    19,637  .989388183   R-squared       =    0.0107
+   Adj R-squared   =    0.0106
+       Total        19638    19,638           1   Root MSE        =    .99468
+
+
+zLE8_TOTAL~v Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.2071951 .0142426  -14.550.000-.2351119-.1792783
+_cons  .3192064 .0230618   13.840.000 .2740034 .3644094
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     16.03
+       Model   7.80319531         1  7.80319531   Prob > F        =    0.0001
+    Residual   9560.96837    19,637  .486885388   R-squared       =    0.0008
+   Adj R-squared   =    0.0008
+       Total   9568.77156    19,638  .487257947   Root MSE        =    .69777
+
+
+         SES Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0399985 .0099913   -4.000.000-.0595822-.0204148
+_cons   .033527 .0161779    2.070.038 .0018169  .065237
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     29.16
+       Model   8.75292238         1  8.75292238   Prob > F        =    0.0000
+    Residual   5895.19697    19,637  .300208635   R-squared       =    0.0015
+   Adj R-squared   =    0.0014
+       Total   5903.94989    19,638  .300639062   Root MSE        =    .54791
+
+
+      SESres Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0423627 .0078455   -5.400.000-.0577405-.0269849
+_cons  .0652644 .0127034    5.140.000 .0403646 .0901641
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      2.16
+       Model   18.9644805         1  18.9644805   Prob > F        =    0.1419
+    Residual   172589.004    19,637  8.78897002   R-squared       =    0.0001
+   Adj R-squared   =    0.0001
+       Total   172607.969    19,638  8.78948817   Root MSE        =    2.9646
+
+
+medication~m Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .0623559 .0424499    1.470.142-.0208494 .1455613
+_cons  2.824144  .068735   41.090.000 2.689417  2.95887
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      6.81
+       Model   28.9203273         1  28.9203273   Prob > F        =    0.0091
+    Residual   83403.7028    19,637  4.24727315   R-squared       =    0.0003
+   Adj R-squared   =    0.0003
+       Total   83432.6231    19,638  4.24852954   Root MSE        =    2.0609
+
+
+    comorbid Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .0770032 .0295095    2.610.009  .019162 .1348444
+_cons  2.183471  .047782   45.700.000 2.089814 2.277128
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    440.33
+       Model   133.733967         1  133.733967   Prob > F        =    0.0000
+    Residual   5964.06925    19,637  .303715906   R-squared       =    0.0219
+   Adj R-squared   =    0.0219
+       Total   6097.80322    19,638  .310510399   Root MSE        =     .5511
+
+
+        gfap Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1655878 .0078912   20.980.000 .1501204 .1810551
+_cons -.1421132 .0127774  -11.120.000 -.167158-.1170684
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     36.37
+       Model   10.7807766         1  10.7807766   Prob > F        =    0.0000
+    Residual   5821.18533    19,637  .296439646   R-squared       =    0.0018
+   Adj R-squared   =    0.0018
+       Total   5831.96611    19,638  .296973526   Root MSE        =    .54446
+
+
+        nefl Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0470146 .0077961   -6.030.000-.0622955-.0317336
+_cons  .2181561 .0126234   17.280.000 .1934131 .2428991
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.34
+       Model   .003601018         1  .003601018   Prob > F        =    0.5607
+    Residual   208.949894    19,637  .010640622   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total   208.953495    19,638  .010640264   Root MSE        =    .10315
+
+
+lnPM2~5_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0008593  .001477   -0.580.561-.0037544 .0020359
+_cons  2.296853 .0023916  960.370.000 2.292165 2.301541
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.30
+       Model   .003822108         1  .003822108   Prob > F        =    0.5828
+    Residual   248.772707    19,637   .01266857   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total   248.776529    19,638  .012668119   Root MSE        =    .11255
+
+
+ lnPM10_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0008852 .0016117   -0.550.583-.0040442 .0022737
+_cons  2.777184 .0026096 1064.220.000 2.772069 2.782299
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.94
+       Model   .014345328         1  .014345328   Prob > F        =    0.3312
+    Residual    298.28405    19,637  .015189899   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total   298.298395    19,638  .015189856   Root MSE        =    .12325
+
+
+lnPM2~0_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  -.001715 .0017648   -0.970.331-.0051741 .0017441
+_cons   1.85085 .0028575  647.720.000 1.845249 1.856451
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.00
+       Model   4.7891e-06         1  4.7891e-06   Prob > F        =    0.9911
+    Residual   763.005087    19,637  .038855481   R-squared       =    0.0000
+   Adj R-squared   =   -0.0001
+       Total   763.005092    19,638  .038853503   Root MSE        =    .19712
+
+
+lnPM2~s_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0000313 .0028225   -0.010.991-.0055637  .005501
+_cons  .1393787 .0045702   30.500.000 .1304207 .1483367
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.12
+       Model   .009302054         1  .009302054   Prob > F        =    0.7310
+    Residual    1545.9408    19,637  .078725915   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total    1545.9501    19,638   .07872238   Root MSE        =    .28058
+
+
+  lnNO2_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  -.001381 .0040176   -0.340.731-.0092558 .0064938
+_cons  3.237614 .0065053  497.690.000 3.224863 3.250365
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.49
+       Model   .051165276         1  .051165276   Prob > F        =    0.4850
+    Residual   2060.31438    19,637  .104920017   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total   2060.36554    19,638   .10491728   Root MSE        =    .32391
+
+
+  lnNOX_2010 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0032389 .0046381   -0.700.485-.0123299 .0058521
+_cons  3.729904   .00751  496.660.000 3.715184 3.744625
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.21
+       Model   .205030486         1  .205030486   Prob > F        =    0.6507
+    Residual    19637.795    19,637  1.00004048   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total        19638    19,638           1   Root MSE        =         1
+
+
+zAIRPOLLUT~1 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0064836 .0143191   -0.450.651-.0345503 .0215831
+_cons  .0099887 .0231856    0.430.667 -.035457 .0554344
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      0.57
+       Model   .568238868         1  .568238868   Prob > F        =    0.4510
+    Residual   19637.4318    19,637  1.00002199   R-squared       =    0.0000
+   Adj R-squared   =   -0.0000
+       Total        19638    19,638           1   Root MSE        =         1
+
+
+zAIRPOLLUT~2 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.0107938  .014319   -0.750.451-.0388602 .0172727
+_cons   .016629 .0231854    0.720.473-.0288163 .0620742
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    150.94
+       Model   149.792116         1  149.792116   Prob > F        =    0.0000
+    Residual   19488.2079    19,637  .992422868   R-squared       =    0.0076
+   Adj R-squared   =    0.0076
+       Total        19638    19,638  .999999999   Root MSE        =     .9962
+
+
+     zMETAB1 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1752475 .0142645   12.290.000 .1472879 .2032071
+_cons -.2699877 .0230971  -11.690.000  -.31526-.2247154
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =   4233.45
+       Model   3482.82064         1  3482.82064   Prob > F        =    0.0000
+    Residual   16155.1793    19,637  .822690806   R-squared       =    0.1774
+   Adj R-squared   =    0.1773
+       Total        19638    19,638  .999999999   Root MSE        =    .90702
+
+
+     zMETAB2 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .8450315 .0129875   65.060.000 .8195749 .8704881
+_cons -1.301862 .0210294  -61.910.000-1.343082-1.260643
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    802.61
+       Model    771.13446         1   771.13446   Prob > F        =    0.0000
+    Residual   18866.8655    19,637   .96078146   R-squared       =    0.0393
+   Adj R-squared   =    0.0392
+       Total        19638    19,638           1   Root MSE        =    .98019
+
+
+     zMETAB3 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.3976238 .0140352  -28.330.000-.4251341-.3701136
+_cons  .6125825 .0227259   26.960.000 .5680377 .6571272
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =   3190.03
+       Model    2744.3718         1   2744.3718   Prob > F        =    0.0000
+    Residual   16893.6282    19,637  .860295778   R-squared       =    0.1397
+   Adj R-squared   =    0.1397
+       Total        19638    19,638           1   Root MSE        =    .92752
+
+
+     zMETAB4 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .7501167  .013281   56.480.000 .7240848 .7761486
+_cons -1.155636 .0215047  -53.740.000-1.197787-1.113485
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     28.12
+       Model   28.0829044         1  28.0829044   Prob > F        =    0.0000
+    Residual   19609.9171    19,637  .998620823   R-squared       =    0.0014
+   Adj R-squared   =    0.0014
+       Total        19638    19,638           1   Root MSE        =    .99931
+
+
+     zMETAB5 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .0758802 .0143089    5.300.000 .0478334 .1039269
+_cons -.1169016 .0231691   -5.050.000 -.162315-.0714882
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =   1333.23
+       Model   1248.52908         1  1248.52908   Prob > F        =    0.0000
+    Residual   18389.4709    19,637  .936470485   R-squared       =    0.0636
+   Adj R-squared   =    0.0635
+       Total        19638    19,638           1   Root MSE        =    .96771
+
+
+     zMETAB6 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .5059489 .0138565   36.510.000  .478789 .5331089
+_cons  -.779469 .0224366  -34.740.000-.8234465-.7354914
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    909.12
+       Model   868.936214         1  868.936214   Prob > F        =    0.0000
+    Residual   18769.0638    19,637  .955800978   R-squared       =    0.0442
+   Adj R-squared   =    0.0442
+       Total        19638    19,638           1   Root MSE        =    .97765
+
+
+     zMETAB7 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .4220864 .0139988   30.150.000 .3946475 .4495252
+_cons -.6502696 .0226669  -28.690.000-.6946987-.6058405
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    988.39
+       Model   941.076464         1  941.076464   Prob > F        =    0.0000
+    Residual   18696.9235    19,637  .952127287   R-squared       =    0.0479
+   Adj R-squared   =    0.0479
+       Total        19638    19,638           1   Root MSE        =    .97577
+
+
+     zMETAB8 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.4392581 .0139719  -31.440.000-.4666442-.4118721
+_cons  .6767246 .0226233   29.910.000 .6323809 .7210683
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    292.33
+       Model   288.056635         1  288.056635   Prob > F        =    0.0000
+    Residual   19349.9434    19,637  .985381848   R-squared       =    0.0147
+   Adj R-squared   =    0.0146
+       Total        19638    19,638  .999999999   Root MSE        =    .99266
+
+
+     zMETAB9 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.2430224 .0142138  -17.100.000-.2708826-.2151622
+_cons  .3744022  .023015   16.270.000 .3292909 .4195136
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    380.37
+       Model   373.158643         1  373.158643   Prob > F        =    0.0000
+    Residual   19264.8413    19,637   .98104809   R-squared       =    0.0190
+   Adj R-squared   =    0.0190
+       Total        19638    19,638           1   Root MSE        =    .99048
+
+
+    zMETAB10 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .2766012 .0141825   19.500.000 .2488024 .3044001
+_cons -.4261341 .0229644  -18.560.000-.4711462 -.381122
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =    220.27
+       Model   217.841419         1  217.841419   Prob > F        =    0.0000
+    Residual   19420.1586    19,637  .988957508   R-squared       =    0.0111
+   Adj R-squared   =    0.0110
+       Total        19638    19,638           1   Root MSE        =    .99446
+
+
+    zMETAB11 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX   .211338 .0142395   14.840.000 .1834273 .2392487
+_cons  -.325589 .0230567  -14.120.000-.3707822-.2803958
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     66.72
+       Model   66.4938695         1  66.4938695   Prob > F        =    0.0000
+    Residual   19571.5061    19,637  .996664771   R-squared       =    0.0034
+   Adj R-squared   =    0.0033
+       Total        19638    19,638  .999999999   Root MSE        =    .99833
+
+
+    zMETAB12 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX -.1167611 .0142949   -8.170.000-.1447804-.0887418
+_cons  .1798831 .0231464    7.770.000 .1345141  .225252
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     33.36
+       Model   33.3044627         1  33.3044627   Prob > F        =    0.0000
+    Residual   19604.6955    19,637  .998354917   R-squared       =    0.0017
+   Adj R-squared   =    0.0016
+       Total        19638    19,638  .999999999   Root MSE        =    .99918
+
+
+    zMETAB13 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  -.082634  .014307   -5.780.000 -.110677-.0545909
+_cons  .1273065  .023166    5.500.000 .0818992 .1727139
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =     57.16
+       Model    57.000535         1   57.000535   Prob > F        =    0.0000
+    Residual   19580.9995    19,637  .997148213   R-squared       =    0.0029
+   Adj R-squared   =    0.0029
+       Total        19638    19,638           1   Root MSE        =    .99857
+
+
+    zMETAB14 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .1081053 .0142984    7.560.000 .0800792 .1361313
+_cons -.1665478  .023152   -7.190.000-.2119278-.1211679
+
+
+      Source        SS           df       MS      Number of obs   =    19,639
+   F(1, 19637)     =      6.14
+       Model   6.14318297         1  6.14318297   Prob > F        =    0.0132
+    Residual   19631.8568    19,637  .999738086   R-squared       =    0.0003
+   Adj R-squared   =    0.0003
+       Total        19638    19,638  .999999999   Root MSE        =    .99987
+
+
+    zMETAB15 Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
+
+SEX  .0354898 .0143169    2.480.013 .0074274 .0635523
+_cons -.0546759 .0231821   -2.360.018-.1001148-.0092371
+
+
+. 
+. 
+. 
+. foreach x2 of varlist dem_diag PD_diag died  RACE_ETHN NonWhite educationbr householdincome  occupation  srhbr  
+  2.          mlogit `x2' SEX if sample_final==1
+  3.                 
+. 
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+    dem_diag Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX -.2287098 .0774457   -2.950.003-.3805006 -.076919
+_cons -2.963522 .1215359  -24.380.000-3.201728-2.725316
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+     PD_diag Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX -.8090142 .1059964   -7.630.000-1.016763-.6012651
+_cons -2.704531 .1518944  -17.810.000-3.002238-2.406823
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+        died Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX -.6083212 .0433792  -14.020.000 -.693343-.5232995
+_cons -1.015282 .0655644  -15.490.000-1.143786-.8867785
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+   RACE_ETHN Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX  .1886724 .1226572    1.540.124-.0517312 .4290761
+_cons -4.508824  .203663  -22.140.000-4.907996-4.109651
+
+2            
+SEX -.3286101 .1309214   -2.510.012-.5852113 -.072009
+_cons -3.876661 .2018493  -19.210.000-4.272278-3.481044
+
+3            
+SEX  .2453195 .1141695    2.150.032 .0215514 .4690875
+_cons -4.442868 .1909411  -23.270.000-4.817106-4.068631
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+    NonWhite Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX  .0619278 .0709174    0.870.383-.0770678 .2009234
+_cons -3.202755 .1157479  -27.670.000-3.429617-2.975894
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+ educationbr Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+0             (base outcome)
+
+1            
+SEX  .2937805  .034505    8.510.000  .226152 .3614091
+_cons -.6755185 .0566409  -11.930.000-.7865326-.5645044
+
+2            
+SEX -.0866026 .0351018   -2.470.014-.1554009-.0178044
+_cons -.1840359 .0558896   -3.290.001-.2935775-.0744942
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+householdi~e Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+1            
+SEX  .0920512 .0412201    2.230.026 .0112613  .172841
+_cons  -.186043 .0668403   -2.780.005-.3170476-.0550383
+
+2             (base outcome)
+
+3            
+SEX -.1128505  .043225   -2.610.009-.1975699-.0281311
+_cons -.0621104 .0689867   -0.900.368-.1973218 .0731011
+
+4            
+SEX -.3236002 .0486864   -6.650.000-.4190238-.2281765
+_cons  -.134687 .0759991   -1.770.076-.2836425 .0142685
+
+5            
+SEX -.3219268 .0860521   -3.740.000-.4905858-.1532677
+_cons -1.587286 .1327641  -11.960.000-1.847499-1.327073
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+occupation~p Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+1            
+SEX -.4821322 .0632698   -7.620.000-.6061388-.3581256
+_cons  .3326994  .094737    3.510.000 .1470183 .5183805
+
+2             (base outcome)
+
+3            
+SEX  .3599572 .0624197    5.770.000 .2376169 .4822975
+_cons -.9104126 .1009266   -9.020.000-1.108225   -.7126
+
+4            
+SEX  1.567881 .0730707   21.460.000 1.424665 1.711097
+_cons -2.957247 .1298873  -22.770.000-3.211822-2.702673
+
+5            
+SEX -1.861063  .111802  -16.650.000-2.080191-1.641935
+_cons  1.262947 .1377839    9.170.000 .9928955 1.532998
+
+6            
+SEX  1.472128 .1042213   14.130.000 1.267858 1.676398
+_cons  -3.74748 .1885491  -19.880.000-4.117029-3.377931
+
+7            
+SEX  1.221378 .1197057   10.200.000 .9867595 1.455997
+_cons -3.759841 .2139072  -17.580.000-4.179092-3.340591
+
+8            
+SEX -1.994479 .1416871  -14.080.000-2.272181-1.716777
+_cons  .9867053 .1693469    5.830.000 .6547914 1.318619
+
+9            
+SEX  .0235613 .0906472    0.260.795-.1541039 .2012266
+_cons -1.469905 .1424413  -10.320.000-1.749085-1.190726
+
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+
+Multinomial logistic regression = 
+)} = 
+ = 
+ =  = 
+
+
+       srhbr Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+1            
+SEX -.0090125 .0419334   -0.210.830-.0912004 .0731755
+_cons  -1.35033  .068453  -19.730.000-1.484496-1.216165
+
+2             (base outcome)
+
+3            
+SEX -.1921459 .0356728   -5.390.000-.2620634-.1222285
+_cons -.6552849 .0571555  -11.460.000-.7673076-.5432621
+
+4            
+SEX -.3810726 .0644791   -5.910.000-.5074493-.2546958
+_cons  -1.79348 .1000946  -17.920.000-1.989662-1.597298
+
+
+. 
+. 
+. save "/opt/notebooks/ finaldata_unimputedfin.dta", replace  
+
+file 
+/opt/notebooks/ finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. capture log close
+

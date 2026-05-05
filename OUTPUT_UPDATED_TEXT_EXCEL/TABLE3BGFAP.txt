@@ -1,0 +1,237 @@
+
+
+. 
+. 
+. 
+. **********************************************************GFAP********************************************************
+. 
+. 
+. use "/opt/notebooks/ finaldata_unimputedfin_MULTISTATE",clear
+
+. 
+. ssc install merlin
+checking  consistency and verifying not already installed...
+all files already exist and are up to date.
+
+. 
+. 
+. capture drop gfapbr
+
+. xtile  gfapbr=gfap if sample_final==1, nq(2)
+
+. 
+. recode gfapbr (1=0) (2=1)
+(60,322 changes made to )
+
+. 
+. tab1 gfapbr 
+
+-> tabulation of gfapbr  
+
+2 quantiles 
+   of gfap        Freq.     Percent        Cum.
+
+          0      30,165       50.01       50.01
+          1      30,157       49.99      100.00
+
+      Total      60,322      100.00
+
+. 
+. 
+. save "/opt/notebooks/ finaldata_unimputedfin_MULTISTATE",replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. *************Flexible parametric Merlin models, rcs with 3 d.f. and 1 dftvc***********
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0643352 .1087305   -0.590.554 -.277443 .1487726
+zLE8_TO~Einv-.1570408 .0570876   -2.750.006-.2689305-.0451511
+         SEX-.7420508 .1110466   -6.680.000-.9596981-.5244035
+         AGE  .202388 .0237801    8.510.000   .15578 .2489961
+    NonWhite .0914681  .270949    0.340.736-.4395822 .6225184
+households~e-.0602767 .0629205   -0.960.338-.1835985 .0630451
+      SESres .0968185 .1031415    0.940.348-.1053352 .2989722
+   ztownsend .0038579 .0539606    0.070.943-.1019029 .1096186
+    comorbid .0732491 .0250727    2.920.003 .0241076 .1223906
+       srhbr  .331562 .0793689    4.180.000 .1760017 .4871222
+   AGE#rcs() .1337759  .014794    9.040.000 .1047801 .1627716
+     rcs():1-8.923831 1.002794   -8.900.000-10.88927-6.958392
+     rcs():2  .702513 .0739566    9.500.000 .5575607 .8474653
+     rcs():3 .1119958 .0489725    2.290.022 .0160115 .2079801
+       _cons -19.7445 1.633577  -12.090.000-22.94626-16.54275
+
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres  ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr .9806966 .1041042    9.420.000 .7766561 1.184737
+zLE8_TO~Einv-.0013766 .0446623   -0.030.975-.0889131   .08616
+         SEX -.205249 .0833581   -2.460.014-.3686278-.0418702
+         AGE .1414057 .0172231    8.210.000 .1076491 .1751624
+    NonWhite-.3444456 .2512659   -1.370.170-.8369178 .1480266
+households~e-.0037226 .0375307   -0.100.921-.0772814 .0698362
+      SESres-.2183183 .0863681   -2.530.011-.3875967-.0490398
+   ztownsend  .109177 .0409302    2.670.008 .0289553 .1893987
+    comorbid  .062854 .0192392    3.270.001 .0251459 .1005622
+       srhbr .3727437 .0625835    5.960.000 .2500824  .495405
+   AGE#rcs() .1646731 .0158913   10.360.000 .1335266 .1958196
+     rcs():1-9.947545 1.038201   -9.580.000-11.98238-7.912709
+     rcs():2  .774386 .0768602   10.080.000 .6237427 .9250293
+     rcs():3 .0728369  .045393    1.600.109-.0161316 .1618055
+       _cons-16.77932 1.182551  -14.190.000-19.09707-14.46156
+
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres  ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0156355 .0464896   -0.340.737-.1067533 .0754824
+zLE8_TO~Einv .1723773 .0235027    7.330.000 .1263127 .2184418
+         SEX-.4962293 .0461695  -10.750.000  -.58672-.4057387
+         AGE .0908392 .0095586    9.500.000 .0721047 .1095736
+    NonWhite-.1260628 .1168502   -1.080.281 -.355085 .1029593
+households~e-.0662142 .0262711   -2.520.012-.1177046-.0147238
+      SESres-.1671739 .0455565   -3.670.000-.2564629-.0778849
+   ztownsend .1089427 .0216292    5.040.000 .0665502 .1513352
+    comorbid  .074765 .0100356    7.450.000 .0550956 .0944344
+       srhbr .4868058 .0330996   14.710.000 .4219318 .5516799
+   AGE#rcs() .1204495 .0064093   18.790.000 .1078874 .1330116
+     rcs():1-7.463591 .4294643  -17.380.000-8.305326-6.621857
+     rcs():2 .5781239 .0329712   17.530.000 .5135015 .6427463
+     rcs():3 .1041341 .0210703    4.940.000  .062837 .1454311
+       _cons-11.35499 .6539801  -17.360.000-12.63677-10.07321
+
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr .0198706 .2478057    0.080.936-.4658196 .5055608
+zLE8_TO~Einv .0591523 .1385747    0.430.669-.2124491 .3307538
+         SEX-.1274601 .2597954   -0.490.624-.6366496 .3817295
+         AGE .1666835  .061651    2.700.007 .0458497 .2875172
+    NonWhite  .499621 .4716724    1.060.289  -.42484 1.424082
+households~e .2080404 .1407373    1.480.139-.0677995 .4838804
+      SESres -.395615 .2786476   -1.420.156-.9417544 .1505243
+   ztownsend-.0738296 .1340346   -0.550.582-.3365327 .1888734
+    comorbid .0518801  .054731    0.950.343-.0553907 .1591509
+       srhbr .1998202 .1776571    1.120.261-.1483813 .5480216
+   AGE#rcs() .0745293 .0550079    1.350.175-.0332842 .1823427
+     rcs():1-4.898006 3.577408   -1.370.171 -11.9096 2.113584
+     rcs():2 .2404935 .2896602    0.830.406  -.32723  .808217
+     rcs():3 .0236628 .1308021    0.180.856-.2327047 .2800303
+       _cons-15.41399 4.288174   -3.590.000-23.81866-7.009327
+
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr .2176401 .1938536    1.120.262 -.162306 .5975861
+zLE8_TO~Einv .0949611 .1119382    0.850.396-.1244338 .3143559
+         SEX-.1969466 .2015062   -0.980.328-.5918916 .1979983
+         AGE .1333048 .0452098    2.950.003 .0446953 .2219143
+    NonWhite-.6447517 .6071147   -1.060.288-1.834675 .5451712
+households~e-.2849371 .1399805   -2.040.042-.5592939-.0105803
+      SESres .1134181  .209206    0.540.588-.2966181 .5234544
+   ztownsend .0341077 .1002738    0.340.734-.1624253 .2306407
+    comorbid-.1279213 .0491602   -2.600.009-.2242735-.0315692
+       srhbr .2608317 .1332639    1.960.050-.0003608 .5220242
+   AGE#rcs() .0323014 .0438368    0.740.461-.0536172   .11822
+     rcs():1-2.157698 2.838728   -0.760.447-7.721502 3.406106
+     rcs():2 .2149568 .2331991    0.920.357-.2421049 .6720186
+     rcs():3 .0247352 .1130683    0.220.827-.1968745  .246345
+       _cons-11.10021 3.119251   -3.560.000-17.21383-4.986593
+
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(rcs) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created for model 1, component 12: _cmp_1_12_1 to _cmp_1_12_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.1273505 .1354529   -0.940.347-.3928332 .1381323
+zLE8_TO~Einv .0047257 .0595465    0.080.937-.1119833 .1214347
+         SEX-.3732961 .1137498   -3.280.001-.5962416-.1503506
+         AGE .0726929 .0324117    2.240.025  .009167 .1362187
+    NonWhite-.5077383 .3469926   -1.460.143-1.187831 .1723548
+households~e .0326733 .0334203    0.980.328-.0328293 .0981759
+      SESres-.1495978 .1193955   -1.250.210-.3836087 .0844131
+   ztownsend .0098683 .0562349    0.180.861-.1003501 .1200868
+    comorbid-.0136954 .0241488   -0.570.571-.0610262 .0336355
+       srhbr-.0737095 .0781424   -0.940.346-.2268658 .0794467
+   AGE#rcs() .0604211 .0252622    2.390.017 .0109082  .109934
+     rcs():1-4.007118 1.650484   -2.430.015-7.242007-.7722282
+     rcs():2 .3621487 .1355368    2.670.008 .0965014  .627796
+     rcs():3 .0731002 .0664378    1.100.271-.0571154 .2033159
+       _cons-6.150341 2.232653   -2.750.006-10.52626-1.774422
+
+
+. 
+. 
+. 
+. capture log close
+

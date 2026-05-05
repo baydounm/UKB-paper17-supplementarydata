@@ -1,0 +1,236 @@
+. 
+. 
+. //STEP 20: NO NEED FOR MULTIPLE IMPUTATIONS///
+. 
+. 
+. use "/opt/notebooks/UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta",clear
+
+. 
+. capture drop AGE
+
+. gen AGE=baselineage
+(253 missing values generated)
+
+. 
+. capture drop SEX
+
+. gen SEX=sex
+(253 missing values generated)
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. save "/opt/notebooks/finaldata_unimputed.dta", replace
+
+file 
+/opt/notebooks/finaldata_unimputed.dta
+saved
+
+
+. 
+. sort n_eid 
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputed.dta
+saved
+
+
+. 
+. set matsize 11000
+set matsize ignored.
+
+Matrix sizes are no longer limited by
+c(matsize) in modern Statas.
+Matrix sizes are now limited by edition of Stata.
+See  for more details.
+
+
+. 
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(baselineage) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time baselineage
+Exit on or before: failure
+
+
+    502,409  total observations
+        253  event time missing (Age_dementia>=.)PROBABLE ERROR
+        226  observations end on or before enter()
+
+    501,930  observations remaining, representing
+    501,930  subjects
+      9,819  failures in single-failure-per-subject data
+  7,190,328  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  37.41821
+                                          Last observed exit t =  89.80151
+
+. 
+. 
+. keep n_eid AGE baselineage Age SEX RACE_ETHN  AD_PGS educationbr  smoking etsmoke townsend householdincome occupation packyearssmoke alcohol HDI_TOTALSCORE SS_friendsfamily SS_leisuresocial SS_abilityconfide srhbr allostatic METmin vitamind rdw comorbid bmi  LE8* POORCOGN householdsize Age_AD ad_diag Age_dementia dem_diag Age_PD PD_diag Age_death died withdrew sample* time*   _t* _d* time* Age* n_262*_0_0 withdrew medicationnum POLYPH statins  bptreat  gfap nefl ln_* PM* NO* lnPM* lnNO* sqrtPM* lnNO* AIRPOLLUTION1 AIRPOLLUTION2 METAB*
+
+. 
+. keep if sample_final2==1
+(482,770 observations deleted)
+
+. 
+. save "/opt/notebooks/finaldata_unimputedfin.dta", replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. use "/opt/notebooks/finaldata_unimputedfin.dta",clear
+
+. 
+. **TERTILE OF AD PGS**
+. capture drop AD_PGStert
+
+. xtile AD_PGStert=AD_PGS if sample_final==1, nq(3)
+
+. 
+. 
+. **TERTILE OF LE8 TOTAL SCORE**********************************************
+. 
+. 
+. capture drop LE8_TOTALSCOREtert
+
+. xtile LE8_TOTALSCOREtert=LE8_TOTALSCORE if sample_final==1, nq(3)
+
+. 
+. save "/opt/notebooks/finaldata_unimputedfin.dta", replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. 
+. **SES: educationbr, householdincome, townsend, occupation
+. 
+. capture drop zeducationbr 
+
+. egen zeducationbr=std(educationbr) if sample_final==1
+(115 missing values generated)
+
+. 
+. capture drop zhouseholdincome 
+
+. egen zhouseholdincome=std(householdincome) if sample_final==1
+(3,067 missing values generated)
+
+. 
+. capture drop ztownsend
+
+. egen ztownsend=std(townsend) if sample_final==1
+
+. 
+. capture drop ztownsendinv
+
+. gen ztownsendinv=ztownsend*-1
+
+. 
+. 
+. capture drop zoccupation
+
+. egen zoccupation=std(occupation) if sample_final==1
+(8,693 missing values generated)
+
+. 
+. 
+. capture drop zoccupationinv
+
+. gen zoccupationinv=zoccupation*-1
+(8,693 missing values generated)
+
+. 
+. capture drop rowmissSES
+
+. egen rowmissSES=rowmiss(zeducationbr zhouseholdincome ztownsendinv zoccupationinv)
+
+. 
+. tab rowmissSES
+
+ rowmissSES |      Freq.     Percent        Cum.
++
+          0 |      9,640       49.09       49.09
+          1 |      8,123       41.36       90.45
+          2 |      1,876        9.55      100.00
++
+      Total |     19,639      100.00
+
+. 
+. capture drop SES
+
+. egen SES=rowmean(zeducationbr zhouseholdincome ztownsendinv zoccupationinv) if rowmissSES<=2
+
+. 
+. 
+. save "/opt/notebooks/finaldata_unimputedfin.dta", replace  
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. capture drop SESres
+
+. reg SES townsend if sample_final==1
+
+      Source |       SS           df       MS      Number of obs   =    19,639
++   F(1, 19637)     =  12189.48
+       Model |  3664.82168         1  3664.82168   Prob > F        =    0.0000
+    Residual |  5903.94989    19,637  .300654371   R-squared       =    0.3830
++   Adj R-squared   =    0.3830
+       Total |  9568.77156    19,638  .487257947   Root MSE        =    .54832
+
+
+         SES| Coefficient  Std. err.      t   P>|t|     [95% conf. interval]
++
+townsend |-.1442728 .0013067 -110.410.000-.1468342-.1417115
+_cons |-.2403377 .0043594  -55.130.000-.2488826-.2317929
+
+
+. predict SESres, resid
+
+. 
+. histogram SESres if sample_final==1
+(bin=42, start=-1.3596479, width=.07178862)
+
+. 
+. 
+. 
+. save "/opt/notebooks/finaldata_unimputedfin.dta", replace  
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. **************************************************************STEP 21: MAIN PART OF THE ANALYSIS: *************************
+. capture log close

@@ -1,0 +1,72 @@
+name:  <unnamed>
+       log:  /opt/notebooks/DATA_MANAGEMENT2A.smcl
+  log type:  smcl
+ opened on:   7 Oct 2024, 12:06:34
+
+. 
+. 
+. //STEP 1: GENERATE AGE, TIMES, SEX, RACE AND OTHER DEMGRAPHICS VARIABLE//
+. 
+. use "/opt/notebooks/SMALLERDATASETUKB", clear
+
+. sort n_eid
+
+. save, replace
+
+file 
+/opt/notebooks/SMALLERDATASETUKB.dta
+saved
+
+
+. 
+. 
+. use "/opt/notebooks/withdrawals", clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save, replace
+
+file 
+/opt/notebooks/withdrawals.dta
+saved
+
+
+. 
+. 
+. 
+. use "/opt/notebooks/SMALLERDATASETUKB",clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save, replace
+
+file 
+/opt/notebooks/SMALLERDATASETUKB.dta
+saved
+
+
+. 
+. merge n_eid using withdrawals
+
+(you are using old
+merge syntax; see
+[D] merge for new syntax)
+
+
+. keep if withdrew==.
+(246 observations deleted)
+
+. save SMALLERDATASETUKBfin, replace
+
+file 
+SMALLERDATASETUKBfin.dta
+saved
+
+
+. 
+. 
+. capture log close

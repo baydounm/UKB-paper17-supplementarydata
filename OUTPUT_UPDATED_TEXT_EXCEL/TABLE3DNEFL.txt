@@ -1,0 +1,1006 @@
+
+
+. 
+. use "/opt/notebooks/finaldata_unimputedfin_MULTISTATE",clear
+
+. 
+. *******NEFL*************
+. 
+. 
+. ********************MODEL 1: REDUCED MODEL***************************
+. 
+. 
+. **Transition 1**
+. 
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   (not concave)
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   (not concave)
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .5165441 .1178276    4.380.000 .2856063  .747482
+         SEX-.7499333 .1092409   -6.860.000-.9640415-.5358251
+         AGE-.0153721 .0136729   -1.120.261-.0421706 .0114263
+    NonWhite .2055118 .2706285    0.760.448-.3249103 .7359339
+households~e-.0377066 .0626613   -0.600.547-.1605204 .0851072
+      SESres-.0063439 .1001328   -0.060.949-.2026007 .1899128
+   ztownsend .0509203 .0530918    0.960.338-.0531378 .1549784
+       _cons-43.16427 1.887011  -22.870.000-46.86274-39.46579
+  log(gamma) 2.246562 .0501068   44.840.000 2.148355  2.34477
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans1==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .5158264 .1192545    4.330.000 .2820919 .7495609
+         SEX-.7349754 .1092364   -6.730.000-.9490748 -.520876
+         AGE  .039058 .0123572    3.160.002 .0148383 .0632778
+    NonWhite .1459719 .2709055    0.540.590 -.384993 .6769369
+households~e-.0559116 .0632751   -0.880.377-.1799285 .0681053
+      SESres .0010986  .100442    0.010.991-.1957641 .1979613
+   ztownsend .0371079 .0532709    0.700.486-.0673012  .141517
+   AGE#rcs() .0909001 .0088696   10.250.000  .073516 .1082843
+       _cons -6.08926 .8299243   -7.340.000-7.715881-4.462638
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 2**
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   (not concave)
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   (not concave)
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7797603 .1022916    7.620.000 .5792724 .9802482
+         SEX-.0974845 .0822632   -1.190.236-.2587175 .0637484
+         AGE .0166935 .0133834    1.250.212-.0095375 .0429244
+    NonWhite-.1703229  .250328   -0.680.496-.6609568  .320311
+households~e .0202681 .0370163    0.550.584-.0522825 .0928187
+      SESres-.3235664 .0841589   -3.840.000-.4885148 -.158618
+   ztownsend .1741215 .0402679    4.320.000 .0951979 .2530451
+       _cons-67.06372 2.118178  -31.660.000-71.21527-62.91216
+  log(gamma) 2.657573  .038541   68.950.000 2.582034 2.733112
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans2==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7935919 .1037955    7.650.000 .5901565 .9970274
+         SEX-.0862585 .0822934   -1.050.295-.2475506 .0750336
+         AGE  .033091 .0119684    2.760.006 .0096333 .0565486
+    NonWhite-.2530581 .2505378   -1.010.312-.7441032  .237987
+households~e .0048548 .0393739    0.120.902-.0723167 .0820263
+      SESres -.329557 .0843784   -3.910.000-.4949357-.1641783
+   ztownsend .1621435 .0403974    4.010.000 .0829661 .2413209
+   AGE#rcs() .1494861 .0121802   12.270.000 .1256134 .1733588
+       _cons-7.145338  .782092   -9.140.000 -8.67821-5.612466
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. **Transition 3**
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4556097 .0490695    9.280.000 .3594353 .5517841
+         SEX -.558647 .0453226  -12.330.000-.6474776-.4698163
+         AGE-.0817815 .0059125  -13.830.000-.0933698-.0701933
+    NonWhite .0103037 .1168295    0.090.930-.2186779 .2392854
+households~e-.0461423 .0264942   -1.740.082  -.09807 .0057853
+      SESres-.4052611 .0439868   -9.210.000-.4914736-.3190485
+   ztownsend .2195079 .0211495   10.380.000 .1780557 .2609601
+       _cons-47.68901  .951597  -50.110.000-49.55411-45.82392
+  log(gamma)  2.46775 .0211822  116.500.000 2.426233 2.509266
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans3==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4553661 .0498088    9.140.000 .3577426 .5529896
+         SEX -.544026 .0453194  -12.000.000-.6328504-.4552017
+         AGE-.0266946 .0056122   -4.760.000-.0376944-.0156948
+    NonWhite -.062318 .1169515   -0.530.594-.2915388 .1669028
+households~e-.0670921 .0266609   -2.520.012-.1193464-.0148377
+      SESres-.3991393 .0441437   -9.040.000-.4856594-.3126193
+   ztownsend .2062608 .0212323    9.710.000 .1646462 .2478753
+   AGE#rcs() .1082664 .0050172   21.580.000 .0984328 .1180999
+       _cons-.6612835 .3721446   -1.780.076-1.390674 .0681066
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 4**
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans4==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   (not concave)
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   (not concave)
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   (not concave)
+Iteration 22:Log likelihood =   
+Iteration 23:Log likelihood =   
+Iteration 24:Log likelihood =   (not concave)
+Iteration 25:Log likelihood =   
+Iteration 26:Log likelihood =   
+Iteration 27:Log likelihood =   
+Iteration 28:Log likelihood =   
+Iteration 29:Log likelihood =   
+Iteration 30:Log likelihood =   
+Iteration 31:Log likelihood =   
+Iteration 32:Log likelihood =   
+Iteration 33:Log likelihood =   
+Iteration 34:Log likelihood =   
+Iteration 35:Log likelihood =   
+Iteration 36:Log likelihood =   
+Iteration 37:Log likelihood =   
+Iteration 38:Log likelihood =   
+Iteration 39:Log likelihood =   
+Iteration 40:Log likelihood =   
+Iteration 41:Log likelihood =   (not concave)
+Iteration 42:Log likelihood =   
+Iteration 43:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2403811 .2831681    0.850.396-.3146183 .7953805
+         SEX-.1777929 .2584455   -0.690.491-.6843367 .3287509
+         AGE  .100681 .0321753    3.130.002 .0376186 .1637435
+    NonWhite   .70196 .4511737    1.560.120-.1823242 1.586244
+households~e .2138335  .143204    1.490.135-.0668413 .4945082
+      SESres-.4628457  .266948   -1.730.083-.9860542 .0603627
+   ztownsend-.0051107  .125843   -0.040.968-.2517585  .241537
+       _cons 3.516653 286.7186    0.010.990-558.4415 565.4748
+  log(gamma)-9.514159 286.6368   -0.030.974 -571.312 552.2837
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans4==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2121753 .2858932    0.740.458-.3481652 .7725157
+         SEX-.1518815  .260881   -0.580.560-.6631988 .3594357
+         AGE  .002835 .0370333    0.080.939 -.069749  .075419
+    NonWhite  .571267 .4611752    1.240.215-.3326198 1.475154
+households~e .1859206 .1463429    1.270.204-.1009063 .4727474
+      SESres-.5034056 .2723778   -1.850.065-1.037256 .0304451
+   ztownsend-.0042581 .1258982   -0.030.973-.2510141  .242498
+   AGE#rcs() .0973037   .04163    2.340.019 .0157104  .178897
+       _cons-1.815003 2.490869   -0.730.466-6.697016  3.06701
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. 
+. **Transition 5**
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans5==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr  .314716 .2277855    1.380.167-.1317354 .7611674
+         SEX-.2721792 .2007502   -1.360.175-.6656423 .1212839
+         AGE .1041584 .0365371    2.850.004 .0325471 .1757697
+    NonWhite-.2795684 .5969934   -0.470.640-1.449654 .8905171
+households~e -.243434 .1383542   -1.760.078-.5146032 .0277352
+      SESres .0868402  .200127    0.430.664-.3054016 .4790819
+   ztownsend  .055773 .0970811    0.570.566-.1345025 .2460486
+       _cons -5.49125 11.67817   -0.470.638-28.38003 17.39753
+  log(gamma) -.893556  4.79626   -0.190.852-10.29405 8.506941
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans5==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+convergence not achieved
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .3160476 .2273001    1.390.164-.1294523 .7615475
+         SEX-.3092935 .2014332   -1.540.125-.7040954 .0855084
+         AGE -.042157 .0368799   -1.140.253-.1144403 .0301263
+    NonWhite-.2105109 .6035935   -0.350.727-1.393532 .9725106
+households~e-.3115689 .1427237   -2.180.029-.5913022-.0318356
+      SESres .1105874 .2007388    0.550.582-.2828535 .5040283
+   ztownsend .0424419 .0961445    0.440.659-.1459978 .2308816
+   AGE#rcs() .0738576 .0009595   76.980.000 .0719771 .0757381
+       _cons  3.22778 2.583193    1.250.211-1.835185 8.290744
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 6**
+. **Weibull**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans6==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2048585 .1452084    1.410.158-.0797448 .4894617
+         SEX-.3930497 .1105851   -3.550.000-.6097925 -.176307
+         AGE .0164984 .0228999    0.720.471-.0283845 .0613813
+    NonWhite-.4414229 .3424548   -1.290.197-1.112622 .2297761
+households~e .0384887 .0336013    1.150.252-.0273686 .1043459
+      SESres-.1305776  .117022   -1.120.264-.3599365 .0987813
+   ztownsend .0062654 .0539383    0.120.908-.0994518 .1119826
+       _cons-3.231563 5.900631   -0.550.584-14.79659 8.333461
+  log(gamma) .1043125 1.204243    0.090.931-2.255961 2.464586
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans6==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 8: _cmp_1_8_1 to _cmp_1_8_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr  .178783 .1458448    1.230.220-.1070676 .4646337
+         SEX-.3963184 .1107659   -3.580.000-.6134156-.1792212
+         AGE-.0461277 .0179672   -2.570.010-.0813427-.0109127
+    NonWhite-.3819205 .3447672   -1.110.268-1.057652 .2938108
+households~e .0288029 .0346179    0.830.405-.0390469 .0966526
+      SESres-.1121887 .1166866   -0.960.336-.3408903 .1165129
+   ztownsend .0035397 .0545324    0.060.948-.1033418 .1104212
+   AGE#rcs() .1033184 .0193047    5.350.000  .065482 .1411548
+       _cons 3.525013 1.196168    2.950.003 1.180567  5.86946
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. 
+. 
+. ********************MODEL 2: FULL MODEL***************************
+. 
+. 
+. **Transition 1**
+. 
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   (not concave)
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4755786 .1180663    4.030.000  .244173 .7069842
+zLE8_TO~Einv-.1480591 .0569097   -2.600.009-.2596001-.0365181
+         SEX-.7670899 .1099687   -6.980.000-.9826245-.5515553
+         AGE-.0177084 .0137831   -1.280.199-.0447228  .009306
+    NonWhite .1690669 .2705836    0.620.532-.3612673 .6994011
+households~e-.0356265 .0615643   -0.580.563-.1562904 .0850373
+      SESres .0817367 .1027952    0.800.427-.1197382 .2832117
+   ztownsend .0189073  .053706    0.350.725-.0863546 .1241692
+    comorbid .0727677 .0249924    2.910.004 .0237836 .1217519
+       srhbr .3339655  .079416    4.210.000  .178313 .4896179
+       _cons-44.41734  1.92202  -23.110.000-48.18444-40.65025
+  log(gamma)  2.25881 .0499066   45.260.000 2.160995 2.356625
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4743019 .1195487    3.970.000 .2399907 .7086131
+zLE8_TO~Einv-.1450982 .0570946   -2.540.011-.2570016-.0331947
+         SEX-.7532433 .1099728   -6.850.000-.9687861-.5377005
+         AGE .0371933 .0125033    2.970.003 .0126872 .0616994
+    NonWhite .1125368 .2708968    0.420.678-.4184112 .6434849
+households~e-.0524683 .0624182   -0.840.401-.1748057  .069869
+      SESres .0861863 .1031112    0.840.403 -.115908 .2882805
+   ztownsend .0055154 .0539512    0.100.919-.1002269 .1112578
+    comorbid .0710262 .0250328    2.840.005 .0219628 .1200897
+       srhbr .3200109 .0792896    4.040.000 .1646061 .4754156
+   AGE#rcs() .0914596 .0089489   10.220.000 .0739201 .1089992
+       _cons-6.837329  .864184   -7.910.000-8.531099 -5.14356
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 2**
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7502468 .1024613    7.320.000 .5494263 .9510674
+zLE8_TO~Einv-.0073155 .0444207   -0.160.869-.0943785 .0797475
+         SEX-.0927202 .0826674   -1.120.262-.2547454  .069305
+         AGE .0146944 .0134554    1.090.275-.0116776 .0410665
+    NonWhite-.2053696 .2507509   -0.820.413-.6968323 .2860931
+households~e .0152035 .0355503    0.430.669-.0544738 .0848807
+      SESres -.200545 .0861244   -2.330.020-.3693457-.0317443
+   ztownsend .1263974  .040821    3.100.002 .0463896 .2064052
+    comorbid .0564505 .0192294    2.940.003 .0187616 .0941395
+       srhbr .3718325  .062568    5.940.000 .2492014 .4944635
+       _cons-68.92168 2.150613  -32.050.000 -73.1368-64.70655
+  log(gamma) 2.673956 .0382502   69.910.000 2.598987 2.748925
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7638212 .1039923    7.340.000      .56 .9676424
+zLE8_TO~Einv-.0004441 .0445039   -0.010.992-.0876702  .086782
+         SEX-.0839767 .0826716   -1.020.310-.2460101 .0780566
+         AGE .0314187 .0120631    2.600.009 .0077754  .055062
+    NonWhite-.2868814 .2509061   -1.140.253-.7786482 .2048854
+households~e .0013134 .0376658    0.030.972-.0725102 .0751371
+      SESres-.2072347 .0863368   -2.400.016-.3764517-.0380176
+   ztownsend .1143038 .0410053    2.790.005 .0339348 .1946727
+    comorbid .0564422 .0192479    2.930.003 .0187169 .0941674
+       srhbr .3609999 .0624356    5.780.000 .2386285 .4833714
+   AGE#rcs() .1502591 .0122737   12.240.000 .1262031 .1743152
+       _cons-7.984239 .8032985   -9.940.000-9.558676-6.409803
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. **Transition 3**
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   (not concave)
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   (not concave)
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4173428 .0491336    8.490.000 .3210428 .5136428
+zLE8_TO~Einv .1725706  .023423    7.370.000 .1266624 .2184789
+         SEX-.5101914 .0456627  -11.170.000-.5996886-.4206942
+         AGE-.0816149 .0059705  -13.670.000-.0933168 -.069913
+    NonWhite-.0347715 .1166674   -0.300.766-.2634353 .1938923
+households~e-.0439595 .0257909   -1.700.088-.0945088 .0065899
+      SESres-.1772447 .0454146   -3.900.000-.2662558-.0882337
+   ztownsend  .120411 .0215408    5.590.000 .0781918 .1626301
+    comorbid .0720404 .0100303    7.180.000 .0523813 .0916994
+       srhbr .4815495 .0331397   14.530.000 .4165968 .5465021
+       _cons-50.27389 .9735304  -51.640.000-52.18198-48.36581
+  log(gamma) 2.490801 .0209686  118.790.000 2.449703 2.531899
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4189912 .0498915    8.400.000 .3212057 .5167767
+zLE8_TO~Einv   .18157 .0234749    7.730.000   .13556   .22758
+         SEX-.4978652 .0456441  -10.910.000-.5873259-.4084045
+         AGE-.0261495  .005689   -4.600.000-.0372996-.0149993
+    NonWhite-.1111388 .1168462   -0.950.342-.3401531 .1178756
+households~e-.0617051 .0261183   -2.360.018-.1128962-.0105141
+      SESres-.1725153 .0455794   -3.780.000-.2618493-.0831812
+   ztownsend .1086929 .0216566    5.020.000 .0662468  .151139
+    comorbid .0721803 .0100527    7.180.000 .0524773 .0918833
+       srhbr  .471323 .0330756   14.250.000 .4064961   .53615
+   AGE#rcs()  .110619 .0050901   21.730.000 .1006425 .1205954
+       _cons-2.076844 .3882956   -5.350.000-2.837889-1.315799
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 4**
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   (not concave)
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   (not concave)
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   (not concave)
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   (not concave)
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   
+Iteration 23:Log likelihood =   
+Iteration 24:Log likelihood =   
+Iteration 25:Log likelihood =   
+Iteration 26:Log likelihood =   
+Iteration 27:Log likelihood =   
+Iteration 28:Log likelihood =   
+Iteration 29:Log likelihood =   
+Iteration 30:Log likelihood =   
+Iteration 31:Log likelihood =   
+Iteration 32:Log likelihood =   (not concave)
+Iteration 33:Log likelihood =   
+Iteration 34:Log likelihood =   
+Iteration 35:Log likelihood =   (not concave)
+Iteration 36:Log likelihood =   (not concave)
+Iteration 37:Log likelihood =   
+Iteration 38:Log likelihood =   
+Iteration 39:Log likelihood =   
+Iteration 40:Log likelihood =   
+Iteration 41:Log likelihood =   
+Iteration 42:Log likelihood =   
+Iteration 43:Log likelihood =   
+Iteration 44:Log likelihood =   
+Iteration 45:Log likelihood =   
+Iteration 46:Log likelihood =   
+Iteration 47:Log likelihood =   
+Iteration 48:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2839802 .2862038    0.990.321 -.276969 .8449294
+zLE8_TO~Einv   .04124  .136337    0.300.762-.2259755 .3084555
+         SEX-.1816763 .2584908   -0.700.482-.6883089 .3249564
+         AGE .0982239 .0350617    2.800.005 .0295043 .1669435
+    NonWhite .6495772 .4604304    1.410.158-.2528497 1.552004
+households~e .2067001 .1421775    1.450.146-.0719626 .4853629
+      SESres-.3635677 .2738219   -1.330.184-.9002487 .1731134
+   ztownsend-.0761075 .1337257   -0.570.569 -.338205   .18599
+    comorbid .0429134 .0537391    0.800.425-.0624133 .1482401
+       srhbr .2054267 .1754554    1.170.242-.1384594 .5493129
+       _cons-3.972662 19.20242   -0.210.836-41.60871 33.66339
+  log(gamma)-2.774062 15.67658   -0.180.860 -33.4996 27.95148
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans4==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2663803  .289972    0.920.358-.3019544  .834715
+zLE8_TO~Einv .0865879 .1401781    0.620.537-.1881562 .3613319
+         SEX-.1524905 .2608964   -0.580.559-.6638381 .3588571
+         AGE -.001681 .0368924   -0.050.964-.0739886 .0706267
+    NonWhite .4923926 .4739065    1.040.299-.4364471 1.421232
+households~e .1856986 .1452335    1.280.201-.0989538  .470351
+      SESres-.3932913 .2793905   -1.410.159-.9408866  .154304
+   ztownsend-.0756684 .1327851   -0.570.569-.3359224 .1845857
+    comorbid  .048058   .05439    0.880.377-.0585444 .1546605
+       srhbr .1931661 .1769872    1.090.275-.1537225 .5400546
+   AGE#rcs() .1063325 .0429099    2.480.013 .0222305 .1904344
+       _cons-2.262413 2.524698   -0.900.370 -7.21073 2.685905
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 5**
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   (not concave)
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   (not concave)
+Iteration 18:Log likelihood =   (not concave)
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   (not concave)
+Iteration 23:Log likelihood =   
+Iteration 24:Log likelihood =   
+Iteration 25:Log likelihood =   
+Iteration 26:Log likelihood =   
+Iteration 27:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .3688981 .2307476    1.600.110 -.083359 .8211551
+zLE8_TO~Einv .1197695 .1103253    1.090.278-.0964642 .3360031
+         SEX-.2262571 .2023871   -1.120.264-.6229285 .1704143
+         AGE  .111494 .0383633    2.910.004 .0363033 .1866847
+    NonWhite-.5559035 .6059667   -0.920.359-1.743577 .6317695
+households~e-.2760909 .1390226   -1.990.047-.5485701-.0036117
+      SESres .1375117 .2074348    0.660.507 -.269053 .5440764
+   ztownsend .0363867  .100387    0.360.717-.1603683 .2331417
+    comorbid-.1308661 .0493495   -2.650.008-.2275893-.0341429
+       srhbr .2611727 .1330854    1.960.050 .0003302 .5220153
+       _cons-6.036672 12.98435   -0.460.642-31.48553 19.41219
+  log(gamma)-.9626636 5.544752   -0.170.862-11.83018 9.904851
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans5==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+convergence not achieved
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr-11.15004 3.21e-13-3.5e+130.000-11.15004-11.15004
+zLE8_TO~Einv  10.9809        .       .    .        .        .
+         SEX-.3191273        .       .    .        .        .
+         AGE-.0872462        .       .    .        .        .
+    NonWhite-7.886009 1.43e-10-5.5e+100.000-7.886009-7.886009
+households~e  .748599        .       .    .        .        .
+      SESres 4.628316 9.13e-15 5.1e+140.000 4.628316 4.628316
+   ztownsend-9.684223        .       .    .        .        .
+    comorbid-3.892085 1.96e-15-2.0e+150.000-3.892085-3.892085
+       srhbr 4.551905        .       .    .        .        .
+   AGE#rcs()  .096817        .       .    .        .        .
+       _cons 38.08762        .       .    .        .        .
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. **Transition 6**
+. **Weibull**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(weibull)
+note; a delayed entry model is being fitted
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .2039985 .1462348    1.400.163-.0826164 .4906134
+zLE8_TO~Einv .0109638  .059251    0.190.853 -.105166 .1270936
+         SEX-.3917926 .1113783   -3.520.000-.6100901-.1734951
+         AGE .0151369 .0223602    0.680.498-.0286882 .0589621
+    NonWhite-.4204604 .3447689   -1.220.223-1.096195 .2552742
+households~e .0403978 .0337416    1.200.231-.0257345   .10653
+      SESres-.1533794 .1193766   -1.280.199-.3873532 .0805945
+   ztownsend .0179372  .055473    0.320.746-.0907879 .1266623
+    comorbid-.0059732 .0242863   -0.250.806-.0535735 .0416272
+       srhbr-.0849241 .0775772   -1.090.274-.2369727 .0671244
+       _cons-2.643815 5.714686   -0.460.644-13.84439 8.556763
+  log(gamma) .0544313   1.2089    0.050.964 -2.31497 2.423832
+
+
+. 
+. 
+. **RP**
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans6==1, distribution(rp) df(3) tvc(AGE) dftvc(1) nolog
+note; a delayed entry model is being fitted
+Obtaining initial values
+variables created for model 1, component 11: _cmp_1_11_1 to _cmp_1_11_1
+variables created: _rcs1_1 to _rcs1_3
+
+Fitting full model:
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .1755254 .1468076    1.200.232-.1122122  .463263
+zLE8_TO~Einv .0251822 .0601206    0.420.675-.0926519 .1430163
+         SEX-.3888447 .1116774   -3.480.000-.6077284 -.169961
+         AGE-.0478435 .0180416   -2.650.008-.0832044-.0124827
+    NonWhite -.374056 .3457658   -1.080.279-1.051744 .3036325
+households~e .0312009 .0349448    0.890.372-.0372896 .0996914
+      SESres-.1353918 .1193785   -1.130.257-.3693694 .0985858
+   ztownsend .0176925 .0561698    0.310.753-.0923983 .1277833
+    comorbid-.0161296 .0245839   -0.660.512-.0643131 .0320539
+       srhbr-.0876287 .0777394   -1.130.260-.2399951 .0647376
+   AGE#rcs() .1058698 .0194562    5.440.000 .0677364 .1440033
+       _cons 3.867475 1.221315    3.170.002 1.473741 6.261209
+
+    Warning: Baseline spline coefficients not shown - use ml display
+
+. 
+. 
+. 
+. capture log close
+

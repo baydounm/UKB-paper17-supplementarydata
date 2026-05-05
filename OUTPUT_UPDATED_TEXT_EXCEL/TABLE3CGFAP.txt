@@ -1,0 +1,676 @@
+
+
+. 
+. 
+. 
+. **********Merlin Weibull models*************************
+. 
+. *****Transition 1: Healthy --> PD********************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   (not concave)
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0501237 .1079465   -0.460.642 -.261695 .1614476
+zLE8_TO~Einv-.1612551 .0568769   -2.840.005-.2727318-.0497783
+         SEX-.7612635 .1110542   -6.850.000-.9789257-.5436014
+         AGE-.0015586 .0136126   -0.110.909-.0282387 .0251216
+    NonWhite .1526758 .2706295    0.560.573-.3777482 .6830998
+households~e-.0384828 .0616308   -0.620.532-.1592769 .0823114
+      SESres .0880692 .1027492    0.860.391-.1133156  .289454
+   ztownsend .0177114 .0536789    0.330.741-.0874973   .12292
+    comorbid .0752887 .0249831    3.010.003 .0263227 .1242547
+       srhbr .3474447 .0794673    4.370.000 .1916917 .5031977
+       _cons-45.00941 1.919783  -23.450.000-48.77211 -41.2467
+  log(gamma) 2.255244 .0499814   45.120.000 2.157282 2.353205
+
+
+. estimate store m1
+
+. capture drop s1gfap*
+
+. predict s1gfap if sample_final==1 & _trans1==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1gfap
+
+. gen lns1gfap=ln(s1gfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1gfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1gfap _t if _t<84, sort) (lpolyci s1gfap_lci _t if _t<84, sort) (lpolyci s1gfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_1_1gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_1_1gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s1goodgfap*
+
+. predict s1goodgfap if sample_final==1 & _trans1==1, at(gfapbr 0) surv ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1goodgfap
+
+. gen lns1goodgfap=ln(s1goodgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1goodgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1goodgfap _t if _t<84, sort) (lpolyci s1goodgfap_lci _t if _t<84, sort) (lpolyci s1goodgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_1_2gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_1_2gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s1poorgfap*
+
+. predict s1poorgfap if sample_final==1 & _trans1==1, at(gfapbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1poorgfap
+
+. gen lns1poorgfap=ln(s1poorgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1poorgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1poorgfap _t if _t<84, sort) (lpolyci s1poorgfap_lci _t if _t<84, sort) (lpolyci s1poorgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_1_3gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_1_3gfap.gph
+not found)
+
+file  saved
+
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   (not concave)
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0501237 .1079465   -0.460.642 -.261695 .1614476
+zLE8_TO~Einv-.1612551 .0568769   -2.840.005-.2727318-.0497783
+         SEX-.7612635 .1110542   -6.850.000-.9789257-.5436014
+         AGE-.0015586 .0136126   -0.110.909-.0282387 .0251216
+    NonWhite .1526758 .2706295    0.560.573-.3777482 .6830998
+households~e-.0384828 .0616308   -0.620.532-.1592769 .0823114
+      SESres .0880692 .1027492    0.860.391-.1133156  .289454
+   ztownsend .0177114 .0536789    0.330.741-.0874973   .12292
+    comorbid .0752887 .0249831    3.010.003 .0263227 .1242547
+       srhbr .3474447 .0794673    4.370.000 .1916917 .5031977
+       _cons-45.00941 1.919783  -23.450.000-48.77211 -41.2467
+  log(gamma) 2.255244 .0499814   45.120.000 2.157282 2.353205
+
+
+. capture drop s1diffgfap80*
+
+. predict s1diffgfap80 if sample_final==1 & _trans1==1, sdifference at1(gfapbr 0 _t 80) at2(gfapbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s1diffgfap80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s1diffgfap80 _t if _t<80, sort) (lpolyci s1diffgfap80_lci _t if _t<80, sort) (lpolyci s1diffgfap80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_1_4gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_1_4gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. graph combine "/opt/notebooks/FIGURE_5_1_1gfap.gph" "/opt/notebooks/FIGURE_5_1_2gfap.gph" "/opt/notebooks/FIGURE_5_1_3gfap.gph" "/opt/notebooks/FIGURE_5_1_4gfap.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooks/FIGURE_5_1gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_1gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+.  
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. *****Transition 2: Healthy --> Dementia********************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr .9748162 .1034414    9.420.000 .7720747 1.177558
+zLE8_TO~Einv-.0080242 .0445938   -0.180.857-.0954265 .0793781
+         SEX-.2148904 .0833593   -2.580.010-.3782717-.0515091
+         AGE .0152448  .013296    1.150.252-.0108148 .0413044
+    NonWhite-.2670225 .2514231   -1.060.288-.7598027 .2257577
+households~e  .008647 .0350459    0.250.805-.0600418 .0773358
+      SESres-.2118496 .0861186   -2.460.014 -.380639-.0430602
+   ztownsend  .118897 .0408145    2.910.004  .038902  .198892
+    comorbid .0630938 .0192324    3.280.001  .025399 .1007887
+       srhbr .3823756 .0626947    6.100.000 .2594962  .505255
+       _cons-68.75226 2.147736  -32.010.000-72.96175-64.54277
+  log(gamma) 2.670755 .0383141   69.710.000 2.595661  2.74585
+
+
+. estimate store m2
+
+. capture drop s2gfap*
+
+. predict s2gfap if sample_final==1 & _trans2==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2gfap
+
+. gen lns2=ln(s2gfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2gfap _t if _t<84, sort) (lpolyci s2gfap_lci _t if _t<84, sort) (lpolyci s2gfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_2_1gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_2_1gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s2goodgfap*
+
+. predict s2goodgfap if sample_final==1 & _trans2==1, at(gfapbr 0) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2goodgfap
+
+. gen lns2goodgfap=ln(s2goodgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2goodgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2goodgfap _t if _t<84, sort) (lpolyci s2goodgfap_lci _t if _t<84, sort) (lpolyci s2goodgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_2_2gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_2_2gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s2poorgfap*
+
+. predict s2poorgfap if sample_final==1 & _trans2==1, at(gfapbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2poorgfap
+
+. gen lns2poorgfap=ln(s2poorgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2poorgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2poorgfap _t if _t<84, sort) (lpolyci s2poorgfap_lci _t if _t<84, sort) (lpolyci s2poorgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_2_3gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_2_3gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr .9748162 .1034414    9.420.000 .7720747 1.177558
+zLE8_TO~Einv-.0080242 .0445938   -0.180.857-.0954265 .0793781
+         SEX-.2148904 .0833593   -2.580.010-.3782717-.0515091
+         AGE .0152448  .013296    1.150.252-.0108148 .0413044
+    NonWhite-.2670225 .2514231   -1.060.288-.7598027 .2257577
+households~e  .008647 .0350459    0.250.805-.0600418 .0773358
+      SESres-.2118496 .0861186   -2.460.014 -.380639-.0430602
+   ztownsend  .118897 .0408145    2.910.004  .038902  .198892
+    comorbid .0630938 .0192324    3.280.001  .025399 .1007887
+       srhbr .3823756 .0626947    6.100.000 .2594962  .505255
+       _cons-68.75226 2.147736  -32.010.000-72.96175-64.54277
+  log(gamma) 2.670755 .0383141   69.710.000 2.595661  2.74585
+
+
+. capture drop s2diffgfap80*
+
+. predict s2diffgfap80 if sample_final==1 & _trans2==1, sdifference at1(gfapbr 0 _t 80) at2(gfapbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s2diffgfap80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s2diffgfap80 _t if _t<80, sort) (lpolyci s2diffgfap80_lci _t if _t<80, sort) (lpolyci s2diffgfap80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_2_4gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_2_4gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. graph combine "/opt/notebooks/FIGURE_5_2_1gfap.gph" "/opt/notebooks/FIGURE_5_2_2gfap.gph" "/opt/notebooks/FIGURE_5_2_3gfap.gph" "/opt/notebooks/FIGURE_5_2_4gfap.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooks/FIGURE_5_2gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_2gfap.gph
+not found)
+
+file  saved
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. *****Transition 3: Healthy --> Died********************
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   (not concave)
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0084482 .0461355   -0.180.855-.0988721 .0819756
+zLE8_TO~Einv .1637898 .0234436    6.990.000 .1178412 .2097383
+         SEX-.5096237 .0461847  -11.030.000-.6001439-.4191034
+         AGE-.0684119 .0058906  -11.610.000-.0799572-.0568665
+    NonWhite-.0558742 .1166843   -0.480.632-.2845711 .1728228
+households~e-.0476552 .0258381   -1.840.065-.0982969 .0029865
+      SESres-.1739523 .0454014   -3.830.000-.2629374-.0849672
+   ztownsend  .119081 .0215221    5.530.000 .0768986 .1612635
+    comorbid .0745062 .0099975    7.450.000 .0549115 .0941009
+       srhbr .4968929 .0331465   14.990.000 .4319269 .5618589
+       _cons-50.70837 .9722679  -52.150.000-52.61398-48.80276
+  log(gamma)  2.48743 .0209994  118.450.000 2.446272 2.528588
+
+
+. estimate store m3
+
+. capture drop s3gfap*
+
+. predict s3gfap if sample_final==1 & _trans3==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3gfap
+
+. gen lns3gfap=ln(s3gfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3gfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3gfap _t if _t<84, sort) (lpolyci s3gfap_lci _t if _t<84, sort) (lpolyci s3gfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_3_1gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_3_1gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s3goodgfap*
+
+. predict s3goodgfap if sample_final==1 & _trans3==1, at(gfapbr 0) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3goodgfap
+
+. gen lns3goodgfap=ln(s3goodgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3goodgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3goodgfap _t if _t<84, sort) (lpolyci s3goodgfap_lci _t if _t<84, sort) (lpolyci s3goodgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_3_2gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_3_2gfap.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s3poorgfap*
+
+. predict s3poorgfap if sample_final==1 & _trans3==1, at(gfapbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3poorgfap
+
+. gen lns3poorgfap=ln(s3poorgfap)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3poorgfap* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3poorgfap _t if _t<84, sort) (lpolyci s3poorgfap_lci _t if _t<84, sort) (lpolyci s3poorgfap_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_3_3gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_3_3gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stmerlin gfapbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   (not concave)
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      gfapbr-.0084482 .0461355   -0.180.855-.0988721 .0819756
+zLE8_TO~Einv .1637898 .0234436    6.990.000 .1178412 .2097383
+         SEX-.5096237 .0461847  -11.030.000-.6001439-.4191034
+         AGE-.0684119 .0058906  -11.610.000-.0799572-.0568665
+    NonWhite-.0558742 .1166843   -0.480.632-.2845711 .1728228
+households~e-.0476552 .0258381   -1.840.065-.0982969 .0029865
+      SESres-.1739523 .0454014   -3.830.000-.2629374-.0849672
+   ztownsend  .119081 .0215221    5.530.000 .0768986 .1612635
+    comorbid .0745062 .0099975    7.450.000 .0549115 .0941009
+       srhbr .4968929 .0331465   14.990.000 .4319269 .5618589
+       _cons-50.70837 .9722679  -52.150.000-52.61398-48.80276
+  log(gamma)  2.48743 .0209994  118.450.000 2.446272 2.528588
+
+
+. capture drop s3diffgfap80*
+
+. predict s3diffgfap80 if sample_final==1 & _trans3==1, sdifference at1(gfapbr 0 _t 80) at2(gfapbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s3diffgfap80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s3diffgfap80 _t if _t<80, sort) (lpolyci s3diffgfap80_lci _t if _t<80, sort) (lpolyci s3diffgfap80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooks/FIGURE_5_3_4gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_3_4gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. graph combine "/opt/notebooks/FIGURE_5_3_1gfap.gph" "/opt/notebooks/FIGURE_5_3_2gfap.gph" "/opt/notebooks/FIGURE_5_3_3gfap.gph" "/opt/notebooks/FIGURE_5_3_4gfap.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooks/FIGURE_5_3gfap.gph",replace
+
+(file 
+/opt/notebooks/FIGURE_5_3gfap.gph
+not found)
+
+file  saved
+
+. save, replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\DATA_UPDATED\finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. 
+. capture log close
+

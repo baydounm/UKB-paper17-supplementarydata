@@ -1,0 +1,3034 @@
+
+.
+. use "/opt/notebooks/finaldata_unimputedfin_MULTISTATE",clear
+
+.
+.
+. **    PM2.5, 2010 (Ln)
+. **    PM10, 2010 (Ln)
+. **    PM5/10, 2010 (Ln)
+. **    PM2.5abs, 2010 (Ln)
+. **    NO2, 2010 (Ln)
+. **PC1
+. **PC2
+.
+. capture drop lnPM2point5_2010br
+
+. capture drop lnPM10_2010br
+
+. capture drop lnPM2point5_10_2010br
+
+. capture drop lnPM2point5_abs_2010br
+
+. capture drop lnNO2_2010br
+
+. capture drop lnNOX_2010br
+
+.
+.
+. foreach x of varlist lnPM2point5_2010 lnPM10_2010 lnPM2point5_10_2010 lnPM2point5_abs_2010 lnNO2_2010 lnNOX_2010
+  2.         xtile `x'br=`x',nq(2)
+  3.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         recode `x' 1=0 2=1
+  3.
+(60,322 changes made to lnPM2point5_2010br)
+(60,322 changes made to lnPM10_2010br)
+(60,322 changes made to lnPM2point5_10_2010br)
+(60,322 changes made to lnPM2point5_abs_2010br)
+(60,322 changes made to lnNO2_2010br)
+(60,322 changes made to lnNOX_2010br)
+
+.
+. foreach x of varlist lnPM2point5_2010 lnPM10_2010 lnPM2point5_10_2010 lnPM2point5_abs_2010 lnNO2_2010 lnNOX_2010
+  2. bysort `x'br: su `x' if sample_final==1
+  3.
+
+-
+-> lnPM2point5_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~5_2010 |     30,378    2.216016    .0585088   2.100469   2.294553
+
+-
+-> lnPM2point5_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~5_2010 |     29,944    2.376127    .0707213   2.295561   3.005188
+
+
+-
+-> lnPM10_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+ lnPM10_2010 |     30,171    2.695415    .0736113   2.466403   2.770712
+
+-
+-> lnPM10_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+ lnPM10_2010 |     30,151    2.856078    .0833735   2.771338   3.282038
+
+
+-
+-> lnPM2point5_10_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~0_2010 |     30,266    1.764621    .0246054   1.717395   1.806648
+
+-
+-> lnPM2point5_10_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~0_2010 |     30,056    1.932019    .1254971   1.808289    2.35991
+
+
+-
+-> lnPM2point5_abs_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~s_2010 |     30,573   -.0102975    .0830619  -.1863296   .1133287
+
+-
+-> lnPM2point5_abs_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~s_2010 |     29,749    .2924643    .1582902   .1222176   1.360977
+
+
+-
+-> lnNO2_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNO2_2010 |     30,196    3.014129    .1871359    2.55955   3.251924
+
+-
+-> lnNO2_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNO2_2010 |     30,126       3.457    .1552225   3.252311   4.580058
+
+
+-
+-> lnNOX_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNOX_2010 |     30,167    3.475671    .2038601   2.982647   3.736717
+
+-
+-> lnNOX_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNOX_2010 |     30,155    3.974061    .2087041   3.736955   5.502686
+
+
+.
+.
+.
+. capture drop zAIRPOLLUTION1
+
+. capture drop zAIRPOLLUTION2
+
+. foreach x of varlist AIRPOLLUTION1 AIRPOLLUTION2
+  2. egen z`x'=std(`x')
+  3.
+.
+
+.
+.
+.
+.
+. capture drop gfapbr
+
+. xtile  gfapbr=gfap if sample_final==1, nq(2)
+
+.
+.
+. capture drop neflbr
+
+. xtile  neflbr=nefl if sample_final==1, nq(2)
+
+.
+. foreach x of varlist neflbr gfapbr
+  2.         recode `x' 1=0 2=1
+  3.
+(60,322 changes made to neflbr)
+(60,322 changes made to gfapbr)
+
+.
+. tab1 neflbr gfapbr lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+
+-> tabulation of neflbr
+
+2 quantiles |
+   of nefl  |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,162       50.00       50.00
+          1 |     30,160       50.00      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of gfapbr
+
+2 quantiles |
+   of gfap  |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,165       50.01       50.01
+          1 |     30,157       49.99      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnPM2point5_2010br
+
+2 quantiles |
+         of |
+lnPM2point5 |
+      _2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,378       50.36       50.36
+          1 |     29,944       49.64      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnPM10_2010br
+
+2 quantiles |
+         of |
+lnPM10_2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,171       50.02       50.02
+          1 |     30,151       49.98      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnPM2point5_10_2010br
+
+2 quantiles |
+         of |
+lnPM2point5 |
+   _10_2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,266       50.17       50.17
+          1 |     30,056       49.83      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnPM2point5_abs_2010br
+
+2 quantiles |
+         of |
+lnPM2point5 |
+  _abs_2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,573       50.68       50.68
+          1 |     29,749       49.32      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnNO2_2010br
+
+2 quantiles |
+         of |
+ lnNO2_2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,196       50.06       50.06
+          1 |     30,126       49.94      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+-> tabulation of lnNOX_2010br
+
+2 quantiles |
+         of |
+ lnNOX_2010 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |     30,167       50.01       50.01
+          1 |     30,155       49.99      100.00
+------------+-----------------------------------
+      Total |     60,322      100.00
+
+.
+. bysort neflbr: su nefl
+
+-
+-> neflbr = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        nefl |     30,162   -.2587879    .2942675    -2.9791      .1167
+
+-
+-> neflbr = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        nefl |     30,160    .5645232    .4180648      .1168     5.1483
+
+
+. bysort gfapbr: su gfap
+
+-
+-> gfapbr = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        gfap |     30,165   -.3144494    .3183348   -2.23605      .0861
+
+-
+-> gfapbr = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        gfap |     30,157    .5514231    .3932783     .08625    5.25285
+
+
+.
+. foreach x of varlist lnPM2point5_2010 lnPM10_2010 lnPM2point5_10_2010 lnPM2point5_abs_2010 lnNO2_2010 lnNOX_2010
+  2.
+.         bysort `x'br: su `x'
+  3.
+
+-
+-> lnPM2point5_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~5_2010 |     30,378    2.216016    .0585088   2.100469   2.294553
+
+-
+-> lnPM2point5_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~5_2010 |     29,944    2.376127    .0707213   2.295561   3.005188
+
+
+-
+-> lnPM10_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+ lnPM10_2010 |     30,171    2.695415    .0736113   2.466403   2.770712
+
+-
+-> lnPM10_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+ lnPM10_2010 |     30,151    2.856078    .0833735   2.771338   3.282038
+
+
+-
+-> lnPM2point5_10_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~0_2010 |     30,266    1.764621    .0246054   1.717395   1.806648
+
+-
+-> lnPM2point5_10_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~0_2010 |     30,056    1.932019    .1254971   1.808289    2.35991
+
+
+-
+-> lnPM2point5_abs_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~s_2010 |     30,573   -.0102975    .0830619  -.1863296   .1133287
+
+-
+-> lnPM2point5_abs_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+lnPM2~s_2010 |     29,749    .2924643    .1582902   .1222176   1.360977
+
+
+-
+-> lnNO2_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNO2_2010 |     30,196    3.014129    .1871359    2.55955   3.251924
+
+-
+-> lnNO2_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNO2_2010 |     30,126       3.457    .1552225   3.252311   4.580058
+
+
+-
+-> lnNOX_2010br = 0
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNOX_2010 |     30,167    3.475671    .2038601   2.982647   3.736717
+
+-
+-> lnNOX_2010br = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  lnNOX_2010 |     30,155    3.974061    .2087041   3.736955   5.502686
+
+
+.
+.
+. save, replace
+
+file
+/opt/notebooks/finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+.
+. *******NEFL*************
+.
+.
+. ********************MODEL 1: REDUCED MODEL***************************
+.
+.
+. **Transition 1**
+.
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans1==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1265.6063
+Iteration 2:  Log likelihood = -1263.5324
+Iteration 3:  Log likelihood = -1263.5263
+Iteration 4:  Log likelihood = -1263.5263
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 76.69
+Log likelihood = -1263.5263                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.677892   .1985481     4.37   0.000     1.330577    2.115867
+           zAIRPOLLUTION1 |   .8779136   .0841728    -1.36   0.174     .7275118    1.059409
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |    .998344   .1111864    -0.01   0.988     .8025668    1.241879
+                          |
+                      SEX |   .4720116   .0515627    -6.87   0.000     .3810371    .5847069
+                      AGE |   .9844867   .0134916    -1.14   0.254     .9583956    1.011288
+                 NonWhite |    1.28623    .349509     0.93   0.354     .7551278    2.190871
+            householdsize |   .9622672   .0608051    -0.61   0.543     .8501758    1.089137
+                   SESres |   .9861386   .0991298    -0.14   0.890     .8097902    1.200891
+                ztownsend |   1.115996   .0660366     1.85   0.064       .99379    1.253229
+                    _cons |   1.78e-19   3.36e-19   -22.86   0.000     4.38e-21    7.20e-18
+--------------------------+----------------------------------------------------------------
+                    /ln_p |    2.24705   .0501091    44.84   0.000     2.148838    2.345262
+--------------------------+----------------------------------------------------------------
+                        p |   9.459791   .4740218                      8.574891    10.43601
+                      1/p |   .1057106   .0052971                      .0958221    .1166196
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans1==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1266.8234
+Iteration 2:  Log likelihood = -1264.9146
+Iteration 3:  Log likelihood = -1264.9089
+Iteration 4:  Log likelihood = -1264.9089
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 73.93
+Log likelihood = -1264.9089                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.680805   .1987689     4.39   0.000     1.333079    2.119234
+           zAIRPOLLUTION2 |   .8999822   .0896631    -1.06   0.290     .7403392     1.09405
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.036992   .1237061     0.30   0.761     .8207919    1.310141
+                          |
+                      SEX |   .4724194   .0516076    -6.86   0.000     .3813657    .5852128
+                      AGE |   .9845966   .0134744    -1.13   0.257     .9585383    1.011363
+                 NonWhite |    1.24693   .3376744     0.81   0.415     .7333863    2.120076
+            householdsize |   .9636899   .0605679    -0.59   0.556     .8519995    1.090022
+                   SESres |   .9918314    .099487    -0.08   0.935     .8148111     1.20731
+                ztownsend |   1.065863   .0574285     1.18   0.236     .9590451    1.184579
+                    _cons |   1.80e-19   3.40e-19   -22.87   0.000     4.45e-21    7.27e-18
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.246559   .0501076    44.83   0.000      2.14835    2.344769
+--------------------------+----------------------------------------------------------------
+                        p |   9.455149    .473775                      8.570708    10.43086
+                      1/p |   .1057625   .0052995                      .0958694    .1166765
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans1==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1267.3456
+Iteration 2:  Log likelihood = -1265.4858
+Iteration 3:  Log likelihood = -1265.4809
+Iteration 4:  Log likelihood = -1265.4809
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 72.78
+Log likelihood = -1265.4809                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |   1.494494   .2388707     2.51   0.012     1.092555    2.044301
+           lnPM2point5_2010br |   .8584888   .1646498    -0.80   0.426     .5894982    1.250221
+                              |
+c.neflbr#c.lnPM2point5_2010br |   1.264307   .2852943     1.04   0.299     .8124121    1.967562
+                              |
+                          SEX |   .4724997   .0516163    -6.86   0.000     .3814306    .5853122
+                          AGE |   .9846969   .0134668    -1.13   0.259      .958653    1.011448
+                     NonWhite |   1.232049   .3334804     0.77   0.441     .7248232    2.094228
+                householdsize |    .963735   .0604212    -0.59   0.556     .8522984    1.089742
+                       SESres |   .9935581   .0996791    -0.06   0.949     .8161991    1.209457
+                    ztownsend |   1.049938    .059352     0.86   0.389      .939823    1.172955
+                        _cons |   1.93e-19   3.65e-19   -22.81   0.000     4.76e-21    7.83e-18
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.246612    .050106    44.84   0.000     2.148407    2.344818
+------------------------------+----------------------------------------------------------------
+                            p |    9.45565   .4737844                       8.57119    10.43138
+                          1/p |   .1057569   .0052991                      .0958646    .1166699
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1267.3595
+Iteration 2:  Log likelihood = -1265.5332
+Iteration 3:  Log likelihood = -1265.5284
+Iteration 4:  Log likelihood = -1265.5284
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 72.69
+Log likelihood = -1265.5284                             Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   1.539835   .2442544     2.72   0.007     1.128375    2.101334
+           lnPM10_2010br |   .8283995   .1569449    -0.99   0.320     .5714457    1.200894
+                         |
+c.neflbr#c.lnPM10_2010br |   1.195029   .2698573     0.79   0.430       .76765    1.860347
+                         |
+                     SEX |    .471988   .0515647    -6.87   0.000     .3810107    .5846887
+                     AGE |   .9847732   .0134728    -1.12   0.262     .9587178    1.011537
+                NonWhite |   1.240824     .33629     0.80   0.426     .7294846    2.110591
+           householdsize |   .9632036   .0605053    -0.60   0.551      .851625    1.089401
+                  SESres |   .9934246    .099566    -0.07   0.948     .8162501    1.209057
+               ztownsend |   1.058992   .0574197     1.06   0.290     .9522255    1.177731
+                   _cons |   1.96e-19   3.71e-19   -22.80   0.000     4.84e-21    7.96e-18
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.246542   .0501066    44.84   0.000     2.148335    2.344749
+-------------------------+----------------------------------------------------------------
+                       p |   9.454982   .4737567                      8.570574    10.43065
+                     1/p |   .1057643   .0052995                      .0958713    .1166783
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood =  -1266.306
+Iteration 2:  Log likelihood = -1264.2717
+Iteration 3:  Log likelihood = -1264.2651
+Iteration 4:  Log likelihood = -1264.2651
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 75.22
+Log likelihood = -1264.2651                             Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |   1.367061   .2159246     1.98   0.048     1.003095    1.863088
+           lnPM2point5_10_2010br |   .7551467   .1436158    -1.48   0.140     .5201728    1.096264
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |   1.527032   .3465342     1.87   0.062     .9787736    2.382396
+                                 |
+                             SEX |   .4718905   .0515493    -6.87   0.000     .3809395    .5845563
+                             AGE |   .9848303    .013468    -1.12   0.264     .9587842    1.011584
+                        NonWhite |   1.234581   .3341412     0.78   0.436     .7263415     2.09845
+                   householdsize |   .9640633   .0604923    -0.58   0.560     .8525013    1.090225
+                          SESres |   .9929015   .0994338    -0.07   0.943     .8159487     1.20823
+                       ztownsend |   1.051279   .0564964     0.93   0.352     .9461808    1.168052
+                           _cons |   2.00e-19   3.78e-19   -22.79   0.000     4.94e-21    8.12e-18
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |   2.246923   .0500995    44.85   0.000      2.14873    2.345116
+---------------------------------+----------------------------------------------------------------
+                               p |   9.458584   .4738702                      8.573958    10.43448
+                             1/p |   .1057241   .0052967                      .0958361    .1166322
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1266.6002
+Iteration 2:  Log likelihood = -1264.6724
+Iteration 3:  Log likelihood = -1264.6666
+Iteration 4:  Log likelihood = -1264.6666
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 74.41
+Log likelihood = -1264.6666                             Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   1.562294   .2423276     2.88   0.004     1.152744    2.117351
+           lnPM2point5_abs_2010br |   .7606581   .1467518    -1.42   0.156     .5211579    1.110221
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |   1.167564   .2646256     0.68   0.494     .7487867    1.820554
+                                  |
+                              SEX |    .472697   .0516369    -6.86   0.000     .3815914    .5855543
+                              AGE |   .9847365   .0134802    -1.12   0.261      .958667    1.011515
+                         NonWhite |   1.281353   .3485128     0.91   0.362     .7518857    2.183662
+                    householdsize |   .9637491   .0603908    -0.59   0.556     .8523651    1.089688
+                           SESres |   .9953935   .0999093    -0.05   0.963     .8176327    1.211801
+                        ztownsend |   1.079492   .0601126     1.37   0.170     .9678753    1.203981
+                            _cons |   2.00e-19   3.78e-19   -22.79   0.000     4.93e-21    8.13e-18
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |   2.246919   .0501076    44.84   0.000      2.14871    2.345128
+----------------------------------+----------------------------------------------------------------
+                                p |    9.45855   .4739455                       8.57379    10.43461
+                              1/p |   .1057245   .0052976                      .0958349    .1166345
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1267.2508
+Iteration 2:  Log likelihood = -1265.4106
+Iteration 3:  Log likelihood = -1265.4056
+Iteration 4:  Log likelihood = -1265.4056
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 72.93
+Log likelihood = -1265.4056                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.541937    .243522     2.74   0.006     1.131448    2.101353
+           lnNO2_2010br |   .8088507   .1565683    -1.10   0.273     .5534804    1.182046
+                        |
+c.neflbr#c.lnNO2_2010br |    1.19338   .2695973     0.78   0.434     .7664485    1.858122
+                        |
+                    SEX |   .4726783   .0516365    -6.86   0.000     .3815736    .5855352
+                    AGE |   .9846231   .0134725    -1.13   0.257     .9585684    1.011386
+               NonWhite |   1.254702   .3406422     0.84   0.403     .7369627    2.136168
+          householdsize |   .9634315   .0603516    -0.59   0.552     .8521176    1.089287
+                 SESres |   .9921158   .0994585    -0.08   0.937     .8151365     1.20752
+              ztownsend |   1.069817   .0610401     1.18   0.237     .9566276    1.196399
+                  _cons |   1.97e-19   3.73e-19   -22.79   0.000     4.86e-21    8.01e-18
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.246839   .0501076    44.84   0.000      2.14863    2.345048
+------------------------+----------------------------------------------------------------
+                      p |   9.457796   .4739072                      8.573108    10.43378
+                    1/p |   .1057329    .005298                      .0958426    .1166438
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1267.6803
+Iteration 2:  Log likelihood = -1265.9023
+Iteration 3:  Log likelihood =  -1265.898
+Iteration 4:  Log likelihood =  -1265.898
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 71.95
+Log likelihood = -1265.898                              Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.623758   .2608231     3.02   0.003     1.185204    2.224586
+           lnNOX_2010br |   .9123471   .1753604    -0.48   0.633     .6259682    1.329743
+                        |
+c.neflbr#c.lnNOX_2010br |   1.067939   .2406452     0.29   0.771     .6866571    1.660936
+                        |
+                    SEX |   .4722878   .0515948    -6.87   0.000      .381257    .5850537
+                    AGE |   .9846408   .0134698    -1.13   0.258     .9585913    1.011398
+               NonWhite |   1.237064   .3353094     0.78   0.433     .7272299    2.104323
+          householdsize |   .9629055   .0604436    -0.60   0.547     .8514358    1.088969
+                 SESres |   .9920422   .0994547    -0.08   0.936     .8150703    1.207439
+              ztownsend |    1.06092   .0601392     1.04   0.297     .9493612    1.185588
+                  _cons |   1.88e-19   3.56e-19   -22.82   0.000     4.64e-21    7.64e-18
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.246658   .0501086    44.84   0.000     2.148447    2.344869
+------------------------+----------------------------------------------------------------
+                      p |   9.456083   .4738315                      8.571537    10.43191
+                    1/p |    .105752   .0052991                      .0958597    .1166652
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. **Transition 2**
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans2==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1328.0779
+Iteration 2:  Log likelihood = -1324.6242
+Iteration 3:  Log likelihood = -1324.6147
+Iteration 4:  Log likelihood = -1324.6147
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 114.84
+Log likelihood = -1324.6147                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   2.170891   .2222044     7.57   0.000     1.776283    2.653162
+           zAIRPOLLUTION1 |    .944866   .0846374    -0.63   0.527     .7927256    1.126205
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |   1.107068   .1096864     1.03   0.305     .9116722    1.344342
+                          |
+                      SEX |   .9074156   .0746547    -1.18   0.238     .7722829    1.066194
+                      AGE |   1.016732   .0136064     1.24   0.215     .9904102    1.043753
+                 NonWhite |   .8422463   .2112613    -0.68   0.494     .5151475     1.37704
+            householdsize |   1.020668   .0378866     0.55   0.582     .9490488    1.097693
+                   SESres |   .7237133   .0609138    -3.84   0.000     .6136522    .8535143
+                ztownsend |   1.178322    .053252     3.63   0.000     1.078439    1.287456
+                    _cons |   7.56e-30   1.60e-29   -31.66   0.000     1.19e-31    4.80e-28
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.657573   .0385409    68.95   0.000     2.582034    2.733111
+--------------------------+----------------------------------------------------------------
+                        p |   14.26163    .549656                      13.22401    15.38067
+                      1/p |   .0701182   .0027024                      .0650167      .07562
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans2==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1327.4014
+Iteration 2:  Log likelihood =  -1324.266
+Iteration 3:  Log likelihood = -1324.2561
+Iteration 4:  Log likelihood = -1324.2561
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 115.56
+Log likelihood = -1324.2561                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   2.180741   .2232864     7.61   0.000     1.784224    2.665378
+           zAIRPOLLUTION2 |    .931485   .0841954    -0.79   0.432     .7802561    1.112025
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.013827   .1039878     0.13   0.893     .8291941     1.23957
+                          |
+                      SEX |   .9077263   .0746713    -1.18   0.239     .7725623    1.066538
+                      AGE |   1.016753   .0136131     1.24   0.215     .9904187    1.043787
+                 NonWhite |   .8507019   .2129851    -0.65   0.518     .5207955    1.389593
+            householdsize |   1.020659   .0375834     0.56   0.579     .9495922    1.097044
+                   SESres |   .7227597   .0608972    -3.85   0.000     .6127378    .8525368
+                ztownsend |   1.201531   .0491184     4.49   0.000     1.109017    1.301764
+                    _cons |   7.48e-30   1.58e-29   -31.66   0.000     1.18e-31    4.75e-28
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.657629   .0385432    68.95   0.000     2.582085    2.733172
+--------------------------+----------------------------------------------------------------
+                        p |   14.26243   .5497202                      13.22469     15.3816
+                      1/p |   .0701143   .0027024                      .0650127    .0756162
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans2==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1327.5863
+Iteration 2:  Log likelihood =  -1324.241
+Iteration 3:  Log likelihood = -1324.2313
+Iteration 4:  Log likelihood = -1324.2313
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 115.61
+Log likelihood = -1324.2313                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |   1.897965   .2653843     4.58   0.000     1.443007    2.496365
+           lnPM2point5_2010br |   .7856186   .1407073    -1.35   0.178     .5530423    1.116003
+                              |
+c.neflbr#c.lnPM2point5_2010br |   1.322231   .2637159     1.40   0.161     .8944113    1.954689
+                              |
+                          SEX |   .9072547   .0746347    -1.18   0.237     .7721572    1.065989
+                          AGE |   1.016775   .0136132     1.24   0.214     .9904402    1.043809
+                     NonWhite |   .8485472   .2124154    -0.66   0.512     .5195127    1.385976
+                householdsize |   1.021533    .037923     0.57   0.566     .9498453    1.098632
+                       SESres |    .722358   .0608854    -3.86   0.000     .6123606     .852114
+                    ztownsend |   1.194049   .0512773     4.13   0.000     1.097661    1.298902
+                        _cons |   8.37e-30   1.77e-29   -31.58   0.000     1.31e-31    5.34e-28
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.657719   .0385427    68.96   0.000     2.582177    2.733262
+------------------------------+----------------------------------------------------------------
+                            p |   14.26372    .549762                       13.2259    15.38298
+                          1/p |   .0701079   .0027021                      .0650069    .0756092
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1328.1952
+Iteration 2:  Log likelihood = -1325.1452
+Iteration 3:  Log likelihood = -1325.1356
+Iteration 4:  Log likelihood = -1325.1356
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 113.80
+Log likelihood = -1325.1356                             Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   2.244135   .3230562     5.62   0.000     1.692441    2.975667
+           lnPM10_2010br |   1.012055   .1791386     0.07   0.946     .7153809    1.431762
+                         |
+c.neflbr#c.lnPM10_2010br |   .9453252   .1881452    -0.28   0.778     .6399841    1.396347
+                         |
+                     SEX |   .9070348   .0746185    -1.19   0.236     .7719668    1.065735
+                     AGE |   1.016846   .0136087     1.25   0.212     .9905202    1.043871
+                NonWhite |   .8466727   .2121537    -0.66   0.507     .5181161    1.383579
+           householdsize |   1.020299    .037707     0.54   0.587     .9490073    1.096945
+                  SESres |   .7236278   .0609084    -3.84   0.000     .6135766    .8534177
+               ztownsend |   1.194118   .0491085     4.31   0.000     1.101644    1.294355
+                   _cons |   7.45e-30   1.58e-29   -31.63   0.000     1.17e-31    4.75e-28
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.657543   .0385448    68.95   0.000     2.581997     2.73309
+-------------------------+----------------------------------------------------------------
+                       p |   14.26121   .5496956                      13.22352    15.38034
+                     1/p |   .0701203   .0027028                      .0650181    .0756228
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1325.4736
+Iteration 2:  Log likelihood = -1321.9167
+Iteration 3:  Log likelihood = -1321.9068
+Iteration 4:  Log likelihood = -1321.9068
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 120.26
+Log likelihood = -1321.9068                             Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |   2.074498   .2800468     5.41   0.000     1.592228    2.702844
+           lnPM2point5_10_2010br |   .7422407   .1322762    -1.67   0.094     .5234201    1.052541
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |   1.118513   .2242918     0.56   0.576     .7550097    1.657028
+                                 |
+                             SEX |   .9091764   .0747983    -1.16   0.247     .7737835     1.06826
+                             AGE |   1.016907   .0136105     1.25   0.210     .9905778    1.043936
+                        NonWhite |   .8574031   .2145662    -0.61   0.539     .5250139     1.40023
+                   householdsize |   1.021502   .0374979     0.58   0.562     .9505886    1.097705
+                          SESres |   .7227301   .0609804    -3.85   0.000     .6125703    .8527002
+                       ztownsend |   1.210074   .0493987     4.67   0.000     1.117027    1.310873
+                           _cons |   8.69e-30   1.84e-29   -31.57   0.000     1.36e-31    5.53e-28
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |   2.657243   .0385432    68.94   0.000     2.581699    2.732786
+---------------------------------+----------------------------------------------------------------
+                               p |   14.25692   .5495072                      13.21958    15.37566
+                             1/p |   .0701414   .0027035                      .0650379    .0756453
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1328.1234
+Iteration 2:  Log likelihood =  -1324.896
+Iteration 3:  Log likelihood = -1324.8863
+Iteration 4:  Log likelihood = -1324.8863
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 114.30
+Log likelihood = -1324.8863                             Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   2.053422   .2949746     5.01   0.000      1.54954    2.721156
+           lnPM2point5_abs_2010br |   .9612864   .1715615    -0.22   0.825     .6775451    1.363852
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |   1.124958   .2238921     0.59   0.554     .7616017     1.66167
+                                  |
+                              SEX |   .9071025    .074626    -1.19   0.236     .7720212    1.065819
+                              AGE |   1.016672   .0136021     1.24   0.217     .9903592    1.043685
+                         NonWhite |   .8359614   .2098753    -0.71   0.475     .5110752    1.367375
+                    householdsize |   1.020349   .0379325     0.54   0.588     .9486462     1.09747
+                           SESres |   .7231077   .0608183    -3.85   0.000     .6132127    .8526974
+                        ztownsend |   1.181142   .0498448     3.95   0.000     1.087379     1.28299
+                            _cons |   7.78e-30   1.65e-29   -31.62   0.000     1.22e-31    4.95e-28
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |   2.657479   .0385437    68.95   0.000     2.581934    2.733023
+----------------------------------+----------------------------------------------------------------
+                                p |   14.26029   .5496449                      13.22269    15.37931
+                              1/p |   .0701248   .0027029                      .0650224    .0756276
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1327.5601
+Iteration 2:  Log likelihood =  -1324.078
+Iteration 3:  Log likelihood = -1324.0681
+Iteration 4:  Log likelihood = -1324.0681
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 115.94
+Log likelihood = -1324.0681                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |    1.90236   .2716592     4.50   0.000     1.437938     2.51678
+           lnNO2_2010br |     .87056   .1563825    -0.77   0.440     .6122005    1.237952
+                        |
+c.neflbr#c.lnNO2_2010br |   1.302546   .2594914     1.33   0.185     .8814913    1.924723
+                        |
+                    SEX |   .9079452   .0746961    -1.17   0.240     .7727372    1.066811
+                    AGE |   1.016567   .0135998     1.23   0.219     .9902582    1.043575
+               NonWhite |   .8396618   .2106014    -0.70   0.486     .5135806    1.372777
+          householdsize |   1.020418   .0379217     0.54   0.587     .9487351    1.097517
+                 SESres |   .7237385    .060905    -3.84   0.000     .6136917    .8535188
+              ztownsend |    1.17596   .0509179     3.74   0.000      1.08028    1.280114
+                  _cons |   8.19e-30   1.74e-29   -31.60   0.000     1.29e-31    5.21e-28
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.657547   .0385399    68.96   0.000     2.582011    2.733084
+------------------------+----------------------------------------------------------------
+                      p |   14.26127    .549628                       13.2237    15.38025
+                    1/p |     .07012   .0027024                      .0650184    .0756218
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1327.6215
+Iteration 2:  Log likelihood = -1324.1262
+Iteration 3:  Log likelihood = -1324.1163
+Iteration 4:  Log likelihood = -1324.1163
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 115.84
+Log likelihood = -1324.1163                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.935256   .2780581     4.60   0.000     1.460285    2.564716
+           lnNOX_2010br |   .9104051   .1630122    -0.52   0.600     .6409485    1.293142
+                        |
+c.neflbr#c.lnNOX_2010br |   1.257392   .2504357     1.15   0.250     .8510129    1.857826
+                        |
+                    SEX |   .9077954   .0746882    -1.18   0.240     .7726024    1.066645
+                    AGE |   1.016801    .013602     1.25   0.213     .9904879    1.043813
+               NonWhite |   .8364275   .2096463    -0.71   0.476     .5117748    1.367029
+          householdsize |   1.021358   .0379592     0.57   0.570     .9496048    1.098534
+                 SESres |   .7256497     .06107    -3.81   0.000     .6153054    .8557822
+              ztownsend |   1.172982   .0504289     3.71   0.000     1.078193    1.276105
+                  _cons |   7.86e-30   1.67e-29   -31.62   0.000     1.23e-31    5.01e-28
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.657591   .0385397    68.96   0.000     2.582055    2.733128
+------------------------+----------------------------------------------------------------
+                      p |   14.26189   .5496492                      13.22428    15.38092
+                    1/p |   .0701169   .0027023                      .0650156    .0756185
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+.
+. **Transition 3**
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans3==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3161.7813
+Iteration 2:  Log likelihood = -3140.0722
+Iteration 3:  Log likelihood = -3140.0323
+Iteration 4:  Log likelihood = -3140.0323
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 529.70
+Log likelihood = -3140.0323                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.574695   .0775613     9.22   0.000     1.429785    1.734292
+           zAIRPOLLUTION1 |   .9942116    .038843    -0.15   0.882     .9209225    1.073333
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |   1.016057   .0469719     0.34   0.730     .9280416     1.11242
+                          |
+                      SEX |   .5720237   .0259265   -12.32   0.000     .5234003    .6251642
+                      AGE |   .9214619   .0054487   -13.83   0.000     .9108444    .9322032
+                 NonWhite |   1.010125   .1183592     0.09   0.931     .8028552    1.270904
+            householdsize |   .9548664   .0252935    -1.74   0.081      .906557     1.00575
+                   SESres |   .6667993   .0293361    -9.21   0.000     .6117109    .7268488
+                ztownsend |   1.242991   .0295649     9.15   0.000     1.186375    1.302309
+                    _cons |   1.95e-21   1.85e-21   -50.11   0.000     3.02e-22    1.26e-20
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.467748   .0211826   116.50   0.000     2.426231    2.509266
+--------------------------+----------------------------------------------------------------
+                        p |   11.79586   .2498668                      11.31616     12.2959
+                      1/p |   .0847755   .0017958                      .0813279    .0883692
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 SEX AGE NonWhite householdsize SESres ztownsend  if sample_final==1 & _trans3==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3159.7072
+Iteration 2:  Log likelihood = -3137.9455
+Iteration 3:  Log likelihood = -3137.9047
+Iteration 4:  Log likelihood = -3137.9047
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 533.96
+Log likelihood = -3137.9047                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.576474   .0774199     9.27   0.000     1.431808    1.735757
+           zAIRPOLLUTION2 |   .9245696   .0365074    -1.99   0.047     .8557151    .9989645
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.097641   .0525099     1.95   0.051     .9994006    1.205537
+                          |
+                      SEX |   .5720298   .0259253   -12.32   0.000     .5234086    .6251676
+                      AGE |      .9215   .0054499   -13.82   0.000     .9108801    .9322437
+                 NonWhite |   1.017731   .1189532     0.15   0.880     .8093642    1.279741
+            householdsize |   .9554134    .025327    -1.72   0.085      .907041    1.006366
+                   SESres |    .666191   .0293253    -9.23   0.000     .6111241    .7262199
+                ztownsend |   1.248026   .0267594    10.33   0.000     1.196665    1.301591
+                    _cons |   1.93e-21   1.84e-21   -50.12   0.000     2.99e-22    1.25e-20
+--------------------------+----------------------------------------------------------------
+                    /ln_p |    2.46781   .0211808   116.51   0.000     2.426297    2.509324
+--------------------------+----------------------------------------------------------------
+                        p |   11.79659   .2498606                      11.31689    12.29661
+                      1/p |   .0847703   .0017955                      .0813232    .0883635
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' SEX AGE NonWhite householdsize SESres ztownsend if sample_final==1 & _trans3==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3160.5136
+Iteration 2:  Log likelihood = -3138.9525
+Iteration 3:  Log likelihood = -3138.9124
+Iteration 4:  Log likelihood = -3138.9124
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 531.94
+Log likelihood = -3138.9124                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |    1.63034   .1166437     6.83   0.000     1.417028    1.875763
+           lnPM2point5_2010br |   1.112593   .0870026     1.36   0.172     .9544959    1.296877
+                              |
+c.neflbr#c.lnPM2point5_2010br |   .9416094    .088554    -0.64   0.522     .7831036    1.132198
+                              |
+                          SEX |     .57195   .0259224   -12.33   0.000     .5233342    .6250819
+                          AGE |   .9216228   .0054478   -13.81   0.000     .9110069    .9323623
+                     NonWhite |   1.005312   .1174873     0.05   0.964     .7995103     1.26409
+                householdsize |    .954939    .025258    -1.74   0.081     .9066956    1.005749
+                       SESres |   .6688445    .029441    -9.14   0.000     .6135602      .72911
+                    ztownsend |   1.232115   .0277473     9.27   0.000     1.178914    1.287717
+                        _cons |   1.84e-21   1.76e-21   -50.14   0.000     2.85e-22    1.19e-20
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.467513   .0211828   116.49   0.000     2.425996    2.509031
+------------------------------+----------------------------------------------------------------
+                            p |   11.79309   .2498109                      11.31349    12.29301
+                          1/p |   .0847954   .0017962                       .081347    .0883901
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3160.6881
+Iteration 2:  Log likelihood = -3139.1443
+Iteration 3:  Log likelihood = -3139.1031
+Iteration 4:  Log likelihood = -3139.1031
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 531.56
+Log likelihood = -3139.1031                             Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   1.484695   .1008861     5.82   0.000     1.299563    1.696199
+           lnPM10_2010br |   .8992458   .0686584    -1.39   0.164     .7742627    1.044404
+                         |
+c.neflbr#c.lnPM10_2010br |    1.12694   .1053313     1.28   0.201     .9383005    1.353505
+                         |
+                     SEX |   .5716776   .0259124   -12.34   0.000      .523081    .6247892
+                     AGE |   .9214446    .005449   -13.83   0.000     .9108265    .9321866
+                NonWhite |    1.01512    .118737     0.13   0.898     .8071488    1.276677
+           householdsize |   .9548235   .0253305    -1.74   0.081     .9064453    1.005784
+                  SESres |   .6665523   .0293345    -9.22   0.000     .6114677    .7265993
+               ztownsend |   1.248514   .0269619    10.28   0.000     1.196773    1.302493
+                   _cons |   2.06e-21   1.96e-21   -50.01   0.000     3.18e-22    1.33e-20
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.467749   .0211814   116.51   0.000     2.426234    2.509264
+-------------------------+----------------------------------------------------------------
+                       p |   11.79587   .2498531                      11.31619    12.29588
+                     1/p |   .0847755   .0017957                      .0813281     .088369
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3158.7649
+Iteration 2:  Log likelihood = -3136.8128
+Iteration 3:  Log likelihood = -3136.7719
+Iteration 4:  Log likelihood = -3136.7719
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 536.23
+Log likelihood = -3136.7719                             Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |    1.39634   .0942952     4.94   0.000     1.223234    1.593944
+           lnPM2point5_10_2010br |   .8575003   .0653934    -2.02   0.044     .7384503    .9957431
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |    1.27293   .1191242     2.58   0.010     1.059612    1.529193
+                                 |
+                             SEX |    .571579   .0259056   -12.34   0.000     .5229948    .6246765
+                             AGE |   .9214923   .0054481   -13.83   0.000     .9108758    .9322325
+                        NonWhite |   1.015886   .1187445     0.13   0.893     .8078865    1.277439
+                   householdsize |   .9553057   .0253275    -1.72   0.085     .9069324    1.006259
+                          SESres |   .6663912   .0293199    -9.22   0.000     .6113333    .7264076
+                       ztownsend |   1.245037   .0266573    10.24   0.000      1.19387    1.298396
+                           _cons |   2.08e-21   1.98e-21   -50.01   0.000     3.21e-22    1.34e-20
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |    2.46794   .0211798   116.52   0.000     2.426428    2.509451
+---------------------------------+----------------------------------------------------------------
+                               p |   11.79812   .2498812                      11.31838    12.29818
+                             1/p |   .0847593   .0017952                      .0813128    .0883518
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3161.3289
+Iteration 2:  Log likelihood = -3140.0085
+Iteration 3:  Log likelihood = -3139.9675
+Iteration 4:  Log likelihood = -3139.9675
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 529.83
+Log likelihood = -3139.9675                             Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   1.617308   .1124323     6.92   0.000     1.411298     1.85339
+           lnPM2point5_abs_2010br |   1.025991   .0798044     0.33   0.741     .8809166    1.194957
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |    .953088   .0892531    -0.51   0.608     .7932702    1.145104
+                                  |
+                              SEX |   .5720238   .0259255   -12.32   0.000     .5234022    .6251621
+                              AGE |   .9214998   .0054492   -13.83   0.000     .9108812    .9322421
+                         NonWhite |   1.009908   .1184758     0.08   0.933     .8024623    1.270982
+                    householdsize |   .9549964    .025305    -1.74   0.082     .9066654    1.005904
+                           SESres |   .6670058   .0293463    -9.20   0.000     .6118984    .7270763
+                        ztownsend |   1.246491   .0276932     9.92   0.000     1.193378    1.301968
+                            _cons |   1.92e-21   1.83e-21   -50.09   0.000     2.96e-22    1.24e-20
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |   2.467724   .0211832   116.49   0.000     2.426206    2.509242
+----------------------------------+----------------------------------------------------------------
+                                p |   11.79557   .2498678                      11.31586    12.29561
+                              1/p |   .0847776   .0017959                      .0813298    .0883715
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3161.6436
+Iteration 2:  Log likelihood = -3140.1051
+Iteration 3:  Log likelihood = -3140.0647
+Iteration 4:  Log likelihood = -3140.0647
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 529.64
+Log likelihood = -3140.0647                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |    1.55511   .1088903     6.31   0.000     1.355686    1.783869
+           lnNO2_2010br |   .9789325   .0767769    -0.27   0.786     .8394478    1.141594
+                        |
+c.neflbr#c.lnNO2_2010br |   1.026694    .096214     0.28   0.779     .8544231    1.233699
+                        |
+                    SEX |   .5720158   .0259257   -12.32   0.000     .5233939    .6251545
+                    AGE |    .921452   .0054487   -13.83   0.000     .9108345    .9321933
+               NonWhite |   1.012041   .1185586     0.10   0.919      .804418    1.273253
+          householdsize |   .9548898   .0253011    -1.74   0.081     .9065661    1.005789
+                 SESres |   .6666783   .0293316    -9.22   0.000     .6115984    .7267186
+              ztownsend |   1.246309   .0283564     9.68   0.000     1.191953    1.303144
+                  _cons |   1.97e-21   1.87e-21   -50.06   0.000     3.04e-22    1.27e-20
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.467788   .0211825   116.50   0.000     2.426271    2.509305
+------------------------+----------------------------------------------------------------
+                      p |   11.79632   .2498758                       11.3166    12.29638
+                    1/p |   .0847722   .0017957                      .0813248    .0883658
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3161.1109
+Iteration 2:  Log likelihood =  -3139.438
+Iteration 3:  Log likelihood = -3139.3978
+Iteration 4:  Log likelihood = -3139.3978
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                        LR chi2( = 530.97
+Log likelihood = -3139.3978                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.555484   .1104077     6.22   0.000     1.353467    1.787654
+           lnNOX_2010br |   1.040305   .0813837     0.51   0.613     .8924227    1.212693
+                        |
+c.neflbr#c.lnNOX_2010br |   1.024927   .0962075     0.26   0.793     .8526926     1.23195
+                        |
+                    SEX |    .572247   .0259372   -12.32   0.000     .5236035    .6254094
+                    AGE |   .9215816   .0054477   -13.81   0.000     .9109658    .9323211
+               NonWhite |   1.004262    .117476     0.04   0.971     .7985014    1.263044
+          householdsize |   .9550097    .025273    -1.74   0.082     .9067382    1.005851
+                 SESres |   .6679792   .0293849    -9.17   0.000     .6127989    .7281283
+              ztownsend |   1.234039   .0278807     9.31   0.000     1.180586    1.289912
+                  _cons |   1.90e-21   1.81e-21   -50.10   0.000     2.94e-22    1.23e-20
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.467675   .0211821   116.50   0.000     2.426159    2.509191
+------------------------+----------------------------------------------------------------
+                      p |   11.79499   .2498422                      11.31533    12.29498
+                    1/p |   .0847818   .0017959                       .081334    .0883757
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+.
+.
+. ********************MODEL 2: FULL MODEL***************************
+.
+.
+.
+. **Transition 1**
+.
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1248.8757
+Iteration 2:  Log likelihood = -1243.2548
+Iteration 3:  Log likelihood = -1243.2483
+Iteration 4:  Log likelihood = -1243.2483
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 117.25
+Log likelihood = -1243.2483                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.610378   .1909385     4.02   0.000     1.276448    2.031668
+           zAIRPOLLUTION1 |   .8804948   .0849087    -1.32   0.187      .728858    1.063679
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |   .9926477   .1111196    -0.07   0.947     .7970936    1.236178
+                          |
+       zLE8_TOTALSCOREinv |     .86185   .0490567    -2.61   0.009       .77087    .9635677
+                      SEX |   .4640117   .0510213    -6.98   0.000     .3740532    .5756048
+                      AGE |   .9822292   .0135664    -1.30   0.194     .9559963    1.009182
+                 NonWhite |   1.239032   .3366789     0.79   0.430     .7274245    2.110461
+            householdsize |   .9647969   .0599026    -0.58   0.564     .8542525    1.089646
+                   SESres |   1.076358   .1110716     0.71   0.476     .8792642    1.317631
+                ztownsend |   1.080608   .0644614     1.30   0.194     .9613721    1.214632
+                 comorbid |   1.075348   .0269271     2.90   0.004     1.023846    1.129441
+                    srhbr |   1.398083   .1111819     4.21   0.000     1.196304    1.633895
+                    _cons |   5.02e-20   9.66e-20   -23.10   0.000     1.16e-21    2.18e-18
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.259403   .0499085    45.27   0.000     2.161584    2.357222
+--------------------------+----------------------------------------------------------------
+                        p |   9.577372   .4779922                      8.684887    10.56157
+                      1/p |   .1044128   .0052111                      .0946829    .1151426
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1249.9938
+Iteration 2:  Log likelihood = -1244.6235
+Iteration 3:  Log likelihood = -1244.6166
+Iteration 4:  Log likelihood = -1244.6166
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 114.51
+Log likelihood = -1244.6166                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.613374   .1911754     4.04   0.000     1.279006    2.035155
+           zAIRPOLLUTION2 |   .9027791   .0898768    -1.03   0.304     .7427446    1.097295
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.029221     .12268     0.24   0.809     .8147942    1.300077
+                          |
+       zLE8_TOTALSCOREinv |   .8619446   .0490901    -2.61   0.009     .7709055    .9637349
+                      SEX |   .4644271   .0510687    -6.97   0.000     .3743854    .5761243
+                      AGE |   .9822663   .0135511    -1.30   0.195     .9560625    1.009188
+                 NonWhite |   1.200856   .3251376     0.68   0.499     .7063564     2.04154
+            householdsize |   .9660238   .0596305    -0.56   0.575     .8559434    1.090261
+                   SESres |   1.083029   .1115388     0.77   0.439     .8850682    1.325267
+                ztownsend |   1.032575   .0562367     0.59   0.556     .9280322    1.148895
+                 comorbid |   1.075526   .0268917     2.91   0.004      1.02409    1.129546
+                    srhbr |   1.397268   .1109961     4.21   0.000     1.195809    1.632666
+                    _cons |   5.13e-20   9.85e-20   -23.10   0.000     1.18e-21    2.22e-18
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.258867   .0499055    45.26   0.000     2.161054     2.35668
+--------------------------+----------------------------------------------------------------
+                        p |   9.572234   .4777071                      8.680279    10.55584
+                      1/p |   .1044688   .0052136                      .0947343    .1152037
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1250.5659
+Iteration 2:  Log likelihood = -1245.2627
+Iteration 3:  Log likelihood = -1245.2561
+Iteration 4:  Log likelihood = -1245.2561
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 113.23
+Log likelihood = -1245.2561                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |   1.439075   .2301578     2.28   0.023     1.051833    1.968883
+           lnPM2point5_2010br |   .8631783   .1655898    -0.77   0.443     .5926637    1.257166
+                              |
+c.neflbr#c.lnPM2point5_2010br |   1.256647   .2836484     1.01   0.311     .8073864    1.955893
+                              |
+           zLE8_TOTALSCOREinv |    .863469   .0491397    -2.58   0.010      .772334    .9653578
+                          SEX |   .4645457   .0510809    -6.97   0.000     .3744824    .5762693
+                          AGE |   .9824042   .0135431    -1.29   0.198     .9562156     1.00931
+                     NonWhite |   1.188556    .321643     0.64   0.523     .6993114    2.020082
+                householdsize |   .9657907   .0594949    -0.57   0.572     .8559474     1.08973
+                       SESres |   1.086093   .1118874     0.80   0.423     .8875189    1.329096
+                    ztownsend |   1.016596   .0580569     0.29   0.773     .9089433    1.136998
+                     comorbid |   1.075533   .0268948     2.91   0.004     1.024091    1.129559
+                        srhbr |   1.396175   .1109475     4.20   0.000      1.19481    1.631477
+                        _cons |   5.49e-20   1.06e-19   -23.05   0.000     1.26e-21    2.38e-18
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.258885   .0499045    45.26   0.000     2.161074    2.356696
+------------------------------+----------------------------------------------------------------
+                            p |   9.572408   .4777059                      8.680454    10.55601
+                          1/p |   .1044669   .0052134                      .0947327    .1152013
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1250.5576
+Iteration 2:  Log likelihood = -1245.3299
+Iteration 3:  Log likelihood = -1245.3231
+Iteration 4:  Log likelihood = -1245.3231
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 113.10
+Log likelihood = -1245.3231                             Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   1.488008   .2361643     2.50   0.012     1.090209    2.030958
+           lnPM10_2010br |   .8361793   .1585368    -0.94   0.345     .5766529    1.212507
+                         |
+c.neflbr#c.lnPM10_2010br |   1.179358   .2663712     0.73   0.465     .7575165    1.836111
+                         |
+      zLE8_TOTALSCOREinv |   .8628806   .0491432    -2.59   0.010     .7717429     .964781
+                     SEX |   .4639911   .0510274    -6.98   0.000     .3740234    .5755997
+                     AGE |   .9824575   .0135487    -1.28   0.199     .9562582    1.009375
+                NonWhite |   1.196181   .3241256     0.66   0.509     .7033143    2.034438
+           householdsize |   .9652234    .059602    -0.57   0.566     .8551978    1.089404
+                  SESres |   1.085054   .1116465     0.79   0.428     .8868844    1.327503
+               ztownsend |   1.025861   .0562277     0.47   0.641     .9213692    1.142202
+                comorbid |   1.075513   .0268834     2.91   0.004     1.024093    1.129516
+                   srhbr |   1.395811   .1109166     4.20   0.000     1.194502    1.631047
+                   _cons |   5.58e-20   1.07e-19   -23.04   0.000     1.29e-21    2.43e-18
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.258814   .0499054    45.26   0.000     2.161002    2.356627
+-------------------------+----------------------------------------------------------------
+                       p |   9.571733   .4776807                      8.679827    10.55529
+                     1/p |   .1044743   .0052138                      .0947392    .1152097
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1249.6468
+Iteration 2:  Log likelihood = -1244.1235
+Iteration 3:  Log likelihood =  -1244.117
+Iteration 4:  Log likelihood =  -1244.117
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 115.51
+Log likelihood = -1244.117                              Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |   1.320799   .2088389     1.76   0.078     .9688324    1.800632
+           lnPM2point5_10_2010br |   .7640912   .1453851    -1.41   0.157     .5262419    1.109443
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |   1.507187   .3420818     1.81   0.071     .9659895    2.351591
+                                 |
+              zLE8_TOTALSCOREinv |   .8628045   .0491347    -2.59   0.010     .7716821    .9646868
+                             SEX |   .4640175    .051033    -6.98   0.000     .3740404    .5756389
+                             AGE |   .9825296   .0135437    -1.28   0.201     .9563398    1.009437
+                        NonWhite |   1.190527   .3221771     0.64   0.519     .7004699    2.023434
+                   householdsize |   .9661959   .0595956    -0.56   0.577      .856175    1.090355
+                          SESres |   1.083444   .1113962     0.78   0.436     .8857045    1.325331
+                       ztownsend |   1.018773    .055312     0.34   0.732     .9159323    1.133161
+                        comorbid |   1.075724   .0268574     2.92   0.003     1.024352    1.129673
+                           srhbr |   1.394123   .1107868     4.18   0.000      1.19305    1.629084
+                           _cons |   5.68e-20   1.09e-19   -23.03   0.000     1.31e-21    2.47e-18
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |   2.259233   .0498981    45.28   0.000     2.161435    2.357032
+---------------------------------+----------------------------------------------------------------
+                               p |   9.575746   .4778115                       8.68359    10.55956
+                             1/p |   .1044305   .0052109                      .0947009    .1151597
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1249.8617
+Iteration 2:  Log likelihood = -1244.4717
+Iteration 3:  Log likelihood =  -1244.465
+Iteration 4:  Log likelihood =  -1244.465
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 114.82
+Log likelihood = -1244.465                              Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   1.504636   .2336128     2.63   0.009      1.10987    2.039814
+           lnPM2point5_abs_2010br |   .7660615   .1477478    -1.38   0.167     .5249224    1.117975
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |   1.159436   .2628599     0.65   0.514     .7434773    1.808113
+                                  |
+               zLE8_TOTALSCOREinv |     .86206   .0490674    -2.61   0.009     .7710599    .9637998
+                              SEX |   .4648985   .0511222    -6.97   0.000     .3747628    .5767131
+                              AGE |   .9824794   .0135566    -1.28   0.200     .9562651    1.009412
+                         NonWhite |   1.233743   .3354671     0.77   0.440     .7240598    2.102205
+                    householdsize |   .9658357   .0593667    -0.57   0.572     .8562148    1.089491
+                           SESres |   1.087346   .1120625     0.81   0.416     .8884691     1.33074
+                        ztownsend |   1.045115   .0588688     0.78   0.433     .9358754    1.167106
+                         comorbid |   1.075227   .0269286     2.90   0.004     1.023722    1.129323
+                            srhbr |   1.396954   .1110863     4.20   0.000     1.195347    1.632563
+                            _cons |   5.66e-20   1.09e-19   -23.03   0.000     1.30e-21    2.46e-18
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |    2.25924   .0499071    45.27   0.000     2.161424    2.357056
+----------------------------------+----------------------------------------------------------------
+                                p |   9.575805   .4779002                       8.68349    10.55981
+                              1/p |   .1044299   .0052118                      .0946986    .1151611
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1250.4458
+Iteration 2:  Log likelihood = -1245.1931
+Iteration 3:  Log likelihood = -1245.1864
+Iteration 4:  Log likelihood = -1245.1864
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 113.37
+Log likelihood = -1245.1864                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.487655   .2350999     2.51   0.012     1.091399     2.02778
+           lnNO2_2010br |   .8145079   .1575734    -1.06   0.289     .5574722    1.190056
+                        |
+c.neflbr#c.lnNO2_2010br |   1.181188   .2668604     0.74   0.461     .7585969    1.839192
+                        |
+     zLE8_TOTALSCOREinv |   .8624265   .0490946    -2.60   0.009     .7713767    .9642234
+                    SEX |   .4646545   .0510959    -6.97   0.000     .3745652    .5764118
+                    AGE |   .9823273   .0135479    -1.29   0.196     .9561297    1.009243
+               NonWhite |   1.209426   .3283485     0.70   0.484     .7103717    2.059079
+          householdsize |   .9656312   .0593602    -0.57   0.569     .8560229    1.089274
+                 SESres |   1.083625   .1115246     0.78   0.435     .8856764    1.325816
+              ztownsend |   1.035925   .0595752     0.61   0.539     .9254999    1.159525
+               comorbid |   1.075629    .026911     2.91   0.004     1.024157    1.129689
+                  srhbr |   1.396086   .1109972     4.20   0.000     1.194639    1.631503
+                  _cons |   5.61e-20   1.08e-19   -23.03   0.000     1.29e-21    2.44e-18
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.259108    .049907    45.27   0.000     2.161292    2.356924
+------------------------+----------------------------------------------------------------
+                      p |   9.574546   .4778366                       8.68235    10.55842
+                    1/p |   .1044436   .0052125                      .0947111    .1151762
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -1862.4841
+Iteration 1:  Log likelihood = -1557.7007
+Iteration 2:  Log likelihood = -1357.6995
+Iteration 3:  Log likelihood = -1303.8081
+Iteration 4:  Log likelihood = -1301.8741
+Iteration 5:  Log likelihood = -1301.8726
+Iteration 6:  Log likelihood = -1301.8726
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1301.8726
+Iteration 1:  Log likelihood = -1250.8211
+Iteration 2:  Log likelihood =  -1245.646
+Iteration 3:  Log likelihood = -1245.6392
+Iteration 4:  Log likelihood = -1245.6392
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 370
+Time at risk    = 1,468,444
+                                                        LR chi2( = 112.47
+Log likelihood = -1245.6392                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.561814     .25113     2.77   0.006     1.139623    2.140411
+           lnNOX_2010br |   .9120967   .1752842    -0.48   0.632     .6258343    1.329298
+                        |
+c.neflbr#c.lnNOX_2010br |   1.063459   .2396827     0.27   0.785     .6837171    1.654111
+                        |
+     zLE8_TOTALSCOREinv |   .8625638   .0490986    -2.60   0.009     .7715062    .9643687
+                    SEX |   .4641421   .0510473    -6.98   0.000     .3741399     .575795
+                    AGE |   .9823303   .0135463    -1.29   0.196     .9561356    1.009243
+               NonWhite |   1.192768    .323215     0.65   0.515     .7012912    2.028681
+          householdsize |   .9649683   .0595322    -0.58   0.563     .8550657    1.088997
+                 SESres |   1.083196   .1114937     0.78   0.438     .8853039    1.325322
+              ztownsend |    1.02793   .0587284     0.48   0.630     .9190347    1.149727
+               comorbid |   1.075652   .0268934     2.92   0.004     1.024213    1.129675
+                  srhbr |   1.396317    .110913     4.20   0.000     1.195008    1.631538
+                  _cons |   5.37e-20   1.03e-19   -23.05   0.000     1.24e-21    2.34e-18
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.258941   .0499076    45.26   0.000     2.161124    2.356758
+------------------------+----------------------------------------------------------------
+                      p |   9.572943   .4777624                      8.680887    10.55667
+                    1/p |   .1044611   .0052134                      .0947269    .1151956
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. **Transition 2**
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1301.0969
+Iteration 2:  Log likelihood = -1289.9851
+Iteration 3:  Log likelihood = -1289.9728
+Iteration 4:  Log likelihood = -1289.9728
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 184.13
+Log likelihood = -1289.9728                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   2.108122   .2161268     7.27   0.000     1.724367    2.577281
+           zAIRPOLLUTION1 |   .9457373    .085288    -0.62   0.536     .7925157    1.128582
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |   1.106454   .1102715     1.02   0.310     .9101246    1.345135
+                          |
+       zLE8_TOTALSCOREinv |   .9938266   .0441616    -0.14   0.889     .9109336    1.084263
+                      SEX |   .9120505   .0754053    -1.11   0.265     .7756118     1.07249
+                      AGE |   1.014699   .0136517     1.08   0.278     .9882915    1.041811
+                 NonWhite |   .8137587   .2044828    -0.82   0.412     .4972837    1.331641
+            householdsize |   1.015558   .0361896     0.43   0.665     .9470476    1.089024
+                   SESres |   .8190172   .0705546    -2.32   0.020     .6917767    .9696615
+                ztownsend |   1.123262   .0512411     2.55   0.011     1.027191     1.22832
+                 comorbid |   1.058258   .0203358     2.95   0.003     1.019141    1.098875
+                    srhbr |   1.449389   .0907348     5.93   0.000      1.28203    1.638597
+                    _cons |   1.18e-30   2.54e-30   -32.04   0.000     1.74e-32    7.99e-29
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.673942   .0382497    69.91   0.000     2.598974     2.74891
+--------------------------+----------------------------------------------------------------
+                        p |   14.49701   .5545067                      13.44993     15.6256
+                      1/p |   .0689798   .0026385                      .0639976    .0743498
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.2273
+Iteration 2:  Log likelihood = -1289.5977
+Iteration 3:  Log likelihood = -1289.5841
+Iteration 4:  Log likelihood = -1289.5841
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 184.90
+Log likelihood = -1289.5841                             Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |    2.11748   .2171654     7.32   0.000     1.731895    2.588912
+           zAIRPOLLUTION2 |   .9318005   .0842953    -0.78   0.435     .7804032    1.112569
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.012657    .103781     0.12   0.902     .8283772    1.237932
+                          |
+       zLE8_TOTALSCOREinv |   .9920766   .0441008    -0.18   0.858      .909299     1.08239
+                      SEX |   .9119933    .075385    -1.11   0.265      .775589    1.072387
+                      AGE |   1.014656   .0136585     1.08   0.280     .9882359    1.041783
+                 NonWhite |   .8208784   .2058612    -0.79   0.431     .5021266    1.341975
+            householdsize |   1.015573   .0358703     0.44   0.662     .9476463    1.088368
+                   SESres |    .817411   .0704815    -2.34   0.019      .690312    .9679113
+                ztownsend |   1.145565   .0474204     3.28   0.001     1.056293    1.242382
+                 comorbid |   1.058101   .0203474     2.94   0.003     1.018963    1.098742
+                    srhbr |   1.450953   .0907874     5.95   0.000     1.283491    1.640264
+                    _cons |   1.17e-30   2.51e-30   -32.04   0.000     1.72e-32    7.90e-29
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.674072   .0382523    69.91   0.000     2.599099    2.749046
+--------------------------+----------------------------------------------------------------
+                        p |   14.49889   .5546167                      13.45161    15.62771
+                      1/p |   .0689708   .0026383                      .0639889    .0743405
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.5848
+Iteration 2:  Log likelihood = -1289.6114
+Iteration 3:  Log likelihood = -1289.5979
+Iteration 4:  Log likelihood = -1289.5979
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 184.88
+Log likelihood = -1289.5979                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |   1.844025   .2579409     4.37   0.000     1.401849    2.425673
+           lnPM2point5_2010br |   .7881039   .1412563    -1.33   0.184     .5546484    1.119822
+                              |
+c.neflbr#c.lnPM2point5_2010br |    1.32097   .2635619     1.40   0.163     .8934291    1.953107
+                              |
+           zLE8_TOTALSCOREinv |   .9937886   .0441457    -0.14   0.888     .9109241    1.084191
+                          SEX |   .9114301   .0753394    -1.12   0.262     .7751085    1.071727
+                          AGE |   1.014745   .0136586     1.09   0.277      .988325    1.041872
+                     NonWhite |   .8198276    .205577    -0.79   0.428     .5015085    1.340191
+                householdsize |   1.016649   .0362046     0.46   0.643     .9481095    1.090144
+                       SESres |   .8177387   .0705557    -2.33   0.020     .6905126     .968406
+                    ztownsend |   1.138085   .0494748     2.98   0.003     1.045132    1.239305
+                     comorbid |   1.058209   .0203585     2.94   0.003      1.01905    1.098872
+                        srhbr |   1.449396   .0907564     5.93   0.000     1.281999    1.638651
+                        _cons |   1.30e-30   2.81e-30   -31.97   0.000     1.92e-32    8.86e-29
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.674101   .0382515    69.91   0.000      2.59913    2.749073
+------------------------------+----------------------------------------------------------------
+                            p |   14.49932   .5546211                      13.45203    15.62814
+                          1/p |   .0689688   .0026382                      .0639871    .0743382
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.9584
+Iteration 2:  Log likelihood = -1290.5334
+Iteration 3:  Log likelihood = -1290.5208
+Iteration 4:  Log likelihood = -1290.5208
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 183.03
+Log likelihood = -1290.5208                             Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   2.173623   .3131206     5.39   0.000     1.638946    2.882729
+           lnPM10_2010br |   1.015019   .1798545     0.08   0.933     .7172108    1.436485
+                         |
+c.neflbr#c.lnPM10_2010br |   .9497729   .1890665    -0.26   0.796     .6429473    1.403021
+                         |
+      zLE8_TOTALSCOREinv |   .9923876   .0440926    -0.17   0.863     .9096237    1.082682
+                     SEX |   .9112719   .0753412    -1.12   0.261     .7749493    1.071575
+                     AGE |   1.014788   .0136537     1.09   0.275     .9883773    1.041905
+                NonWhite |   .8166375   .2049743    -0.81   0.420     .4993207    1.335608
+           householdsize |   1.015155   .0360413     0.42   0.672     .9469174    1.088311
+                  SESres |   .8181551   .0704744    -2.33   0.020     .6910582    .9686272
+               ztownsend |     1.1376   .0473994     3.09   0.002     1.048391      1.2344
+                comorbid |   1.058096   .0203485     2.94   0.003     1.018956    1.098739
+                   srhbr |   1.450209   .0907312     5.94   0.000      1.28285    1.639402
+                   _cons |   1.16e-30   2.50e-30   -32.02   0.000     1.71e-32    7.90e-29
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.673934   .0382541    69.90   0.000     2.598957    2.748911
+-------------------------+----------------------------------------------------------------
+                       p |   14.49689   .5545652                      13.44971     15.6256
+                     1/p |   .0689803   .0026388                      .0639975    .0743511
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1298.9534
+Iteration 2:  Log likelihood = -1287.6598
+Iteration 3:  Log likelihood = -1287.6432
+Iteration 4:  Log likelihood = -1287.6432
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 188.79
+Log likelihood = -1287.6432                             Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |   2.014072   .2721889     5.18   0.000     1.545399     2.62488
+           lnPM2point5_10_2010br |   .7515635   .1340168    -1.60   0.109     .5298851    1.065982
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |   1.119576   .2245238     0.56   0.573     .7557019    1.658657
+                                 |
+              zLE8_TOTALSCOREinv |    .992141   .0441118    -0.18   0.859     .9093436    1.082477
+                             SEX |   .9133964   .0754928    -1.10   0.273     .7767958    1.074018
+                             AGE |   1.014826   .0136581     1.09   0.274     .9884068    1.041952
+                        NonWhite |   .8262839   .2071072    -0.76   0.446     .5055644    1.350461
+                   householdsize |   1.016474   .0358546     0.46   0.643     .9485745    1.089234
+                          SESres |   .8178925   .0706186    -2.33   0.020     .6905603    .9687033
+                       ztownsend |   1.152472   .0476579     3.43   0.001      1.06275     1.24977
+                        comorbid |   1.057241   .0203596     2.89   0.004      1.01808    1.097907
+                           srhbr |    1.44915   .0907362     5.92   0.000      1.28179    1.638363
+                           _cons |   1.37e-30   2.94e-30   -31.96   0.000     2.02e-32    9.28e-29
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |   2.673507   .0382572    69.88   0.000     2.598525     2.74849
+---------------------------------+----------------------------------------------------------------
+                               p |    14.4907   .5543733                      13.44389    15.61903
+                             1/p |   .0690098   .0026401                      .0640245    .0743832
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.9567
+Iteration 2:  Log likelihood = -1290.2128
+Iteration 3:  Log likelihood = -1290.2005
+Iteration 4:  Log likelihood = -1290.2005
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 183.67
+Log likelihood = -1290.2005                             Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   1.990932   .2862133     4.79   0.000     1.502066    2.638905
+           lnPM2point5_abs_2010br |   .9630487   .1718869    -0.21   0.833     .6787723    1.366383
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |   1.128189   .2246212     0.61   0.545     .7636755    1.666692
+                                  |
+               zLE8_TOTALSCOREinv |   .9940804   .0441836    -0.13   0.894     .9111469    1.084563
+                              SEX |   .9112926   .0753398    -1.12   0.261      .774972    1.071592
+                              AGE |   1.014659   .0136479     1.08   0.279      .988259    1.041764
+                         NonWhite |   .8076204   .2030826    -0.85   0.395     .4933621    1.322053
+                    householdsize |   1.015204   .0362545     0.42   0.673      .946576    1.088807
+                           SESres |   .8181299   .0704154    -2.33   0.020      .691131    .9684655
+                        ztownsend |   1.125119     .04814     2.76   0.006     1.034614    1.223541
+                         comorbid |   1.058245   .0203337     2.95   0.003     1.019132    1.098858
+                            srhbr |   1.449933   .0907032     5.94   0.000     1.282625    1.639066
+                            _cons |   1.21e-30   2.61e-30   -32.01   0.000     1.79e-32    8.24e-29
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |   2.673825   .0382522    69.90   0.000     2.598852    2.748798
+----------------------------------+----------------------------------------------------------------
+                                p |   14.49531   .5544778                      13.44829    15.62384
+                              1/p |   .0689879   .0026389                      .0640048    .0743589
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.6619
+Iteration 2:  Log likelihood = -1289.4053
+Iteration 3:  Log likelihood = -1289.3927
+Iteration 4:  Log likelihood = -1289.3927
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 185.29
+Log likelihood = -1289.3927                             Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.850107   .2643366     4.31   0.000     1.398235    2.448011
+           lnNO2_2010br |   .8769022   .1575357    -0.73   0.465     .6166414    1.247009
+                        |
+c.neflbr#c.lnNO2_2010br |   1.298745   .2587669     1.31   0.190     .8788748    1.919201
+                        |
+     zLE8_TOTALSCOREinv |   .9940637   .0441564    -0.13   0.893     .9111792    1.084488
+                    SEX |   .9125121   .0754328    -1.11   0.268     .7760221    1.073009
+                    AGE |   1.014562    .013646     1.07   0.282     .9881657    1.041663
+               NonWhite |   .8100218   .2035489    -0.84   0.402     .4949939    1.325542
+          householdsize |   1.015319   .0362028     0.43   0.670     .9467855    1.088814
+                 SESres |   .8193435   .0705663    -2.31   0.021     .6920793    .9700098
+              ztownsend |   1.120413   .0490053     2.60   0.009     1.028366    1.220699
+               comorbid |   1.057978   .0203424     2.93   0.003      1.01885    1.098609
+                  srhbr |    1.45009   .0907739     5.94   0.000     1.282658    1.639378
+                  _cons |   1.27e-30   2.73e-30   -32.00   0.000     1.87e-32    8.61e-29
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.673947   .0382475    69.91   0.000     2.598983    2.748911
+------------------------+----------------------------------------------------------------
+                      p |   14.49708   .5544775                      13.45006     15.6256
+                    1/p |   .0689794   .0026383                      .0639975    .0743491
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -2680.1469
+Iteration 1:  Log likelihood = -2099.8861
+Iteration 2:  Log likelihood = -1607.8169
+Iteration 3:  Log likelihood = -1396.4826
+Iteration 4:  Log likelihood = -1382.0702
+Iteration 5:  Log likelihood = -1382.0362
+Iteration 6:  Log likelihood = -1382.0362
+
+Fitting full model:
+Iteration 0:  Log likelihood = -1382.0362
+Iteration 1:  Log likelihood = -1300.6637
+Iteration 2:  Log likelihood = -1289.3515
+Iteration 3:  Log likelihood =  -1289.339
+Iteration 4:  Log likelihood =  -1289.339
+
+Weibull PH regression
+
+No. of subjects = 19,639                                Number of obs = 19,639
+No. of failures = 596
+Time at risk    = 1,468,444
+                                                        LR chi2( = 185.39
+Log likelihood = -1289.339                              Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.862427   .2679577     4.32   0.000     1.404792    2.469144
+           lnNOX_2010br |   .9004162   .1612752    -0.59   0.558      .633845    1.279097
+                        |
+c.neflbr#c.lnNOX_2010br |   1.278905   .2548186     1.23   0.217     .8654436    1.889897
+                        |
+     zLE8_TOTALSCOREinv |   .9941247   .0441366    -0.13   0.894     .9112754    1.084506
+                    SEX |   .9126624   .0754483    -1.11   0.269     .7761447    1.073192
+                    AGE |   1.014891   .0136512     1.10   0.272     .9884845    1.042002
+               NonWhite |   .8080784   .2028734    -0.85   0.396     .4940304    1.321762
+          householdsize |   1.016408   .0362442     0.46   0.648     .9477958    1.089986
+                 SESres |   .8217823   .0707966    -2.28   0.023     .6941059    .9729439
+              ztownsend |   1.118181   .0485371     2.57   0.010     1.026985    1.217476
+               comorbid |   1.058024   .0203424     2.93   0.003     1.018895    1.098655
+                  srhbr |     1.4511   .0908208     5.95   0.000     1.283579    1.640484
+                  _cons |   1.22e-30   2.62e-30   -32.01   0.000     1.79e-32    8.25e-29
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.674039   .0382467    69.92   0.000     2.599077    2.749001
+------------------------+----------------------------------------------------------------
+                      p |   14.49841   .5545172                      13.45132    15.62702
+                    1/p |   .0689731    .002638                      .0639917    .0743422
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+.
+. **Transition 3**
+. **Weibull**
+. streg c.neflbr##c.zAIRPOLLUTION1 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3013.2815
+Iteration 2:  Log likelihood = -2848.2723
+Iteration 3:  Log likelihood = -2846.1474
+Iteration 4:  Log likelihood = -2846.1459
+Iteration 5:  Log likelihood = -2846.1459
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1117.48
+Log likelihood = -2846.1459                            Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.514987    .074719     8.42   0.000     1.375396    1.668745
+           zAIRPOLLUTION1 |   .9937905   .0391339    -0.16   0.874     .9199747    1.073529
+                          |
+c.neflbr#c.zAIRPOLLUTION1 |    1.02063   .0476072     0.44   0.662     .9314594    1.118336
+                          |
+       zLE8_TOTALSCOREinv |   1.188646   .0278491     7.38   0.000     1.135297    1.244502
+                      SEX |   .6005229   .0274232   -11.17   0.000     .5491096    .6567502
+                      AGE |    .921624   .0055028   -13.67   0.000     .9109016    .9324726
+                 NonWhite |   .9651387   .1129659    -0.30   0.762     .7672904    1.214003
+            householdsize |   .9570032   .0246719    -1.70   0.088     .9098485    1.006602
+                   SESres |   .8378113   .0380584    -3.90   0.000     .7664423    .9158258
+                ztownsend |   1.124576   .0270352     4.88   0.000     1.072817    1.178832
+                 comorbid |   1.074724   .0107789     7.19   0.000     1.053804     1.09606
+                    srhbr |    1.61842   .0536394    14.53   0.000     1.516631    1.727041
+                    _cons |   1.47e-22   1.43e-22   -51.64   0.000     2.18e-23    9.90e-22
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.490788   .0209695   118.78   0.000     2.449688    2.531888
+--------------------------+----------------------------------------------------------------
+                        p |   12.07078   .2531189                      11.58474    12.57722
+                      1/p |   .0828447   .0017372                      .0795088    .0863205
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+. streg c.neflbr##c.zAIRPOLLUTION2 zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3011.0318
+Iteration 2:  Log likelihood =  -2846.143
+Iteration 3:  Log likelihood = -2844.0093
+Iteration 4:  Log likelihood = -2844.0078
+Iteration 5:  Log likelihood = -2844.0078
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1121.75
+Log likelihood = -2844.0078                            Prob > chi2 = 0.0000
+
+--------------------------+----------------------------------------------------------------
+                       _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------------------+----------------------------------------------------------------
+                   neflbr |   1.517201   .0746042     8.48   0.000     1.377805    1.670701
+           zAIRPOLLUTION2 |    .923024   .0365517    -2.02   0.043     .8540937    .9975174
+                          |
+c.neflbr#c.zAIRPOLLUTION2 |   1.098876   .0525884     1.97   0.049     1.000491    1.206936
+                          |
+       zLE8_TOTALSCOREinv |   1.188582   .0278387     7.38   0.000     1.135252    1.244416
+                      SEX |   .6005209   .0274204   -11.17   0.000     .5491127     .656742
+                      AGE |   .9216704   .0055047   -13.66   0.000     .9109443    .9325229
+                 NonWhite |   .9720633   .1134553    -0.24   0.808      .773296    1.221922
+            householdsize |   .9575312   .0247126    -1.68   0.093     .9102999    1.007213
+                   SESres |   .8370196   .0380439    -3.91   0.000     .7656797    .9150064
+                ztownsend |   1.130797   .0246532     5.64   0.000     1.083496    1.180164
+                 comorbid |   1.074621   .0107854     7.17   0.000     1.053688    1.095969
+                    srhbr |   1.618963   .0536947    14.53   0.000     1.517071    1.727698
+                    _cons |   1.45e-22   1.41e-22   -51.65   0.000     2.16e-23    9.79e-22
+--------------------------+----------------------------------------------------------------
+                    /ln_p |   2.490871   .0209675   118.80   0.000     2.449775    2.531967
+--------------------------+----------------------------------------------------------------
+                        p |   12.07179   .2531155                      11.58574    12.57822
+                      1/p |   .0828378   .0017369                      .0795025     .086313
+--------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+. foreach x of varlist lnPM2point5_2010br lnPM10_2010br lnPM2point5_10_2010br lnPM2point5_abs_2010br lnNO2_2010br lnNOX_2010br
+  2.         streg c.neflbr##c.`x' zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend  comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+  3.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3011.6031
+Iteration 2:  Log likelihood = -2847.2225
+Iteration 3:  Log likelihood = -2845.0924
+Iteration 4:  Log likelihood =  -2845.091
+Iteration 5:  Log likelihood =  -2845.091
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1119.59
+Log likelihood = -2845.091                             Prob > chi2 = 0.0000
+
+------------------------------+----------------------------------------------------------------
+                           _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------------+----------------------------------------------------------------
+                       neflbr |    1.55192   .1111183     6.14   0.000     1.348724    1.785731
+           lnPM2point5_2010br |   1.101611   .0862526     1.24   0.216     .9448919    1.284324
+                              |
+c.neflbr#c.lnPM2point5_2010br |   .9613824   .0904389    -0.42   0.675     .7995069    1.156033
+                              |
+           zLE8_TOTALSCOREinv |   1.188047   .0278248     7.36   0.000     1.134744    1.243853
+                          SEX |   .6004751   .0274186   -11.17   0.000     .5490701    .6566928
+                          AGE |   .9217963   .0055026   -13.64   0.000     .9110742    .9326447
+                     NonWhite |   .9607198    .112118    -0.34   0.731     .7642928     1.20763
+                householdsize |   .9570101   .0246249    -1.71   0.088     .9099431    1.006512
+                       SESres |   .8401396   .0381808    -3.83   0.000     .7685426    .9184065
+                    ztownsend |   1.115188   .0255142     4.77   0.000     1.066286    1.166333
+                     comorbid |   1.074659   .0107762     7.18   0.000     1.053745    1.095989
+                        srhbr |   1.619002   .0536406    14.54   0.000     1.517209    1.727624
+                        _cons |   1.40e-22   1.36e-22   -51.66   0.000     2.07e-23    9.43e-22
+------------------------------+----------------------------------------------------------------
+                        /ln_p |   2.490522   .0209697   118.77   0.000     2.449422    2.531622
+------------------------------+----------------------------------------------------------------
+                            p |   12.06757   .2530529                      11.58165    12.57388
+                          1/p |   .0828667   .0017377                      .0795299    .0863435
+------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3011.8098
+Iteration 2:  Log likelihood = -2847.1955
+Iteration 3:  Log likelihood = -2845.0597
+Iteration 4:  Log likelihood = -2845.0582
+Iteration 5:  Log likelihood = -2845.0582
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1119.65
+Log likelihood = -2845.0582                            Prob > chi2 = 0.0000
+
+-------------------------+----------------------------------------------------------------
+                      _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------------+----------------------------------------------------------------
+                  neflbr |   1.413546   .0961333     5.09   0.000     1.237146    1.615098
+           lnPM10_2010br |   .8939517   .0683623    -1.47   0.143     .7695218    1.038502
+                         |
+c.neflbr#c.lnPM10_2010br |   1.150601   .1075789     1.50   0.134     .9579418    1.382007
+                         |
+      zLE8_TOTALSCOREinv |   1.189191   .0278689     7.39   0.000     1.135804    1.245087
+                     SEX |    .600035   .0274004   -11.19   0.000     .5486643    .6562155
+                     AGE |   .9216412   .0055038   -13.66   0.000     .9109169    .9324917
+                NonWhite |   .9700646   .1133273    -0.26   0.795     .7715419    1.219669
+           householdsize |   .9570153   .0247342    -1.70   0.089     .9097444    1.006742
+                  SESres |   .8376095   .0380562    -3.90   0.000     .7662454    .9156202
+               ztownsend |   1.130279    .024812     5.58   0.000      1.08268    1.179971
+                comorbid |   1.074561   .0107822     7.17   0.000     1.053634    1.095902
+                   srhbr |   1.618679   .0536674    14.53   0.000     1.516838    1.727358
+                   _cons |   1.55e-22   1.51e-22   -51.55   0.000     2.29e-23    1.05e-21
+-------------------------+----------------------------------------------------------------
+                   /ln_p |   2.490835    .020968   118.79   0.000     2.449739    2.531932
+-------------------------+----------------------------------------------------------------
+                       p |   12.07135   .2531118                      11.58532    12.57778
+                     1/p |   .0828408    .001737                      .0795053    .0863161
+-------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3010.1251
+Iteration 2:  Log likelihood = -2845.0207
+Iteration 3:  Log likelihood = -2842.8765
+Iteration 4:  Log likelihood = -2842.8751
+Iteration 5:  Log likelihood = -2842.8751
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1124.02
+Log likelihood = -2842.8751                            Prob > chi2 = 0.0000
+
+---------------------------------+----------------------------------------------------------------
+                              _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+---------------------------------+----------------------------------------------------------------
+                          neflbr |   1.344927   .0908994     4.38   0.000     1.178064    1.535426
+           lnPM2point5_10_2010br |   .8733416   .0666288    -1.78   0.076     .7520461    1.014201
+                                 |
+c.neflbr#c.lnPM2point5_10_2010br |    1.27077   .1189329     2.56   0.010     1.057796    1.526623
+                                 |
+              zLE8_TOTALSCOREinv |   1.188678   .0278395     7.38   0.000     1.135347    1.244514
+                             SEX |   .5999428   .0273972   -11.19   0.000     .5485782    .6561167
+                             AGE |   .9216636   .0055025   -13.66   0.000     .9109418    .9325116
+                        NonWhite |   .9685847   .1130809    -0.27   0.785     .7704795    1.217627
+                   householdsize |   .9573692   .0247243    -1.69   0.092     .9101165    1.007075
+                          SESres |   .8370353   .0380205    -3.92   0.000     .7657373     .914972
+                       ztownsend |    1.12687   .0245306     5.49   0.000     1.079802     1.17599
+                        comorbid |   1.074668   .0107765     7.18   0.000     1.053753    1.095999
+                           srhbr |   1.618803    .053668    14.53   0.000      1.51696    1.727483
+                           _cons |   1.54e-22   1.50e-22   -51.55   0.000     2.27e-23    1.04e-21
+---------------------------------+----------------------------------------------------------------
+                           /ln_p |   2.491148   .0209656   118.82   0.000     2.450056     2.53224
+---------------------------------+----------------------------------------------------------------
+                               p |   12.07513   .2531628                      11.58899    12.58165
+                             1/p |   .0828149   .0017363                      .0794808    .0862888
+---------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3012.4331
+Iteration 2:  Log likelihood = -2848.3434
+Iteration 3:  Log likelihood = -2846.2142
+Iteration 4:  Log likelihood = -2846.2128
+Iteration 5:  Log likelihood = -2846.2128
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1117.34
+Log likelihood = -2846.2128                            Prob > chi2 = 0.0000
+
+----------------------------------+----------------------------------------------------------------
+                               _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+----------------------------------+----------------------------------------------------------------
+                           neflbr |   1.542619   .1074052     6.23   0.000      1.34584    1.768169
+           lnPM2point5_abs_2010br |   1.028201   .0798954     0.36   0.720     .8829499    1.197346
+                                  |
+c.neflbr#c.lnPM2point5_abs_2010br |   .9698526   .0908534    -0.33   0.744     .8071743    1.165317
+                                  |
+               zLE8_TOTALSCOREinv |    1.18826   .0278427     7.36   0.000     1.134923    1.244103
+                              SEX |   .6003779   .0274157   -11.17   0.000     .5489786    .6565896
+                              AGE |   .9216426   .0055027   -13.67   0.000     .9109204    .9324909
+                         NonWhite |   .9630853   .1128047    -0.32   0.748     .7655347    1.211615
+                    householdsize |    .957009   .0246835    -1.70   0.088     .9098327    1.006631
+                           SESres |   .8375481   .0380337    -3.90   0.000     .7662246    .9155108
+                        ztownsend |   1.126755   .0254441     5.28   0.000     1.077973    1.177745
+                         comorbid |   1.074686   .0107793     7.18   0.000     1.053765    1.096022
+                            srhbr |    1.61857   .0536351    14.53   0.000     1.516789    1.727182
+                            _cons |   1.45e-22   1.41e-22   -51.62   0.000     2.15e-23    9.78e-22
+----------------------------------+----------------------------------------------------------------
+                            /ln_p |    2.49074   .0209701   118.78   0.000      2.44964    2.531841
+----------------------------------+----------------------------------------------------------------
+                                p |   12.07021   .2531133                      11.58417    12.57664
+                              1/p |   .0828486   .0017373                      .0795125    .0863247
+----------------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3013.1435
+Iteration 2:  Log likelihood = -2848.3618
+Iteration 3:  Log likelihood = -2846.2372
+Iteration 4:  Log likelihood = -2846.2357
+Iteration 5:  Log likelihood = -2846.2357
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1117.30
+Log likelihood = -2846.2357                            Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.496743   .1048857     5.76   0.000     1.304663    1.717101
+           lnNO2_2010br |   .9871176   .0773591    -0.17   0.869      .846567    1.151003
+                        |
+c.neflbr#c.lnNO2_2010br |   1.026645    .096203     0.28   0.779     .8543926    1.233625
+                        |
+     zLE8_TOTALSCOREinv |   1.188438   .0278381     7.37   0.000      1.13511    1.244271
+                    SEX |    .600437   .0274179   -11.17   0.000     .5490334    .6566532
+                    AGE |   .9216182   .0055027   -13.67   0.000     .9108959    .9324667
+               NonWhite |   .9660333   .1130357    -0.30   0.768     .7680559    1.215042
+          householdsize |   .9569871   .0246794    -1.70   0.088     .9098185    1.006601
+                 SESres |   .8375852   .0380434    -3.90   0.000      .766244    .9155686
+              ztownsend |   1.127143   .0259594     5.20   0.000     1.077394    1.179188
+               comorbid |   1.074689   .0107804     7.18   0.000     1.053766    1.096027
+                  srhbr |   1.618539   .0536428    14.53   0.000     1.516743    1.727167
+                  _cons |   1.48e-22   1.44e-22   -51.60   0.000     2.19e-23    9.96e-22
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.490829   .0209693   118.78   0.000      2.44973    2.531929
+------------------------+----------------------------------------------------------------
+                      p |   12.07128   .2531261                      11.58522    12.57774
+                    1/p |   .0828412   .0017371                      .0795055    .0863168
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+         Failure _d: _status==1
+   Analysis time _t: _stop
+  Enter on or after: time _start
+
+Fitting constant-only model:
+Iteration 0:  Log likelihood = -6741.2538
+Iteration 1:  Log likelihood = -4998.6213
+Iteration 2:  Log likelihood = -3784.6917
+Iteration 3:  Log likelihood =   -3420.15
+Iteration 4:  Log likelihood = -3404.9001
+Iteration 5:  Log likelihood = -3404.8847
+Iteration 6:  Log likelihood = -3404.8847
+
+Fitting full model:
+Iteration 0:  Log likelihood = -3404.8847
+Iteration 1:  Log likelihood = -3013.2088
+Iteration 2:  Log likelihood = -2847.7076
+Iteration 3:  Log likelihood = -2845.5867
+Iteration 4:  Log likelihood = -2845.5852
+Iteration 5:  Log likelihood = -2845.5852
+
+Weibull PH regression
+
+No. of subjects = 19,639                               Number of obs = 19,639
+No. of failures = 2,033
+Time at risk    = 1,468,444
+                                                       LR chi2( = 1118.60
+Log likelihood = -2845.5852                            Prob > chi2 = 0.0000
+
+------------------------+----------------------------------------------------------------
+                     _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------------+----------------------------------------------------------------
+                 neflbr |   1.482786   .1054739     5.54   0.000     1.289825    1.704616
+           lnNOX_2010br |   1.024148   .0800635     0.31   0.760      .878657     1.19373
+                        |
+c.neflbr#c.lnNOX_2010br |   1.043575   .0979639     0.45   0.650     .8681976    1.254379
+                        |
+     zLE8_TOTALSCOREinv |   1.188483   .0278317     7.37   0.000     1.135167    1.244303
+                    SEX |   .6008686   .0274393   -11.15   0.000     .5494252    .6571288
+                    AGE |   .9217659   .0055035   -13.64   0.000     .9110421    .9326158
+               NonWhite |   .9606099   .1122108    -0.34   0.731     .7640407    1.207752
+          householdsize |    .957154   .0246567    -1.70   0.089     .9100274    1.006721
+                 SESres |   .8392928   .0381269    -3.86   0.000     .7677956    .9174478
+              ztownsend |   1.118704   .0255571     4.91   0.000     1.069718    1.169933
+               comorbid |   1.074599   .0107787     7.17   0.000     1.053679    1.095934
+                  srhbr |   1.618594   .0536419    14.53   0.000       1.5168     1.72722
+                  _cons |   1.44e-22   1.40e-22   -51.62   0.000     2.14e-23    9.72e-22
+------------------------+----------------------------------------------------------------
+                  /ln_p |   2.490733   .0209688   118.78   0.000     2.449635    2.531831
+------------------------+----------------------------------------------------------------
+                      p |   12.07012   .2530957                      11.58411    12.57651
+                    1/p |   .0828492   .0017372                      .0795133    .0863251
+------------------------+----------------------------------------------------------------
+Note: _cons estimates baseline hazard.
+
+.
+.
+.
+. save "/opt/notebooks/finaldata_unimputedfin_MULTISTATE",replace
+
+file
+/opt/notebooks/finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+.
+.
+.
+.
+. capture log close

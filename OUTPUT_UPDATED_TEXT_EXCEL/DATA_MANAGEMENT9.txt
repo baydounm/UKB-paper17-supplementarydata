@@ -1,0 +1,129 @@
+
+
+. 
+. ****************************************MERGE WITH THESE DATASETS AS NEEDED***************************************************************************************************
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta
+saved
+
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta
+saved
+
+
+. keep n_eid nefl gfap
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta
+saved
+
+
+. 
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0.dta
+saved
+
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta", clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta
+saved
+
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta", clear
+
+. capture drop _merge
+
+. sort n_eid
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta
+saved
+
+
+. 
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION.dta",clear
+
+. merge n_eid using "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\proteomic_olink_instance0_GFAPNFL.dta"
+
+(you are using old
+ syntax; see
+} for new syntax)
+
+
+. capture drop _merge
+
+. sort n_eid
+
+. merge n_eid using "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\METABOLOMICS_IMPUTED_FINAL.dta"
+
+(you are using old
+ syntax; see
+} for new syntax)
+
+
+. capture drop _merge
+
+. sort n_eid 
+
+. merge n_eid using "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta"
+
+(you are using old
+ syntax; see
+} for new syntax)
+
+
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta", replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\UKB_PAPER11_NFLGFAPDEMMORTMETAB.dta
+saved
+
+
+. 
+. 
+. 
+. capture log close
+

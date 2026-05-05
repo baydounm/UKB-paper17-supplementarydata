@@ -1,0 +1,1462 @@
+. 
+. ********************************RUN FROM HERE ON TUESDAY-FRIDAY***********************************
+. 
+. 
+. 
+. //STEP 4: GENERATE LIFESTYLE VARIABLES: DIET//
+. 
+. use "/opt/notebooks/SMALLERDATASETUKBfin", clear
+
+. 
+. keep n_eid n_1289_0_0 n_1299_0_0 n_1309_0_0 n_1319_0_0 n_1329_0_0 n_1339_0_0 n_1349_0_0 n_1359_0_0 n_1369_0_0 n_1379_0_0 n_1389_0_0 n_6144_0_0 ///
+> n_6144_0_1 n_6144_0_2 n_6144_0_3 n_10855_0_0 n_1408_0_0 n_1418_0_0 n_2654_0_0 n_1428_0_0 n_1438_0_0 n_1448_0_0 n_1458_0_0 n_1468_0_0 ///
+> n_1478_0_0 n_1478_0_0 n_1548_0_0  n_6144_0_0
+variable n_1289_0_0 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. keep n_eid s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> s_6144_0_1 s_6144_0_2 s_6144_0_3 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0  s_6144_0_0
+variable s_6144_0_1 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. keep n_eid s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 n_6144_0_0 ///
+> n_6144_0_1 n_6144_0_2 n_6144_0_3 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0  s_6144_0_0
+variable n_6144_0_0 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. keep n_eid s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> n_6144_0_1 n_6144_0_2 n_6144_0_3 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0  s_6144_0_0
+variable n_6144_0_1 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. keep n_eid s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> s_6144_0_1 s_6144_0_2 n_6144_0_3 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0  s_6144_0_0
+variable s_6144_0_1 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. keep n_eid s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> s_6144_1_0 s_6144_2_0 s_6144_3_0 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0  
+
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. save "/opt/notebooks/LIFESTYLEDIET_UKB",replace
+
+(file 
+/opt/notebooks/LIFESTYLEDIET_UKB.dta
+not found)
+
+
+file 
+/opt/notebooks/LIFESTYLEDIET_UKB.dta
+saved
+
+
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. foreach x of varlist s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> s_6144_1_0 s_6144_2_0 s_6144_3_0 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0 {
+  2.         replace `x'="" if `x'=="prefer not to answer" | `x'=="do not know"  
+  3.         
+. }
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+
+. 
+. capture rename s_* n_*
+
+. 
+. foreach x of varlist n_1289_0_0 n_1299_0_0 n_1309_0_0 n_1319_0_0 n_1329_0_0 n_1339_0_0 n_1349_0_0 n_1359_0_0 n_1369_0_0 n_1379_0_0 n_1389_0_0 n_6144_0_0 n_6144_0_1 n_6144_0_2 n_6144_0_3 n_10855_0_0 n_1408_0_0 n_1418_0_0 n_2654_0_0 n_1428_0_0 n_1438_0_0 n_1448_0_0 n_1458_0_0 n_1468_0_0 n_1478_0_0 {
+  2.         
+.         destring(`x')
+  3. }
+variable n_6144_0_1 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. foreach x of varlist n_1289_0_0 n_1299_0_0 n_1309_0_0 n_1319_0_0 n_1329_0_0 n_1339_0_0 n_1349_0_0 n_1359_0_0 n_1369_0_0 n_1379_0_0 n_1389_0_0 n_6144_0_0 n_6144_1_0 n_6144_2_0 n_6144_3_0 n_10855_0_0 n_1408_0_0 n_1418_0_0 n_2654_0_0 n_1428_0_0 n_1438_0_0 n_1448_0_0 n_1458_0_0 n_1468_0_0 n_1478_0_0 {
+  2.         
+.         destring(`x')
+  3. }
+must specify either generate or replace option
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. foreach x of varlist s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 ///
+> s_6144_1_0 s_6144_2_0 s_6144_3_0 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_2654_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_1458_0_0 s_1468_0_0 ///
+> s_1478_0_0 s_1478_0_0 s_1548_0_0 {
+  2.         replace `x'="" if `x'=="prefer not to answer" | `x'=="do not know"  
+  3.         
+. }
+variable s_1289_0_0 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. foreach x of varlist n_1289_0_0 n_1299_0_0 n_1309_0_0 n_1319_0_0 n_1329_0_0 n_1339_0_0 n_1349_0_0 n_1359_0_0 n_1369_0_0 n_1379_0_0 n_1389_0_0 n_6144_0_0 n_6144_1_0 n_6144_2_0 n_6144_3_0 n_10855_0_0 n_1408_0_0 n_1418_0_0 n_2654_0_0 n_1428_0_0 n_1438_0_0 n_1448_0_0 n_1458_0_0 n_1468_0_0 n_1478_0_0 {
+  2.         
+.         destring(`x'),replace
+  3. }
+n_1289_0_0: contains nonnumeric characters; no replace
+n_1299_0_0: contains nonnumeric characters; no replace
+n_1309_0_0: contains nonnumeric characters; no replace
+n_1319_0_0: contains nonnumeric characters; no replace
+n_1329_0_0: contains nonnumeric characters; no replace
+n_1339_0_0: contains nonnumeric characters; no replace
+n_1349_0_0: contains nonnumeric characters; no replace
+n_1359_0_0: contains nonnumeric characters; no replace
+n_1369_0_0: contains nonnumeric characters; no replace
+n_1379_0_0: contains nonnumeric characters; no replace
+n_1389_0_0: contains nonnumeric characters; no replace
+n_6144_0_0: contains nonnumeric characters; no replace
+n_6144_1_0: contains nonnumeric characters; no replace
+n_6144_2_0: contains nonnumeric characters; no replace
+n_6144_3_0: contains nonnumeric characters; no replace
+n_10855_0_0: contains nonnumeric characters; no replace
+n_1408_0_0: contains nonnumeric characters; no replace
+n_1418_0_0: contains nonnumeric characters; no replace
+n_2654_0_0: contains nonnumeric characters; no replace
+n_1428_0_0: contains nonnumeric characters; no replace
+n_1438_0_0: contains nonnumeric characters; no replace
+n_1448_0_0: contains nonnumeric characters; no replace
+n_1458_0_0: contains nonnumeric characters; no replace
+n_1468_0_0: contains nonnumeric characters; no replace
+n_1478_0_0: contains nonnumeric characters; no replace
+
+. 
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. capture drop n_1289_0_0r n_1299_0_0r n_1309_0_0r n_1319_0_0r n_1329_0_0r n_1339_0_0r n_1349_0_0r n_1359_0_0r n_1369_0_0r n_1379_0_0r n_1389_0_0r 
+
+. capture drop n_6144_0_0r n_6144_1_0r n_6144_2_0r n_6144_3_0r n_10855_0_0r n_1408_0_0r n_1418_0_0r n_2654_0_0r n_1438_0_0r n_1448_0_0r n_1458_0_0r 
+
+. capture drop n_1468_0_0r n_1478_0_0r n_1478_0_0r
+
+. 
+. 
+. foreach x of varlist n_1289_0_0 n_1299_0_0 n_1309_0_0 n_1319_0_0 n_1329_0_0 n_1339_0_0 n_1349_0_0 n_1359_0_0 n_1369_0_0 n_1379_0_0 n_1389_0_0 n_6144_0_0 n_6144_1_0 n_6144_2_0 n_6144_3_0 n_10855_0_0 n_1408_0_0 n_1418_0_0 n_2654_0_0 n_1428_0_0 n_1438_0_0 n_1448_0_0 n_1458_0_0 n_1468_0_0 n_1478_0_0  {
+  2.         gen `x'r=`x'
+  3. }
+(893 missing values generated)
+(893 missing values generated)
+(893 missing values generated)
+(894 missing values generated)
+(894 missing values generated)
+(894 missing values generated)
+(895 missing values generated)
+(895 missing values generated)
+(895 missing values generated)
+(895 missing values generated)
+(897 missing values generated)
+(4,663 missing values generated)
+(481,828 missing values generated)
+(426,851 missing values generated)
+(495,212 missing values generated)
+(498,390 missing values generated)
+(12,862 missing values generated)
+(980 missing values generated)
+(242,492 missing values generated)
+(4,663 missing values generated)
+(4,663 missing values generated)
+(21,098 missing values generated)
+(1,014 missing values generated)
+(87,221 missing values generated)
+(897 missing values generated)
+
+. 
+end of do-file
+
+. su n_6144_0_0r
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+n_6144_0_0r |          0
+
+. tab n_6144_0_0r
+
+                            n_6144_0_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |      3,821        0.77        0.77
+Dairy products|Sugar or foods/drinks .. |      1,997        0.40        1.17
+          Dairy products|Wheat products |        972        0.20        1.36
+Dairy products|Wheat products|Sugar o.. |        619        0.12        1.49
+          Eggs or foods containing eggs |      6,578        1.32        2.81
+Eggs or foods containing eggs|Dairy p.. |      1,097        0.22        3.03
+Eggs or foods containing eggs|Dairy p.. |        639        0.13        3.16
+Eggs or foods containing eggs|Dairy p.. |      2,309        0.46        3.62
+Eggs or foods containing eggs|Dairy p.. |        428        0.09        3.71
+Eggs or foods containing eggs|Sugar o.. |      2,762        0.56        4.27
+Eggs or foods containing eggs|Wheat p.. |        354        0.07        4.34
+Eggs or foods containing eggs|Wheat p.. |        153        0.03        4.37
+                 I eat all of the above |    382,172       76.82       81.19
+                   Prefer not to answer |      1,767        0.36       81.54
+ Sugar or foods/drinks containing sugar |     82,933       16.67       98.21
+                         Wheat products |      6,385        1.28       99.50
+Wheat products|Sugar or foods/drinks .. |      2,507        0.50      100.00
++
+                                  Total |    497,493      100.00
+
+. su n_6144_1_0r
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+n_6144_1_0r |          0
+
+. tab n_6144_1_0r
+
+                            n_6144_1_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |        156        0.77        0.77
+Dairy products|Sugar or foods/drinks .. |         62        0.30        1.07
+          Dairy products|Wheat products |         24        0.12        1.19
+Dairy products|Wheat products|Sugar o.. |         17        0.08        1.27
+          Eggs or foods containing eggs |        175        0.86        2.13
+Eggs or foods containing eggs|Dairy p.. |         51        0.25        2.39
+Eggs or foods containing eggs|Dairy p.. |         16        0.08        2.46
+Eggs or foods containing eggs|Dairy p.. |         79        0.39        2.85
+Eggs or foods containing eggs|Dairy p.. |         16        0.08        2.93
+Eggs or foods containing eggs|Sugar o.. |         99        0.49        3.42
+Eggs or foods containing eggs|Wheat p.. |          4        0.02        3.44
+Eggs or foods containing eggs|Wheat p.. |          2        0.01        3.45
+                 I eat all of the above |     15,544       76.47       79.91
+                   Prefer not to answer |         43        0.21       80.13
+ Sugar or foods/drinks containing sugar |      3,685       18.13       98.25
+                         Wheat products |        247        1.22       99.47
+Wheat products|Sugar or foods/drinks .. |        108        0.53      100.00
++
+                                  Total |     20,328      100.00
+
+. tab n_6144_2_0r
+
+                            n_6144_2_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |        426        0.57        0.57
+Dairy products|Sugar or foods/drinks .. |        230        0.31        0.87
+          Dairy products|Wheat products |        131        0.17        1.05
+Dairy products|Wheat products|Sugar o.. |         83        0.11        1.16
+          Eggs or foods containing eggs |        642        0.85        2.01
+Eggs or foods containing eggs|Dairy p.. |        269        0.36        2.37
+Eggs or foods containing eggs|Dairy p.. |         75        0.10        2.46
+Eggs or foods containing eggs|Dairy p.. |        431        0.57        3.04
+Eggs or foods containing eggs|Dairy p.. |         49        0.07        3.10
+Eggs or foods containing eggs|Sugar o.. |        262        0.35        3.45
+Eggs or foods containing eggs|Wheat p.. |         36        0.05        3.50
+Eggs or foods containing eggs|Wheat p.. |         15        0.02        3.52
+                 I eat all of the above |     55,925       74.26       77.78
+                   Prefer not to answer |        152        0.20       77.98
+ Sugar or foods/drinks containing sugar |     14,814       19.67       97.66
+                         Wheat products |      1,151        1.53       99.18
+Wheat products|Sugar or foods/drinks .. |        614        0.82      100.00
++
+                                  Total |     75,305      100.00
+
+. tab n_6144_3_0r
+
+                            n_6144_3_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |         43        0.62        0.62
+Dairy products|Sugar or foods/drinks .. |         14        0.20        0.82
+          Dairy products|Wheat products |         11        0.16        0.98
+Dairy products|Wheat products|Sugar o.. |          7        0.10        1.08
+          Eggs or foods containing eggs |         53        0.76        1.84
+Eggs or foods containing eggs|Dairy p.. |         35        0.50        2.35
+Eggs or foods containing eggs|Dairy p.. |         13        0.19        2.53
+Eggs or foods containing eggs|Dairy p.. |         32        0.46        3.00
+Eggs or foods containing eggs|Dairy p.. |          1        0.01        3.01
+Eggs or foods containing eggs|Sugar o.. |         22        0.32        3.33
+Eggs or foods containing eggs|Wheat p.. |          1        0.01        3.34
+Eggs or foods containing eggs|Wheat p.. |          1        0.01        3.36
+                 I eat all of the above |      5,211       75.04       78.40
+                   Prefer not to answer |         11        0.16       78.56
+ Sugar or foods/drinks containing sugar |      1,357       19.54       98.10
+                         Wheat products |         92        1.32       99.42
+Wheat products|Sugar or foods/drinks .. |         40        0.58      100.00
++
+                                  Total |      6,944      100.00
+
+. tab n_6144_0_0r
+
+                            n_6144_0_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |      3,821        0.77        0.77
+Dairy products|Sugar or foods/drinks .. |      1,997        0.40        1.17
+          Dairy products|Wheat products |        972        0.20        1.36
+Dairy products|Wheat products|Sugar o.. |        619        0.12        1.49
+          Eggs or foods containing eggs |      6,578        1.32        2.81
+Eggs or foods containing eggs|Dairy p.. |      1,097        0.22        3.03
+Eggs or foods containing eggs|Dairy p.. |        639        0.13        3.16
+Eggs or foods containing eggs|Dairy p.. |      2,309        0.46        3.62
+Eggs or foods containing eggs|Dairy p.. |        428        0.09        3.71
+Eggs or foods containing eggs|Sugar o.. |      2,762        0.56        4.27
+Eggs or foods containing eggs|Wheat p.. |        354        0.07        4.34
+Eggs or foods containing eggs|Wheat p.. |        153        0.03        4.37
+                 I eat all of the above |    382,172       76.82       81.19
+                   Prefer not to answer |      1,767        0.36       81.54
+ Sugar or foods/drinks containing sugar |     82,933       16.67       98.21
+                         Wheat products |      6,385        1.28       99.50
+Wheat products|Sugar or foods/drinks .. |      2,507        0.50      100.00
++
+                                  Total |    497,493      100.00
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. foreach y of varlist n_1289_0_0r n_1299_0_0r n_1309_0_0r n_1319_0_0r n_1329_0_0r n_1339_0_0r n_1349_0_0r n_1359_0_0r n_1369_0_0r n_1379_0_0r n_1389_0_0r n_6144_0_0r n_6144_1_0r n_6144_2_0r n_6144_3_0r n_10855_0_0r n_1408_0_0r n_1418_0_0r n_1428_0_0r n_2654_0_0r n_1438_0_0r n_1448_0_0r n_1458_0_0r n_1468_0_0r n_1478_0_0r n_1478_0_0r {
+  2. replace `y'="" if `y'=="Do not know" | `y'=="Prefer not to answer" 
+  3. }
+(6,693 real changes made)
+(6,951 real changes made)
+(2,344 real changes made)
+(6,058 real changes made)
+(3,184 real changes made)
+(2,828 real changes made)
+(1,334 real changes made)
+(1,176 real changes made)
+(2,427 real changes made)
+(3,590 real changes made)
+(3,396 real changes made)
+(1,767 real changes made)
+(43 real changes made)
+(152 real changes made)
+(11 real changes made)
+(6 real changes made)
+(1,574 real changes made)
+(545 real changes made)
+(1,135 real changes made)
+(1,375 real changes made)
+(6,117 real changes made)
+(1,534 real changes made)
+(2,070 real changes made)
+(3,171 real changes made)
+(228 real changes made)
+(0 real changes made)
+
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. tab1 n_1289_0_0r n_1299_0_0r n_1309_0_0r n_1319_0_0r n_1329_0_0r n_1339_0_0r n_1349_0_0r n_1359_0_0r n_1369_0_0r n_1379_0_0r n_1389_0_0r n_6144_0_0r n_6144_1_0r n_6144_2_0r n_6144_3_0r n_10855_0_0r n_1408_0_0r n_1418_0_0r n_1428_0_0r n_2654_0_0r n_1438_0_0r n_1448_0_0r n_1458_0_0r n_1468_0_0r n_1478_0_0r n_1478_0_0r
+
+-> tabulation of n_1289_0_0r  
+
+         n_1289_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     14,959        3.02        3.02
+                   1 |     65,720       13.29       16.31
+                  10 |      3,254        0.66       16.97
+                  11 |         28        0.01       16.98
+                  12 |        557        0.11       17.09
+                  13 |         10        0.00       17.09
+                  14 |        187        0.04       17.13
+                  15 |        414        0.08       17.21
+                  16 |         53        0.01       17.22
+                  17 |          1        0.00       17.22
+                  18 |         47        0.01       17.23
+                  19 |          3        0.00       17.23
+                   2 |    163,750       33.11       50.34
+                  20 |        495        0.10       50.44
+                  21 |         55        0.01       50.45
+                  22 |         45        0.01       50.46
+                  23 |          9        0.00       50.47
+                  24 |         14        0.00       50.47
+                  25 |         49        0.01       50.48
+                  26 |          1        0.00       50.48
+                  28 |         10        0.00       50.48
+                   3 |    134,842       27.26       77.74
+                  30 |         73        0.01       77.76
+                  31 |          5        0.00       77.76
+                  32 |         25        0.01       77.77
+                  33 |         35        0.01       77.77
+                  34 |          4        0.00       77.77
+                  35 |         12        0.00       77.78
+                  36 |          4        0.00       77.78
+                   4 |     54,454       11.01       88.79
+                  40 |         25        0.01       88.79
+                  41 |          1        0.00       88.79
+                  42 |         11        0.00       88.79
+                  43 |          9        0.00       88.80
+                  44 |         17        0.00       88.80
+                  45 |          6        0.00       88.80
+                  46 |          2        0.00       88.80
+                   5 |     26,050        5.27       94.07
+                  50 |         25        0.01       94.07
+                   6 |     12,839        2.60       96.67
+                   7 |      2,301        0.47       97.14
+                   8 |      3,281        0.66       97.80
+                   9 |        875        0.18       97.98
+       Less than one |     10,013        2.02      100.00
++
+               Total |    494,570      100.00
+
+-> tabulation of n_1299_0_0r  
+
+         n_1299_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     48,399        9.79        9.79
+                   1 |    147,764       29.89       39.68
+                  10 |      4,117        0.83       40.52
+                  11 |         73        0.01       40.53
+                  12 |        574        0.12       40.65
+                  13 |         14        0.00       40.65
+                  14 |         79        0.02       40.67
+                  15 |        560        0.11       40.78
+                  16 |         43        0.01       40.79
+                  17 |          5        0.00       40.79
+                  18 |         26        0.01       40.79
+                  19 |          3        0.00       40.80
+                   2 |    119,707       24.22       65.01
+                  20 |        625        0.13       65.14
+                  21 |         25        0.01       65.14
+                  22 |         31        0.01       65.15
+                  23 |          3        0.00       65.15
+                  24 |         14        0.00       65.15
+                  25 |         88        0.02       65.17
+                  26 |          2        0.00       65.17
+                  27 |          1        0.00       65.17
+                  28 |         10        0.00       65.17
+                   3 |     70,116       14.18       79.36
+                  30 |        119        0.02       79.38
+                  31 |          3        0.00       79.38
+                  32 |          9        0.00       79.39
+                  33 |         28        0.01       79.39
+                  34 |          2        0.00       79.39
+                  35 |         11        0.00       79.39
+                  36 |          2        0.00       79.39
+                  37 |          1        0.00       79.39
+                   4 |     36,095        7.30       86.70
+                  40 |         24        0.00       86.70
+                  41 |          3        0.00       86.70
+                  42 |          4        0.00       86.70
+                  43 |          3        0.00       86.70
+                  44 |          5        0.00       86.70
+                  45 |          3        0.00       86.70
+                  48 |          1        0.00       86.70
+                   5 |     23,549        4.76       91.47
+                  50 |         52        0.01       91.48
+                   6 |     11,845        2.40       93.88
+                   7 |      2,477        0.50       94.38
+                   8 |      3,388        0.69       95.06
+                   9 |        983        0.20       95.26
+       Less than one |     23,426        4.74      100.00
++
+               Total |    494,312      100.00
+
+-> tabulation of n_1309_0_0r  
+
+         n_1309_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     30,714        6.16        6.16
+                   1 |    130,583       26.17       32.33
+                  10 |        990        0.20       32.53
+                  11 |         95        0.02       32.55
+                  12 |        223        0.04       32.59
+                  13 |         16        0.00       32.59
+                  14 |         53        0.01       32.61
+                  15 |        120        0.02       32.63
+                  16 |         10        0.00       32.63
+                  17 |          1        0.00       32.63
+                  18 |          3        0.00       32.63
+                  19 |          3        0.00       32.63
+                   2 |    140,802       28.22       60.85
+                  20 |        144        0.03       60.88
+                  21 |         28        0.01       60.89
+                  22 |         22        0.00       60.89
+                  23 |          7        0.00       60.89
+                  25 |         25        0.01       60.90
+                  26 |          1        0.00       60.90
+                  27 |          1        0.00       60.90
+                  28 |          1        0.00       60.90
+                  29 |          1        0.00       60.90
+                   3 |    100,039       20.05       80.95
+                  30 |         20        0.00       80.96
+                  31 |          3        0.00       80.96
+                  32 |          6        0.00       80.96
+                  33 |         13        0.00       80.96
+                  34 |          1        0.00       80.96
+                  35 |          6        0.00       80.96
+                   4 |     42,265        8.47       89.43
+                  40 |         14        0.00       89.44
+                  42 |          1        0.00       89.44
+                  43 |          2        0.00       89.44
+                  44 |          2        0.00       89.44
+                   5 |     24,897        4.99       94.43
+                  50 |          6        0.00       94.43
+                   6 |      8,290        1.66       96.09
+                   7 |      2,000        0.40       96.49
+                   8 |      1,361        0.27       96.76
+                   9 |        281        0.06       96.82
+       Less than one |     15,869        3.18      100.00
++
+               Total |    498,919      100.00
+
+-> tabulation of n_1319_0_0r  
+
+         n_1319_0_0r |      Freq.     Percent        Cum.
++
+                   0 |    268,040       54.13       54.13
+                   1 |    103,586       20.92       75.05
+                  10 |      2,234        0.45       75.50
+                 100 |          6        0.00       75.50
+                  11 |         50        0.01       75.51
+                  12 |        235        0.05       75.55
+                  13 |         12        0.00       75.56
+                  14 |         35        0.01       75.56
+                  15 |        224        0.05       75.61
+                  16 |         14        0.00       75.61
+                  17 |          3        0.00       75.61
+                  18 |         16        0.00       75.62
+                  19 |          2        0.00       75.62
+                   2 |     38,902        7.86       83.47
+                  20 |        354        0.07       83.54
+                  21 |          4        0.00       83.54
+                  22 |          9        0.00       83.55
+                  23 |          2        0.00       83.55
+                  24 |          5        0.00       83.55
+                  25 |         31        0.01       83.55
+                  26 |          1        0.00       83.55
+                  27 |          1        0.00       83.55
+                  28 |          2        0.00       83.56
+                   3 |     18,698        3.78       87.33
+                  30 |         83        0.02       87.35
+                  31 |          2        0.00       87.35
+                  32 |          1        0.00       87.35
+                  33 |          7        0.00       87.35
+                  34 |          2        0.00       87.35
+                  35 |          1        0.00       87.35
+                  36 |          1        0.00       87.35
+                   4 |      8,654        1.75       89.10
+                  40 |         20        0.00       89.10
+                  41 |          1        0.00       89.10
+                  44 |          3        0.00       89.10
+                  45 |          2        0.00       89.10
+                   5 |      8,316        1.68       90.78
+                  50 |         29        0.01       90.79
+                  51 |          1        0.00       90.79
+                  52 |          1        0.00       90.79
+                  53 |          1        0.00       90.79
+                  55 |          2        0.00       90.79
+                  56 |          1        0.00       90.79
+                   6 |      4,196        0.85       91.64
+                  60 |          2        0.00       91.64
+                  61 |          1        0.00       91.64
+                   7 |        803        0.16       91.80
+                  70 |          1        0.00       91.80
+                   8 |      1,184        0.24       92.04
+                   9 |        321        0.06       92.10
+       Less than one |     39,102        7.90      100.00
++
+               Total |    495,204      100.00
+
+-> tabulation of n_1329_0_0r  
+
+          n_1329_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |     85,343       17.13       17.13
+     5-6 times a week |      3,590        0.72       17.86
+Less than once a week |    164,789       33.08       50.94
+                Never |     54,779       11.00       61.94
+          Once a week |    188,367       37.82       99.76
+   Once or more daily |      1,210        0.24      100.00
++
+                Total |    498,078      100.00
+
+-> tabulation of n_1339_0_0r  
+
+          n_1339_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |     78,806       15.81       15.81
+     5-6 times a week |      2,385        0.48       16.29
+Less than once a week |    144,757       29.04       45.33
+                Never |     23,456        4.71       50.04
+          Once a week |    248,222       49.80       99.84
+   Once or more daily |        808        0.16      100.00
++
+                Total |    498,434      100.00
+
+-> tabulation of n_1349_0_0r  
+
+          n_1349_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |    135,266       27.06       27.06
+     5-6 times a week |     15,654        3.13       30.19
+Less than once a week |    152,237       30.45       60.64
+                Never |     46,734        9.35       69.99
+          Once a week |    145,935       29.19       99.18
+   Once or more daily |      4,101        0.82      100.00
++
+                Total |    499,927      100.00
+
+-> tabulation of n_1359_0_0r  
+
+          n_1359_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |    229,623       45.92       45.92
+     5-6 times a week |      9,965        1.99       47.91
+Less than once a week |     53,908       10.78       58.69
+                Never |     25,594        5.12       63.81
+          Once a week |    179,518       35.90       99.70
+   Once or more daily |      1,477        0.30      100.00
++
+                Total |    500,085      100.00
+
+-> tabulation of n_1369_0_0r  
+
+          n_1369_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |     56,394       11.31       11.31
+     5-6 times a week |        909        0.18       11.49
+Less than once a week |    226,947       45.50       56.98
+                Never |     55,556       11.14       68.12
+          Once a week |    158,627       31.80       99.92
+   Once or more daily |        401        0.08      100.00
++
+                Total |    498,834      100.00
+
+-> tabulation of n_1379_0_0r  
+
+          n_1379_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |     14,778        2.97        2.97
+     5-6 times a week |        322        0.06        3.03
+Less than once a week |    281,551       56.57       59.61
+                Never |     88,583       17.80       77.41
+          Once a week |    112,195       22.54       99.95
+   Once or more daily |        242        0.05      100.00
++
+                Total |    497,671      100.00
+
+-> tabulation of n_1389_0_0r  
+
+          n_1389_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |     17,112        3.44        3.44
+     5-6 times a week |        466        0.09        3.53
+Less than once a week |    282,585       56.76       60.29
+                Never |     86,381       17.35       77.64
+          Once a week |    111,071       22.31       99.95
+   Once or more daily |        248        0.05      100.00
++
+                Total |    497,863      100.00
+
+-> tabulation of n_6144_0_0r  
+
+                            n_6144_0_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |      3,821        0.77        0.77
+Dairy products|Sugar or foods/drinks .. |      1,997        0.40        1.17
+          Dairy products|Wheat products |        972        0.20        1.37
+Dairy products|Wheat products|Sugar o.. |        619        0.12        1.49
+          Eggs or foods containing eggs |      6,578        1.33        2.82
+Eggs or foods containing eggs|Dairy p.. |      1,097        0.22        3.04
+Eggs or foods containing eggs|Dairy p.. |        639        0.13        3.17
+Eggs or foods containing eggs|Dairy p.. |      2,309        0.47        3.64
+Eggs or foods containing eggs|Dairy p.. |        428        0.09        3.72
+Eggs or foods containing eggs|Sugar o.. |      2,762        0.56        4.28
+Eggs or foods containing eggs|Wheat p.. |        354        0.07        4.35
+Eggs or foods containing eggs|Wheat p.. |        153        0.03        4.38
+                 I eat all of the above |    382,172       77.09       81.48
+ Sugar or foods/drinks containing sugar |     82,933       16.73       98.21
+                         Wheat products |      6,385        1.29       99.49
+Wheat products|Sugar or foods/drinks .. |      2,507        0.51      100.00
++
+                                  Total |    495,726      100.00
+
+-> tabulation of n_6144_1_0r  
+
+                            n_6144_1_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |        156        0.77        0.77
+Dairy products|Sugar or foods/drinks .. |         62        0.31        1.07
+          Dairy products|Wheat products |         24        0.12        1.19
+Dairy products|Wheat products|Sugar o.. |         17        0.08        1.28
+          Eggs or foods containing eggs |        175        0.86        2.14
+Eggs or foods containing eggs|Dairy p.. |         51        0.25        2.39
+Eggs or foods containing eggs|Dairy p.. |         16        0.08        2.47
+Eggs or foods containing eggs|Dairy p.. |         79        0.39        2.86
+Eggs or foods containing eggs|Dairy p.. |         16        0.08        2.94
+Eggs or foods containing eggs|Sugar o.. |         99        0.49        3.43
+Eggs or foods containing eggs|Wheat p.. |          4        0.02        3.45
+Eggs or foods containing eggs|Wheat p.. |          2        0.01        3.46
+                 I eat all of the above |     15,544       76.63       80.08
+ Sugar or foods/drinks containing sugar |      3,685       18.17       98.25
+                         Wheat products |        247        1.22       99.47
+Wheat products|Sugar or foods/drinks .. |        108        0.53      100.00
++
+                                  Total |     20,285      100.00
+
+-> tabulation of n_6144_2_0r  
+
+                            n_6144_2_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |        426        0.57        0.57
+Dairy products|Sugar or foods/drinks .. |        230        0.31        0.87
+          Dairy products|Wheat products |        131        0.17        1.05
+Dairy products|Wheat products|Sugar o.. |         83        0.11        1.16
+          Eggs or foods containing eggs |        642        0.85        2.01
+Eggs or foods containing eggs|Dairy p.. |        269        0.36        2.37
+Eggs or foods containing eggs|Dairy p.. |         75        0.10        2.47
+Eggs or foods containing eggs|Dairy p.. |        431        0.57        3.04
+Eggs or foods containing eggs|Dairy p.. |         49        0.07        3.11
+Eggs or foods containing eggs|Sugar o.. |        262        0.35        3.46
+Eggs or foods containing eggs|Wheat p.. |         36        0.05        3.50
+Eggs or foods containing eggs|Wheat p.. |         15        0.02        3.52
+                 I eat all of the above |     55,925       74.41       77.94
+ Sugar or foods/drinks containing sugar |     14,814       19.71       97.65
+                         Wheat products |      1,151        1.53       99.18
+Wheat products|Sugar or foods/drinks .. |        614        0.82      100.00
++
+                                  Total |     75,153      100.00
+
+-> tabulation of n_6144_3_0r  
+
+                            n_6144_3_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |         43        0.62        0.62
+Dairy products|Sugar or foods/drinks .. |         14        0.20        0.82
+          Dairy products|Wheat products |         11        0.16        0.98
+Dairy products|Wheat products|Sugar o.. |          7        0.10        1.08
+          Eggs or foods containing eggs |         53        0.76        1.85
+Eggs or foods containing eggs|Dairy p.. |         35        0.50        2.35
+Eggs or foods containing eggs|Dairy p.. |         13        0.19        2.54
+Eggs or foods containing eggs|Dairy p.. |         32        0.46        3.00
+Eggs or foods containing eggs|Dairy p.. |          1        0.01        3.01
+Eggs or foods containing eggs|Sugar o.. |         22        0.32        3.33
+Eggs or foods containing eggs|Wheat p.. |          1        0.01        3.35
+Eggs or foods containing eggs|Wheat p.. |          1        0.01        3.36
+                 I eat all of the above |      5,211       75.16       78.52
+ Sugar or foods/drinks containing sugar |      1,357       19.57       98.10
+                         Wheat products |         92        1.33       99.42
+Wheat products|Sugar or foods/drinks .. |         40        0.58      100.00
++
+                                  Total |      6,933      100.00
+
+-> tabulation of n_10855_0_0r  
+
+                           n_10855_0_0r |      Freq.     Percent        Cum.
++
+                         Dairy products |         26        0.69        0.69
+                   Dairy products|Sugar |         18        0.48        1.17
+          Dairy products|Wheat products |         12        0.32        1.49
+    Dairy products|Wheat products|Sugar |          6        0.16        1.65
+                                   Eggs |         82        2.18        3.83
+                    Eggs|Dairy products |          4        0.11        3.94
+              Eggs|Dairy products|Sugar |          8        0.21        4.15
+     Eggs|Dairy products|Wheat products |          5        0.13        4.28
+Eggs|Dairy products|Wheat products|Su.. |          4        0.11        4.39
+                             Eggs|Sugar |         46        1.22        5.61
+                    Eggs|Wheat products |          3        0.08        5.69
+              Eggs|Wheat products|Sugar |          5        0.13        5.82
+                 I eat all of the above |      2,637       70.13       75.96
+                                  Sugar |        822       21.86       97.82
+                         Wheat products |         57        1.52       99.34
+                   Wheat products|Sugar |         25        0.66      100.00
++
+                                  Total |      3,760      100.00
+
+-> tabulation of n_1408_0_0r  
+
+          n_1408_0_0r |      Freq.     Percent        Cum.
++
+     2-4 times a week |    220,445       45.20       45.20
+     5-6 times a week |     46,459        9.53       54.72
+Less than once a week |     84,690       17.36       72.09
+                Never |     13,561        2.78       74.87
+          Once a week |    104,735       21.47       96.34
+   Once or more daily |     17,830        3.66      100.00
++
+                Total |    487,720      100.00
+
+-> tabulation of n_1418_0_0r  
+
+           n_1418_0_0r |      Freq.     Percent        Cum.
++
+            Full cream |     34,578        6.91        6.91
+Never/rarely have milk |     16,713        3.34       10.25
+    Other type of milk |      6,486        1.30       11.54
+          Semi-skimmed |    322,711       64.46       76.00
+               Skimmed |    100,533       20.08       96.08
+                  Soya |     19,610        3.92      100.00
++
+                 Total |    500,631      100.00
+
+-> tabulation of n_1428_0_0r  
+
+                   n_1428_0_0r |      Freq.     Percent        Cum.
++
+      Butter/spreadable butter |    180,881       36.44       36.44
+      Flora Pro-Active/Benecol |      2,717        0.55       36.99
+       Never/rarely use spread |     53,900       10.86       47.85
+Other type of spread/margarine |    258,860       52.15      100.00
++
+                         Total |    496,358      100.00
+
+-> tabulation of n_2654_0_0r  
+
+                            n_2654_0_0r |      Freq.     Percent        Cum.
++
+            Flora Pro-Active or Benecol |     39,589       15.33       15.33
+                 Hard (block) margarine |        400        0.15       15.48
+  Olive oil based spread (eg: Bertolli) |     63,378       24.54       40.02
+        Other low or reduced fat spread |     25,703        9.95       49.97
+         Other type of spread/margarine |      9,486        3.67       53.64
+Polyunsaturated/sunflower oil based s.. |     86,357       33.43       87.08
+                   Soft (tub) margarine |     33,376       12.92      100.00
++
+                                  Total |    258,289      100.00
+
+-> tabulation of n_1438_0_0r  
+
+         n_1438_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     10,725        2.18        2.18
+                   1 |      4,209        0.86        3.04
+                  10 |     63,268       12.88       15.91
+                 100 |         33        0.01       15.92
+                 105 |          3        0.00       15.92
+                  11 |      1,026        0.21       16.13
+                 110 |          1        0.00       16.13
+                 112 |          1        0.00       16.13
+                 114 |          1        0.00       16.13
+                 119 |          1        0.00       16.13
+                  12 |     33,651        6.85       22.98
+                 120 |          5        0.00       22.98
+                  13 |        564        0.11       23.10
+                 130 |          2        0.00       23.10
+                  14 |     62,630       12.75       35.84
+                 140 |          5        0.00       35.84
+                  15 |     14,448        2.94       38.78
+                 150 |          4        0.00       38.78
+                  16 |     11,674        2.38       41.16
+                 160 |          1        0.00       41.16
+                  17 |      1,192        0.24       41.40
+                  18 |      7,356        1.50       42.90
+                 180 |          1        0.00       42.90
+                  19 |        423        0.09       42.99
+                   2 |     19,046        3.88       46.86
+                  20 |     36,045        7.34       54.20
+                 200 |          4        0.00       54.20
+                  21 |     12,053        2.45       56.65
+                  22 |      1,918        0.39       57.04
+                  23 |        311        0.06       57.11
+                  24 |      5,751        1.17       58.28
+                  25 |      7,056        1.44       59.71
+                  26 |      1,204        0.25       59.96
+                  27 |        139        0.03       59.98
+                  28 |     12,085        2.46       62.44
+                  29 |         53        0.01       62.46
+                   3 |     10,649        2.17       64.62
+                  30 |     11,677        2.38       67.00
+                  31 |         43        0.01       67.01
+                  32 |        501        0.10       67.11
+                  33 |         77        0.02       67.12
+                  34 |        239        0.05       67.17
+                  35 |      3,236        0.66       67.83
+                  36 |        753        0.15       67.99
+                  37 |         26        0.01       67.99
+                  38 |        122        0.02       68.02
+                  39 |          8        0.00       68.02
+                   4 |     31,684        6.45       74.47
+                  40 |      3,012        0.61       75.08
+                  41 |         12        0.00       75.08
+                  42 |      1,559        0.32       75.40
+                  43 |          9        0.00       75.40
+                  44 |         65        0.01       75.41
+                  45 |        394        0.08       75.49
+                  46 |         45        0.01       75.50
+                  47 |         14        0.00       75.51
+                  48 |        161        0.03       75.54
+                  49 |        130        0.03       75.56
+                   5 |     18,712        3.81       79.37
+                  50 |      1,209        0.25       79.62
+                  51 |          3        0.00       79.62
+                  52 |         11        0.00       79.62
+                  53 |          3        0.00       79.62
+                  54 |         17        0.00       79.63
+                  55 |         28        0.01       79.63
+                  56 |        186        0.04       79.67
+                  57 |          1        0.00       79.67
+                  58 |          4        0.00       79.67
+                   6 |     36,612        7.45       87.12
+                  60 |        194        0.04       87.16
+                  62 |          1        0.00       87.16
+                  63 |         15        0.00       87.16
+                  64 |          6        0.00       87.16
+                  65 |         12        0.00       87.17
+                  66 |          4        0.00       87.17
+                   7 |     21,403        4.36       91.52
+                  70 |        139        0.03       91.55
+                  72 |          8        0.00       91.55
+                  73 |          1        0.00       91.55
+                  74 |          1        0.00       91.55
+                  75 |         11        0.00       91.56
+                  77 |          3        0.00       91.56
+                  78 |          1        0.00       91.56
+                   8 |     30,340        6.17       97.73
+                  80 |         40        0.01       97.74
+                  82 |          1        0.00       97.74
+                  84 |          9        0.00       97.74
+                  85 |          1        0.00       97.74
+                  86 |          1        0.00       97.74
+                   9 |      5,371        1.09       98.84
+                  90 |         11        0.00       98.84
+                  96 |          2        0.00       98.84
+       Less than one |      5,710        1.16      100.00
++
+               Total |    491,376      100.00
+
+-> tabulation of n_1448_0_0r  
+
+            n_1448_0_0r |      Freq.     Percent        Cum.
++
+                  Brown |     60,546       12.63       12.63
+    Other type of bread |     20,566        4.29       16.92
+                  White |    127,003       26.49       43.40
+Wholemeal or wholegrain |    271,409       56.60      100.00
++
+                  Total |    479,524      100.00
+
+-> tabulation of n_1458_0_0r  
+
+         n_1458_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     64,049       12.83       12.83
+                   1 |     20,064        4.02       16.85
+                  10 |      3,495        0.70       17.55
+                  11 |        209        0.04       17.60
+                  12 |        977        0.20       17.79
+                  13 |         28        0.01       17.80
+                  14 |      1,835        0.37       18.17
+                  15 |         82        0.02       18.18
+                  16 |         39        0.01       18.19
+                  17 |         10        0.00       18.19
+                  18 |         19        0.00       18.20
+                  19 |          3        0.00       18.20
+                   2 |     35,562        7.13       25.32
+                  20 |         34        0.01       25.33
+                  21 |         60        0.01       25.34
+                  22 |          3        0.00       25.34
+                  24 |          1        0.00       25.34
+                  25 |          7        0.00       25.34
+                  28 |          9        0.00       25.34
+                   3 |     34,415        6.90       32.24
+                  30 |          4        0.00       32.24
+                  33 |          2        0.00       32.24
+                   4 |     30,741        6.16       38.40
+                   5 |     64,764       12.98       51.38
+                  55 |          2        0.00       51.38
+                   6 |     37,737        7.56       58.94
+                   7 |    178,067       35.68       94.62
+                  77 |          1        0.00       94.62
+                   8 |      2,477        0.50       95.12
+                   9 |      2,101        0.42       95.54
+       Less than one |     22,275        4.46      100.00
++
+               Total |    499,072      100.00
+
+-> tabulation of n_1468_0_0r  
+
+                            n_1468_0_0r |      Freq.     Percent        Cum.
++
+         Biscuit cereal (e.g. Weetabix) |     72,948       17.72       17.72
+Bran cereal (e.g. All Bran, Branflakes) |     69,335       16.84       34.55
+                                 Muesli |     82,848       20.12       54.67
+ Oat cereal (e.g. Ready Brek, porridge) |    105,863       25.71       80.38
+      Other (e.g. Cornflakes, Frosties) |     80,770       19.62      100.00
++
+                                  Total |    411,764      100.00
+
+-> tabulation of n_1478_0_0r  
+
+         n_1478_0_0r |      Freq.     Percent        Cum.
++
+              Always |     24,416        4.87        4.87
+        Never/rarely |    277,745       55.43       60.31
+           Sometimes |    140,518       28.05       88.35
+             Usually |     58,352       11.65      100.00
++
+               Total |    501,031      100.00
+
+-> tabulation of n_1478_0_0r  
+
+         n_1478_0_0r |      Freq.     Percent        Cum.
++
+              Always |     24,416        4.87        4.87
+        Never/rarely |    277,745       55.43       60.31
+           Sometimes |    140,518       28.05       88.35
+             Usually |     58,352       11.65      100.00
++
+               Total |    501,031      100.00
+
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. 
+. foreach y of varlist n_1289_0_0r n_1299_0_0r n_1309_0_0r n_1319_0_0r n_1329_0_0r n_1339_0_0r n_1349_0_0r n_1359_0_0r n_1369_0_0r n_1379_0_0r n_1389_0_0r n_6144_0_0r n_6144_1_0r n_6144_2_0r n_6144_3_0r n_10855_0_0r n_1408_0_0r n_1418_0_0r n_1428_0_0r n_2654_0_0r n_1438_0_0r n_1448_0_0r n_1458_0_0r n_1468_0_0r n_1478_0_0r n_1478_0_0r {
+  2. replace `y'="0.5" if `y'=="Less than one" 
+  3. }
+(10,013 real changes made)
+(23,426 real changes made)
+(15,869 real changes made)
+(39,102 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(5,710 real changes made)
+(0 real changes made)
+(22,275 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/LIFESTYLEDIET_UKB.dta
+saved
+
+
+. 
+end of do-file
+
+. su n_1438_0_0r
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+n_1438_0_0r |          0
+
+. n_1438_0_0r
+command n_1438_0_0r is unrecognized
+r(199);
+
+. tab n_1428_0_0r
+
+                   n_1428_0_0r |      Freq.     Percent        Cum.
++
+      Butter/spreadable butter |    180,881       36.44       36.44
+      Flora Pro-Active/Benecol |      2,717        0.55       36.99
+       Never/rarely use spread |     53,900       10.86       47.85
+Other type of spread/margarine |    258,860       52.15      100.00
++
+                         Total |    496,358      100.00
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. tab1 n_1309_0_0r n_1319_0_0r
+
+-> tabulation of n_1309_0_0r  
+
+         n_1309_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     30,714        6.16        6.16
+                 0.5 |     15,869        3.18        9.34
+                   1 |    130,583       26.17       35.51
+                  10 |        990        0.20       35.71
+                  11 |         95        0.02       35.73
+                  12 |        223        0.04       35.77
+                  13 |         16        0.00       35.78
+                  14 |         53        0.01       35.79
+                  15 |        120        0.02       35.81
+                  16 |         10        0.00       35.81
+                  17 |          1        0.00       35.81
+                  18 |          3        0.00       35.81
+                  19 |          3        0.00       35.81
+                   2 |    140,802       28.22       64.03
+                  20 |        144        0.03       64.06
+                  21 |         28        0.01       64.07
+                  22 |         22        0.00       64.07
+                  23 |          7        0.00       64.08
+                  25 |         25        0.01       64.08
+                  26 |          1        0.00       64.08
+                  27 |          1        0.00       64.08
+                  28 |          1        0.00       64.08
+                  29 |          1        0.00       64.08
+                   3 |    100,039       20.05       84.13
+                  30 |         20        0.00       84.14
+                  31 |          3        0.00       84.14
+                  32 |          6        0.00       84.14
+                  33 |         13        0.00       84.14
+                  34 |          1        0.00       84.14
+                  35 |          6        0.00       84.14
+                   4 |     42,265        8.47       92.61
+                  40 |         14        0.00       92.62
+                  42 |          1        0.00       92.62
+                  43 |          2        0.00       92.62
+                  44 |          2        0.00       92.62
+                   5 |     24,897        4.99       97.61
+                  50 |          6        0.00       97.61
+                   6 |      8,290        1.66       99.27
+                   7 |      2,000        0.40       99.67
+                   8 |      1,361        0.27       99.94
+                   9 |        281        0.06      100.00
++
+               Total |    498,919      100.00
+
+-> tabulation of n_1319_0_0r  
+
+         n_1319_0_0r |      Freq.     Percent        Cum.
++
+                   0 |    268,040       54.13       54.13
+                 0.5 |     39,102        7.90       62.02
+                   1 |    103,586       20.92       82.94
+                  10 |      2,234        0.45       83.39
+                 100 |          6        0.00       83.39
+                  11 |         50        0.01       83.40
+                  12 |        235        0.05       83.45
+                  13 |         12        0.00       83.45
+                  14 |         35        0.01       83.46
+                  15 |        224        0.05       83.51
+                  16 |         14        0.00       83.51
+                  17 |          3        0.00       83.51
+                  18 |         16        0.00       83.51
+                  19 |          2        0.00       83.51
+                   2 |     38,902        7.86       91.37
+                  20 |        354        0.07       91.44
+                  21 |          4        0.00       91.44
+                  22 |          9        0.00       91.44
+                  23 |          2        0.00       91.44
+                  24 |          5        0.00       91.44
+                  25 |         31        0.01       91.45
+                  26 |          1        0.00       91.45
+                  27 |          1        0.00       91.45
+                  28 |          2        0.00       91.45
+                   3 |     18,698        3.78       95.23
+                  30 |         83        0.02       95.24
+                  31 |          2        0.00       95.24
+                  32 |          1        0.00       95.24
+                  33 |          7        0.00       95.25
+                  34 |          2        0.00       95.25
+                  35 |          1        0.00       95.25
+                  36 |          1        0.00       95.25
+                   4 |      8,654        1.75       96.99
+                  40 |         20        0.00       97.00
+                  41 |          1        0.00       97.00
+                  44 |          3        0.00       97.00
+                  45 |          2        0.00       97.00
+                   5 |      8,316        1.68       98.68
+                  50 |         29        0.01       98.68
+                  51 |          1        0.00       98.68
+                  52 |          1        0.00       98.68
+                  53 |          1        0.00       98.69
+                  55 |          2        0.00       98.69
+                  56 |          1        0.00       98.69
+                   6 |      4,196        0.85       99.53
+                  60 |          2        0.00       99.53
+                  61 |          1        0.00       99.53
+                   7 |        803        0.16       99.70
+                  70 |          1        0.00       99.70
+                   8 |      1,184        0.24       99.94
+                   9 |        321        0.06      100.00
++
+               Total |    495,204      100.00
+
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. **1 medium sized fruit is one serving.
+. tab1 n_1309_0_0r n_1319_0_0r
+
+-> tabulation of n_1309_0_0r  
+
+         n_1309_0_0r |      Freq.     Percent        Cum.
++
+                   0 |     30,714        6.16        6.16
+                 0.5 |     15,869        3.18        9.34
+                   1 |    130,583       26.17       35.51
+                  10 |        990        0.20       35.71
+                  11 |         95        0.02       35.73
+                  12 |        223        0.04       35.77
+                  13 |         16        0.00       35.78
+                  14 |         53        0.01       35.79
+                  15 |        120        0.02       35.81
+                  16 |         10        0.00       35.81
+                  17 |          1        0.00       35.81
+                  18 |          3        0.00       35.81
+                  19 |          3        0.00       35.81
+                   2 |    140,802       28.22       64.03
+                  20 |        144        0.03       64.06
+                  21 |         28        0.01       64.07
+                  22 |         22        0.00       64.07
+                  23 |          7        0.00       64.08
+                  25 |         25        0.01       64.08
+                  26 |          1        0.00       64.08
+                  27 |          1        0.00       64.08
+                  28 |          1        0.00       64.08
+                  29 |          1        0.00       64.08
+                   3 |    100,039       20.05       84.13
+                  30 |         20        0.00       84.14
+                  31 |          3        0.00       84.14
+                  32 |          6        0.00       84.14
+                  33 |         13        0.00       84.14
+                  34 |          1        0.00       84.14
+                  35 |          6        0.00       84.14
+                   4 |     42,265        8.47       92.61
+                  40 |         14        0.00       92.62
+                  42 |          1        0.00       92.62
+                  43 |          2        0.00       92.62
+                  44 |          2        0.00       92.62
+                   5 |     24,897        4.99       97.61
+                  50 |          6        0.00       97.61
+                   6 |      8,290        1.66       99.27
+                   7 |      2,000        0.40       99.67
+                   8 |      1,361        0.27       99.94
+                   9 |        281        0.06      100.00
++
+               Total |    498,919      100.00
+
+-> tabulation of n_1319_0_0r  
+
+         n_1319_0_0r |      Freq.     Percent        Cum.
++
+                   0 |    268,040       54.13       54.13
+                 0.5 |     39,102        7.90       62.02
+                   1 |    103,586       20.92       82.94
+                  10 |      2,234        0.45       83.39
+                 100 |          6        0.00       83.39
+                  11 |         50        0.01       83.40
+                  12 |        235        0.05       83.45
+                  13 |         12        0.00       83.45
+                  14 |         35        0.01       83.46
+                  15 |        224        0.05       83.51
+                  16 |         14        0.00       83.51
+                  17 |          3        0.00       83.51
+                  18 |         16        0.00       83.51
+                  19 |          2        0.00       83.51
+                   2 |     38,902        7.86       91.37
+                  20 |        354        0.07       91.44
+                  21 |          4        0.00       91.44
+                  22 |          9        0.00       91.44
+                  23 |          2        0.00       91.44
+                  24 |          5        0.00       91.44
+                  25 |         31        0.01       91.45
+                  26 |          1        0.00       91.45
+                  27 |          1        0.00       91.45
+                  28 |          2        0.00       91.45
+                   3 |     18,698        3.78       95.23
+                  30 |         83        0.02       95.24
+                  31 |          2        0.00       95.24
+                  32 |          1        0.00       95.24
+                  33 |          7        0.00       95.25
+                  34 |          2        0.00       95.25
+                  35 |          1        0.00       95.25
+                  36 |          1        0.00       95.25
+                   4 |      8,654        1.75       96.99
+                  40 |         20        0.00       97.00
+                  41 |          1        0.00       97.00
+                  44 |          3        0.00       97.00
+                  45 |          2        0.00       97.00
+                   5 |      8,316        1.68       98.68
+                  50 |         29        0.01       98.68
+                  51 |          1        0.00       98.68
+                  52 |          1        0.00       98.68
+                  53 |          1        0.00       98.69
+                  55 |          2        0.00       98.69
+                  56 |          1        0.00       98.69
+                   6 |      4,196        0.85       99.53
+                  60 |          2        0.00       99.53
+                  61 |          1        0.00       99.53
+                   7 |        803        0.16       99.70
+                  70 |          1        0.00       99.70
+                   8 |      1,184        0.24       99.94
+                   9 |        321        0.06      100.00
++
+               Total |    495,204      100.00
+
+. destring n_1309_0_0r,replace
+n_1309_0_0r: all characters numeric; replaced as double
+(3237 missing values generated)
+
+. destring n_1319_0_0r,replace
+n_1319_0_0r: all characters numeric; replaced as double
+(6952 missing values generated)
+
+. 
+. capture drop allfruits
+
+. gen allfruits=.
+(502,156 missing values generated)
+
+. replace allfruits=(n_1309_0_0r+(n_1319_0_0r/3))
+(494,106 real changes made)
+
+. 
+end of do-file
+
+. su allfruits
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+allfruits |    494,106    2.516598    1.819511          0         60
+
+. save "/opt/notebooks/LIFESTYLEDIET_UKB.dta", replace
+
+file 
+/opt/notebooks/LIFESTYLEDIET_UKB.dta
+saved
+
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. **>=3 servings per day**
+. 
+. 
+. capture drop allfruits_component1
+
+. gen allfruits_component1=.
+(502,156 missing values generated)
+
+. replace allfruits_component1=1 if allfruits>=3 & allfruits~=.
+(191,896 real changes made)
+
+. replace allfruits_component1=0 if allfruits_component1~=1 & allfruits~=.
+(302,210 real changes made)
+
+. 
+. 
+end of do-file
+
+. do "/opt/notebooks/STD66a8_000000.tmp"
+
+. 
+. su allfruits
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+allfruits |    494,106    2.516598    1.819511          0         60
+
+. tab allfruits_component1
+
+allfruits_c |
+  omponent1 |      Freq.     Percent        Cum.
++
+          0 |    302,210       61.16       61.16
+          1 |    191,896       38.84      100.00
++
+      Total |    494,106      100.00
+
+. 
+end of do-file
+
+. save "/opt/notebooks/LIFESTYLEDIET_UKB.dta", replace
+
+file 
+/opt/notebooks/LIFESTYLEDIET_UKB.dta
+saved
+
+
+. exit, clear

@@ -1,0 +1,113 @@
+. 
+. ************************************************************************************************************************
+. 
+. **Format time-series variables using the do file**
+. 
+. use n_eid withdrew s_53* s_40000* n_40007*  s_42018_0_0 s_42018_0_0 s_42020_0_0 s_42030_0_0 s_42032_0_0 using "/opt/notebooks/SMALLERDATASETUKBfin.dta",clear
+
+. sort n_eid
+
+. capture drop _merge
+
+. save "/opt/notebooks/DATES_SMALL.dta",replace
+
+file 
+/opt/notebooks/DATES_SMALL.dta
+saved
+
+
+. 
+. 
+. capture gen double ts_53_0_0 = date(s_53_0_0,"YMD")
+
+. capture format ts_53_0_0 %td
+
+. capture label variable ts_53_0_0 "Date of attending assessment centre"
+
+. 
+. capture gen double ts_53_1_0 = date(s_53_1_0,"YMD")
+
+. capture format ts_53_1_0 %td
+
+. capture label variable ts_53_1_0 "Date of attending assessment centre"
+
+. 
+. capture gen double ts_53_2_0 = date(s_53_2_0,"YMD")
+
+. capture format ts_53_2_0 %td
+
+. capture label variable ts_53_2_0 "Date of attending assessment centre"
+
+. 
+. capture gen double ts_53_3_0 = date(s_53_3_0,"YMD")
+
+. capture format ts_53_3_0 %td
+
+. capture label variable ts_53_3_0 "Date of attending assessment centre"
+
+. 
+. capture gen double ts_40000_0_0 = date(s_40000_0_0,"YMD")
+
+. capture format ts_40000_0_0 %td
+
+. capture label variable ts_40000_0_0 "Date of death"
+
+. 
+. capture gen double ts_40000_1_0 = date(s_40000_1_0,"YMD")
+
+. capture format ts_40000_1_0 %td
+
+. capture label variable ts_40000_1_0 "Date of death"
+
+. 
+. 
+. format %18.14f n_40007_0_0
+
+. format %18.14f n_40007_1_0
+
+. 
+. **Dementia and Alzheimer's Disease**
+. 
+. capture gen double ts_42018_0_0 = date(s_42018_0_0,"YMD")
+
+. capture format ts_42018_0_0 %td
+
+. capture label variable ts_42018_0_0 "Date of all cause dementia report"
+
+. 
+. capture gen double ts_42020_0_0 = date(s_42020_0_0,"YMD")
+
+. capture format ts_42020_0_0 %td
+
+. capture label variable ts_42020_0_0 "Date of alzheimers disease report"
+
+. 
+. 
+. **Parkinson's and all-cause Parkinsonism***
+. 
+. capture gen double ts_42030_0_0 = date(s_42030_0_0,"YMD")
+
+. capture format ts_42030_0_0 %td
+
+. capture label variable ts_42030_0_0 "Date of all cause parkinsonism report"
+
+. 
+. capture gen double ts_42032_0_0 = date(s_42032_0_0,"YMD")
+
+. capture format ts_42032_0_0 %td
+
+. capture label variable ts_42032_0_0 "Date of parkinsons disease report"
+
+. 
+. save "/opt/notebooks/DATES_SMALL.dta",replace
+
+file 
+/opt/notebooks/DATES_SMALL.dta
+saved
+
+
+.  
+. 
+. 
+. 
+. capture log close

@@ -1,0 +1,530 @@
+
+
+. 
+. ********************************RESIDENTIAL AIR POLLUTION DATA**************************************
+. 
+. clear
+
+. use n_eid n_24016_0_0 n_24017_0_0 n_24018_0_0 n_24003_0_0 n_24004_0_0 n_24019_0_0 n_24005_0_0 n_24007_0_0 n_24006_0_0 n_24008_0_0   using "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\SMALLERDATASETUKB"
+
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta
+saved
+
+
+. 
+. use "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION",clear
+
+.  
+. 
+. 
+. **AIR POLLUTION REFERENCE: https:/opt/notebooks/
+. **We used annual averages of air pollution (PM2.5, PM10, PM2.5-10, PM2.5absorbance, NO2, NOX) for 2010 scaled to interquartile ranges (IQR)**
+. **UKB showcase: https:/opt/notebooks/
+. **List of fields:
+. 
+. **Field ID      Description     Category
+. **24016 Nitrogen dioxide air pollution; 2005    Residential air pollution  
+. **24017 Nitrogen dioxide air pollution; 2006    Residential air pollution  
+. **24018 Nitrogen dioxide air pollution; 2007    Residential air pollution  
+. **24003 Nitrogen dioxide air pollution; 2010    Residential air pollution  
+. **24004 Nitrogen oxides air pollution; 2010     Residential air pollution  
+. **24019 Particulate matter air pollution (pm10); 2007   Residential air pollution  
+. **24005 Particulate matter air pollution (pm10); 2010   Residential air pollution  
+. **24007 Particulate matter air pollution (pm2.5) absorbance; 2010       Residential air pollution  
+. **24006 Particulate matter air pollution (pm2.5); 2010  Residential air pollution  
+. **24008 Particulate matter air pollution 2.5-10um; 2010 Residential air pollution  
+. **24025 Included in pollution study     Local environment  
+. 
+. 
+. **24006 Particulate matter air pollution (pm2.5); 2010  Residential air pollution  
+. capture drop PM2point5_2010
+
+. gen PM2point5_2010=n_24006_0_0
+(41,286 missing values generated)
+
+. label var PM2point5_2010 "Particulate matter air pollution (pm2.5); 2010        Residential air pollution"
+
+. describe PM2point5_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Particulate matter air pollution (pm2.5); 2010        Residential air pollution
+
+. su PM2point5_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+PM2poin~2010     460,870    9.991881    1.056993       8.17      21.31
+
+. histogram PM2point5_2010
+(bin=56, start=8.1700001, width=.23464285)
+
+. 
+. **24005 Particulate matter air pollution (pm10); 2010   Residential air pollution  
+. 
+. capture drop PM10_2010
+
+. gen PM10_2010=n_24005_0_0
+(41,286 missing values generated)
+
+. label var PM10_2010 "Particulate matter air pollution (pm10); 2010      Residential air pollution"
+
+. describe PM10_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Particulate matter air pollution (pm10); 2010      Residential air pollution
+
+. su PM10_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+PM10_2010     460,870    16.23763    1.899212      11.78      31.39
+
+. histogram PM10_2010
+(bin=56, start=11.78, width=.35017857)
+
+. 
+. **24008 Particulate matter air pollution 2.5-10um; 2010 Residential air pollution 
+. 
+. capture drop PM2point5_10_2010
+
+. gen PM2point5_10_2010=n_24008_0_0
+(41,286 missing values generated)
+
+. label var PM2point5_10_2010 "Particulate matter air pollution 2.5-10um; 2010    Residential air pollution"
+
+. describe PM2point5_10_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Particulate matter air pollution 2.5-10um; 2010    Residential air pollution
+
+. su PM2point5_10_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+PM2po~0_2010     460,870     6.42826      .90062       5.57      12.82
+
+. histogram PM2point5_10_2010
+(bin=56, start=5.5700002, width=.12946428)
+
+. 
+. **24007 Particulate matter air pollution (pm2.5) absorbance; 2010       Residential air pollution  
+. capture drop PM2point5_abs_2010
+
+. gen PM2point5_abs_2010=n_24007_0_0
+(41,286 missing values generated)
+
+. label var PM2point5_abs_2010 "Particulate matter air pollution (pm2.5) absorbance; 2010 Residential air pollution"
+note: label truncated to 80 characters
+
+. describe PM2point5_abs_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Particulate matter air pollution (pm2.5) absorbance; 2010 Residential air pollut
+
+. su PM2point5_abs_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+PM2po~s_2010     460,870    1.186474    .2708803        .83        4.6
+
+. histogram PM2point5_abs_2010
+(bin=56, start=.82999998, width=.06732143)
+
+. 
+. **24003 Nitrogen dioxide air pollution; 2010    Residential air pollution  
+. capture drop NO2_2010
+
+. gen NO2_2010=n_24003_0_0
+(7,372 missing values generated)
+
+. label var NO2_2010 "Nitrogen dioxide air pollution; 2010        Residential air pollution"
+
+. describe NO2_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Nitrogen dioxide air pollution; 2010        Residential air pollution
+
+. su NO2_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+NO2_2010     494,784      26.713    7.575854      12.93     108.49
+
+. histogram NO2_2010
+(bin=56, start=12.93, width=1.7064285)
+
+. 
+. **24004 Nitrogen oxides air pollution; 2010     Residential air pollution  
+. 
+. capture drop NOX_2010
+
+. gen NOX_2010=n_24004_0_0
+(7,372 missing values generated)
+
+. label var NOX_2010 "Nitrogen oxides air pollution; 2010 Residential air pollution"
+
+. describe NOX_2010
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+
+Nitrogen oxides air pollution; 2010 Residential air pollution
+
+. su NOX_2010
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+NOX_2010     494,784    44.11134    15.53258      19.74     265.94
+
+. histogram NOX_2010
+(bin=56, start=19.74, width=4.3964286)
+
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta
+saved
+
+
+. 
+. 
+. corr NO* PM*
+(obs=460,870)
+
+              NO2_2010 NOX_2010 P~5_2010 PM1~2010 PM2poi.. P~s_2010
+
+    NO2_2010    1.0000
+    NOX_2010    0.9221   1.0000
+PM2po~5_2010    0.8645   0.8472   1.0000
+   PM10_2010    0.5055   0.5124   0.5327   1.0000
+PM2po~0_2010    0.2020   0.2399   0.2226   0.8180   1.0000
+PM2po~s_2010    0.7408   0.6476   0.6027   0.5653   0.4258   1.0000
+
+
+. 
+. capture drop ln*
+
+. foreach x of varlist NO* PM* 
+  2.         gen ln`x'=ln(`x')
+  3.         
+. 
+(7,372 missing values generated)
+(7,372 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+
+.  
+. capture drop sqrt*
+
+. foreach x of varlist NO* PM* 
+  2.         gen sqrt`x'=sqrt(`x')
+  3.         
+. 
+(7,372 missing values generated)
+(7,372 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+(41,286 missing values generated)
+
+. 
+.  
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta
+saved
+
+
+. 
+. 
+. corr ln*
+(obs=460,870)
+
+              lnNO2_~0 lnNOX_~0 l~5_2010 lnPM10~0 lnPM2p.. l~s_2010
+
+  lnNO2_2010    1.0000
+  lnNOX_2010    0.9297   1.0000
+lnPM2~5_2010    0.8703   0.8817   1.0000
+ lnPM10_2010    0.5409   0.5601   0.5633   1.0000
+lnPM2~0_2010    0.1903   0.2180   0.2266   0.7903   1.0000
+lnPM2~s_2010    0.7745   0.6891   0.6238   0.5647   0.4149   1.0000
+
+
+. corr sqrt*
+(obs=460,870)
+
+              s~2_2010 s~X_2010 s~5_2010 sqrtPM1~ sqrtPM.. s~s_2010
+
+sqrtNO2_2010    1.0000
+sqrtNOX_2010    0.9269   1.0000
+sqrtP~5_2010    0.8698   0.8724   1.0000
+sqrtPM1~2010    0.5237   0.5390   0.5482   1.0000
+sqr~_10_2010    0.1963   0.2300   0.2245   0.8051   1.0000
+sqrtP~s_2010    0.7607   0.6739   0.6143   0.5656   0.4212   1.0000
+
+
+. 
+. 
+. foreach x of varlist ln*
+  2.         histogram `x'
+  3. 
+(bin=56, start=2.5595503, width=.03798406)
+(bin=56, start=2.9826469, width=.04643971)
+(bin=56, start=2.1004689, width=.01711978)
+(bin=56, start=2.4664032, width=.01750154)
+(bin=56, start=1.7173951, width=.01488592)
+(bin=56, start=-.1863296, width=.03057832)
+
+. 
+. 
+. foreach x of varlist sqrt*
+  2.         histogram `x'
+  3. 
+(bin=56, start=3.5958309, width=.12178612)
+(bin=56, start=4.4429722, width=.21186955)
+(bin=56, start=2.8583212, width=.03139204)
+(bin=56, start=3.4322004, width=.03875852)
+(bin=56, start=2.3600848, width=.02179318)
+(bin=56, start=.91104335, width=.02203067)
+
+. 
+. 
+. pca ln*
+
+Principal components/opt/notebooks/ 50}Number of obs    =    460,870
+Number of comp.  =          6
+Trace            =          6
+Rotation: (unrotated = principal)Rho              =     1.0000
+
+
+   Component    Eigenvalue   Difference         Proportion   Cumulative
+
+       4.03359       2.7645             0.6723       0.6723
+       1.26909      .867042             0.2115       0.8838
+       .402047      .271405             0.0670       0.9508
+       .130642     .0197137             0.0218       0.9726
+       .110929     .0572273             0.0185       0.9910
+      .0537013            .             0.0090       1.0000
+
+
+Principal components (eigenvectors) 
+
+
+
+
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+
+
+. rotate
+
+Principal components/opt/notebooks/ 50}Number of obs    =    460,870
+Number of comp.  =          6
+Trace            =          6
+Rotation: orthogonal varimax (Kaiser off)Rho              =     1.0000
+
+
+   Component      Variance   Difference         Proportion   Cumulative
+
+             1  2.26067e-06             0.1667       0.1667
+             1  1.13260e-06             0.1667       0.3333
+             1  8.53538e-07             0.1667       0.5000
+       .999999  3.55102e-07             0.1667       0.6667
+       .999999  1.77215e-06             0.1667       0.8333
+       .999997            .             0.1667       1.0000
+
+
+Rotated components 
+
+
+
+
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}
+
+
+Component rotation matrix
+
+
+
+
+}}}}}}}}}}}}
+}}}}}}}}}}}}
+}}}}}}}}}}}}
+}}}}}}}}}}}}
+}}}}}}}}}}}}
+}}}}}}}}}}}}
+
+
+. 
+. pca ln* , factor(2)
+
+Principal components/opt/notebooks/ 50}Number of obs    =    460,870
+Number of comp.  =          2
+Trace            =          6
+Rotation: (unrotated = principal)Rho              =     0.8838
+
+
+   Component    Eigenvalue   Difference         Proportion   Cumulative
+
+       4.03359       2.7645             0.6723       0.6723
+       1.26909      .867042             0.2115       0.8838
+       .402047      .271405             0.0670       0.9508
+       .130642     .0197137             0.0218       0.9726
+       .110929     .0572273             0.0185       0.9910
+      .0537013            .             0.0090       1.0000
+
+
+Principal components (eigenvectors) 
+
+
+
+
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+
+
+. scree
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\PCA_AIRPOLLUTION_SCREE.gph",replace
+file  saved
+
+. rotate
+
+Principal components/opt/notebooks/ 50}Number of obs    =    460,870
+Number of comp.  =          2
+Trace            =          6
+Rotation: orthogonal varimax (Kaiser off)Rho              =     0.8838
+
+
+   Component      Variance   Difference         Proportion   Cumulative
+
+       3.50932      1.71596             0.5849       0.5849
+       1.79336            .             0.2989       0.8838
+
+
+Rotated components 
+
+
+
+
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+}}}}}}
+
+
+Component rotation matrix
+
+
+
+
+}}}}
+}}}}
+
+
+. loadingplot
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\PCA_AIRPOLLUTION_LOADING.gph",replace
+file  saved
+
+. capture drop AIRPOLLUTION*
+
+. predict AIRPOLLUTION*
+( assumed)
+
+Scoring coefficients for orthogonal varimax rotation
+sum of squares(column-loading) = 1
+
+
+
+
+}}}}
+}}}}
+}}}}
+}}}}
+}}}}
+}}}}
+
+
+. su AIRPOLLUTION*
+
+    Variable         Obs        Mean    Std. dev.       Min        Max
+
+AIRPOLLUTI~1     460,870    1.48e-11    1.873318  -4.359847   11.54465
+AIRPOLLUTI~2     460,870    1.62e-11    1.339164  -2.554814   8.121382
+
+. 
+. histogram AIRPOLLUTION1
+(bin=56, start=-4.3598466, width=.28400878)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\PCA_AIRPOLLUTION1_HIST.gph",replace
+file  saved
+
+. 
+. histogram AIRPOLLUTION2
+(bin=56, start=-2.5548143, width=.19064636)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\PCA_AIRPOLLUTION2_HIST.gph",replace
+file  saved
+
+. 
+. 
+. corr AIRPOLLUTION1 AIRPOLLUTION2
+(obs=460,870)
+
+              AIRPOL~1 AIRPOL~2
+
+AIRPOLLUTI~1    1.0000
+AIRPOLLUTI~2    0.4320   1.0000
+
+
+. 
+. 
+. save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION",replace
+
+file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER10_STATAFIX_RSTUDIO_TRANSLATION\DATA\AIRPOLLUTION.dta
+saved
+
+
+. 
+. 
+. 
+. ***********************************************
+. 
+. 
+. capture log close
+

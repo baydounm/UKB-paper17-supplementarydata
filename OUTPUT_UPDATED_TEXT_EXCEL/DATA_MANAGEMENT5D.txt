@@ -1,0 +1,2366 @@
+. ****************************BRAIN DMRI MEASURES*******************************
+. 
+. use n_eid n_250*_3_0 n_251*_3_0  n_252*_3_0  n_253*_3_0  n_254*_3_0  using "/opt/notebooks/SMALLERDATASETUKBfin.dta"
+
+. 
+. 
+. save UKB_BRAINDMRI_INSTANCE3, replace
+
+(file 
+UKB_BRAINDMRI_INSTANCE3.dta
+not found)
+
+
+file 
+UKB_BRAINDMRI_INSTANCE3.dta
+saved
+
+
+. sort n_eid
+
+. capture drop _merge
+
+. save, replace
+
+file 
+UKB_BRAINDMRI_INSTANCE3.dta
+saved
+
+
+. 
+. 
+. use "/opt/notebooks/DATES_SMALL.dta",clear
+
+. sort n_eid
+
+. capture drop _merge
+
+. save, replace
+
+file 
+/opt/notebooks/DATES_SMALL.dta
+saved
+
+
+. 
+. use UKB_BRAINDMRI_INSTANCE3,clear
+
+. merge n_eid using DATES_SMALL
+
+(you are using old
+merge syntax; see
+[D] merge for new syntax)
+
+
+. save UKB_BRAINDMRI_INSTANCE3fin, replace
+
+(file 
+UKB_BRAINDMRI_INSTANCE3fin.dta
+not found)
+
+
+file 
+UKB_BRAINDMRI_INSTANCE3fin.dta
+saved
+
+
+. 
+. 
+. ////////////////////////////////////TIME_V0V2, TIME_V0V3 AND TIME_V2V3////////////////////////////////////////////////////////
+> 
+. capture drop TIME_V0V2
+
+. gen TIME_V0V2=ts_53_3_0-ts_53_0_0
+(495,068 missing values generated)
+
+. 
+. capture drop TIME_V2V3
+
+. gen TIME_V2V3=ts_53_3_0-ts_53_2_0
+(495,068 missing values generated)
+
+. 
+. capture drop TIME_V0V3
+
+. gen TIME_V0V3=ts_53_3_0-ts_53_0_0
+(495,068 missing values generated)
+
+. 
+. 
+. ////////////////////////////////////INSTANCE VARIABLE//////////////////////////////////////////////////
+> 
+. capture drop INSTANCE
+
+. gen INSTANCE=3
+
+. 
+. save, replace
+
+file 
+UKB_BRAINDMRI_INSTANCE3fin.dta
+saved
+
+
+. 
+. 
+. 
+. **************************FRACTIONAL ANISOTROPY**********************
+. 
+. capture drop FA_ACR_Left
+
+. gen FA_ACR_Left=n_25079_3_0
+(497,396 missing values generated)
+
+. label var FA_ACR_Left "Mean FA in anterior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop FA_ACR_Right
+
+. gen FA_ACR_Right=n_25078_3_0
+(497,396 missing values generated)
+
+. label var FA_ACR_Right "Mean FA in anterior corona radiata on FA skeleton (right)"
+
+. 
+. capture drop FA_ALIC_Left
+
+. gen FA_ALIC_Left=n_25073_3_0
+(497,396 missing values generated)
+
+. label var FA_ALIC_Left "Mean FA in anterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. 
+. capture drop FA_ALIC_Right
+
+. gen FA_ALIC_Right=n_25072_3_0
+(497,396 missing values generated)
+
+. label var FA_ALIC_Right "Mean FA in anterior limb of the internal capsule on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_BCC
+
+. gen FA_BCC=n_25059_3_0
+(497,396 missing values generated)
+
+. label var FA_BCC "Mean FA in body of corpus callosum on FA skeleton"
+
+. 
+. capture drop FA_CP_Left
+
+. gen FA_CP_Left=n_25071_3_0
+(497,396 missing values generated)
+
+. label var FA_CP_Left "Mean FA in body of cerebral peduncle on FA skeleton (left)"
+
+. 
+. capture drop FA_CP_Right
+
+. gen FA_CP_Right=n_25070_3_0
+(497,396 missing values generated)
+
+. label var FA_CP_Right "Mean FA in body of cerebral peduncle on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_CCG_Left
+
+. gen FA_CCG_Left=n_25091_3_0
+(497,396 missing values generated)
+
+. label var FA_CCG_Left "Mean FA in body of cigulum cingulate gyrus on FA skeleton (left)"
+
+. 
+. capture drop FA_CCG_Right
+
+. gen FA_CCG_Right=n_25090_3_0
+(497,396 missing values generated)
+
+. label var FA_CCG_Right "Mean FA in body of cigulum cingulate gyrus on FA skeleton (right)"
+
+. 
+. capture drop FA_CH_Left
+
+. gen FA_CH_Left=n_25093_3_0
+(497,396 missing values generated)
+
+. label var FA_CH_Left "Mean FA in cigulum hippocampus on FA skeleton (left)"
+
+. 
+. capture drop FA_CH_Right
+
+. gen FA_CH_Right=n_25092_3_0
+(497,396 missing values generated)
+
+. label var FA_CH_Right "Mean FA in cigulum hippocampus on FA skeleton (right)"
+
+. 
+. capture drop FA_CT_Left
+
+. gen FA_CT_Left=n_25063_3_0
+(497,396 missing values generated)
+
+. label var FA_CT_Left "Mean FA in corticospinal tract on FA skeleton (left)"
+
+. 
+. capture drop FA_CT_Right
+
+. gen FA_CT_Right=n_25062_3_0
+(497,396 missing values generated)
+
+. label var FA_CT_Right "Mean FA in corticospinal tract on FA skeleton (right)"
+
+. 
+. capture drop FA_EC_Left
+
+. gen FA_EC_Left=n_25089_3_0
+(497,396 missing values generated)
+
+. label var FA_EC_Left "Mean FA in external capsule on FA skeleton (left)"
+
+. 
+. capture drop FA_EC_Right
+
+. gen FA_EC_Right=n_25088_3_0
+(497,396 missing values generated)
+
+. label var FA_EC_Right "Mean FA in external capsule on FA skeleton (right)"
+
+. 
+. capture drop FA_FCST_Left
+
+. gen FA_FCST_Left=n_25095_3_0
+(497,396 missing values generated)
+
+. label var FA_FCST_Left "Mean FA in fornix cres+stria terminalis on FA skeleton (left)"
+
+. 
+. capture drop FA_FCST_Right
+
+. gen FA_FCST_Right=n_25094_3_0
+(497,396 missing values generated)
+
+. label var FA_FCST_Right "Mean FA in fornix cres+stria terminalis  on FA skeleton (right)"
+
+. 
+. capture drop FA_FO
+
+. gen FA_FO=n_25061_3_0
+(497,396 missing values generated)
+
+. label var FA_FO "Mean FA in fornix on FA skeleton (left)"
+
+. 
+. 
+. capture drop FA_GCC
+
+. gen FA_GCC=n_25058_3_0
+(497,396 missing values generated)
+
+. label var FA_GCC "Mean FA in genu of corpus callosum on FA skeleton (left)"
+
+. 
+. capture drop FA_ICP_Left
+
+. gen FA_ICP_Left=n_25067_3_0
+(497,396 missing values generated)
+
+. label var FA_ICP_Left "Mean FA in inferior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop FA_ICP_Right
+
+. gen FA_ICP_Right=n_25066_3_0
+(497,396 missing values generated)
+
+. label var FA_ICP_Right "Mean FA in inferior cerebellar peduncle  on FA skeleton (right)"
+
+. 
+. capture drop FA_ML_Left
+
+. gen FA_ML_Left=n_25065_3_0
+(497,396 missing values generated)
+
+. label var FA_ML_Left "Mean FA in medial lemniscus on FA skeleton (left)"
+
+. 
+. capture drop FA_ML_Right
+
+. gen FA_ML_Right=n_25064_3_0
+(497,396 missing values generated)
+
+. label var FA_ML_Right "Mean FA in medial lemniscus  on FA skeleton (right)"
+
+. 
+. capture drop FA_MCP
+
+. gen FA_MCP=n_25056_3_0
+(497,396 missing values generated)
+
+. label var FA_MCP "Mean FA in middle cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop FA_PCT
+
+. gen FA_PCT=n_25057_3_0
+(497,396 missing values generated)
+
+. label var FA_PCT "Mean FA in pontine crossing tract on FA skeleton (left)"
+
+. 
+. capture drop FA_PCR_Left
+
+. gen FA_PCR_Left=n_25083_3_0
+(497,396 missing values generated)
+
+. label var FA_PCR_Left "Mean FA in posterior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop FA_PCR_Right
+
+. gen FA_PCR_Right=n_25082_3_0
+(497,396 missing values generated)
+
+. label var FA_PCR_Right "Mean FA in posterior corona radiata  on FA skeleton (right)"
+
+. 
+. capture drop FA_PLIC_Left
+
+. gen FA_PLIC_Left=n_25075_3_0
+(497,396 missing values generated)
+
+. label var FA_PLIC_Left "Mean FA in posterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. capture drop FA_PLIC_Right
+
+. gen FA_PLIC_Right=n_25074_3_0
+(497,396 missing values generated)
+
+. label var FA_PLIC_Right "Mean FA in posterior limb of the internal capsule  on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_PTR_Left
+
+. gen FA_PTR_Left=n_25085_3_0
+(497,396 missing values generated)
+
+. label var FA_PTR_Left "Mean FA in posterior thalamic radiation on FA skeleton (left)"
+
+. 
+. capture drop FA_PTR_Right
+
+. gen FA_PTR_Right=n_25084_3_0
+(497,396 missing values generated)
+
+. label var FA_PTR_Right "Mean FA in posterior thalamic radiation  on FA skeleton (right)"
+
+. 
+. capture drop FA_RPIC_Left
+
+. gen FA_RPIC_Left=n_25077_3_0
+(497,396 missing values generated)
+
+. label var FA_RPIC_Left "Mean FA in retrolenticular part of internal capsule on FA skeleton (left)"
+
+. 
+. capture drop FA_RPIC_Right
+
+. gen FA_RPIC_Right=n_25076_3_0
+(497,396 missing values generated)
+
+. label var FA_RPIC_Right "Mean FA in retrolenticular part of internal capsule  on FA skeleton (right)"
+
+. 
+. capture drop FA_SS_Left
+
+. gen FA_SS_Left=n_25087_3_0
+(497,396 missing values generated)
+
+. label var FA_SS_Left "Mean FA in sagittal stratum on FA skeleton (left)"
+
+. 
+. capture drop FA_SS_Right
+
+. gen FA_SS_Right=n_25086_3_0
+(497,396 missing values generated)
+
+. label var FA_SS_Right "Mean FA in sagittal stratum  on FA skeleton (right)"
+
+. 
+. capture drop FA_SCC
+
+. gen FA_SCC=n_25060_3_0
+(497,396 missing values generated)
+
+. label var FA_SCC "Mean FA in splenium of the corpus callosum"
+
+. 
+. capture drop FA_SCP_Left
+
+. gen FA_SCP_Left=n_25069_3_0
+(497,396 missing values generated)
+
+. label var FA_SCP_Left "Mean FA in superior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop FA_SCP_Right
+
+. gen FA_SCP_Right=n_25068_3_0
+(497,396 missing values generated)
+
+. label var FA_SCP_Right "Mean FA in superior cerebellar peduncle  on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_SCR_Left
+
+. gen FA_SCR_Left=n_25081_3_0
+(497,396 missing values generated)
+
+. label var FA_SCR_Left "Mean FA in superior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop FA_SCR_Right
+
+. gen FA_SCR_Right=n_25080_3_0
+(497,396 missing values generated)
+
+. label var FA_SCR_Right "Mean FA in superior corona radiata  on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_FOF_Left
+
+. gen FA_FOF_Left=n_25099_3_0
+(497,396 missing values generated)
+
+. label var FA_FOF_Left "Mean FA in fronto-occipital fasciculus on FA skeleton (left)"
+
+. 
+. capture drop FA_FOF_Right
+
+. gen FA_FOF_Right=n_25098_3_0
+(497,396 missing values generated)
+
+. label var FA_FOF_Right "Mean FA in fronto-occipital fasciculus  on FA skeleton (right)"
+
+. 
+. 
+. capture drop FA_SLF_Left
+
+. gen FA_SLF_Left=n_25097_3_0
+(497,396 missing values generated)
+
+. label var FA_SLF_Left "Mean FA in super longitudinal fasciculus on FA skeleton (left)"
+
+. 
+. capture drop FA_SLF_Right
+
+. gen FA_SLF_Right=n_25096_3_0
+(497,396 missing values generated)
+
+. label var FA_SLF_Right "Mean FA in super longitudinal fasciculus  on FA skeleton (right)"
+
+. 
+. capture drop FA_TP_Left
+
+. gen FA_TP_Left=n_25103_3_0
+(497,396 missing values generated)
+
+. label var FA_TP_Left "Mean FA in tapetum on FA skeleton (left)"
+
+. 
+. capture drop FA_TP_Right
+
+. gen FA_TP_Right=n_25102_3_0
+(497,396 missing values generated)
+
+. label var FA_TP_Right "Mean FA in tapetum  on FA skeleton (right)"
+
+. 
+. capture drop FA_UNC_Left
+
+. gen FA_UNC_Left=n_25101_3_0
+(497,396 missing values generated)
+
+. label var FA_UNC_Left "Mean FA in unciate fasciculus on FA skeleton (left)"
+
+. 
+. capture drop FA_UNC_Right
+
+. gen FA_UNC_Right=n_25100_3_0
+(497,396 missing values generated)
+
+. label var FA_UNC_Right "Mean FA in unciate fasciculus on FA skeleton (right)"
+
+. 
+. 
+. 
+. *************************MEAN DIFFUSIVITIY****************************
+. capture drop MD_ACR_Left
+
+. gen MD_ACR_Left=n_25127_3_0
+(497,396 missing values generated)
+
+. label var MD_ACR_Left "Mean MD in anterior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop MD_ACR_Right
+
+. gen MD_ACR_Right=n_25126_3_0
+(497,396 missing values generated)
+
+. label var MD_ACR_Right "Mean MD in anterior corona radiata on FA skeleton (right)"
+
+. 
+. capture drop MD_ALIC_Left
+
+. gen MD_ALIC_Left=n_25121_3_0
+(497,396 missing values generated)
+
+. label var MD_ALIC_Left "Mean MD in anterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. 
+. capture drop MD_ALIC_Right
+
+. gen MD_ALIC_Right=n_25120_3_0
+(497,396 missing values generated)
+
+. label var MD_ALIC_Right "Mean MD in anterior limb of the internal capsule on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_BCC
+
+. gen MD_BCC=n_25107_3_0
+(497,396 missing values generated)
+
+. label var MD_BCC "Mean MD in body of corpus callosum on FA skeleton"
+
+. 
+. capture drop MD_CP_Left
+
+. gen MD_CP_Left=n_25119_3_0
+(497,396 missing values generated)
+
+. label var MD_CP_Left "Mean MD in body of cerebral peduncle on FA skeleton (left)"
+
+. 
+. capture drop MD_CP_Right
+
+. gen MD_CP_Right=n_25118_3_0
+(497,396 missing values generated)
+
+. label var MD_CP_Right "Mean MD in body of cerebral peduncle on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_CCG_Left
+
+. gen MD_CCG_Left=n_25139_3_0
+(497,396 missing values generated)
+
+. label var MD_CCG_Left "Mean MD in body of cigulum cingulate gyrus on FA skeleton (left)"
+
+. 
+. capture drop MD_CCG_Right
+
+. gen MD_CCG_Right=n_25138_3_0
+(497,396 missing values generated)
+
+. label var MD_CCG_Right "Mean MD in body of cigulum cingulate gyrus on FA skeleton (right)"
+
+. 
+. capture drop MD_CH_Left
+
+. gen MD_CH_Left=n_25141_3_0
+(497,396 missing values generated)
+
+. label var MD_CH_Left "Mean MD in cigulum hippocampus on FA skeleton (left)"
+
+. 
+. capture drop MD_CH_Right
+
+. gen MD_CH_Right=n_25140_3_0
+(497,396 missing values generated)
+
+. label var MD_CH_Right "Mean MD in cigulum hippocampus on FA skeleton (right)"
+
+. 
+. capture drop MD_CT_Left
+
+. gen MD_CT_Left=n_25111_3_0
+(497,396 missing values generated)
+
+. label var MD_CT_Left "Mean MD in corticospinal tract on FA skeleton (left)"
+
+. 
+. capture drop MD_CT_Right
+
+. gen MD_CT_Right=n_25110_3_0
+(497,396 missing values generated)
+
+. label var MD_CT_Right "Mean MD in corticospinal tract on FA skeleton (right)"
+
+. 
+. capture drop MD_EC_Left
+
+. gen MD_EC_Left=n_25137_3_0
+(497,396 missing values generated)
+
+. label var MD_EC_Left "Mean MD in external capsule on FA skeleton (left)"
+
+. 
+. capture drop MD_EC_Right
+
+. gen MD_EC_Right=n_25136_3_0
+(497,396 missing values generated)
+
+. label var MD_EC_Right "Mean MD in external capsule on FA skeleton (right)"
+
+. 
+. capture drop MD_FCST_Left
+
+. gen MD_FCST_Left=n_25143_3_0
+(497,396 missing values generated)
+
+. label var MD_FCST_Left "Mean MD in fornix cres+stria terminalis on FA skeleton (left)"
+
+. 
+. capture drop MD_FCST_Right
+
+. gen MD_FCST_Right=n_25142_3_0
+(497,396 missing values generated)
+
+. label var MD_FCST_Right "Mean MD in fornix cres+stria terminalis  on FA skeleton (right)"
+
+. 
+. capture drop MD_FO
+
+. gen MD_FO=n_25109_3_0
+(497,396 missing values generated)
+
+. label var MD_FO "Mean MD in fornix on FA skeleton (left)"
+
+. 
+. 
+. capture drop MD_GCC
+
+. gen MD_GCC=n_25106_3_0
+(497,396 missing values generated)
+
+. label var MD_GCC "Mean MD in genu of corpus callosum on FA skeleton (left)"
+
+. 
+. capture drop MD_ICP_Left
+
+. gen MD_ICP_Left=n_25115_3_0
+(497,396 missing values generated)
+
+. label var MD_ICP_Left "Mean MD in inferior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop MD_ICP_Right
+
+. gen MD_ICP_Right=n_25114_3_0
+(497,396 missing values generated)
+
+. label var MD_ICP_Right "Mean MD in inferior cerebellar peduncle  on FA skeleton (right)"
+
+. 
+. capture drop MD_ML_Left
+
+. gen MD_ML_Left=n_25113_3_0
+(497,396 missing values generated)
+
+. label var MD_ML_Left "Mean MD in medial lemniscus on FA skeleton (left)"
+
+. 
+. capture drop MD_ML_Right
+
+. gen MD_ML_Right=n_25112_3_0
+(497,396 missing values generated)
+
+. label var MD_ML_Right "Mean MD in medial lemniscus  on FA skeleton (right)"
+
+. 
+. capture drop MD_MCP
+
+. gen MD_MCP=n_25104_3_0
+(497,396 missing values generated)
+
+. label var MD_MCP "Mean MD in middle cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop MD_PCT
+
+. gen MD_PCT=n_25105_3_0
+(497,396 missing values generated)
+
+. label var MD_PCT "Mean MD in pontine crossing tract on FA skeleton (left)"
+
+. 
+. capture drop MD_PCR_Left
+
+. gen MD_PCR_Left=n_25131_3_0
+(497,396 missing values generated)
+
+. label var MD_PCR_Left "Mean MD in posterior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop MD_PCR_Right
+
+. gen MD_PCR_Right=n_25130_3_0
+(497,396 missing values generated)
+
+. label var MD_PCR_Right "Mean MD in posterior corona radiata  on FA skeleton (right)"
+
+. 
+. capture drop MD_PLIC_Left
+
+. gen MD_PLIC_Left=n_25123_3_0
+(497,396 missing values generated)
+
+. label var MD_PLIC_Left "Mean MD in posterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. capture drop MD_PLIC_Right
+
+. gen MD_PLIC_Right=n_25122_3_0
+(497,396 missing values generated)
+
+. label var MD_PLIC_Right "Mean MD in posterior limb of the internal capsule  on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_PTR_Left
+
+. gen MD_PTR_Left=n_25133_3_0
+(497,396 missing values generated)
+
+. label var MD_PTR_Left "Mean MD in posterior thalamic radiation on FA skeleton (left)"
+
+. 
+. capture drop MD_PTR_Right
+
+. gen MD_PTR_Right=n_25132_3_0
+(497,396 missing values generated)
+
+. label var MD_PTR_Right "Mean MD in posterior thalamic radiation  on FA skeleton (right)"
+
+. 
+. capture drop MD_RPIC_Left
+
+. gen MD_RPIC_Left=n_25125_3_0
+(497,396 missing values generated)
+
+. label var MD_RPIC_Left "Mean MD in retrolenticular part of internal capsule on FA skeleton (left)"
+
+. 
+. capture drop MD_RPIC_Right
+
+. gen MD_RPIC_Right=n_25124_3_0
+(497,396 missing values generated)
+
+. label var MD_RPIC_Right "Mean MD in retrolenticular part of internal capsule  on FA skeleton (right)"
+
+. 
+. capture drop MD_SS_Left
+
+. gen MD_SS_Left=n_25135_3_0
+(497,396 missing values generated)
+
+. label var MD_SS_Left "Mean MD in sagittal stratum on FA skeleton (left)"
+
+. 
+. capture drop MD_SS_Right
+
+. gen MD_SS_Right=n_25134_3_0
+(497,396 missing values generated)
+
+. label var MD_SS_Right "Mean MD in sagittal stratum  on FA skeleton (right)"
+
+. 
+. capture drop MD_SCC
+
+. gen MD_SCC=n_25108_3_0
+(497,396 missing values generated)
+
+. label var MD_SCC "Mean MD in splenium of the corpus callosum"
+
+. 
+. capture drop MD_SCP_Left
+
+. gen MD_SCP_Left=n_25117_3_0
+(497,396 missing values generated)
+
+. label var MD_SCP_Left "Mean MD in superior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. capture drop MD_SCP_Right
+
+. gen MD_SCP_Right=n_25116_3_0
+(497,396 missing values generated)
+
+. label var MD_SCP_Right "Mean MD in superior cerebellar peduncle  on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_SCR_Left
+
+. gen MD_SCR_Left=n_25129_3_0
+(497,396 missing values generated)
+
+. label var MD_SCR_Left "Mean MD in superior corona radiata on FA skeleton (left)"
+
+. 
+. capture drop MD_SCR_Right
+
+. gen MD_SCR_Right=n_25128_3_0
+(497,396 missing values generated)
+
+. label var MD_SCR_Right "Mean MD in superior corona radiata  on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_FOF_Left
+
+. gen MD_FOF_Left=n_25147_3_0
+(497,396 missing values generated)
+
+. label var MD_FOF_Left "Mean MD in fronto-occipital fasciculus on FA skeleton (left)"
+
+. 
+. capture drop MD_FOF_Right
+
+. gen MD_FOF_Right=n_25146_3_0
+(497,396 missing values generated)
+
+. label var MD_FOF_Right "Mean MD in fronto-occipital fasciculus  on FA skeleton (right)"
+
+. 
+. 
+. capture drop MD_SLF_Left
+
+. gen MD_SLF_Left=n_25145_3_0
+(497,396 missing values generated)
+
+. label var MD_SLF_Left "Mean MD in super longitudinal fasciculus on FA skeleton (left)"
+
+. 
+. capture drop MD_SLF_Right
+
+. gen MD_SLF_Right=n_25144_3_0
+(497,396 missing values generated)
+
+. label var MD_SLF_Right "Mean MD in super longitudinal fasciculus  on FA skeleton (right)"
+
+. 
+. capture drop MD_TP_Left
+
+. gen MD_TP_Left=n_25151_3_0
+(497,396 missing values generated)
+
+. label var MD_TP_Left "Mean MD in tapetum on FA skeleton (left)"
+
+. 
+. capture drop MD_TP_Right
+
+. gen MD_TP_Right=n_25150_3_0
+(497,396 missing values generated)
+
+. label var MD_TP_Right "Mean MD in tapetum  on FA skeleton (right)"
+
+. 
+. capture drop MD_UNC_Left
+
+. gen MD_UNC_Left=n_25149_3_0
+(497,396 missing values generated)
+
+. label var MD_UNC_Left "Mean MD in unciate fasciculus on FA skeleton (left)"
+
+. 
+. capture drop MD_UNC_Right
+
+. gen MD_UNC_Right=n_25148_3_0
+(497,396 missing values generated)
+
+. label var MD_UNC_Right "Mean MD in unciate fasciculus on FA skeleton (right)"
+
+. 
+. save, replace
+
+file 
+UKB_BRAINDMRI_INSTANCE3fin.dta
+saved
+
+
+. 
+. 
+. /////////////////NODDI MEASURES/////////////////////////////
+> 
+. 
+. ************ICVF**************
+. 
+. **25367:Mean ICVF in anterior corona radiata on FA skeleton (left)
+. capture drop ICVF_ACR_Left
+
+. gen ICVF_ACR_Left=n_25367_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ACR_Left "Mean ICVF in anterior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25366:Mean ICVF in anterior corona radiata on FA skeleton (right)
+. capture drop ICVF_ACR_Right
+
+. gen ICVF_ACR_Right=n_25366_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ACR_Right "Mean ICVF in anterior corona radiata on FA skeleton (right)"
+
+. 
+. **25361: Mean ICVF in anterior limb of internal capsule on FA skeleton (left)
+. capture drop ICVF_ALIC_Left
+
+. gen ICVF_ALIC_Left=n_25361_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ALIC_Left "Mean ICVF in anterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. **25360: Mean ICVF in anterior limb of internal capsule on FA skeleton (right)
+. capture drop ICVF_ALIC_Right
+
+. gen ICVF_ALIC_Right=n_25360_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ALIC_Right "Mean ICVF in anterior limb of the internal capsule on FA skeleton (right)"
+
+. 
+. **25347: Mean ICVF in body of corpus callosum on FA skeleton
+. capture drop ICVF_BCC
+
+. gen ICVF_BCC=n_25347_3_0
+(497,396 missing values generated)
+
+. label var ICVF_BCC "Mean ICVF in body of corpus callosum on FA skeleton"
+
+. 
+. **25359: Mean ICVF in cerebral peduncle on FA skeleton (left)
+. capture drop ICVF_CP_Left
+
+. gen ICVF_CP_Left=n_25359_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CP_Left "Mean ICVF in cerebral peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25358: Mean ICVF in cerebral peduncle on FA skeleton (right)
+. capture drop ICVF_CP_Right
+
+. gen ICVF_CP_Right=n_25358_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CP_Right "Mean ICVF in cerebral peduncle on FA skeleton (right)"
+
+. 
+. 
+. **25379: Mean ICVF in cingulum cingulate gyrus on FA skeleton (left)
+. capture drop ICVF_CCG_Left
+
+. gen ICVF_CCG_Left=n_25379_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CCG_Left "Mean ICVF in cingulum cingulate gyrus on FA skeleton (left)"
+
+. 
+. 
+. **25378: Mean ICVF in cingulum cingulate gyrus on FA skeleton (right)
+. capture drop ICVF_CCG_Right
+
+. gen ICVF_CCG_Right=n_25378_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CCG_Right "Mean ICVF in cingulum cingulate gyrus on FA skeleton (right)"
+
+. 
+. **25381: Mean ICVF in cingulum hippocampus on FA skeleton (left)
+. capture drop ICVF_CH_Left
+
+. gen ICVF_CH_Left=n_25381_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CH_Left "Mean ICVF in cingulum hippocampus on FA skeleton (left)"
+
+. 
+. 
+. **25380: Mean ICVF in cingulum hippocampus on FA skeleton (right)
+. capture drop ICVF_CH_Right
+
+. gen ICVF_CH_Right=n_25380_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CH_Right "Mean ICVF in cingulum hippocampus on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25351: Mean ICVF in corticospinal tract on FA skeleton (left)
+. capture drop ICVF_CT_Left
+
+. gen ICVF_CT_Left=n_25351_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CT_Left "Mean ICVF in corticospinal tract on FA skeleton (left)"
+
+. 
+. **25350: Mean ICVF in corticospinal tract on FA skeleton (right)
+. capture drop ICVF_CT_Right
+
+. gen ICVF_CT_Right=n_25350_3_0
+(497,396 missing values generated)
+
+. label var ICVF_CT_Right "Mean ICVF in corticospinal tract on FA skeleton (right)"
+
+. 
+. **25377: Mean ICVF in external capsule on FA skeleton (left)
+. capture drop ICVF_EC_Left
+
+. gen ICVF_EC_Left=n_25377_3_0
+(497,396 missing values generated)
+
+. label var ICVF_EC_Left "Mean ICVF in external capsule on FA skeleton (left)"
+
+. 
+. 
+. **25376: Mean ICVF in external capsule on FA skeleton (right)
+. capture drop ICVF_EC_Right
+
+. gen ICVF_EC_Right=n_25376_3_0
+(497,396 missing values generated)
+
+. label var ICVF_EC_Right "Mean ICVF in external capsule on FA skeleton (right)"
+
+. 
+. 
+. **25383: Mean ICVF in fornix cres+stria terminalis on FA skeleton (left)
+. capture drop ICVF_FCST_Left
+
+. gen ICVF_FCST_Left=n_25383_3_0
+(497,396 missing values generated)
+
+. label var ICVF_FCST_Left "Mean ICVF in fornix cres+stria terminalis on FA skeleton (left)"
+
+. 
+. 
+. **25382: Mean ICVF in fornix cres+stria terminalis on FA skeleton (right)
+. capture drop ICVF_FCST_Right
+
+. gen ICVF_FCST_Right=n_25382_3_0
+(497,396 missing values generated)
+
+. label var ICVF_FCST_Right "Mean ICVF in fornix cres+stria terminalis on FA skeleton (right)"
+
+. 
+. 
+. **25349: Mean ICVF in fornix on FA skeleton
+. capture drop ICVF_FO
+
+. gen ICVF_FO=n_25349_3_0
+(497,396 missing values generated)
+
+. label var ICVF_FO "Mean ICVF in Fornix on FA skeleton"
+
+. 
+. 
+. **25346: Mean ICVF in genu of corpus callosum on FA skeleton
+. capture drop ICVF_GCC
+
+. gen ICVF_GCC=n_25346_3_0
+(497,396 missing values generated)
+
+. label var ICVF_GCC "Mean ICVF in genu of corpus callosum on FA skeleton"
+
+. 
+. **25355: Mean ICVF in inferior cerebellar peduncle on FA skeleton (left)
+. capture drop ICVF_ICP_Left
+
+. gen ICVF_ICP_Left=n_25355_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ICP_Left "Mean ICVF in inferior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. **25354: Mean ICVF in inferior cerebellar peduncle on FA skeleton (right)
+. capture drop ICVF_ICP_Right
+
+. gen ICVF_ICP_Right=n_25354_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ICP_Right "Mean ICVF in inferior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. 
+. **25353: Mean ICVF in medial lemniscus on FA skeleton (left)
+. capture drop ICVF_ML_Left
+
+. gen ICVF_ML_Left=n_25353_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ML_Left "Mean ICVF in medial lemniscus on FA skeleton (left)"
+
+. 
+. **25352: Mean ICVF in medial lemniscus on FA skeleton (right)
+. capture drop ICVF_ML_Right
+
+. gen ICVF_ML_Right=n_25352_3_0
+(497,396 missing values generated)
+
+. label var ICVF_ML_Right "Mean ICVF in medial lemniscus on FA skeleton (right)"
+
+. 
+. **25344: Mean ICVF in middle cerebellar peduncle on FA skeleton
+. capture drop ICVF_MCP
+
+. gen ICVF_MCP=n_25344_3_0
+(497,396 missing values generated)
+
+. label var ICVF_MCP "Mean ICVF in middle cerebellar peduncle on FA skeleton"
+
+. 
+. **25345: Mean ICVF in pontine crossing tract on FA skeleton
+. capture drop ICVF_PCT
+
+. gen ICVF_PCT=n_25345_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PCT "Mean ICVF in pontine crossing tract on FA skeleton"
+
+. 
+. **25371: Mean ICVF in posterior corona radiata on FA skeleton (left)
+. capture drop ICVF_PCR_Left
+
+. gen ICVF_PCR_Left=n_25371_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PCR_Left "Mean ICVF in posterior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25370: Mean ICVF in posterior corona radiata on FA skeleton (right)
+. capture drop ICVF_PCR_Right
+
+. gen ICVF_PCR_Right=n_25370_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PCR_Right "Mean ICVF in posterior corona radiata on FA skeleton (right)"
+
+. 
+. **25363: Mean ICVF in posterior limb of internal capsule on FA skeleton (left)
+. capture drop ICVF_PLIC_Left
+
+. gen ICVF_PLIC_Left=n_25363_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PLIC_Left "Mean ICVF in posterior limb of internal capsule on FA skeleton (left)"
+
+. 
+. **25362: Mean ICVF in posterior limb of internal capsule on FA skeleton (right)
+. capture drop ICVF_PLIC_Right
+
+. gen ICVF_PLIC_Right=n_25362_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PLIC_Right "Mean ICVF in posterior limb of internal capsule on FA skeleton (right)"
+
+. 
+. **25373: Mean ICVF in posterior thalamic radiation on FA skeleton (left)
+. capture drop ICVF_PTR_Left
+
+. gen ICVF_PTR_Left=n_25373_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PTR_Left "Mean ICVF in posterior thalamic radiation on FA skeleton (left)"
+
+. 
+. 
+. **25372: Mean ICVF in posterior thalamic radiation on FA skeleton (right)
+. capture drop ICVF_PTR_Right
+
+. gen ICVF_PTR_Right=n_25372_3_0
+(497,396 missing values generated)
+
+. label var ICVF_PTR_Right "Mean ICVF in posterior thalamic radiation on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25365: Mean ICVF in retrolenticular part of internal capsule on FA skeleton (left)
+. capture drop ICVF_RPIC_Left
+
+. gen ICVF_RPIC_Left=n_25365_3_0
+(497,396 missing values generated)
+
+. label var ICVF_RPIC_Left "Mean ICVF in retrolenticular part of internal capsule on FA skeleton (left)"
+
+. 
+. 
+. **25364: Mean ICVF in retrolenticular part of internal capsule on FA skeleton (right)
+. capture drop ICVF_RPIC_Right
+
+. gen ICVF_RPIC_Right=n_25364_3_0
+(497,396 missing values generated)
+
+. label var ICVF_RPIC_Right "Mean ICVF in retrolenticular part of internal capsule on FA skeleton (right)"
+
+. 
+. **25375: Mean ICVF in sagittal stratum on FA skeleton (left)
+. capture drop ICVF_SS_Left
+
+. gen ICVF_SS_Left=n_25375_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SS_Left "Mean ICVF in sagittal stratum on FA skeleton (left)"
+
+. 
+. **25374: Mean ICVF in sagittal stratum on FA skeleton (right)
+. capture drop ICVF_SS_Right
+
+. gen ICVF_SS_Right=n_25374_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SS_Right "Mean ICVF in sagittal stratum on FA skeleton (right)"
+
+. 
+. **25348: Mean ICVF in splenium of corpus callosum on FA skeleton
+. capture drop ICVF_SCC
+
+. gen ICVF_SCC=n_25348_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SCC "Mean ICVF in splenium of corpus callosum on FA skeleton"
+
+. 
+. **25357: Mean ICVF in superior cerebellar peduncle on FA skeleton (left)
+. capture drop ICVF_SCP_Left
+
+. gen ICVF_SCP_Left=n_25357_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SCP_Left "Mean ICVF in superior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25356: Mean ICVF in superior cerebellar peduncle on FA skeleton (right)
+. capture drop ICVF_SCP_Right
+
+. gen ICVF_SCP_Right=n_25356_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SCP_Right "Mean ICVF in superior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. **25369: Mean ICVF in superior corona radiata on FA skeleton (left)
+. capture drop ICVF_SCR_Left
+
+. gen ICVF_SCR_Left=n_25369_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SCR_Left "Mean ICVF in superior corona radiata on FA skeleton (left)"
+
+. 
+. **25368: Mean ICVF in superior corona radiata on FA skeleton (right)
+. capture drop ICVF_SCR_Right
+
+. gen ICVF_SCR_Right=n_25368_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SCR_Right "Mean ICVF in superior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. **25387: Mean ICVF in superior fronto-occipital fasciculus on FA skeleton (left)
+. capture drop ICVF_FOF_Left
+
+. gen ICVF_FOF_Left=n_25387_3_0
+(497,396 missing values generated)
+
+. label var ICVF_FOF_Left "Mean ICVF in superior fronto-occipital fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25386: Mean ICVF in superior fronto-occipital fasciculus on FA skeleton (right)
+. capture drop ICVF_FOF_Right
+
+. gen ICVF_FOF_Right=n_25386_3_0
+(497,396 missing values generated)
+
+. label var ICVF_FOF_Right "Mean ICVF in superior fronto-occipital fasciculus on FA skeleton (right)"
+
+. 
+. 
+. **25385: Mean ICVF in superior longitudinal fasciculus on FA skeleton (left)
+. capture drop ICVF_SLF_Left
+
+. gen ICVF_SLF_Left=n_25385_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SLF_Left "Mean ICVF in superior longitudinal fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25384: Mean ICVF in superior longitudinal fasciculus on FA skeleton (right)
+. capture drop ICVF_SLF_Right
+
+. gen ICVF_SLF_Right=n_25384_3_0
+(497,396 missing values generated)
+
+. label var ICVF_SLF_Right "Mean ICVF in superior longitudinal fasciculus on FA skeleton (right)"
+
+. 
+. 
+. **25391: Mean ICVF in tapetum on FA skeleton (left)
+. capture drop ICVF_TP_Left
+
+. gen ICVF_TP_Left=n_25391_3_0
+(497,396 missing values generated)
+
+. label var ICVF_TP_Left "Mean ICVF in tapetum on FA skeleton (left)"
+
+. 
+. 
+. **25390: Mean ICVF in tapetum on FA skeleton (right)
+. capture drop ICVF_TP_Right
+
+. gen ICVF_TP_Right=n_25390_3_0
+(497,396 missing values generated)
+
+. label var ICVF_TP_Right "Mean ICVF in tapetum on FA skeleton (right)"
+
+. 
+. 
+. **25389: Mean ICVF in uncinate fasciculus on FA skeleton (left)
+. capture drop ICVF_UNC_Left
+
+. gen ICVF_UNC_Left=n_25389_3_0
+(497,396 missing values generated)
+
+. label var ICVF_UNC_Left "Mean ICVF in uncinate fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25388: Mean ICVF in uncinate fasciculus on FA skeleton (right)
+. capture drop ICVF_UNC_Right
+
+. gen ICVF_UNC_Right=n_25388_3_0
+(497,396 missing values generated)
+
+. label var ICVF_UNC_Right "Mean ICVF in uncinate fasciculus on FA skeleton (right)"
+
+. 
+. 
+. 
+. 
+. ************ISOVF************
+. **25463: Mean ISOVF in anterior corona radiata on FA skeleton (left)
+. capture drop ISOVF_ACR_Left
+
+. gen ISOVF_ACR_Left=n_25463_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ACR_Left "Mean ISOVF in anterior corona radiata on FA skeleton (left)"
+
+. 
+. **25462: Mean ISOVF in anterior corona radiata on FA skeleton (right)
+. capture drop ISOVF_ACR_Right
+
+. gen ISOVF_ACR_Right=n_25462_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ACR_Right "Mean ISOVF in anterior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. **25457: Mean ISOVF in anterior limb of internal capsule on FA skeleton (left)
+. capture drop ISOVF_ALIC_Left
+
+. gen ISOVF_ALIC_Left=n_25457_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ALIC_Left "Mean ISOVF in anterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. 
+. **25456: Mean ISOVF in anterior limb of internal capsule on FA skeleton (right)
+. capture drop ISOVF_ALIC_Right
+
+. gen ISOVF_ALIC_Right=n_25456_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ALIC_Right "Mean ISOVF in anterior limb of the internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25443: Mean ISOVF in body of corpus callosum on FA skeleton
+. capture drop ISOVF_BCC
+
+. gen ISOVF_BCC=n_25443_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_BCC "Mean ISOVF in body of corpus callosum on FA skeleton"
+
+. 
+. 
+. **25455: Mean ISOVF in cerebral peduncle on FA skeleton (left)
+. capture drop ISOVF_CP_Left
+
+. gen ISOVF_CP_Left=n_25455_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CP_Left "Mean ISOVF in cerebral peduncle on FA skeleton (left)"
+
+. 
+. **25454: Mean ISOVF in cerebral peduncle on FA skeleton (right)
+. capture drop ISOVF_CP_Right
+
+. gen ISOVF_CP_Right=n_25454_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CP_Right "Mean ISOVF in cerebral peduncle on FA skeleton (right)"
+
+. 
+. 
+. **25475: Mean ISOVF in cingulum cingulate gyrus on FA skeleton (left)
+. capture drop ISOVF_CCG_Left
+
+. gen ISOVF_CCG_Left=n_25475_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CCG_Left "Mean ISOVF in cingulum cingulate gyrus on FA skeleton (left)"
+
+. 
+. **25474: Mean ISOVF in cingulum cingulate gyrus on FA skeleton (right)
+. capture drop ISOVF_CCG_Right
+
+. gen ISOVF_CCG_Right=n_25474_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CCG_Right "Mean ISOVF in cingulum cingulate gyrus on FA skeleton (right)"
+
+. 
+. 
+. **25477: Mean ISOVF in cingulum hippocampus on FA skeleton (left)
+. capture drop ISOVF_CH_Left
+
+. gen ISOVF_CH_Left=n_25477_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CH_Left "Mean ISOVF in cingulum hippocampus on FA skeleton (left)"
+
+. 
+. 
+. **25476: Mean ISOVF in cingulum hippocampus on FA skeleton (right)
+. capture drop ISOVF_CH_Right
+
+. gen ISOVF_CH_Right=n_25476_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CH_Right "Mean ISOVF in cingulum hippocampus on FA skeleton (right)"
+
+. 
+. 
+. **25447: Mean ISOVF in corticospinal tract on FA skeleton (left)
+. capture drop ISOVF_CT_Left
+
+. gen ISOVF_CT_Left=n_25447_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CT_Left "Mean ISOVF in corticospinal tract on FA skeleton (left)"
+
+. 
+. 
+. **25446: Mean ISOVF in corticospinal tract on FA skeleton (right)
+. capture drop ISOVF_CT_Right
+
+. gen ISOVF_CT_Right=n_25446_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_CT_Right "Mean ISOVF in corticospinal tract on FA skeleton (right)"
+
+. 
+. **25473: Mean ISOVF in external capsule on FA skeleton (left)
+. capture drop ISOVF_EC_Left
+
+. gen ISOVF_EC_Left=n_25473_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_EC_Left "Mean ISOVF in external capsule on FA skeleton (left)"
+
+. 
+. 
+. **25472: Mean ISOVF in external capsule on FA skeleton (right)
+. capture drop ISOVF_EC_Right
+
+. gen ISOVF_EC_Right=n_25472_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_EC_Right "Mean ISOVF in external capsule on FA skeleton (right)"
+
+. 
+. 
+. **25479: Mean ISOVF in fornix cres+stria terminalis on FA skeleton (left)
+. capture drop ISOVF_FCST_Left
+
+. gen ISOVF_FCST_Left=n_25479_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_FCST_Left "Mean ISOVF in fornix cres+stria terminalis on FA skeleton (left)"
+
+. 
+. 
+. **25478: Mean ISOVF in fornix cres+stria terminalis on FA skeleton (right)
+. capture drop ISOVF_FCST_Right
+
+. gen ISOVF_FCST_Right=n_25478_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_FCST_Right "Mean ISOVF in fornix cres+stria terminalis on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25445: Mean ISOVF in fornix on FA skeleton
+. capture drop ISOVF_FO
+
+. gen ISOVF_FO=n_25445_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_FO "Mean ISOVF in Fornix on FA skeleton"
+
+. 
+. 
+. 
+. **25442: Mean ISOVF in genu of corpus callosum on FA skeleton
+. capture drop ISOVF_GCC
+
+. gen ISOVF_GCC=n_25442_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_GCC "Mean ISOVF in genu of corpus callosum on FA skeleton"
+
+. 
+. 
+. 
+. **25451: Mean ISOVF in inferior cerebellar peduncle on FA skeleton (left)
+. capture drop ISOVF_ICP_Left
+
+. gen ISOVF_ICP_Left=n_25451_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ICP_Left "Mean ISOVF in inferior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25450: Mean ISOVF in inferior cerebellar peduncle on FA skeleton (right)
+. capture drop ISOVF_ICP_Right
+
+. gen ISOVF_ICP_Right=n_25450_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ICP_Right "Mean ISOVF in inferior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. 
+. **25449: Mean ISOVF in medial lemniscus on FA skeleton (left)
+. capture drop ISOVF_ML_Left
+
+. gen ISOVF_ML_Left=n_25449_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ML_Left "Mean ISOVF in medial lemniscus on FA skeleton (left)"
+
+. 
+. 
+. **25448: Mean ISOVF in medial lemniscus on FA skeleton (right)
+. capture drop ISOVF_ML_Right
+
+. gen ISOVF_ML_Right=n_25448_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_ML_Right "Mean ISOVF in medial lemniscus on FA skeleton (right)"
+
+. 
+. 
+. **25440: Mean ISOVF in middle cerebellar peduncle on FA skeleton
+. capture drop ISOVF_MCP
+
+. gen ISOVF_MCP=n_25440_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_MCP "Mean ISOVF in middle cerebellar peduncle on FA skeleton"
+
+. 
+. 
+. **25441: Mean ISOVF in pontine crossing tract on FA skeleton
+. capture drop ISOVF_PCT
+
+. gen ISOVF_PCT=n_25441_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PCT "Mean ISOVF in pontine crossing tract on FA skeleton"
+
+. 
+. 
+. **25467: Mean ISOVF in posterior corona radiata on FA skeleton (left)
+. capture drop ISOVF_PCR_Left
+
+. gen ISOVF_PCR_Left=n_25467_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PCR_Left "Mean ISOVF in posterior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25466: Mean ISOVF in posterior corona radiata on FA skeleton (right)
+. capture drop ISOVF_PCR_Right
+
+. gen ISOVF_PCR_Right=n_25466_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PCR_Right "Mean ISOVF in posterior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. **25459: Mean ISOVF in posterior limb of internal capsule on FA skeleton (left)
+. capture drop ISOVF_PLIC_Left
+
+. gen ISOVF_PLIC_Left=n_25459_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PLIC_Left "Mean ISOVF in posterior limb of internal capsule on FA skeleton (left)"
+
+. 
+. **25458: Mean ISOVF in posterior limb of internal capsule on FA skeleton (right)
+. capture drop ISOVF_PLIC_Right
+
+. gen ISOVF_PLIC_Right=n_25458_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PLIC_Right "Mean ISOVF in posterior limb of internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25469: Mean ISOVF in posterior thalamic radiation on FA skeleton (left)
+. capture drop ISOVF_PTR_Left
+
+. gen ISOVF_PTR_Left=n_25469_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PTR_Left "Mean ISOVF in posterior thalamic radiation on FA skeleton (left)"
+
+. 
+. **25468: Mean ISOVF in posterior thalamic radiation on FA skeleton (right)
+. capture drop ISOVF_PTR_Right
+
+. gen ISOVF_PTR_Right=n_25468_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_PTR_Right "Mean ISOVF in posterior thalamic radiation on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25461: Mean ISOVF in retrolenticular part of internal capsule on FA skeleton (left)
+. capture drop ISOVF_RPIC_Left
+
+. gen ISOVF_RPIC_Left=n_25461_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_RPIC_Left "Mean ISOVF in retrolenticular part of internal capsule on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25460: Mean ISOVF in retrolenticular part of internal capsule on FA skeleton (right)
+. capture drop ISOVF_RPIC_Right
+
+. gen ISOVF_RPIC_Right=n_25460_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_RPIC_Right "Mean ISOVF in retrolenticular part of internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25471: Mean ISOVF in sagittal stratum on FA skeleton (left)
+. capture drop ISOVF_SS_Left
+
+. gen ISOVF_SS_Left=n_25471_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SS_Left "Mean ISOVF in sagittal stratum on FA skeleton (left)"
+
+. 
+. 
+. **25470: Mean ISOVF in sagittal stratum on FA skeleton (right)
+. capture drop ISOVF_SS_Right
+
+. gen ISOVF_SS_Right=n_25470_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SS_Right "Mean ISOVF in sagittal stratum on FA skeleton (right)"
+
+. 
+. 
+. **25444: Mean ISOVF in splenium of corpus callosum on FA skeleton
+. capture drop ISOVF_SCC
+
+. gen ISOVF_SCC=n_25444_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SCC "Mean ISOVF in splenium of corpus callosum on FA skeleton"
+
+. 
+. 
+. **25453: Mean ISOVF in superior cerebellar peduncle on FA skeleton (left)
+. capture drop ISOVF_SCP_Left
+
+. gen ISOVF_SCP_Left=n_25453_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SCP_Left "Mean ISOVF in superior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25452: Mean ISOVF in superior cerebellar peduncle on FA skeleton (right)
+. capture drop ISOVF_SCP_Right
+
+. gen ISOVF_SCP_Right=n_25452_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SCP_Right "Mean ISOVF in superior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25465: Mean ISOVF in superior corona radiata on FA skeleton (left)
+. capture drop ISOVF_SCR_Left
+
+. gen ISOVF_SCR_Left=n_25465_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SCR_Left "Mean ISOVF in superior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25464: Mean ISOVF in superior corona radiata on FA skeleton (right)
+. capture drop ISOVF_SCR_Right
+
+. gen ISOVF_SCR_Right=n_25464_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SCR_Right "Mean ISOVF in superior corona radiata on FA skeleton (right)"
+
+. 
+. **25483: Mean ISOVF in superior fronto-occipital fasciculus on FA skeleton (left)
+. capture drop ISOVF_FOF_Left
+
+. gen ISOVF_FOF_Left=n_25483_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_FOF_Left "Mean ISOVF in superior fronto-occipital fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25482: Mean ISOVF in superior fronto-occipital fasciculus on FA skeleton (right)
+. capture drop ISOVF_FOF_Right
+
+. gen ISOVF_FOF_Right=n_25482_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_FOF_Right "Mean ISOVF in superior fronto-occipital fasciculus on FA skeleton (right)"
+
+. 
+. 
+. **25481: Mean ISOVF in superior longitudinal fasciculus on FA skeleton (left)
+. capture drop ISOVF_SLF_Left
+
+. gen ISOVF_SLF_Left=n_25481_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SLF_Left "Mean ISOVF in superior longitudinal fasciculus on FA skeleton (left)"
+
+. 
+. **25480: Mean ISOVF in superior longitudinal fasciculus on FA skeleton (right)
+. capture drop ISOVF_SLF_Right
+
+. gen ISOVF_SLF_Right=n_25480_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_SLF_Right "Mean ISOVF in superior longitudinal fasciculus on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25487: Mean ISOVF in tapetum on FA skeleton (left)
+. capture drop ISOVF_TP_Left
+
+. gen ISOVF_TP_Left=n_25487_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_TP_Left "Mean ISOVF in tapetum on FA skeleton (left)"
+
+. 
+. 
+. **25486: Mean ISOVF in tapetum on FA skeleton (right)
+. capture drop ISOVF_TP_Right
+
+. gen ISOVF_TP_Right=n_25486_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_TP_Right "Mean ISOVF in tapetum on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25485: Mean ISOVF in uncinate fasciculus on FA skeleton (left)
+. capture drop ISOVF_UNC_Left
+
+. gen ISOVF_UNC_Left=n_25485_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_UNC_Left "Mean ISOVF in uncinate fasciculus on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25484: Mean ISOVF in uncinate fasciculus on FA skeleton (right)
+. capture drop ISOVF_UNC_Right
+
+. gen ISOVF_UNC_Right=n_25484_3_0
+(497,396 missing values generated)
+
+. label var ISOVF_UNC_Right "Mean ISOVF in uncinate fasciculus on FA skeleton (right)"
+
+. 
+. 
+. ***********OD****************
+. **25415: Mean OD in anterior corona radiata on FA skeleton (left)
+. capture drop OD_ACR_Left
+
+. gen OD_ACR_Left=n_25415_3_0
+(497,396 missing values generated)
+
+. label var OD_ACR_Left "Mean OD in anterior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25414: Mean OD in anterior corona radiata on FA skeleton (right)
+. capture drop OD_ACR_Right
+
+. gen OD_ACR_Right=n_25414_3_0
+(497,396 missing values generated)
+
+. label var OD_ACR_Right "Mean OD in anterior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25409: Mean OD in anterior limb of internal capsule on FA skeleton (left)
+. capture drop OD_ALIC_Left
+
+. gen OD_ALIC_Left=n_25409_3_0
+(497,396 missing values generated)
+
+. label var OD_ALIC_Left "Mean OD in anterior limb of the internal capsule on FA skeleton (left)"
+
+. 
+. **25408: Mean OD in anterior limb of internal capsule on FA skeleton (right)
+. capture drop OD_ALIC_Right
+
+. gen OD_ALIC_Right=n_25408_3_0
+(497,396 missing values generated)
+
+. label var OD_ALIC_Right "Mean OD in anterior limb of the internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25395: Mean OD in body of corpus callosum on FA skeleton
+. capture drop OD_BCC
+
+. gen OD_BCC=n_25395_3_0
+(497,396 missing values generated)
+
+. label var OD_BCC "Mean OD in body of corpus callosum on FA skeleton"
+
+. 
+. 
+. **25407: Mean OD in cerebral peduncle on FA skeleton (left)
+. capture drop OD_CP_Left
+
+. gen OD_CP_Left=n_25407_3_0
+(497,396 missing values generated)
+
+. label var OD_CP_Left "Mean OD in cerebral peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25406: Mean OD in cerebral peduncle on FA skeleton (right)
+. capture drop OD_CP_Right
+
+. gen OD_CP_Right=n_25406_3_0
+(497,396 missing values generated)
+
+. label var OD_CP_Right "Mean OD in cerebral peduncle on FA skeleton (right)"
+
+. 
+. **25427: Mean OD in cingulum cingulate gyrus on FA skeleton (left)
+. capture drop OD_CCG_Left
+
+. gen OD_CCG_Left=n_25427_3_0
+(497,396 missing values generated)
+
+. label var OD_CCG_Left "Mean OD in cingulum cingulate gyrus on FA skeleton (left)"
+
+. 
+. 
+. **25426: Mean OD in cingulum cingulate gyrus on FA skeleton (right)
+. capture drop OD_CCG_Right
+
+. gen OD_CCG_Right=n_25426_3_0
+(497,396 missing values generated)
+
+. label var OD_CCG_Right "Mean OD in cingulum cingulate gyrus on FA skeleton (right)"
+
+. 
+. 
+. **25429: Mean OD in cingulum hippocampus on FA skeleton (left)
+. capture drop OD_CH_Left
+
+. gen OD_CH_Left=n_25429_3_0
+(497,396 missing values generated)
+
+. label var OD_CH_Left "Mean OD in cingulum hippocampus on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25428: Mean OD in cingulum hippocampus on FA skeleton (right)
+. capture drop OD_CH_Right
+
+. gen OD_CH_Right=n_25428_3_0
+(497,396 missing values generated)
+
+. label var OD_CH_Right "Mean OD in cingulum hippocampus on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25399: Mean OD in corticospinal tract on FA skeleton (left)
+. capture drop OD_CT_Left
+
+. gen OD_CT_Left=n_25399_3_0
+(497,396 missing values generated)
+
+. label var OD_CT_Left "Mean OD in corticospinal tract on FA skeleton (left)"
+
+. 
+. 
+. **25398: Mean OD in corticospinal tract on FA skeleton (right)
+. capture drop OD_CT_Right
+
+. gen OD_CT_Right=n_25398_3_0
+(497,396 missing values generated)
+
+. label var OD_CT_Right "Mean OD in corticospinal tract on FA skeleton (right)"
+
+. 
+. 
+. **25425: Mean OD in external capsule on FA skeleton (left)
+. capture drop OD_EC_Left
+
+. gen OD_EC_Left=n_25425_3_0
+(497,396 missing values generated)
+
+. label var OD_EC_Left "Mean OD in external capsule on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25424: Mean OD in external capsule on FA skeleton (right)
+. capture drop OD_EC_Right
+
+. gen OD_EC_Right=n_25424_3_0
+(497,396 missing values generated)
+
+. label var OD_EC_Right "Mean OD in external capsule on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25431: Mean OD in fornix cres+stria terminalis on FA skeleton (left)
+. capture drop OD_FCST_Left
+
+. gen OD_FCST_Left=n_25431_3_0
+(497,396 missing values generated)
+
+. label var OD_FCST_Left "Mean OD in fornix cres+stria terminalis on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25430: Mean OD in fornix cres+stria terminalis on FA skeleton (right)
+. capture drop OD_FCST_Right
+
+. gen OD_FCST_Right=n_25430_3_0
+(497,396 missing values generated)
+
+. label var OD_FCST_Right "Mean OD in fornix cres+stria terminalis on FA skeleton (right)"
+
+. 
+. 
+. **25397: Mean OD in fornix on FA skeleton
+. capture drop OD_FO
+
+. gen OD_FO=n_25397_3_0
+(497,396 missing values generated)
+
+. label var OD_FO "Mean OD in Fornix on FA skeleton"
+
+. 
+. 
+. **25394: Mean OD in genu of corpus callosum on FA skeleton
+. capture drop OD_GCC
+
+. gen OD_GCC=n_25394_3_0
+(497,396 missing values generated)
+
+. label var OD_GCC "Mean OD in genu of corpus callosum on FA skeleton"
+
+. 
+. 
+. 
+. **25403: Mean OD in inferior cerebellar peduncle on FA skeleton (left)
+. capture drop OD_ICP_Left
+
+. gen OD_ICP_Left=n_25403_3_0
+(497,396 missing values generated)
+
+. label var OD_ICP_Left "Mean OD in inferior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25402: Mean OD in inferior cerebellar peduncle on FA skeleton (right)
+. capture drop OD_ICP_Right
+
+. gen OD_ICP_Right=n_25402_3_0
+(497,396 missing values generated)
+
+. label var OD_ICP_Right "Mean OD in inferior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25401: Mean OD in medial lemniscus on FA skeleton (left)
+. capture drop OD_ML_Left
+
+. gen OD_ML_Left=n_25401_3_0
+(497,396 missing values generated)
+
+. label var OD_ML_Left "Mean OD in medial lemniscus on FA skeleton (left)"
+
+. 
+. 
+. **25400: Mean OD in medial lemniscus on FA skeleton (right)
+. capture drop OD_ML_Right
+
+. gen OD_ML_Right=n_25400_3_0
+(497,396 missing values generated)
+
+. label var OD_ML_Right "Mean OD in medial lemniscus on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25392: Mean OD in middle cerebellar peduncle on FA skeleton
+. capture drop OD_MCP
+
+. gen OD_MCP=n_25392_3_0
+(497,396 missing values generated)
+
+. label var OD_MCP "Mean OD in middle cerebellar peduncle on FA skeleton"
+
+. 
+. 
+. 
+. **25393: Mean OD in pontine crossing tract on FA skeleton
+. capture drop OD_PCT
+
+. gen OD_PCT=n_25393_3_0
+(497,396 missing values generated)
+
+. label var OD_PCT "Mean OD in pontine crossing tract on FA skeleton"
+
+. 
+. 
+. 
+. **25419: Mean OD in posterior corona radiata on FA skeleton (left)
+. capture drop OD_PCR_Left
+
+. gen OD_PCR_Left=n_25419_3_0
+(497,396 missing values generated)
+
+. label var OD_PCR_Left "Mean OD in posterior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. **25418: Mean OD in posterior corona radiata on FA skeleton (right)
+. capture drop OD_PCR_Right
+
+. gen OD_PCR_Right=n_25418_3_0
+(497,396 missing values generated)
+
+. label var OD_PCR_Right "Mean OD in posterior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25411: Mean OD in posterior limb of internal capsule on FA skeleton (left)
+. capture drop OD_PLIC_Left
+
+. gen OD_PLIC_Left=n_25411_3_0
+(497,396 missing values generated)
+
+. label var OD_PLIC_Left "Mean OD in posterior limb of internal capsule on FA skeleton (left)"
+
+. 
+. 
+. **25410: Mean OD in posterior limb of internal capsule on FA skeleton (right)
+. capture drop OD_PLIC_Right
+
+. gen OD_PLIC_Right=n_25410_3_0
+(497,396 missing values generated)
+
+. label var OD_PLIC_Right "Mean OD in posterior limb of internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25421: Mean OD in posterior thalamic radiation on FA skeleton (left)
+. capture drop OD_PTR_Left
+
+. gen OD_PTR_Left=n_25421_3_0
+(497,396 missing values generated)
+
+. label var OD_PTR_Left "Mean OD in posterior thalamic radiation on FA skeleton (left)"
+
+. 
+. **25420: Mean OD in posterior thalamic radiation on FA skeleton (right)
+. capture drop OD_PTR_Right
+
+. gen OD_PTR_Right=n_25420_3_0
+(497,396 missing values generated)
+
+. label var OD_PTR_Right "Mean OD in posterior thalamic radiation on FA skeleton (right)"
+
+. 
+. 
+. **25413: Mean OD in retrolenticular part of internal capsule on FA skeleton (left)
+. capture drop OD_RPIC_Left
+
+. gen OD_RPIC_Left=n_25413_3_0
+(497,396 missing values generated)
+
+. label var OD_RPIC_Left "Mean OD in retrolenticular part of internal capsule on FA skeleton (left)"
+
+. 
+. 
+. **25412: Mean OD in retrolenticular part of internal capsule on FA skeleton (right)
+. capture drop OD_RPIC_Right
+
+. gen OD_RPIC_Right=n_25412_3_0
+(497,396 missing values generated)
+
+. label var OD_RPIC_Right "Mean OD in retrolenticular part of internal capsule on FA skeleton (right)"
+
+. 
+. 
+. **25423: Mean OD in sagittal stratum on FA skeleton (left)
+. capture drop OD_SS_Left
+
+. gen OD_SS_Left=n_25423_3_0
+(497,396 missing values generated)
+
+. label var OD_SS_Left "Mean OD in sagittal stratum on FA skeleton (left)"
+
+. 
+. 
+. **25422: Mean OD in sagittal stratum on FA skeleton (right)
+. capture drop OD_SS_Right
+
+. gen OD_SS_Right=n_25422_3_0
+(497,396 missing values generated)
+
+. label var OD_SS_Right "Mean OD in sagittal stratum on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25396: Mean OD in splenium of corpus callosum on FA skeleton
+. capture drop OD_SCC
+
+. gen OD_SCC=n_25396_3_0
+(497,396 missing values generated)
+
+. label var OD_SCC "Mean OD in splenium of corpus callosum on FA skeleton"
+
+. 
+. 
+. **25405: Mean OD in superior cerebellar peduncle on FA skeleton (left)
+. capture drop OD_SCP_Left
+
+. gen OD_SCP_Left=n_25405_3_0
+(497,396 missing values generated)
+
+. label var OD_SCP_Left "Mean OD in superior cerebellar peduncle on FA skeleton (left)"
+
+. 
+. 
+. **25404: Mean OD in superior cerebellar peduncle on FA skeleton (right)
+. capture drop OD_SCP_Right
+
+. gen OD_SCP_Right=n_25404_3_0
+(497,396 missing values generated)
+
+. label var OD_SCP_Right "Mean OD in superior cerebellar peduncle on FA skeleton (right)"
+
+. 
+. 
+. **25417: Mean OD in superior corona radiata on FA skeleton (left)
+. capture drop OD_SCR_Left
+
+. gen OD_SCR_Left=n_25417_3_0
+(497,396 missing values generated)
+
+. label var OD_SCR_Left "Mean OD in superior corona radiata on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25416: Mean OD in superior corona radiata on FA skeleton (right)
+. capture drop OD_SCR_Right
+
+. gen OD_SCR_Right=n_25416_3_0
+(497,396 missing values generated)
+
+. label var OD_SCR_Right "Mean OD in superior corona radiata on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25435: Mean OD in superior fronto-occipital fasciculus on FA skeleton (left)
+. capture drop OD_FOF_Left
+
+. gen OD_FOF_Left=n_25435_3_0
+(497,396 missing values generated)
+
+. label var OD_FOF_Left "Mean OD in superior fronto-occipital fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25434: Mean OD in superior fronto-occipital fasciculus on FA skeleton (right)
+. 
+. capture drop OD_FOF_Right
+
+. gen OD_FOF_Right=n_25434_3_0
+(497,396 missing values generated)
+
+. label var OD_FOF_Right "Mean OD in superior fronto-occipital fasciculus on FA skeleton (right)"
+
+. 
+. 
+. **25433: Mean OD in superior longitudinal fasciculus on FA skeleton (left)
+. capture drop OD_SLF_Left
+
+. gen OD_SLF_Left=n_25433_3_0
+(497,396 missing values generated)
+
+. label var OD_SLF_Left "Mean OD in superior longitudinal fasciculus on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25432: Mean OD in superior longitudinal fasciculus on FA skeleton (right)
+. capture drop OD_SLF_Right
+
+. gen OD_SLF_Right=n_25432_3_0
+(497,396 missing values generated)
+
+. label var OD_SLF_Right "Mean OD in superior longitudinal fasciculus on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25439: Mean OD in tapetum on FA skeleton (left)
+. capture drop OD_TP_Left
+
+. gen OD_TP_Left=n_25439_3_0
+(497,396 missing values generated)
+
+. label var OD_TP_Left "Mean OD in tapetum on FA skeleton (left)"
+
+. 
+. 
+. 
+. **25438: Mean OD in tapetum on FA skeleton (right)
+. capture drop OD_TP_Right
+
+. gen OD_TP_Right=n_25438_3_0
+(497,396 missing values generated)
+
+. label var OD_TP_Right "Mean OD in tapetum on FA skeleton (right)"
+
+. 
+. 
+. 
+. **25437: Mean OD in uncinate fasciculus on FA skeleton (left)
+. capture drop OD_UNC_Left
+
+. gen OD_UNC_Left=n_25437_3_0
+(497,396 missing values generated)
+
+. label var OD_UNC_Left "Mean OD in uncinate fasciculus on FA skeleton (left)"
+
+. 
+. 
+. **25436: Mean OD in uncinate fasciculus on FA skeleton (right)
+. capture drop OD_UNC_Right
+
+. gen OD_UNC_Right=n_25436_3_0
+(497,396 missing values generated)
+
+. label var OD_UNC_Right "Mean OD in uncinate fasciculus on FA skeleton (right)"
+
+. 
+. capture drop s_*
+
+. 
+. save, replace
+
+file 
+UKB_BRAINDMRI_INSTANCE3fin.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. capture log close

@@ -1,0 +1,4903 @@
+. 
+. 
+. clear
+
+. forval x=1(1)50 {
+  2. use n_eid s_130* s_131* s_132* using "/opt/notebooks/chunk`x'final.dta"
+  3. save "/opt/notebooks/chunk`x'smalldates.dta", replace
+  4. }
+
+file 
+/opt/notebooks/chunk1smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk2smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk3smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk4smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk5smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk6smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk7smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk8smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk9smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk10smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk11smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk12smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk13smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk14smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk15smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk16smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk17smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk18smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk19smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk20smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk21smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk22smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk23smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk24smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk25smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk26smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk27smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk28smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk29smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk30smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk31smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk32smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk33smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk34smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk35smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk36smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk37smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk38smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk39smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk40smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk41smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk42smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk43smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk44smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk45smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk46smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk47smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk48smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk49smalldates.dta
+saved
+
+
+file 
+/opt/notebooks/chunk50smalldates.dta
+saved
+
+
+. 
+. 
+. cd "/opt/notebooks/"
+/opt/notebooks/DATA
+
+. 
+. use "chunk1smalldates.dta",replace
+
+. append using "chunk2smalldates.dta"
+
+(variable
+s_130007_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130029_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130061_0_0 was str16, now str32 to accommodate using data's values)
+
+
+(variable
+s_130063_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130079_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130081_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130107_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130135_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130186_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130187_0_0 was str17, now str32 to accommodate using data's values)
+
+
+(variable
+s_130195_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130199_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130201_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130203_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130213_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130219_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130227_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130265_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130337_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130625_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130647_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130648_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130657_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130665_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130671_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130687_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130693_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130699_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130705_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130721_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130735_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130737_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130747_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130775_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130799_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130805_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130807_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130827_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130847_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130885_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130901_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130913_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130915_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130925_0_0 was str17, now str31 to accommodate using data's values)
+
+
+(variable
+s_130933_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130943_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130965_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130989_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130992_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130993_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131005_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131051_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131055_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131063_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131071_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131079_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131089_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_131091_0_0 was str16, now str17 to accommodate using data's values)
+
+
+(variable
+s_131093_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131103_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131109_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131111_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131119_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131121_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131137_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131143_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131161_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131173_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131175_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131181_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131185_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131190_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131197_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_131213_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131214_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131215_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131225_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131241_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131243_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131247_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131251_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131261_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131263_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131281_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131283_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131393_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131399_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131415_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_131423_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131437_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131443_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131447_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131458_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131467_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131484_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131507_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131509_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131521_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131525_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131533_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131540_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131557_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131601_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131602_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131609_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131612_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131616_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131625_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131651_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131655_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131665_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131707_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131715_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131727_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_131735_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131745_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131749_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131757_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_131773_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131779_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131781_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131789_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131797_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131803_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_131819_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131825_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131891_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131897_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131911_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131913_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131949_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131959_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131963_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131972_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131999_0_0 was str17, now str19 to accommodate using data's values)
+
+
+(variable
+s_132003_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132005_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132007_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132039_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132083_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132091_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132097_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132107_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132151_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132157_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132181_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132191_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132195_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132199_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132203_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_132213_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132269_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132283_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132453_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132457_0_0 was str17, now str32 to accommodate using data's values)
+
+
+(variable
+s_132460_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132494_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132504_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132513_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132523_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132525_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132533_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132541_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132542_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132545_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132546_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132566_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132567_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132574_0_0 was str10, now strL to accommodate using data's values)
+
+
+. append using "chunk3smalldates.dta"
+
+(variable
+s_1309_2_0 was str13, now str20 to accommodate using data's values)
+
+
+(variable
+s_130005_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130023_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130037_0_0 was str17, now str44 to accommodate using data's values)
+
+
+(variable
+s_130062_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130069_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130073_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130081_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130093_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130217_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130229_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130257_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130281_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130319_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130631_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130633_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130635_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130637_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130651_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130667_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130677_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130725_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130727_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130739_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130831_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130853_0_0 was str16, now str29 to accommodate using data's values)
+
+
+(variable
+s_130857_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130885_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130891_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130894_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130925_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130971_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131001_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131031_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131064_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131067_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131071_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131073_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131127_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131132_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131145_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131165_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131180_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131209_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131212_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131235_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131239_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131241_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131247_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131267_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131289_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131331_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131352_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131411_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131415_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131442_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131450_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131462_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131479_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131487_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131531_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131539_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131543_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131548_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131555_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131563_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131569_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131574_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131577_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131665_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131679_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131699_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131711_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131723_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131743_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131748_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131757_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_131779_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131829_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131883_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131899_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131924_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131931_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131935_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131941_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131943_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131985_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131999_0_0 was str19, now str29 to accommodate using data's values)
+
+
+(variable
+s_132009_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132017_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132021_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132081_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132091_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132099_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132107_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132111_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132135_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132139_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132143_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132199_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132299_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132442_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132467_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132469_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132475_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132479_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132511_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132539_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132540_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132544_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132563_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132579_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132587_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132598_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132599_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk4smalldates.dta"
+
+(variable
+s_1319_2_0 was str13, now str20 to accommodate using data's values)
+
+
+(variable
+s_130015_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130019_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130029_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130051_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130067_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130175_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130197_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130199_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130259_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130627_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130631_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130653_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130731_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130771_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130785_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130804_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130817_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130819_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130833_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130911_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130933_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130939_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130947_0_0 was str17, now str44 to accommodate using data's values)
+
+
+(variable
+s_130967_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130979_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131031_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131091_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131101_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131123_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131193_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131216_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131223_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131285_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131456_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131467_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131494_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131557_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131573_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131615_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131636_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131646_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131660_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131789_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131811_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131819_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131845_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131855_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131887_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131931_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131956_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131957_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131974_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131977_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131999_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132021_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132039_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132047_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132113_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132119_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132171_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_132189_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132207_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132320_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132326_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132457_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132468_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132503_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132517_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132519_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132525_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132537_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132555_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132571_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132573_0_0 was str17, now str29 to accommodate using data's values)
+
+
+. append using "chunk5smalldates.dta"
+
+(variable
+s_130003_0_0 was str17, now str31 to accommodate using data's values)
+
+
+(variable
+s_130151_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130307_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130636_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130713_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130803_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130805_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130851_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130857_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130879_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130909_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130923_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130937_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130987_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131083_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131095_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131153_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131157_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131175_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131204_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131210_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131259_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131279_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131428_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131429_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131460_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131492_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131630_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131650_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131710_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131720_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131722_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131727_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131733_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131785_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131793_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131821_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131827_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131841_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131849_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131853_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131863_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131897_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131942_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131979_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132015_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_132050_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132161_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132217_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132223_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132279_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132313_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132319_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132332_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132443_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_132482_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132500_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132540_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132550_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132567_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132589_0_0 was str17, now str32 to accommodate using data's values)
+
+
+. append using "chunk6smalldates.dta"
+
+(variable
+s_130004_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130007_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130023_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130069_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130147_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130315_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130317_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130639_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130696_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130721_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130767_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130813_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130826_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130859_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130965_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131025_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131059_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131155_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131206_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131245_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131283_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131329_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131402_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131441_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131459_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131464_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131571_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131612_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131661_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131705_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131713_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131737_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131824_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131875_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131886_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131909_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131989_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132027_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132086_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132104_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132187_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132225_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132259_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132275_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132276_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132313_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132358_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132447_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132448_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132452_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132508_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132509_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132521_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132543_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132558_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132561_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132571_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132580_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132585_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132586_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk7smalldates.dta"
+
+(variable
+s_130119_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130275_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130281_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130341_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130679_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130683_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130891_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130985_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131106_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131125_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_131139_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131149_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131159_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131260_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131286_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131413_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131449_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131509_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131598_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131731_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_131757_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131759_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131813_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131880_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132011_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132045_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132063_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132327_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132451_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132458_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132471_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132526_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132564_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132565_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk8smalldates.dta"
+
+(variable
+s_130001_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130021_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130027_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130047_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130063_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130065_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130079_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130097_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130121_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130135_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130184_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130205_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130622_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130632_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130737_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130923_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130993_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131148_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131158_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131228_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131489_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131567_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131668_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131774_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131787_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131819_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131844_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131988_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132036_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132087_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132213_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132235_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132293_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132431_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132435_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132476_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132477_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132511_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132539_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132575_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk9smalldates.dta"
+
+(variable
+s_130073_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130106_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130131_0_0 was str17, now str44 to accommodate using data's values)
+
+
+(variable
+s_130264_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130677_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130785_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130814_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130971_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131013_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131025_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131048_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131142_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131494_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131725_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131836_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131855_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131954_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132070_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132115_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132462_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132497_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132584_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk10smalldates.dta"
+
+(variable
+s_130053_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130059_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130177_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130197_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130267_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130345_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130708_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130717_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130970_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130977_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131100_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131144_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131238_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131251_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131275_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131328_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131382_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131472_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131527_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131545_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131592_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131676_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131682_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131731_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_131742_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131906_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132016_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132085_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132092_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132128_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132325_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132341_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132439_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132509_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132541_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk11smalldates.dta"
+
+(variable
+s_130141_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130267_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130635_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130730_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130857_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130881_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130899_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131074_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131102_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131138_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131142_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131208_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131230_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131329_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131425_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131497_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131754_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131759_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131761_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131806_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131833_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131888_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131960_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131993_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131995_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132019_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132062_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132096_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132150_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132281_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132481_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132530_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk12smalldates.dta"
+
+(variable
+s_130067_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130169_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130261_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130343_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130641_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130685_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130693_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130700_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130718_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130806_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130901_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130906_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131016_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131073_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131258_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131295_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131303_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131419_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131464_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131713_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131745_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131803_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131864_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131876_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132067_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132197_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132577_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk13smalldates.dta"
+
+(variable
+s_130075_0_0 was str17, now str19 to accommodate using data's values)
+
+
+(variable
+s_130194_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130653_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_130823_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130861_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130913_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131014_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131021_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131056_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131082_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131433_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132072_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132195_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132276_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132280_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132289_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132443_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132475_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132523_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132534_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132552_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132553_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132589_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk14smalldates.dta"
+
+(variable
+s_130089_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130105_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130211_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130792_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130799_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130830_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130899_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131041_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131505_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131623_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131638_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131845_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131983_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132047_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132049_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132430_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132446_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132463_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132554_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132555_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132587_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk15smalldates.dta"
+
+(variable
+s_130053_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130186_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_130224_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130226_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130634_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130638_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130695_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131110_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131611_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131624_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131646_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131872_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131938_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132245_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132472_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132524_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132568_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132579_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132582_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk16smalldates.dta"
+
+(variable
+s_130127_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130145_0_0 was str19, now str29 to accommodate using data's values)
+
+
+(variable
+s_130809_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130881_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130903_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130917_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130951_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131042_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131136_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131242_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131413_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131485_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131654_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131721_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131745_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132297_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132338_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132489_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132494_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk17smalldates.dta"
+
+(variable
+s_130153_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130283_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130741_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130781_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130801_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130925_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131182_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131368_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131386_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131470_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131600_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131607_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131692_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131785_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131875_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132135_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132390_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132518_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132520_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132570_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk18smalldates.dta"
+
+(variable
+s_130013_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130683_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130945_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130981_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131123_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131197_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131245_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131555_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131584_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131798_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131831_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131906_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131910_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131928_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132221_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132267_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132455_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132465_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132545_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132573_0_0 was str29, now str44 to accommodate using data's values)
+
+
+. append using "chunk19smalldates.dta"
+
+(variable
+s_130119_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130203_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130281_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130307_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130861_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130991_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131021_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131064_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131377_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131478_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131799_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131933_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132244_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132328_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132513_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk20smalldates.dta"
+
+(variable
+s_130003_0_0 was str31, now str32 to accommodate using data's values)
+
+
+(variable
+s_130148_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130216_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130230_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130321_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130905_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130919_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130979_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131538_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131620_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131724_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131783_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132015_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_132111_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132505_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk21smalldates.dta"
+
+(variable
+s_130091_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130848_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131192_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131285_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131296_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131350_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131644_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131789_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132152_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132220_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132271_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132510_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132599_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk22smalldates.dta"
+
+(variable
+s_130103_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130655_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130809_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130853_0_0 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_130989_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130991_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131258_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131747_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131958_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132044_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132168_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132336_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132470_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132536_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132538_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132591_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132603_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk23smalldates.dta"
+
+(variable
+s_130066_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130134_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130627_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131161_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131207_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131216_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131425_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131626_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131801_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132109_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132326_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132388_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132561_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132565_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk24smalldates.dta"
+
+(variable
+s_130035_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130065_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130117_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130190_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130273_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130851_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130921_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131186_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131472_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131634_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131697_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131723_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131928_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132081_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132343_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132439_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132445_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132559_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132588_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk25smalldates.dta"
+
+(variable
+s_130001_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130255_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130265_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130743_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130865_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131027_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131045_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131128_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131249_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131648_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131706_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131880_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131960_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132159_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132452_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132586_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk26smalldates.dta"
+
+(variable
+s_130229_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130329_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130818_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130892_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130941_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131112_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131114_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131373_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131673_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131700_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131878_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131984_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131992_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132179_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132550_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk27smalldates.dta"
+
+(variable
+s_130188_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130807_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130898_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130964_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131282_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131421_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131650_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131742_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk28smalldates.dta"
+
+(variable
+s_130008_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130089_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130143_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131597_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131698_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131790_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132454_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132491_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132507_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132549_0_0 was str17, now str29 to accommodate using data's values)
+
+
+. append using "chunk29smalldates.dta"
+
+(variable
+s_130777_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130863_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130998_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131067_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131301_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131584_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131594_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131682_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131734_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132382_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk30smalldates.dta"
+
+(variable
+s_130798_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130799_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130806_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_130914_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131252_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131572_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131833_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131882_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131900_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131956_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132078_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132138_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132145_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132459_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk31smalldates.dta"
+
+(variable
+s_130115_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130123_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130125_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130249_0_0 was str17, now str19 to accommodate using data's values)
+
+
+(variable
+s_131000_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131430_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131850_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131858_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132049_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132185_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132225_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132417_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132438_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk32smalldates.dta"
+
+(variable
+s_130105_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130165_0_0 was str17, now str19 to accommodate using data's values)
+
+
+(variable
+s_131322_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131356_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131618_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131623_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131704_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131804_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131817_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132279_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132299_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132366_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk33smalldates.dta"
+
+(variable
+s_130841_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130953_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131132_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131306_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131324_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132019_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132032_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132080_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132527_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk34smalldates.dta"
+
+(variable
+s_131392_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131433_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131628_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132346_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132448_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132481_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk35smalldates.dta"
+
+(variable
+s_130159_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130195_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130820_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130910_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131169_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131563_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131586_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131699_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132165_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132297_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132560_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk36smalldates.dta"
+
+(variable
+s_130631_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130811_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130983_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131513_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131914_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132353_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132422_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132568_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk37smalldates.dta"
+
+(variable
+s_130002_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_130223_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130228_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131359_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_131426_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132054_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132344_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132395_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132420_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132471_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132548_0_0 was str10, now strL to accommodate using data's values)
+
+
+. append using "chunk38smalldates.dta"
+
+(variable
+s_130003_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130889_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131104_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131736_0_0 was str10, now strL to accommodate using data's values)
+
+
+. append using "chunk39smalldates.dta"
+
+(variable
+s_130247_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131262_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131335_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_132056_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132602_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk40smalldates.dta"
+
+(variable
+s_130008_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_130259_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130629_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130647_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130929_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130949_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131313_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131640_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131670_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131708_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131768_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131778_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132336_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132416_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132532_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk41smalldates.dta"
+
+(variable
+s_130685_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131104_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131166_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131513_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131582_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131688_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131756_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132202_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132223_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132333_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132434_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132476_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132506_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132507_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk42smalldates.dta"
+
+(variable
+s_130006_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131092_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131094_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131765_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_132278_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk43smalldates.dta"
+
+(variable
+s_130018_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130065_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130155_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131174_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_131916_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132522_0_0 was str10, now str56 to accommodate using data's values)
+
+
+. append using "chunk44smalldates.dta"
+
+(variable
+s_130091_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130139_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130987_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131430_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131480_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131497_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131970_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131974_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132368_0_0 was str10, now strL to accommodate using data's values)
+
+
+. append using "chunk45smalldates.dta"
+
+(variable
+s_130087_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130191_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131106_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131271_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131576_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132124_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132450_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132584_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk46smalldates.dta"
+
+(variable
+s_130163_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130277_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_130299_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_130997_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_131182_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131414_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131802_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131933_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132122_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132299_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk47smalldates.dta"
+
+(variable
+s_130281_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130743_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_131076_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132026_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132321_0_0 was str17, now str29 to accommodate using data's values)
+
+
+(variable
+s_132453_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132491_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132503_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. append using "chunk48smalldates.dta"
+
+(variable
+s_130064_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_130630_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_130887_0_0 was str29, now str32 to accommodate using data's values)
+
+
+(variable
+s_130896_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131791_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132396_0_0 was str10, now strL to accommodate using data's values)
+
+
+(variable
+s_132499_0_0 was str29, now str32 to accommodate using data's values)
+
+
+. append using "chunk49smalldates.dta"
+
+(variable
+s_130001_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130045_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130273_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_130656_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_131089_0_0 was str31, now str44 to accommodate using data's values)
+
+
+(variable
+s_131102_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_131301_0_0 was str32, now str44 to accommodate using data's values)
+
+
+(variable
+s_132170_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132394_0_0 was str10, now str56 to accommodate using data's values)
+
+
+(variable
+s_132522_0_0 was str56, now strL to accommodate using data's values)
+
+
+. append using "chunk50smalldates.dta"
+
+(variable
+s_130669_0_0 was str29, now str44 to accommodate using data's values)
+
+
+(variable
+s_131328_0_0 was str56, now strL to accommodate using data's values)
+
+
+(variable
+s_132161_0_0 was str32, now str44 to accommodate using data's values)
+
+
+. 
+. save "/opt/notebooks/DATES", replace
+
+file 
+/opt/notebooks/DATES.dta
+saved
+
+
+. 
+. capture log close

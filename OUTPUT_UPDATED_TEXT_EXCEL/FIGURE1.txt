@@ -1,0 +1,1060 @@
+. 
+. 
+. 
+. use "/opt/notebooks/finaldata_unimputedfin",clear
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. *****************************************ABOVE VS. BELOW MEDIAN NFL AND GFAP**********************************************************
+. 
+. capture drop gfapbr
+
+. xtile  gfapbr=gfap if sample_final==1, nq(2)
+
+. 
+. bysort gfapbr: su gfap if sample_final==1
+
+------------------------------------------------------------
+-> gfapbr = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+gfap |      9,820   -.3163051    .3170191   -2.23605     .08145
+
+------------------------------------------------------------
+-> gfapbr = 2
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+gfap |      9,819     .542334    .3897252      .0815    5.25285
+
+
+. 
+. 
+. capture drop neflbr
+
+. xtile  neflbr=nefl if sample_final==1, nq(2)
+
+. 
+. bysort neflbr: su nefl if sample_final==1
+
+------------------------------------------------------------
+-> neflbr = 1
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+nefl |      9,820   -.2634369    .2932659    -2.9791      .1112
+
+------------------------------------------------------------
+-> neflbr = 2
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
++
+nefl |      9,819    .5549288    .4160307      .1114     5.1483
+
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. ****************************************KAPLAN-MEIER SURVIVAL CURVES********************************************************************
+. 
+. **********************************NEFL**********************************************
+. 
+. 
+. **DEMENTIA**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        692  failures in single-failure-per-subject data
+ 274,619.59  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("NEFL vs. dementia") by (neflbr) tmin(65) tmax(85) 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1A.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1A.gph
+not found)
+
+file  saved
+
+. sts test neflbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       150         276.51
+     2 |       540         413.49
++
+ Total |       690         690.00
+
+                 chi2(1) =  99.75
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -6093.192
+Iteration 1:  Log likelihood = -6039.8939
+Iteration 2:  Log likelihood = -6039.0773
+Iteration 3:  Log likelihood = -6039.0766
+Refining estimates:
+Iteration 0:  Log likelihood = -6039.0766
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,908Number of obs = 18,908
+No. of failures = 690
+Time at risk    = 263,332.935
+LR chi2(1) = 108.23
+Log likelihood = -6039.0766Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.476777 .2321188    9.680.000 2.061171 2.976185
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("NEFL vs. all-cause dementia") by (neflbr) tmin(65) tmax(85) risktable
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1A1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1A1.gph
+not found)
+
+file  saved
+
+. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       150         276.51
+     2 |       540         413.49
++
+ Total |       690         690.00
+
+                 chi2(1) =  99.75
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -6093.192
+Iteration 1:  Log likelihood = -6039.8939
+Iteration 2:  Log likelihood = -6039.0773
+Iteration 3:  Log likelihood = -6039.0766
+Refining estimates:
+Iteration 0:  Log likelihood = -6039.0766
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,908Number of obs = 18,908
+No. of failures = 690
+Time at risk    = 263,332.935
+LR chi2(1) = 108.23
+Log likelihood = -6039.0766Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.476777 .2321188    9.680.000 2.061171 2.976185
+
+
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        400  failures in single-failure-per-subject data
+    274,700  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("NEFL vs. PD") by (neflbr) tmin(65) tmax(85) 
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1B.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1B.gph
+not found)
+
+file  saved
+
+. sts test neflbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       121         185.41
+     2 |       279         214.59
++
+ Total |       400         400.00
+
+                 chi2(1) =  43.69
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -3665.773
+Iteration 1:  Log likelihood = -3643.2303
+Iteration 2:  Log likelihood = -3643.1535
+Iteration 3:  Log likelihood = -3643.1535
+Refining estimates:
+Iteration 0:  Log likelihood = -3643.1535
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,863Number of obs = 18,863
+No. of failures = 400
+Time at risk    = 262,718.789
+LR chi2(1) = 45.24
+Log likelihood = -3643.1535Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.058182 .2290626    6.490.000 1.654819 2.559865
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("NEFL vs. PD") by (neflbr) tmin(65) tmax(85) risktable
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1B1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1B1.gph
+not found)
+
+file  saved
+
+. 
+. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       121         185.41
+     2 |       279         214.59
++
+ Total |       400         400.00
+
+                 chi2(1) =  43.69
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -3665.773
+Iteration 1:  Log likelihood = -3643.2303
+Iteration 2:  Log likelihood = -3643.1535
+Iteration 3:  Log likelihood = -3643.1535
+Refining estimates:
+Iteration 0:  Log likelihood = -3643.1535
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,863Number of obs = 18,863
+No. of failures = 400
+Time at risk    = 262,718.789
+LR chi2(1) = 45.24
+Log likelihood = -3643.1535Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.058182 .2290626    6.490.000 1.654819 2.559865
+
+
+. 
+. 
+. **DEATH**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+      2,515  failures in single-failure-per-subject data
+ 276,947.89  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("NEFL vs. All-cause mortality") by (neflbr) tmin(65) tmax(85) 
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1C.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1C.gph
+not found)
+
+file  saved
+
+. sts test neflbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       778        1096.82
+     2 |      1728        1409.18
++
+ Total |      2506        2506.00
+
+                 chi2(1) = 173.21
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22607.395
+Iteration 1:  Log likelihood = -22518.058
+Iteration 2:  Log likelihood = -22517.795
+Iteration 3:  Log likelihood = -22517.795
+Refining estimates:
+Iteration 0:  Log likelihood = -22517.795
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,841Number of obs = 18,841
+No. of failures = 2,506
+Time at risk    = 264,629.244
+LR chi2(1) = 179.20
+Log likelihood = -22517.795Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 1.777692 .0786424   13.000.000 1.630049 1.938708
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("NEFL vs. All-cause mortality") by (neflbr) tmin(65) tmax(85) risktable
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1C1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1C1.gph
+not found)
+
+file  saved
+
+. 
+. 
+. sts test neflbr if sample_final==1 & _t<84 
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+neflbr |    events         events
++
+     1 |       778        1096.82
+     2 |      1728        1409.18
++
+ Total |      2506        2506.00
+
+                 chi2(1) = 173.21
+                 Pr>chi2 = 0.0000
+
+. stcox neflbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22607.395
+Iteration 1:  Log likelihood = -22518.058
+Iteration 2:  Log likelihood = -22517.795
+Iteration 3:  Log likelihood = -22517.795
+Refining estimates:
+Iteration 0:  Log likelihood = -22517.795
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,841Number of obs = 18,841
+No. of failures = 2,506
+Time at risk    = 264,629.244
+LR chi2(1) = 179.20
+Log likelihood = -22517.795Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 1.777692 .0786424   13.000.000 1.630049 1.938708
+
+
+. 
+. graph combine "/opt/notebooks/FIGURE1A.gph" "/opt/notebooks/FIGURE1B.gph" "/opt/notebooks/FIGURE1C.gph"
+
+. graph save "/opt/notebooks/FIGURE1NEFL.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1NEFL.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **********************************GFAP**********************************************
+. 
+. 
+. **DEMENTIA**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        692  failures in single-failure-per-subject data
+ 274,619.59  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("GFAP vs. dementia") by (gfapbr) tmin(65) tmax(85) 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1D.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1D.gph
+not found)
+
+file  saved
+
+. sts test gfapbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |       161         288.81
+     2 |       529         401.19
++
+ Total |       690         690.00
+
+                 chi2(1) =  99.10
+                 Pr>chi2 = 0.0000
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -6093.192
+Iteration 1:  Log likelihood = -6040.6722
+Iteration 2:  Log likelihood = -6040.0504
+Iteration 3:  Log likelihood =   -6040.05
+Refining estimates:
+Iteration 0:  Log likelihood =   -6040.05
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,908Number of obs = 18,908
+No. of failures = 690
+Time at risk    = 263,332.935
+LR chi2(1) = 106.28
+Log likelihood = -6040.05Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 2.400388  .217651    9.660.000 2.009557 2.867231
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion Dementia-Free (95%CI)") title("GFAP vs. all-cause dementia") by (gfapbr) tmin(65) tmax(85) risktable
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1D1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1D1.gph
+not found)
+
+file  saved
+
+. 
+. sts test gfapbr if sample_final==1 & _t<84 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |       161         288.81
+     2 |       529         401.19
++
+ Total |       690         690.00
+
+                 chi2(1) =  99.10
+                 Pr>chi2 = 0.0000
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -6093.192
+Iteration 1:  Log likelihood = -6040.6722
+Iteration 2:  Log likelihood = -6040.0504
+Iteration 3:  Log likelihood =   -6040.05
+Refining estimates:
+Iteration 0:  Log likelihood =   -6040.05
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,908Number of obs = 18,908
+No. of failures = 690
+Time at risk    = 263,332.935
+LR chi2(1) = 106.28
+Log likelihood = -6040.05Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 2.400388  .217651    9.660.000 2.009557 2.867231
+
+
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        400  failures in single-failure-per-subject data
+    274,700  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("GFAP vs. PD") by (gfapbr) tmin(65) tmax(85) 
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1E.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1E.gph
+not found)
+
+file  saved
+
+. sts test gfapbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |       186         186.19
+     2 |       214         213.81
++
+ Total |       400         400.00
+
+                 chi2(1) =   0.00
+                 Pr>chi2 = 0.9843
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -3665.773
+Iteration 1:  Log likelihood = -3665.7728
+Refining estimates:
+Iteration 0:  Log likelihood = -3665.7728
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,863Number of obs = 18,863
+No. of failures = 400
+Time at risk    = 262,718.789
+LR chi2(1) = 0.00
+Log likelihood = -3665.7728Prob > chi2 = 0.9843
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 1.002007 .1017933    0.020.984 .8211036 1.222768
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion PD-Free (95%CI)") title("GFAP vs. PD") by (gfapbr) tmin(65) tmax(85) risktable
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1E1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1E1.gph
+not found)
+
+file  saved
+
+. 
+. 
+. sts test gfapbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |       186         186.19
+     2 |       214         213.81
++
+ Total |       400         400.00
+
+                 chi2(1) =   0.00
+                 Pr>chi2 = 0.9843
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood =  -3665.773
+Iteration 1:  Log likelihood = -3665.7728
+Refining estimates:
+Iteration 0:  Log likelihood = -3665.7728
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,863Number of obs = 18,863
+No. of failures = 400
+Time at risk    = 262,718.789
+LR chi2(1) = 0.00
+Log likelihood = -3665.7728Prob > chi2 = 0.9843
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 1.002007 .1017933    0.020.984 .8211036 1.222768
+
+
+. 
+. 
+. **DEATH**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1) 
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+      2,515  failures in single-failure-per-subject data
+ 276,947.89  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("GFAP vs. All-cause mortality") by (gfapbr) tmin(65) tmax(85) 
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1F.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1F.gph
+not found)
+
+file  saved
+
+. sts test gfapbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |      1082        1119.20
+     2 |      1424        1386.80
++
+ Total |      2506        2506.00
+
+                 chi2(1) =   2.30
+                 Pr>chi2 = 0.1294
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22607.395
+Iteration 1:  Log likelihood = -22606.242
+Iteration 2:  Log likelihood = -22606.242
+Refining estimates:
+Iteration 0:  Log likelihood = -22606.242
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,841Number of obs = 18,841
+No. of failures = 2,506
+Time at risk    = 264,629.244
+LR chi2(1) = 2.30
+Log likelihood = -22606.242Prob > chi2 = 0.1290
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 1.064001  .043533    1.520.129  .982009 1.152838
+
+
+. 
+. sts graph if sample_final==1 & _t<84, gwood legend(pos(5)) xlabel(65(5)85) ylabel(0.50(.10)1) xtitle("Age at follow-up (years)") ytitle("Proportion survival (95%CI)") title("GFAP vs. All-cause mortality") by (gfapbr) tmin(65) tmax(85) risktable
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+. graph save "/opt/notebooks/FIGURE1F1.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1F1.gph
+not found)
+
+file  saved
+
+. 
+. 
+. sts test gfapbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Equality of survivor functions
+Log-rank test
+
+ |  Observed       Expected
+gfapbr |    events         events
++
+     1 |      1082        1119.20
+     2 |      1424        1386.80
++
+ Total |      2506        2506.00
+
+                 chi2(1) =   2.30
+                 Pr>chi2 = 0.1294
+
+. stcox gfapbr if sample_final==1 & _t<84
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22607.395
+Iteration 1:  Log likelihood = -22606.242
+Iteration 2:  Log likelihood = -22606.242
+Refining estimates:
+Iteration 0:  Log likelihood = -22606.242
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 18,841Number of obs = 18,841
+No. of failures = 2,506
+Time at risk    = 264,629.244
+LR chi2(1) = 2.30
+Log likelihood = -22606.242Prob > chi2 = 0.1290
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 1.064001  .043533    1.520.129  .982009 1.152838
+
+
+. 
+. graph combine "/opt/notebooks/FIGURE1D.gph" "/opt/notebooks/FIGURE1E.gph" "/opt/notebooks/FIGURE1F.gph"
+
+. graph save "/opt/notebooks/FIGURE1GFAP.gph", replace
+
+(file 
+/opt/notebooks/FIGURE1GFAP.gph
+not found)
+
+file  saved
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. capture log close

@@ -1,0 +1,675 @@
+
+
+. 
+. 
+. 
+. **********Merlin Weibull models*************************
+. 
+. *****Transition 1: Healthy --> PD********************
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   (not concave)
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4755786 .1180663    4.030.000  .244173 .7069842
+zLE8_TO~Einv-.1480591 .0569097   -2.600.009-.2596001-.0365181
+         SEX-.7670899 .1099687   -6.980.000-.9826245-.5515553
+         AGE-.0177084 .0137831   -1.280.199-.0447228  .009306
+    NonWhite .1690669 .2705836    0.620.532-.3612673 .6994011
+households~e-.0356265 .0615643   -0.580.563-.1562904 .0850373
+      SESres .0817367 .1027952    0.800.427-.1197382 .2832117
+   ztownsend .0189073  .053706    0.350.725-.0863546 .1241692
+    comorbid .0727677 .0249924    2.910.004 .0237836 .1217519
+       srhbr .3339655  .079416    4.210.000  .178313 .4896179
+       _cons-44.41734  1.92202  -23.110.000-48.18444-40.65025
+  log(gamma)  2.25881 .0499066   45.260.000 2.160995 2.356625
+
+
+. estimate store m1
+
+. capture drop s1nefl*
+
+. predict s1nefl if sample_final==1 & _trans1==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1nefl
+
+. gen lns1nefl=ln(s1nefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1nefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1nefl _t if _t<84, sort) (lpolyci s1nefl_lci _t if _t<84, sort) (lpolyci s1nefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_1_1nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_1_1nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s1goodnefl*
+
+. predict s1goodnefl if sample_final==1 & _trans1==1, at(neflbr 0) surv ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1goodnefl
+
+. gen lns1goodnefl=ln(s1goodnefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1goodnefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1goodnefl _t if _t<84, sort) (lpolyci s1goodnefl_lci _t if _t<84, sort) (lpolyci s1goodnefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_1_2nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_1_2nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s1poornefl*
+
+. predict s1poornefl if sample_final==1 & _trans1==1, at(neflbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns1poornefl
+
+. gen lns1poornefl=ln(s1poornefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s1poornefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s1poornefl _t if _t<84, sort) (lpolyci s1poornefl_lci _t if _t<84, sort) (lpolyci s1poornefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_1_3nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_1_3nefl.gph
+not found)
+
+file  saved
+
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans1==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   (not concave)
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+Iteration 18:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4755786 .1180663    4.030.000  .244173 .7069842
+zLE8_TO~Einv-.1480591 .0569097   -2.600.009-.2596001-.0365181
+         SEX-.7670899 .1099687   -6.980.000-.9826245-.5515553
+         AGE-.0177084 .0137831   -1.280.199-.0447228  .009306
+    NonWhite .1690669 .2705836    0.620.532-.3612673 .6994011
+households~e-.0356265 .0615643   -0.580.563-.1562904 .0850373
+      SESres .0817367 .1027952    0.800.427-.1197382 .2832117
+   ztownsend .0189073  .053706    0.350.725-.0863546 .1241692
+    comorbid .0727677 .0249924    2.910.004 .0237836 .1217519
+       srhbr .3339655  .079416    4.210.000  .178313 .4896179
+       _cons-44.41734  1.92202  -23.110.000-48.18444-40.65025
+  log(gamma)  2.25881 .0499066   45.260.000 2.160995 2.356625
+
+
+. capture drop s1diffnefl80*
+
+. predict s1diffnefl80 if sample_final==1 & _trans1==1, sdifference at1(neflbr 0 _t 80) at2(neflbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s1diffnefl80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s1diffnefl80 _t if _t<80, sort) (lpolyci s1diffnefl80_lci _t if _t<80, sort) (lpolyci s1diffnefl80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooksFIGURE_5_1_4nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_1_4nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. graph combine "/opt/notebooksFIGURE_5_1_1nefl.gph" "/opt/notebooksFIGURE_5_1_2nefl.gph" "/opt/notebooksFIGURE_5_1_3nefl.gph" "/opt/notebooksFIGURE_5_1_4nefl.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooksFIGURE_5_1nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_1nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+.  
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. *****Transition 2: Healthy --> Dementia********************
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7502468 .1024613    7.320.000 .5494263 .9510674
+zLE8_TO~Einv-.0073155 .0444207   -0.160.869-.0943785 .0797475
+         SEX-.0927202 .0826674   -1.120.262-.2547454  .069305
+         AGE .0146944 .0134554    1.090.275-.0116776 .0410665
+    NonWhite-.2053696 .2507509   -0.820.413-.6968323 .2860931
+households~e .0152035 .0355503    0.430.669-.0544738 .0848807
+      SESres -.200545 .0861244   -2.330.020-.3693457-.0317443
+   ztownsend .1263974  .040821    3.100.002 .0463896 .2064052
+    comorbid .0564505 .0192294    2.940.003 .0187616 .0941395
+       srhbr .3718325  .062568    5.940.000 .2492014 .4944635
+       _cons-68.92168 2.150613  -32.050.000 -73.1368-64.70655
+  log(gamma) 2.673956 .0382502   69.910.000 2.598987 2.748925
+
+
+. estimate store m2
+
+. capture drop s2nefl*
+
+. predict s2nefl if sample_final==1 & _trans2==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2nefl
+
+. gen lns2nefl=ln(s2nefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2nefl _t if _t<84, sort) (lpolyci s2nefl_lci _t if _t<84, sort) (lpolyci s2nefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_2_1nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_2_1nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s2goodnefl*
+
+. predict s2goodnefl if sample_final==1 & _trans2==1, at(neflbr 0) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2goodnefl
+
+. gen lns2goodnefl=ln(s2goodnefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2goodnefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2goodnefl _t if _t<84, sort) (lpolyci s2goodnefl_lci _t if _t<84, sort) (lpolyci s2goodnefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_2_2nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_2_2nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s2poornefl*
+
+. predict s2poornefl if sample_final==1 & _trans2==1, at(neflbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns2poornefl
+
+. gen lns2poornefl=ln(s2poornefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s2poornefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s2poornefl _t if _t<84, sort) (lpolyci s2poornefl_lci _t if _t<84, sort) (lpolyci s2poornefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_2_3nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_2_3nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans2==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   
+Iteration 3:Log likelihood =   
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .7502468 .1024613    7.320.000 .5494263 .9510674
+zLE8_TO~Einv-.0073155 .0444207   -0.160.869-.0943785 .0797475
+         SEX-.0927202 .0826674   -1.120.262-.2547454  .069305
+         AGE .0146944 .0134554    1.090.275-.0116776 .0410665
+    NonWhite-.2053696 .2507509   -0.820.413-.6968323 .2860931
+households~e .0152035 .0355503    0.430.669-.0544738 .0848807
+      SESres -.200545 .0861244   -2.330.020-.3693457-.0317443
+   ztownsend .1263974  .040821    3.100.002 .0463896 .2064052
+    comorbid .0564505 .0192294    2.940.003 .0187616 .0941395
+       srhbr .3718325  .062568    5.940.000 .2492014 .4944635
+       _cons-68.92168 2.150613  -32.050.000 -73.1368-64.70655
+  log(gamma) 2.673956 .0382502   69.910.000 2.598987 2.748925
+
+
+. capture drop s2diffnefl80*
+
+. predict s2diffnefl80 if sample_final==1 & _trans2==1, sdifference at1(neflbr 0 _t 80) at2(neflbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s2diffnefl80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s2diffnefl80 _t if _t<80, sort) (lpolyci s2diffnefl80_lci _t if _t<80, sort) (lpolyci s2diffnefl80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooksFIGURE_5_2_4nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_2_4nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. graph combine "/opt/notebooksFIGURE_5_2_1nefl.gph" "/opt/notebooksFIGURE_5_2_2nefl.gph" "/opt/notebooksFIGURE_5_2_3nefl.gph" "/opt/notebooksFIGURE_5_2_4nefl.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooksFIGURE_5_2nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_2nefl.gph
+not found)
+
+file  saved
+
+. 
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. *****Transition 3: Healthy --> Died********************
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   (not concave)
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   (not concave)
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4173428 .0491336    8.490.000 .3210428 .5136428
+zLE8_TO~Einv .1725706  .023423    7.370.000 .1266624 .2184789
+         SEX-.5101914 .0456627  -11.170.000-.5996886-.4206942
+         AGE-.0816149 .0059705  -13.670.000-.0933168 -.069913
+    NonWhite-.0347715 .1166674   -0.300.766-.2634353 .1938923
+households~e-.0439595 .0257909   -1.700.088-.0945088 .0065899
+      SESres-.1772447 .0454146   -3.900.000-.2662558-.0882337
+   ztownsend  .120411 .0215408    5.590.000 .0781918 .1626301
+    comorbid .0720404 .0100303    7.180.000 .0523813 .0916994
+       srhbr .4815495 .0331397   14.530.000 .4165968 .5465021
+       _cons-50.27389 .9735304  -51.640.000-52.18198-48.36581
+  log(gamma) 2.490801 .0209686  118.790.000 2.449703 2.531899
+
+
+. estimate store m3
+
+. capture drop s3nefl*
+
+. predict s3nefl if sample_final==1 & _trans3==1, surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3nefl
+
+. gen lns3nefl=ln(s3nefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3nefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3nefl _t if _t<84, sort) (lpolyci s3nefl_lci _t if _t<84, sort) (lpolyci s3nefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_3_1nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_3_1nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s3goodnefl*
+
+. predict s3goodnefl if sample_final==1 & _trans3==1, at(neflbr 0) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3goodnefl
+
+. gen lns3goodnefl=ln(s3goodnefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3goodnefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3goodnefl _t if _t<84, sort) (lpolyci s3goodnefl_lci _t if _t<84, sort) (lpolyci s3goodnefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_3_2nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_3_2nefl.gph
+not found)
+
+file  saved
+
+. 
+. capture drop s3poornefl*
+
+. predict s3poornefl if sample_final==1 & _trans3==1, at(neflbr 1) surv ci 
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. capture drop lns3poornefl
+
+. gen lns3poornefl=ln(s3poornefl)
+(40,683 missing values generated)
+
+. capture drop lntime
+
+. gen lntime=ln(_t)
+(39 missing values generated)
+
+. line s3poornefl* _t if _t<84, sort connect(stairstep stairstep stairstep)
+
+. graph twoway (lpolyci s3poornefl _t if _t<84, sort) (lpolyci s3poornefl_lci _t if _t<84, sort) (lpolyci s3poornefl_uci _t if _t<84, sort)
+
+. graph save "/opt/notebooksFIGURE_5_3_3nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_3_3nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stmerlin neflbr zLE8_TOTALSCOREinv SEX AGE NonWhite householdsize SESres ztownsend comorbid srhbr if sample_final==1 & _trans3==1, distribution(weibull)
+
+Fitting full model:
+
+Iteration 0:Log likelihood =   
+Iteration 1:Log likelihood =   (not concave)
+Iteration 2:Log likelihood =   (not concave)
+Iteration 3:Log likelihood =   (not concave)
+Iteration 4:Log likelihood =   
+Iteration 5:Log likelihood =   
+Iteration 6:Log likelihood =   (not concave)
+Iteration 7:Log likelihood =   
+Iteration 8:Log likelihood =   
+Iteration 9:Log likelihood =   
+Iteration 10:Log likelihood =   
+Iteration 11:Log likelihood =   
+Iteration 12:Log likelihood =   
+Iteration 13:Log likelihood =   (not concave)
+Iteration 14:Log likelihood =   
+Iteration 15:Log likelihood =   
+Iteration 16:Log likelihood =   
+Iteration 17:Log likelihood =   (not concave)
+Iteration 18:Log likelihood =   
+Iteration 19:Log likelihood =   
+Iteration 20:Log likelihood =   
+Iteration 21:Log likelihood =   
+Iteration 22:Log likelihood =   
+
+Survival model = 
+ = 
+
+ Coefficient  Std. err.      z   P>|z|     [95% conf. interval]
+
+_t:          
+      neflbr .4173428 .0491336    8.490.000 .3210428 .5136428
+zLE8_TO~Einv .1725706  .023423    7.370.000 .1266624 .2184789
+         SEX-.5101914 .0456627  -11.170.000-.5996886-.4206942
+         AGE-.0816149 .0059705  -13.670.000-.0933168 -.069913
+    NonWhite-.0347715 .1166674   -0.300.766-.2634353 .1938923
+households~e-.0439595 .0257909   -1.700.088-.0945088 .0065899
+      SESres-.1772447 .0454146   -3.900.000-.2662558-.0882337
+   ztownsend  .120411 .0215408    5.590.000 .0781918 .1626301
+    comorbid .0720404 .0100303    7.180.000 .0523813 .0916994
+       srhbr .4815495 .0331397   14.530.000 .4165968 .5465021
+       _cons-50.27389 .9735304  -51.640.000-52.18198-48.36581
+  log(gamma) 2.490801 .0209686  118.790.000 2.449703 2.531899
+
+
+. capture drop s3diffnefl80*
+
+. predict s3diffnefl80 if sample_final==1 & _trans3==1, sdifference at1(neflbr 0 _t 80) at2(neflbr 1 _t 80) ci
+(40,683 missing values generated)
+note: confidence intervals calculated using Z critical values.
+
+. line s3diffnefl80* AGE, sort connect(stairstep stairstep stairstep)  
+
+. graph twoway (lpolyci s3diffnefl80 _t if _t<80, sort) (lpolyci s3diffnefl80_lci _t if _t<80, sort) (lpolyci s3diffnefl80_uci _t if _t<80, sort)
+
+. graph save "/opt/notebooksFIGURE_5_3_4nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_3_4nefl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. graph combine "/opt/notebooksFIGURE_5_3_1nefl.gph" "/opt/notebooksFIGURE_5_3_2nefl.gph" "/opt/notebooksFIGURE_5_3_3nefl.gph" "/opt/notebooksFIGURE_5_3_4nefl.gph", col(1) iscale(0.5)
+
+. graph save "/opt/notebooksFIGURE_5_3nefl.gph",replace
+
+(file 
+/opt/notebooksFIGURE_5_3nefl.gph
+not found)
+
+file  saved
+
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. capture log close
+

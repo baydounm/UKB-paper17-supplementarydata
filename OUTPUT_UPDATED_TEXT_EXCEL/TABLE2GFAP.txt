@@ -1,0 +1,3077 @@
+
+
+. 
+. use "/opt/notebooks/finaldata_unimputedfin",clear
+
+. 
+. 
+. *******************DEMENTIA*********************************************************
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        692  failures in single-failure-per-subject data
+ 274,619.59  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.0764
+Iteration 2:  Log likelihood = -6054.8505
+Iteration 3:  Log likelihood = -6053.8972
+Iteration 4:  Log likelihood =  -6053.894
+Refining estimates:
+Iteration 0:  Log likelihood =  -6053.894
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.894 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.276627 .2096279    8.930.000 1.900704 2.726899
+zLE8_TOTALSCOREinv  .9808687 .0406903   -0.470.641 .9042732 1.063952
+AGE  1.086725 .0151835    5.950.000  1.05737 1.116895
+SEX  .7446838 .0576462   -3.810.000 .6398529 .8666898
+NonWhite  .9419643 .2006232   -0.280.779 .6205008 1.429969
+householdsize  1.011525 .0321236    0.360.718 .9504838 1.076487
+SESres  .8249671 .0656249   -2.420.016 .7058702 .9641584
+ztownsend  1.096613 .0419027    2.410.016 1.017485 1.181894
+comorbid   1.06378 .0190601    3.450.001 1.027071 1.101801
+ 
+srhbr 
+2    1.41841  .205943    2.410.016  1.06712 1.885342
+3   1.938601  .310216    4.140.000 1.416703 2.652762
+4   3.627314 .7098722    6.580.000 2.471743 5.323128
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.04260     1.24    10.2651
+zLE8_TO~Einv 0.03071     0.65    10.4184
+AGE 0.29606    54.17    10.0000
+SEX 0.07713     4.08    10.0433
+NonWhite-0.06717     3.13    10.0769
+households~e-0.03658     1.06    10.3024
+SESres 0.04545     1.37    10.2423
+ztownsend-0.02786     0.54    10.4627
+comorbid-0.09335     6.29    10.0122
+1b.srhbr       .        .    1    .
+2.srhbr 0.02866     0.57    10.4496
+3.srhbr 0.00625     0.03    10.8690
+4.srhbr-0.02445     0.44    10.5094
+
+ Global test     77.28   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf1gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf1gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.0861
+Iteration 2:  Log likelihood = -6054.9383
+Iteration 3:  Log likelihood = -6053.9884
+Iteration 4:  Log likelihood = -6053.9853
+Refining estimates:
+Iteration 0:  Log likelihood = -6053.9853
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.9853 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.279034 .2097897    8.950.000 1.902812 2.729642
+zLE8_LIFESTYLEinv  .9926116 .0396791   -0.190.853 .9178105 1.073509
+AGE  1.086627 .0152029    5.940.000 1.057235 1.116837
+SEX  .7454659 .0576969   -3.800.000 .6405414 .8675775
+NonWhite  .9412299 .2006479   -0.280.776 .6197831 1.429393
+householdsize  1.011302 .0321309    0.350.724 .9502477  1.07628
+SESres  .8267136 .0656559   -2.400.017 .7075456 .9659524
+ztownsend  1.095812 .0419812    2.390.017 1.016544 1.181262
+comorbid  1.063366  .019042    3.430.001 1.026692 1.101351
+ 
+srhbr 
+2   1.412583 .2047522    2.380.017 1.063245 1.876699
+3   1.923424 .3065054    4.100.000 1.407449 2.628557
+4   3.589478 .7026993    6.530.000 2.445652  5.26827
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.04272     1.25    10.2638
+zLE8_LIFES~v 0.04475     1.50    10.2212
+AGE 0.29737    54.92    10.0000
+SEX 0.07713     4.09    10.0432
+NonWhite-0.06527     2.96    10.0856
+households~e-0.03688     1.08    10.2986
+SESres 0.04555     1.38    10.2406
+ztownsend-0.03042     0.64    10.4230
+comorbid-0.09193     6.13    10.0133
+1b.srhbr       .        .    1    .
+2.srhbr 0.02855     0.57    10.4509
+3.srhbr 0.00557     0.02    10.8831
+4.srhbr-0.02679     0.53    10.4662
+
+ Global test     78.05   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf2gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf2gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.0861
+Iteration 2:  Log likelihood = -6054.9383
+Iteration 3:  Log likelihood = -6053.9884
+Iteration 4:  Log likelihood = -6053.9853
+Refining estimates:
+Iteration 0:  Log likelihood = -6053.9853
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.9853 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.279034 .2097897    8.950.000 1.902812 2.729642
+zLE8_BIOLOGICALinv  .9926116 .0396791   -0.190.853 .9178105 1.073509
+AGE  1.086627 .0152029    5.940.000 1.057235 1.116837
+SEX  .7454659 .0576969   -3.800.000 .6405414 .8675775
+NonWhite  .9412299 .2006479   -0.280.776 .6197831 1.429393
+householdsize  1.011302 .0321309    0.350.724 .9502477  1.07628
+SESres  .8267136 .0656559   -2.400.017 .7075456 .9659524
+ztownsend  1.095812 .0419812    2.390.017 1.016544 1.181262
+comorbid  1.063366  .019042    3.430.001 1.026692 1.101351
+ 
+srhbr 
+2   1.412583 .2047522    2.380.017 1.063245 1.876699
+3   1.923424 .3065054    4.100.000 1.407449 2.628557
+4   3.589478 .7026993    6.530.000 2.445652  5.26827
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.04272     1.25    10.2638
+zLE8_BIOLO~v 0.04475     1.50    10.2212
+AGE 0.29737    54.92    10.0000
+SEX 0.07713     4.09    10.0432
+NonWhite-0.06527     2.96    10.0856
+households~e-0.03688     1.08    10.2986
+SESres 0.04555     1.38    10.2406
+ztownsend-0.03042     0.64    10.4230
+comorbid-0.09193     6.13    10.0133
+1b.srhbr       .        .    1    .
+2.srhbr 0.02855     0.57    10.4509
+3.srhbr 0.00557     0.02    10.8831
+4.srhbr-0.02679     0.53    10.4662
+
+ Global test     78.05   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf3gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf3gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. ***********************************************AMONG MEN***************************************
+. 
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2928.7637
+Iteration 1:  Log likelihood = -2867.3918
+Iteration 2:  Log likelihood = -2846.4316
+Iteration 3:  Log likelihood = -2845.6188
+Iteration 4:  Log likelihood = -2845.6155
+Refining estimates:
+Iteration 0:  Log likelihood = -2845.6155
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2845.6155 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   2.15885 .2553105    6.510.000 1.712212 2.721996
+zLE8_TOTALSCOREinv   1.00851 .0596753    0.140.886 .8980758 1.132523
+AGE    1.0981  .021643    4.750.000 1.056489 1.141349
+SEX         1  (omitted)
+NonWhite  .7542423 .2593726   -0.820.412 .3844107 1.479879
+householdsize  1.078487 .0680018    1.200.231 .9531127 1.220354
+SESres   .707682 .0766704   -3.190.001 .5722935 .8750995
+ztownsend  1.058261 .0570381    1.050.293 .9521707 1.176172
+comorbid  1.074864 .0288741    2.690.007 1.019735 1.132972
+ 
+srhbr 
+2   1.200086 .2300168    0.950.341 .8242615 1.747268
+3   1.456407 .3116643    1.760.079   .95748 2.215317
+4   3.186017 .8208975    4.500.000 1.922784 5.279169
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.02184     0.17    10.6814
+zLE8_TO~Einv 0.06117     1.35    10.2447
+AGE 0.30734    33.14    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.01099     0.04    10.8350
+households~e 0.01193     0.11    10.7379
+SESres 0.02046     0.13    10.7158
+ztownsend-0.00126     0.00    10.9819
+comorbid-0.05257     1.07    10.3013
+1b.srhbr       .        .    1    .
+2.srhbr 0.04758     0.82    10.3653
+3.srhbr-0.00169     0.00    10.9741
+4.srhbr-0.05778     1.27    10.2596
+
+ Global test     45.23   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf1mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf1mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2928.7637
+Iteration 1:  Log likelihood = -2867.3561
+Iteration 2:  Log likelihood = -2846.4068
+Iteration 3:  Log likelihood = -2845.5937
+Iteration 4:  Log likelihood = -2845.5905
+Refining estimates:
+Iteration 0:  Log likelihood = -2845.5905
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2845.5905 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.159371 .2552637    6.510.000 1.712793 2.722385
+zLE8_LIFESTYLEinv  1.014709 .0557428    0.270.790 .9111317 1.130062
+AGE  1.098311 .0216663    4.750.000 1.056656 1.141608
+SEX         1  (omitted)
+NonWhite  .7560049 .2600357   -0.810.416 .3852521 1.483557
+householdsize  1.078409 .0680067    1.200.231 .9530265 1.220287
+SESres   .707775 .0766371   -3.190.001 .5724375 .8751095
+ztownsend  1.056848 .0572969    1.020.308 .9503083 1.175331
+comorbid   1.07518 .0288289    2.700.007 1.020136 1.133195
+ 
+srhbr 
+2    1.19904 .2294363    0.950.343 .8240552 1.744661
+3   1.453497 .3093144    1.760.079  .957795 2.205748
+4   3.164103 .8146768    4.470.000 1.910239 5.240993
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.02219     0.17    10.6772
+zLE8_LIFES~v 0.06966     1.82    10.1778
+AGE 0.30879    33.47    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.01010     0.04    10.8482
+households~e 0.01144     0.10    10.7479
+SESres 0.01961     0.12    10.7273
+ztownsend-0.00575     0.01    10.9169
+comorbid-0.04825     0.91    10.3408
+1b.srhbr       .        .    1    .
+2.srhbr 0.04847     0.85    10.3573
+3.srhbr-0.00049     0.00    10.9926
+4.srhbr-0.06001     1.37    10.2419
+
+ Global test     45.69   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "scaledsch1demf2mgfap.gph",replace
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==1 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2928.7637
+Iteration 1:  Log likelihood = -2867.3561
+Iteration 2:  Log likelihood = -2846.4068
+Iteration 3:  Log likelihood = -2845.5937
+Iteration 4:  Log likelihood = -2845.5905
+Refining estimates:
+Iteration 0:  Log likelihood = -2845.5905
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2845.5905 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.159371 .2552637    6.510.000 1.712793 2.722385
+zLE8_BIOLOGICALinv  1.014709 .0557428    0.270.790 .9111317 1.130062
+AGE  1.098311 .0216663    4.750.000 1.056656 1.141608
+SEX         1  (omitted)
+NonWhite  .7560049 .2600357   -0.810.416 .3852521 1.483557
+householdsize  1.078409 .0680067    1.200.231 .9530265 1.220287
+SESres   .707775 .0766371   -3.190.001 .5724375 .8751095
+ztownsend  1.056848 .0572969    1.020.308 .9503083 1.175331
+comorbid   1.07518 .0288289    2.700.007 1.020136 1.133195
+ 
+srhbr 
+2    1.19904 .2294363    0.950.343 .8240552 1.744661
+3   1.453497 .3093144    1.760.079  .957795 2.205748
+4   3.164103 .8146768    4.470.000 1.910239 5.240993
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.02219     0.17    10.6772
+zLE8_BIOLO~v 0.06966     1.82    10.1778
+AGE 0.30879    33.47    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.01010     0.04    10.8482
+households~e 0.01144     0.10    10.7479
+SESres 0.01961     0.12    10.7273
+ztownsend-0.00575     0.01    10.9169
+comorbid-0.04825     0.91    10.3408
+1b.srhbr       .        .    1    .
+2.srhbr 0.04847     0.85    10.3573
+3.srhbr-0.00049     0.00    10.9926
+4.srhbr-0.06001     1.37    10.2419
+
+ Global test     45.69   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf3mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf3mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. ************************************************AMONG WOMEN***************************************
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==2 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2790.0609
+Iteration 1:  Log likelihood = -2728.2824
+Iteration 2:  Log likelihood = -2722.3403
+Iteration 3:  Log likelihood = -2722.2205
+Iteration 4:  Log likelihood = -2722.2203
+Refining estimates:
+Iteration 0:  Log likelihood = -2722.2203
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2722.2203 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   2.48001 .3681844    6.120.000 1.853888 3.317597
+zLE8_TOTALSCOREinv  .9553456 .0558807   -0.780.435 .8518664 1.071395
+AGE  1.075935 .0214854    3.670.000 1.034638  1.11888
+SEX         1  (omitted)
+NonWhite  1.099322 .3001088    0.350.729  .643801 1.877147
+householdsize  .9863968  .047327   -0.290.775 .8978654 1.083658
+SESres  .9852935 .1160491   -0.130.900 .7821859 1.241141
+ztownsend  1.139207  .061768    2.400.016 1.024354 1.266937
+comorbid  1.055643 .0255539    2.240.025 1.006728 1.106935
+ 
+srhbr 
+2   1.738746 .3886816    2.470.013 1.121909 2.694728
+3   2.644484 .6428099    4.000.000 1.642231 4.258409
+4   3.937955 1.197707    4.510.000 2.169615 7.147579
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.06790     1.54    10.2142
+zLE8_TO~Einv 0.01516     0.08    10.7829
+AGE 0.27273    21.39    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.11568     4.51    10.0337
+households~e-0.06195     1.71    10.1906
+SESres 0.05596     1.08    10.2976
+ztownsend-0.05933     1.30    10.2545
+comorbid-0.13112     5.84    10.0157
+1b.srhbr       .        .    1    .
+2.srhbr 0.00485     0.01    10.9295
+3.srhbr 0.00553     0.01    10.9201
+4.srhbr 0.01129     0.04    10.8334
+
+ Global test     37.57   110.0001
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf1mgfap.gph",replace
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==2 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2790.0609
+Iteration 1:  Log likelihood = -2728.4188
+Iteration 2:  Log likelihood = -2722.5238
+Iteration 3:  Log likelihood = -2722.4052
+Iteration 4:  Log likelihood = -2722.4051
+Refining estimates:
+Iteration 0:  Log likelihood = -2722.4051
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2722.4051 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   2.48422 .3687351    6.130.000 1.857144 3.323034
+zLE8_LIFESTYLEinv   .971678 .0569068   -0.490.624 .8663061 1.089867
+AGE   1.07513 .0214958    3.620.000 1.033814 1.118098
+SEX         1  (omitted)
+NonWhite  1.088547 .2972389    0.310.756 .6374084 1.858987
+householdsize  .9855843 .0475389   -0.300.763 .8966785 1.083305
+SESres  .9914052 .1163767   -0.070.941 .7876484 1.247872
+ztownsend  1.137669  .061675    2.380.017 1.022988 1.265205
+comorbid  1.055043 .0255558    2.210.027 1.006125 1.106339
+ 
+srhbr 
+2   1.725242 .3850733    2.440.015 1.113941 2.672008
+3    2.61196 .6333069    3.960.000 1.623979 4.200997
+4   3.886594 1.183285    4.460.000 2.140023 7.058622
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.06794     1.55    10.2134
+zLE8_LIFES~v 0.02568     0.25    10.6186
+AGE 0.27295    21.68    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.11433     4.38    10.0363
+households~e-0.06230     1.75    10.1858
+SESres 0.05676     1.13    10.2886
+ztownsend-0.06048     1.35    10.2455
+comorbid-0.13068     5.81    10.0159
+1b.srhbr       .        .    1    .
+2.srhbr 0.00495     0.01    10.9278
+3.srhbr 0.00508     0.01    10.9264
+4.srhbr 0.01026     0.04    10.8463
+
+ Global test     37.78   110.0001
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "scaledsch1demf2mgfap.gph",replace
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==2 & sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2790.0609
+Iteration 1:  Log likelihood = -2728.4188
+Iteration 2:  Log likelihood = -2722.5238
+Iteration 3:  Log likelihood = -2722.4052
+Iteration 4:  Log likelihood = -2722.4051
+Refining estimates:
+Iteration 0:  Log likelihood = -2722.4051
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2722.4051 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   2.48422 .3687351    6.130.000 1.857144 3.323034
+zLE8_BIOLOGICALinv   .971678 .0569068   -0.490.624 .8663061 1.089867
+AGE   1.07513 .0214958    3.620.000 1.033814 1.118098
+SEX         1  (omitted)
+NonWhite  1.088547 .2972389    0.310.756 .6374084 1.858987
+householdsize  .9855843 .0475389   -0.300.763 .8966785 1.083305
+SESres  .9914052 .1163767   -0.070.941 .7876484 1.247872
+ztownsend  1.137669  .061675    2.380.017 1.022988 1.265205
+comorbid  1.055043 .0255558    2.210.027 1.006125 1.106339
+ 
+srhbr 
+2   1.725242 .3850733    2.440.015 1.113941 2.672008
+3    2.61196 .6333069    3.960.000 1.623979 4.200997
+4   3.886594 1.183285    4.460.000 2.140023 7.058622
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.06794     1.55    10.2134
+zLE8_BIOLO~v 0.02568     0.25    10.6186
+AGE 0.27295    21.68    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.11433     4.38    10.0363
+households~e-0.06230     1.75    10.1858
+SESres 0.05676     1.13    10.2886
+ztownsend-0.06048     1.35    10.2455
+comorbid-0.13068     5.81    10.0159
+1b.srhbr       .        .    1    .
+2.srhbr 0.00495     0.01    10.9278
+3.srhbr 0.00508     0.01    10.9264
+4.srhbr 0.01026     0.04    10.8463
+
+ Global test     37.78   110.0001
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1demf3mgfap.gph",replace
+file  saved
+
+. 
+. 
+. 
+. ************************************************INTERACTION BY SEX***************************
+. 
+. 
+. stcox c.gfapbr##SEX c.zLE8_TOTALSCOREinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.9025
+Iteration 2:  Log likelihood = -6054.5373
+Iteration 3:  Log likelihood = -6053.5806
+Iteration 4:  Log likelihood = -6053.5774
+Refining estimates:
+Iteration 0:  Log likelihood = -6053.5774
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.5774 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.146932  .251811    6.510.000 1.706012 2.701809
+2.SEX  .5719438 .1959531   -1.630.103 .2922295 1.119393
+ 
+SEX#c.gfapbr 
+2   1.159672  .216871    0.790.428 .8038062 1.673089
+ 
+zLE8_TOTALSCOREinv   .980482  .040682   -0.480.635 .9039027 1.063549
+AGE  1.086658 .0151811    5.950.000 1.057307 1.116823
+NonWhite  .9407641   .20036   -0.290.774 .6197197 1.428125
+householdsize  1.011476 .0320293    0.360.719 .9506085 1.076242
+SESres  .8255564 .0656767   -2.410.016 .7063661 .9648585
+ztownsend  1.096901 .0419208    2.420.016 1.017739  1.18222
+comorbid  1.063793 .0190655    3.450.001 1.027074 1.101824
+ 
+srhbr 
+2   1.418006 .2058972    2.410.016 1.066797 1.884839
+3   1.936083 .3098517    4.130.000 1.414808  2.64942
+4   3.622648 .7091805    6.580.000 2.468268 5.316917
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01569     0.17    10.6804
+1b.SEX       .        .    1    .
+2.SEX 0.04478     1.39    10.2385
+1b.SEX#co.~r       .        .    1    .
+2.SEX#c.gf~r-0.02885     0.58    10.4479
+zLE8_TO~Einv 0.03119     0.68    10.4110
+AGE 0.29625    54.22    10.0000
+NonWhite-0.06675     3.09    10.0789
+households~e-0.03680     1.07    10.3010
+SESres 0.04504     1.34    10.2465
+ztownsend-0.02830     0.56    10.4558
+comorbid-0.09325     6.28    10.0122
+1b.srhbr       .        .    1    .
+2.srhbr 0.02876     0.58    10.4479
+3.srhbr 0.00636     0.03    10.8666
+4.srhbr-0.02432     0.43    10.5113
+
+ Global test     77.65   130.0000
+
+
+. 
+. 
+. 
+. stcox c.gfapbr##SEX c.zLE8_LIFESTYLEinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.9144
+Iteration 2:  Log likelihood = -6054.6281
+Iteration 3:  Log likelihood =  -6053.675
+Iteration 4:  Log likelihood = -6053.6719
+Refining estimates:
+Iteration 0:  Log likelihood = -6053.6719
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.6719 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.149885 .2520829    6.530.000 1.708474 2.705342
+2.SEX  .5733152  .196405   -1.620.104 .2929482 1.122008
+ 
+SEX#c.gfapbr 
+2   1.158804 .2167005    0.790.431 .8032156 1.671813
+ 
+zLE8_LIFESTYLEinv  .9923454 .0396883   -0.190.848 .9175284 1.073263
+AGE  1.086556 .0152004    5.930.000 1.057169 1.116761
+NonWhite  .9399864 .2003753   -0.290.772 .6189739 1.427483
+householdsize   1.01125 .0320376    0.350.724 .9503672 1.076033
+SESres  .8273267 .0657099   -2.390.017 .7080614 .9666809
+ztownsend  1.096091 .0419989    2.390.017 1.016789 1.181577
+comorbid  1.063372 .0190476    3.430.001 1.026687 1.101368
+ 
+srhbr 
+2   1.412081 .2046892    2.380.017 1.062853 1.876058
+3   1.920739 .3061217    4.100.000 1.405421 2.625006
+4   3.584437 .7019406    6.520.000 2.441912 5.261527
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01586     0.17    10.6774
+1b.SEX       .        .    1    .
+2.SEX 0.04476     1.38    10.2393
+1b.SEX#co.~r       .        .    1    .
+2.SEX#c.gf~r-0.02878     0.57    10.4492
+zLE8_LIFES~v 0.04487     1.51    10.2199
+AGE 0.29756    54.97    10.0000
+NonWhite-0.06485     2.92    10.0877
+households~e-0.03709     1.09    10.2973
+SESres 0.04511     1.35    10.2451
+ztownsend-0.03083     0.66    10.4169
+comorbid-0.09180     6.12    10.0134
+1b.srhbr       .        .    1    .
+2.srhbr 0.02869     0.57    10.4486
+3.srhbr 0.00574     0.02    10.8795
+4.srhbr-0.02658     0.52    10.4692
+
+ Global test     78.40   130.0000
+
+
+. 
+. 
+. stcox c.gfapbr##SEX c.zLE8_BIOLOGICALinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : dem_diag==1
+Analysis time : Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6080.9144
+Iteration 2:  Log likelihood = -6054.6281
+Iteration 3:  Log likelihood =  -6053.675
+Iteration 4:  Log likelihood = -6053.6719
+Refining estimates:
+Iteration 0:  Log likelihood = -6053.6719
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -6053.6719 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  2.149885 .2520829    6.530.000 1.708474 2.705342
+2.SEX  .5733152  .196405   -1.620.104 .2929482 1.122008
+ 
+SEX#c.gfapbr 
+2   1.158804 .2167005    0.790.431 .8032156 1.671813
+ 
+zLE8_BIOLOGICALinv  .9923454 .0396883   -0.190.848 .9175284 1.073263
+AGE  1.086556 .0152004    5.930.000 1.057169 1.116761
+NonWhite  .9399864 .2003753   -0.290.772 .6189739 1.427483
+householdsize   1.01125 .0320376    0.350.724 .9503672 1.076033
+SESres  .8273267 .0657099   -2.390.017 .7080614 .9666809
+ztownsend  1.096091 .0419989    2.390.017 1.016789 1.181577
+comorbid  1.063372 .0190476    3.430.001 1.026687 1.101368
+ 
+srhbr 
+2   1.412081 .2046892    2.380.017 1.062853 1.876058
+3   1.920739 .3061217    4.100.000 1.405421 2.625006
+4   3.584437 .7019406    6.520.000 2.441912 5.261527
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01586     0.17    10.6774
+1b.SEX       .        .    1    .
+2.SEX 0.04476     1.38    10.2393
+1b.SEX#co.~r       .        .    1    .
+2.SEX#c.gf~r-0.02878     0.57    10.4492
+zLE8_BIOLO~v 0.04487     1.51    10.2199
+AGE 0.29756    54.97    10.0000
+NonWhite-0.06485     2.92    10.0877
+households~e-0.03709     1.09    10.2973
+SESres 0.04511     1.35    10.2451
+ztownsend-0.03083     0.66    10.4169
+comorbid-0.09180     6.12    10.0134
+1b.srhbr       .        .    1    .
+2.srhbr 0.02869     0.57    10.4486
+3.srhbr 0.00574     0.02    10.8795
+4.srhbr-0.02658     0.52    10.4692
+
+ Global test     78.40   130.0000
+
+
+. 
+. 
+. 
+. *******************PD************************************************************
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        400  failures in single-failure-per-subject data
+    274,700  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. ***************************************************************OVERALL*******************
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood =   -3595.98
+Iteration 2:  Log likelihood = -3593.5175
+Iteration 3:  Log likelihood = -3593.4924
+Iteration 4:  Log likelihood = -3593.4924
+Refining estimates:
+Iteration 0:  Log likelihood = -3593.4924
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3593.4924 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9239182 .0959926   -0.760.446 .7536956 1.132586
+zLE8_TOTALSCOREinv  .8527232 .0465767   -2.920.004 .7661512 .9490775
+AGE  1.151014 .0195292    8.290.000 1.113366 1.189934
+SEX  .4564198 .0490291   -7.300.000 .3697664 .5633801
+NonWhite  1.116549 .2924921    0.420.674 .6681846 1.865775
+householdsize  .9806563 .0540576   -0.350.723 .8802281 1.092543
+SESres  1.040735  .103274    0.400.687  .856789 1.264173
+ztownsend  1.030043 .0528241    0.580.564 .9315426 1.138958
+comorbid   1.08212 .0257105    3.320.001 1.032884 1.133704
+ 
+srhbr 
+2   1.106288 .1889204    0.590.554 .7916051 1.546064
+3   1.727038 .3294365    2.860.004  1.18832 2.509982
+4   2.376743  .600465    3.430.001 1.448548 3.899702
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.03645     0.55    10.4568
+zLE8_TO~Einv 0.05854     1.29    10.2555
+AGE 0.09748     3.29    10.0699
+SEX-0.05183     1.10    10.2952
+NonWhite-0.03614     0.52    10.4726
+households~e-0.04031     0.58    10.4478
+SESres 0.00724     0.02    10.8925
+ztownsend 0.02164     0.18    10.6711
+comorbid-0.11581     5.70    10.0170
+1b.srhbr       .        .    1    .
+2.srhbr-0.06150     1.54    10.2140
+3.srhbr-0.08318     2.95    10.0860
+4.srhbr-0.01720     0.12    10.7268
+
+ Global test     18.35   120.1056
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3598.9711
+Iteration 2:  Log likelihood = -3596.5271
+Iteration 3:  Log likelihood = -3596.5023
+Iteration 4:  Log likelihood = -3596.5023
+Refining estimates:
+Iteration 0:  Log likelihood = -3596.5023
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3596.5023 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9303793 .0966531   -0.690.487 .7589835  1.14048
+zLE8_LIFESTYLEinv  .9199083 .0484714   -1.580.113 .8296471  1.01999
+AGE  1.149634 .0195438    8.200.000  1.11196 1.188584
+SEX  .4629964 .0496408   -7.180.000 .3752449 .5712686
+NonWhite  1.106995 .2903315    0.390.698 .6620659 1.850931
+householdsize  .9804886 .0541499   -0.360.721 .8798991 1.092577
+SESres  1.053895 .1044442    0.530.596 .8678416 1.279835
+ztownsend  1.027141 .0529222    0.520.603 .9284805 1.136285
+comorbid  1.077879 .0257734    3.140.002  1.02853 1.129596
+ 
+srhbr 
+2   1.072688 .1827401    0.410.680 .7681834 1.497896
+3   1.626525 .3083257    2.570.010 1.121776 2.358388
+4   2.205703 .5568952    3.130.002 1.344732 3.617913
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.03755     0.59    10.4440
+zLE8_LIFES~v 0.06490     1.54    10.2144
+AGE 0.10188     3.59    10.0580
+SEX-0.05752     1.34    10.2474
+NonWhite-0.03318     0.44    10.5090
+households~e-0.04142     0.61    10.4347
+SESres 0.00599     0.01    10.9105
+ztownsend 0.01804     0.13    10.7228
+comorbid-0.11335     5.57    10.0182
+1b.srhbr       .        .    1    .
+2.srhbr-0.05929     1.42    10.2341
+3.srhbr-0.08036     2.71    10.0998
+4.srhbr-0.01485     0.09    10.7625
+
+ Global test     18.78   120.0939
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3598.9711
+Iteration 2:  Log likelihood = -3596.5271
+Iteration 3:  Log likelihood = -3596.5023
+Iteration 4:  Log likelihood = -3596.5023
+Refining estimates:
+Iteration 0:  Log likelihood = -3596.5023
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3596.5023 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9303793 .0966531   -0.690.487 .7589835  1.14048
+zLE8_BIOLOGICALinv  .9199083 .0484714   -1.580.113 .8296471  1.01999
+AGE  1.149634 .0195438    8.200.000  1.11196 1.188584
+SEX  .4629964 .0496408   -7.180.000 .3752449 .5712686
+NonWhite  1.106995 .2903315    0.390.698 .6620659 1.850931
+householdsize  .9804886 .0541499   -0.360.721 .8798991 1.092577
+SESres  1.053895 .1044442    0.530.596 .8678416 1.279835
+ztownsend  1.027141 .0529222    0.520.603 .9284805 1.136285
+comorbid  1.077879 .0257734    3.140.002  1.02853 1.129596
+ 
+srhbr 
+2   1.072688 .1827401    0.410.680 .7681834 1.497896
+3   1.626525 .3083257    2.570.010 1.121776 2.358388
+4   2.205703 .5568952    3.130.002 1.344732 3.617913
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.03755     0.59    10.4440
+zLE8_BIOLO~v 0.06490     1.54    10.2144
+AGE 0.10188     3.59    10.0580
+SEX-0.05752     1.34    10.2474
+NonWhite-0.03318     0.44    10.5090
+households~e-0.04142     0.61    10.4347
+SESres 0.00599     0.01    10.9105
+ztownsend 0.01804     0.13    10.7228
+comorbid-0.11335     5.57    10.0182
+1b.srhbr       .        .    1    .
+2.srhbr-0.05929     1.42    10.2341
+3.srhbr-0.08036     2.71    10.0998
+4.srhbr-0.01485     0.09    10.7625
+
+ Global test     18.78   120.0939
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. 
+. ***********************************************AMONG MEN***************************************
+. 
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2208.0819
+Iteration 1:  Log likelihood = -2169.0642
+Iteration 2:  Log likelihood = -2168.4787
+Iteration 3:  Log likelihood = -2168.4775
+Refining estimates:
+Iteration 0:  Log likelihood = -2168.4775
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2168.4775 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9270078 .1178647   -0.600.551 .7225321  1.18935
+zLE8_TOTALSCOREinv  .7929093 .0547793   -3.360.001 .6924956 .9078832
+AGE  1.130961 .0235768    5.900.000 1.085683 1.178128
+SEX         1  (omitted)
+NonWhite  .9621478 .3338021   -0.110.911 .4874507 1.899122
+householdsize  .9910905 .0704908   -0.130.900 .8621285 1.139343
+SESres  1.044807 .1250981    0.370.714 .8262641 1.321153
+ztownsend   1.05575  .066597    0.860.390 .9329691  1.19469
+comorbid  1.088253  .034416    2.670.007 1.022847 1.157842
+ 
+srhbr 
+2   1.160014  .245405    0.700.483 .7662818 1.756054
+3   1.763621 .4164666    2.400.016 1.110197 2.801628
+4   2.183003 .7006484    2.430.015  1.16374  4.09499
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01319     0.05    10.8290
+zLE8_TO~Einv 0.10495     2.51    10.1128
+AGE 0.11609     3.11    10.0780
+o.SEX       .        .    1    .
+NonWhite 0.01691     0.07    10.7875
+households~e-0.04551     0.58    10.4444
+SESres-0.01393     0.04    10.8327
+ztownsend 0.07729     1.50    10.2211
+comorbid-0.15272     6.39    10.0115
+1b.srhbr       .        .    1    .
+2.srhbr-0.09401     2.32    10.1280
+3.srhbr-0.08199     1.82    10.1770
+4.srhbr-0.04873     0.63    10.4288
+
+ Global test     16.43   110.1259
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2208.0819
+Iteration 1:  Log likelihood = -2173.4107
+Iteration 2:  Log likelihood = -2172.8594
+Iteration 3:  Log likelihood = -2172.8583
+Refining estimates:
+Iteration 0:  Log likelihood = -2172.8583
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2172.8583 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9374568 .1191666   -0.510.611 .7307169 1.202689
+zLE8_LIFESTYLEinv  .9007948 .0586663   -1.600.109  .792847  1.02344
+AGE  1.130591 .0236144    5.880.000 1.085243 1.177835
+SEX         1  (omitted)
+NonWhite  .9712016 .3373404   -0.080.933 .4916434  1.91853
+householdsize  .9940942 .0718147   -0.080.935 .8628506   1.1453
+SESres   1.05636  .126233    0.460.646 .8357857 1.335146
+ztownsend  1.051941 .0668556    0.800.426 .9287387 1.191486
+comorbid  1.080297  .034409    2.420.015 1.014919 1.149887
+ 
+srhbr 
+2   1.106834 .2335821    0.480.631 .7318942 1.673851
+3   1.601334 .3755914    2.010.045 1.011191  2.53589
+4    1.91857  .615687    2.030.042 1.022867 3.598621
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01691     0.08    10.7825
+zLE8_LIFES~v 0.05364     0.65    10.4204
+AGE 0.11732     3.19    10.0741
+o.SEX       .        .    1    .
+NonWhite 0.01794     0.08    10.7746
+households~e-0.04654     0.63    10.4272
+SESres-0.01686     0.07    10.7982
+ztownsend 0.07512     1.42    10.2332
+comorbid-0.14605     5.95    10.0147
+1b.srhbr       .        .    1    .
+2.srhbr-0.08680     1.96    10.1618
+3.srhbr-0.06891     1.27    10.2597
+4.srhbr-0.03398     0.31    10.5806
+
+ Global test     14.47   110.2079
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -2208.0819
+Iteration 1:  Log likelihood = -2173.4107
+Iteration 2:  Log likelihood = -2172.8594
+Iteration 3:  Log likelihood = -2172.8583
+Refining estimates:
+Iteration 0:  Log likelihood = -2172.8583
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -2172.8583 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9374568 .1191666   -0.510.611 .7307169 1.202689
+zLE8_BIOLOGICALinv  .9007948 .0586663   -1.600.109  .792847  1.02344
+AGE  1.130591 .0236144    5.880.000 1.085243 1.177835
+SEX         1  (omitted)
+NonWhite  .9712016 .3373404   -0.080.933 .4916434  1.91853
+householdsize  .9940942 .0718147   -0.080.935 .8628506   1.1453
+SESres   1.05636  .126233    0.460.646 .8357857 1.335146
+ztownsend  1.051941 .0668556    0.800.426 .9287387 1.191486
+comorbid  1.080297  .034409    2.420.015 1.014919 1.149887
+ 
+srhbr 
+2   1.106834 .2335821    0.480.631 .7318942 1.673851
+3   1.601334 .3755914    2.010.045 1.011191  2.53589
+4    1.91857  .615687    2.030.042 1.022867 3.598621
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.01691     0.08    10.7825
+zLE8_BIOLO~v 0.05364     0.65    10.4204
+AGE 0.11732     3.19    10.0741
+o.SEX       .        .    1    .
+NonWhite 0.01794     0.08    10.7746
+households~e-0.04654     0.63    10.4272
+SESres-0.01686     0.07    10.7982
+ztownsend 0.07512     1.42    10.2332
+comorbid-0.14605     5.95    10.0147
+1b.srhbr       .        .    1    .
+2.srhbr-0.08680     1.96    10.1618
+3.srhbr-0.06891     1.27    10.2597
+4.srhbr-0.03398     0.31    10.5806
+
+ Global test     14.47   110.2079
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. ************************************************AMONG WOMEN***************************************
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==2 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -1198.5028
+Iteration 1:  Log likelihood = -1167.9756
+Iteration 2:  Log likelihood = -1163.9269
+Iteration 3:  Log likelihood = -1163.7966
+Iteration 4:  Log likelihood = -1163.7963
+Refining estimates:
+Iteration 0:  Log likelihood = -1163.7963
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -1163.7963 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  .9112125 .1638978   -0.520.605 .6404952 1.296354
+zLE8_TOTALSCOREinv  .9667099 .0865778   -0.380.705 .8110791 1.152203
+AGE  1.187342 .0347551    5.870.000 1.121141 1.257453
+SEX         1  (omitted)
+NonWhite  1.330055  .534693    0.710.478 .6048943 2.924554
+householdsize   .961538 .0885553   -0.430.670 .8027362 1.151755
+SESres  1.030602 .1842884    0.170.866 .7259096 1.463187
+ztownsend  .9854955 .0869204   -0.170.868 .8290466 1.171468
+comorbid  1.069956 .0389875    1.860.064  .996207 1.149165
+ 
+srhbr 
+2   1.017272 .2946496    0.060.953 .5766196 1.794671
+3    1.69258 .5486635    1.620.104  .896655 3.195016
+4    2.89392 1.192909    2.580.010 1.290064 6.491754
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.07128     0.76    10.3826
+zLE8_TO~Einv 0.02120     0.07    10.7952
+AGE 0.08420     0.80    10.3705
+o.SEX       .        .    1    .
+NonWhite-0.08773     1.07    10.3004
+households~e-0.03673     0.12    10.7251
+SESres 0.04386     0.23    10.6294
+ztownsend-0.07921     0.85    10.3571
+comorbid-0.06340     0.61    10.4338
+1b.srhbr       .        .    1    .
+2.srhbr-0.01216     0.02    10.8833
+3.srhbr-0.09070     1.27    10.2594
+4.srhbr 0.03141     0.15    10.7010
+
+ Global test      9.85   110.5443
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf1wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==2 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -1198.5028
+Iteration 1:  Log likelihood = -1167.9195
+Iteration 2:  Log likelihood = -1163.8931
+Iteration 3:  Log likelihood = -1163.7638
+Iteration 4:  Log likelihood = -1163.7635
+Refining estimates:
+Iteration 0:  Log likelihood = -1163.7635
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -1163.7635 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   .911767 .1639197   -0.510.607 .6409923 1.296925
+zLE8_LIFESTYLEinv  .9598499 .0862207   -0.460.648 .8049005 1.144628
+AGE  1.186261 .0347603    5.830.000 1.120052 1.256385
+SEX         1  (omitted)
+NonWhite  1.317019 .5295549    0.680.493 .5988743 2.896331
+householdsize  .9615228 .0886181   -0.430.670 .8026185 1.151887
+SESres  1.031966  .183867    0.180.860 .7277891 1.463273
+ztownsend  .9861553 .0870109   -0.160.874 .8295483 1.172327
+comorbid  1.069687 .0390118    1.850.065 .9958944 1.148948
+ 
+srhbr 
+2   1.015583 .2933827    0.050.957 .5765263 1.789004
+3   1.692214 .5455157    1.630.103 .8996121 3.183138
+4   2.907441 1.196863    2.590.010 1.297506 6.514971
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.07015     0.74    10.3906
+zLE8_LIFES~v 0.09043     1.17    10.2802
+AGE 0.09002     0.92    10.3382
+o.SEX       .        .    1    .
+NonWhite-0.08474     0.99    10.3192
+households~e-0.03907     0.14    10.7077
+SESres 0.04966     0.30    10.5832
+ztownsend-0.08533     0.99    10.3207
+comorbid-0.06474     0.64    10.4223
+1b.srhbr       .        .    1    .
+2.srhbr-0.01611     0.04    10.8475
+3.srhbr-0.10042     1.53    10.2156
+4.srhbr 0.02004     0.06    10.8064
+
+ Global test     10.93   110.4489
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf2wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==2 & sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -1198.5028
+Iteration 1:  Log likelihood = -1167.9195
+Iteration 2:  Log likelihood = -1163.8931
+Iteration 3:  Log likelihood = -1163.7638
+Iteration 4:  Log likelihood = -1163.7635
+Refining estimates:
+Iteration 0:  Log likelihood = -1163.7635
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -1163.7635 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   .911767 .1639197   -0.510.607 .6409923 1.296925
+zLE8_BIOLOGICALinv  .9598499 .0862207   -0.460.648 .8049005 1.144628
+AGE  1.186261 .0347603    5.830.000 1.120052 1.256385
+SEX         1  (omitted)
+NonWhite  1.317019 .5295549    0.680.493 .5988743 2.896331
+householdsize  .9615228 .0886181   -0.430.670 .8026185 1.151887
+SESres  1.031966  .183867    0.180.860 .7277891 1.463273
+ztownsend  .9861553 .0870109   -0.160.874 .8295483 1.172327
+comorbid  1.069687 .0390118    1.850.065 .9958944 1.148948
+ 
+srhbr 
+2   1.015583 .2933827    0.050.957 .5765263 1.789004
+3   1.692214 .5455157    1.630.103 .8996121 3.183138
+4   2.907441 1.196863    2.590.010 1.297506 6.514971
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr-0.07015     0.74    10.3906
+zLE8_BIOLO~v 0.09043     1.17    10.2802
+AGE 0.09002     0.92    10.3382
+o.SEX       .        .    1    .
+NonWhite-0.08474     0.99    10.3192
+households~e-0.03907     0.14    10.7077
+SESres 0.04966     0.30    10.5832
+ztownsend-0.08533     0.99    10.3207
+comorbid-0.06474     0.64    10.4223
+1b.srhbr       .        .    1    .
+2.srhbr-0.01611     0.04    10.8475
+3.srhbr-0.10042     1.53    10.2156
+4.srhbr 0.02004     0.06    10.8064
+
+ Global test     10.93   110.4489
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1PDf3wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. ************************************************INTERACTION BY SEX***************************
+. 
+. 
+. stcox gfapbr##SEX c.zLE8_TOTALSCOREinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3596.0058
+Iteration 2:  Log likelihood = -3593.5064
+Iteration 3:  Log likelihood = -3593.4813
+Iteration 4:  Log likelihood = -3593.4813
+Refining estimates:
+Iteration 0:  Log likelihood = -3593.4813
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3593.4813 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+2.gfapbr   .933774 .1176809   -0.540.587 .7294025 1.195408
+2.SEX   .464902 .0760809   -4.680.000 .3373361 .6407078
+ 
+gfapbr#SEX 
+2 2    .968646 .2074889   -0.150.882 .6365513 1.473998
+ 
+zLE8_TOTALSCOREinv  .8528265 .0465855   -2.910.004 .7662386 .9491993
+AGE  1.151022 .0195303    8.290.000 1.113372 1.189944
+NonWhite  1.116926 .2926082    0.420.673 .6683901 1.866462
+householdsize  .9806253 .0540942   -0.350.723  .880133 1.092592
+SESres  1.040558 .1032632    0.400.689 .8566319 1.263973
+ztownsend  1.029955 .0528233    0.580.565 .9314563 1.138869
+comorbid  1.082106 .0257079    3.320.001 1.032874 1.133684
+ 
+srhbr 
+2   1.106321 .1889227    0.590.554 .7916338 1.546101
+3   1.727551 .3295462    2.870.004 1.188656  2.51076
+4   2.377242 .6005606    3.430.001 1.448888 3.900423
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+1b.gfapbr       .        .    1    .
+2.gfapbr-0.01777     0.13    10.7197
+1b.SEX       .        .    1    .
+2.SEX-0.01549     0.10    10.7541
+1b.gfapbr#~X       .        .    1    .
+1b.gfapbr#~X       .        .    1    .
+2o.gfapbr#~X       .        .    1    .
+2.gfapbr#2~X-0.02372     0.23    10.6342
+zLE8_TO~Einv 0.05884     1.31    10.2529
+AGE 0.09758     3.29    10.0695
+NonWhite-0.03596     0.51    10.4749
+households~e-0.04034     0.58    10.4470
+SESres 0.00698     0.02    10.8962
+ztownsend 0.02141     0.18    10.6745
+comorbid-0.11587     5.71    10.0169
+1b.srhbr       .        .    1    .
+2.srhbr-0.06149     1.54    10.2140
+3.srhbr-0.08289     2.93    10.0871
+4.srhbr-0.01706     0.12    10.7289
+
+ Global test     18.52   130.1388
+
+
+. 
+. 
+. 
+. 
+. stcox gfapbr##SEX c.zLE8_LIFESTYLEinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3598.9884
+Iteration 2:  Log likelihood =  -3596.511
+Iteration 3:  Log likelihood = -3596.4863
+Iteration 4:  Log likelihood = -3596.4863
+Refining estimates:
+Iteration 0:  Log likelihood = -3596.4863
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3596.4863 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+2.gfapbr  .9423382 .1187338   -0.470.637 .7361328 1.206306
+2.SEX  .4733717 .0773547   -4.580.000 .3436415  .652077
+ 
+gfapbr#SEX 
+2 2   .9623722 .2061173   -0.180.858 .6324641 1.464368
+ 
+zLE8_LIFESTYLEinv  .9199752 .0484713   -1.580.113 .8297139 1.020056
+AGE  1.149642 .0195451    8.200.000 1.111966 1.188596
+NonWhite  1.107473 .2904775    0.390.697 .6623273 1.851798
+householdsize  .9804532 .0541939   -0.360.721 .8797864 1.092638
+SESres  1.053672 .1044298    0.530.598 .8676463 1.279583
+ztownsend  1.027042 .0529203    0.520.605 .9283857 1.136182
+comorbid  1.077865 .0257705    3.140.002 1.028521 1.129576
+ 
+srhbr 
+2   1.072796 .1827567    0.410.680 .7682633 1.498042
+3   1.627192 .3084665    2.570.010 1.122217 2.359396
+4   2.206511 .5570725    3.130.002 1.345257 3.619152
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+1b.gfapbr       .        .    1    .
+2.gfapbr-0.01969     0.16    10.6915
+1b.SEX       .        .    1    .
+2.SEX-0.02011     0.16    10.6855
+1b.gfapbr#~X       .        .    1    .
+1b.gfapbr#~X       .        .    1    .
+2o.gfapbr#~X       .        .    1    .
+2.gfapbr#2~X-0.02221     0.20    10.6561
+zLE8_LIFES~v 0.06515     1.55    10.2127
+AGE 0.10199     3.60    10.0577
+NonWhite-0.03300     0.43    10.5114
+households~e-0.04143     0.61    10.4341
+SESres 0.00575     0.01    10.9140
+ztownsend 0.01785     0.12    10.7257
+comorbid-0.11341     5.58    10.0181
+1b.srhbr       .        .    1    .
+2.srhbr-0.05925     1.41    10.2344
+3.srhbr-0.08004     2.69    10.1010
+4.srhbr-0.01467     0.09    10.7651
+
+ Global test     18.92   130.1255
+
+
+. 
+. stcox gfapbr##SEX c.zLE8_BIOLOGICALinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : PD_diag==1
+Analysis time : Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3598.9884
+Iteration 2:  Log likelihood =  -3596.511
+Iteration 3:  Log likelihood = -3596.4863
+Iteration 4:  Log likelihood = -3596.4863
+Refining estimates:
+Iteration 0:  Log likelihood = -3596.4863
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -3596.4863 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+2.gfapbr  .9423382 .1187338   -0.470.637 .7361328 1.206306
+2.SEX  .4733717 .0773547   -4.580.000 .3436415  .652077
+ 
+gfapbr#SEX 
+2 2   .9623722 .2061173   -0.180.858 .6324641 1.464368
+ 
+zLE8_BIOLOGICALinv  .9199752 .0484713   -1.580.113 .8297139 1.020056
+AGE  1.149642 .0195451    8.200.000 1.111966 1.188596
+NonWhite  1.107473 .2904775    0.390.697 .6623273 1.851798
+householdsize  .9804532 .0541939   -0.360.721 .8797864 1.092638
+SESres  1.053672 .1044298    0.530.598 .8676463 1.279583
+ztownsend  1.027042 .0529203    0.520.605 .9283857 1.136182
+comorbid  1.077865 .0257705    3.140.002 1.028521 1.129576
+ 
+srhbr 
+2   1.072796 .1827567    0.410.680 .7682633 1.498042
+3   1.627192 .3084665    2.570.010 1.122217 2.359396
+4   2.206511 .5570725    3.130.002 1.345257 3.619152
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+1b.gfapbr       .        .    1    .
+2.gfapbr-0.01969     0.16    10.6915
+1b.SEX       .        .    1    .
+2.SEX-0.02011     0.16    10.6855
+1b.gfapbr#~X       .        .    1    .
+1b.gfapbr#~X       .        .    1    .
+2o.gfapbr#~X       .        .    1    .
+2.gfapbr#2~X-0.02221     0.20    10.6561
+zLE8_BIOLO~v 0.06515     1.55    10.2127
+AGE 0.10199     3.60    10.0577
+NonWhite-0.03300     0.43    10.5114
+households~e-0.04143     0.61    10.4341
+SESres 0.00575     0.01    10.9140
+ztownsend 0.01785     0.12    10.7257
+comorbid-0.11341     5.58    10.0181
+1b.srhbr       .        .    1    .
+2.srhbr-0.05925     1.41    10.2344
+3.srhbr-0.08004     2.69    10.1010
+4.srhbr-0.01467     0.09    10.7651
+
+ Global test     18.92   130.1255
+
+
+. 
+. *******************MORTALTIY************************************************************
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+      2,515  failures in single-failure-per-subject data
+ 276,947.89  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22603.561
+Iteration 2:  Log likelihood =  -22406.54
+Iteration 3:  Log likelihood = -22398.748
+Iteration 4:  Log likelihood = -22398.712
+Refining estimates:
+Iteration 0:  Log likelihood = -22398.712
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22398.712 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   1.09263 .0456728    2.120.034 1.006682 1.185916
+zLE8_TOTALSCOREinv  1.136494  .024105    6.030.000 1.090217 1.184735
+AGE  1.022619 .0067317    3.400.001  1.00951 1.035898
+SEX  .5953787 .0247334  -12.480.000 .5488232 .6458835
+NonWhite  .8830087 .0958365   -1.150.252 .7138068 1.092319
+householdsize  .9704812 .0217762   -1.340.182 .9287256 1.014114
+SESres  .8334013 .0341994   -4.440.000 .7689965 .9032002
+ztownsend  1.118506 .0218268    5.740.000 1.076534 1.162114
+comorbid  1.068933 .0097773    7.290.000 1.049941 1.088269
+ 
+srhbr 
+2   1.243544 .0975299    2.780.005 1.066356 1.450174
+3   2.069992 .1743744    8.640.000 1.754947 2.441592
+4   3.477878 .3495019   12.400.000 2.856108 4.235006
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.02335     1.36    10.2441
+zLE8_TO~Einv-0.00833     0.18    10.6687
+AGE 0.16100    59.22    10.0000
+SEX 0.00775     0.15    10.6957
+NonWhite-0.00154     0.01    10.9381
+households~e 0.05452    14.94    10.0001
+SESres-0.01126     0.31    10.5767
+ztownsend-0.02251     1.28    10.2582
+comorbid 0.00854     0.18    10.6702
+1b.srhbr       .        .    1    .
+2.srhbr 0.00957     0.23    10.6312
+3.srhbr 0.00042     0.00    10.9833
+4.srhbr-0.02364     1.45    10.2291
+
+ Global test     88.77   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22600.257
+Iteration 2:  Log likelihood = -22401.324
+Iteration 3:  Log likelihood = -22393.463
+Iteration 4:  Log likelihood = -22393.427
+Refining estimates:
+Iteration 0:  Log likelihood = -22393.427
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22393.427 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.089579 .0455092    2.050.040 1.003935 1.182528
+zLE8_LIFESTYLEinv  1.148912 .0231848    6.880.000 1.104358 1.195264
+AGE  1.024955 .0067512    3.740.000 1.011808 1.038273
+SEX  .5940156 .0246649  -12.540.000  .547588 .6443795
+NonWhite    .90558  .098307   -0.910.361   .73202 1.120291
+householdsize  .9698519 .0217246   -1.370.172 .9281936  1.01338
+SESres  .8322251 .0341186   -4.480.000 .7679701 .9018563
+ztownsend  1.111074 .0217589    5.380.000 1.069236  1.15455
+comorbid  1.071611 .0096924    7.650.000 1.052781 1.090777
+ 
+srhbr 
+2   1.255391 .0982421    2.910.004 1.076879 1.463493
+3   2.093904 .1752846    8.830.000 1.777056 2.467246
+4   3.454172 .3456126   12.390.000 2.839067 4.202544
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.02473     1.52    10.2175
+zLE8_LIFES~v 0.00210     0.01    10.9124
+AGE 0.16020    58.22    10.0000
+SEX 0.01115     0.32    10.5739
+NonWhite-0.00195     0.01    10.9217
+households~e 0.05469    14.99    10.0001
+SESres-0.01171     0.34    10.5618
+ztownsend-0.02102     1.11    10.2928
+comorbid 0.00807     0.16    10.6897
+1b.srhbr       .        .    1    .
+2.srhbr 0.00778     0.15    10.6968
+3.srhbr-0.00294     0.02    10.8837
+4.srhbr-0.02731     1.92    10.1661
+
+ Global test     87.57   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22600.257
+Iteration 2:  Log likelihood = -22401.324
+Iteration 3:  Log likelihood = -22393.463
+Iteration 4:  Log likelihood = -22393.427
+Refining estimates:
+Iteration 0:  Log likelihood = -22393.427
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22393.427 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.089579 .0455092    2.050.040 1.003935 1.182528
+zLE8_BIOLOGICALinv  1.148912 .0231848    6.880.000 1.104358 1.195264
+AGE  1.024955 .0067512    3.740.000 1.011808 1.038273
+SEX  .5940156 .0246649  -12.540.000  .547588 .6443795
+NonWhite    .90558  .098307   -0.910.361   .73202 1.120291
+householdsize  .9698519 .0217246   -1.370.172 .9281936  1.01338
+SESres  .8322251 .0341186   -4.480.000 .7679701 .9018563
+ztownsend  1.111074 .0217589    5.380.000 1.069236  1.15455
+comorbid  1.071611 .0096924    7.650.000 1.052781 1.090777
+ 
+srhbr 
+2   1.255391 .0982421    2.910.004 1.076879 1.463493
+3   2.093904 .1752846    8.830.000 1.777056 2.467246
+4   3.454172 .3456126   12.390.000 2.839067 4.202544
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.02473     1.52    10.2175
+zLE8_BIOLO~v 0.00210     0.01    10.9124
+AGE 0.16020    58.22    10.0000
+SEX 0.01115     0.32    10.5739
+NonWhite-0.00195     0.01    10.9217
+households~e 0.05469    14.99    10.0001
+SESres-0.01171     0.34    10.5618
+ztownsend-0.02102     1.11    10.2928
+comorbid 0.00807     0.16    10.6897
+1b.srhbr       .        .    1    .
+2.srhbr 0.00778     0.15    10.6968
+3.srhbr-0.00294     0.02    10.8837
+4.srhbr-0.02731     1.92    10.1661
+
+ Global test     87.57   120.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3gfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3gfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. ***********************************************AMONG MEN***************************************
+. 
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==1 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -12395.034
+Iteration 1:  Log likelihood = -12244.839
+Iteration 2:  Log likelihood = -12105.489
+Iteration 3:  Log likelihood = -12100.957
+Iteration 4:  Log likelihood =  -12100.94
+Refining estimates:
+Iteration 0:  Log likelihood =  -12100.94
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -12100.94 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.074727 .0573137    1.350.177 .9680656  1.19314
+zLE8_TOTALSCOREinv  1.128663 .0316828    4.310.000 1.068243   1.1925
+AGE  1.027028 .0088161    3.110.002 1.009893 1.044453
+SEX         1  (omitted)
+NonWhite   .967168 .1363369   -0.240.813 .7336894 1.274945
+householdsize  .9217701 .0294543   -2.550.011 .8658113 .9813456
+SESres   .817249 .0425469   -3.880.000  .737972 .9050423
+ztownsend  1.147785 .0287099    5.510.000 1.092872 1.205457
+comorbid  1.068961  .013482    5.290.000  1.04286 1.095714
+ 
+srhbr 
+2   1.286985 .1353414    2.400.016 1.047273 1.581566
+3   2.122867 .2373859    6.730.000 1.705056  2.64306
+4   3.768767 .4935912   10.130.000 2.915536 4.871696
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.01372     0.28    10.5989
+zLE8_TO~Einv-0.00614     0.06    10.8108
+AGE 0.17020    39.68    10.0000
+o.SEX       .        .    1    .
+NonWhite 0.01467     0.32    10.5718
+households~e 0.03986     3.48    10.0620
+SESres 0.02902     1.19    10.2760
+ztownsend-0.02772     1.14    10.2856
+comorbid 0.00566     0.05    10.8247
+1b.srhbr       .        .    1    .
+2.srhbr 0.00794     0.09    10.7591
+3.srhbr-0.01099     0.18    10.6713
+4.srhbr-0.02008     0.62    10.4296
+
+ Global test     53.39   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1MORTB scaledsch1MORTC scaledsch1MORTD scaledsch1MORTE scaledsch1MORTF scaledsch1MORTG
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -12395.034
+Iteration 1:  Log likelihood = -12242.248
+Iteration 2:  Log likelihood = -12102.093
+Iteration 3:  Log likelihood = -12097.525
+Iteration 4:  Log likelihood = -12097.509
+Refining estimates:
+Iteration 0:  Log likelihood = -12097.509
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -12097.509 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   1.07175 .0570919    1.300.193 .9654954 1.189698
+zLE8_LIFESTYLEinv  1.140814 .0296783    5.060.000 1.084104 1.200491
+AGE  1.028496 .0088323    3.270.001  1.01133 1.045953
+SEX         1  (omitted)
+NonWhite  .9786505 .1379242   -0.150.878 .7424465 1.290001
+householdsize  .9205674 .0293663   -2.590.009  .864773 .9799616
+SESres  .8176873 .0425886   -3.860.000 .7383344 .9055687
+ztownsend  1.136567 .0286416    5.080.000 1.081794 1.194113
+comorbid  1.073006 .0133526    5.660.000 1.047152 1.099498
+ 
+srhbr 
+2   1.296533 .1360867    2.470.013 1.055455 1.592676
+3   2.146946 .2383884    6.880.000 1.727059 2.668918
+4   3.730947   .48626   10.100.000 2.889886 4.816787
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.01595     0.37    10.5410
+zLE8_LIFES~v 0.00808     0.11    10.7438
+AGE 0.17029    39.50    10.0000
+o.SEX       .        .    1    .
+NonWhite 0.01442     0.31    10.5787
+households~e 0.03904     3.33    10.0680
+SESres 0.02910     1.19    10.2748
+ztownsend-0.02667     1.05    10.3056
+comorbid 0.00747     0.08    10.7720
+1b.srhbr       .        .    1    .
+2.srhbr 0.00635     0.06    10.8067
+3.srhbr-0.01417     0.30    10.5860
+4.srhbr-0.02457     0.93    10.3359
+
+ Global test     52.71   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==1 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -12395.034
+Iteration 1:  Log likelihood = -12242.248
+Iteration 2:  Log likelihood = -12102.093
+Iteration 3:  Log likelihood = -12097.525
+Iteration 4:  Log likelihood = -12097.509
+Refining estimates:
+Iteration 0:  Log likelihood = -12097.509
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -12097.509 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr   1.07175 .0570919    1.300.193 .9654954 1.189698
+zLE8_BIOLOGICALinv  1.140814 .0296783    5.060.000 1.084104 1.200491
+AGE  1.028496 .0088323    3.270.001  1.01133 1.045953
+SEX         1  (omitted)
+NonWhite  .9786505 .1379242   -0.150.878 .7424465 1.290001
+householdsize  .9205674 .0293663   -2.590.009  .864773 .9799616
+SESres  .8176873 .0425886   -3.860.000 .7383344 .9055687
+ztownsend  1.136567 .0286416    5.080.000 1.081794 1.194113
+comorbid  1.073006 .0133526    5.660.000 1.047152 1.099498
+ 
+srhbr 
+2   1.296533 .1360867    2.470.013 1.055455 1.592676
+3   2.146946 .2383884    6.880.000 1.727059 2.668918
+4   3.730947   .48626   10.100.000 2.889886 4.816787
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.01595     0.37    10.5410
+zLE8_BIOLO~v 0.00808     0.11    10.7438
+AGE 0.17029    39.50    10.0000
+o.SEX       .        .    1    .
+NonWhite 0.01442     0.31    10.5787
+households~e 0.03904     3.33    10.0680
+SESres 0.02910     1.19    10.2748
+ztownsend-0.02667     1.05    10.3056
+comorbid 0.00747     0.08    10.7720
+1b.srhbr       .        .    1    .
+2.srhbr 0.00635     0.06    10.8067
+3.srhbr-0.01417     0.30    10.5860
+4.srhbr-0.02457     0.93    10.3359
+
+ Global test     52.71   110.0000
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3mgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3mgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. ************************************************AMONG WOMEN***************************************
+. 
+. 
+. stcox gfapbr zLE8_TOTALSCOREinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==2 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -8736.6408
+Iteration 1:  Log likelihood = -8630.0396
+Iteration 2:  Log likelihood = -8591.2786
+Iteration 3:  Log likelihood =  -8589.836
+Iteration 4:  Log likelihood = -8589.8314
+Refining estimates:
+Iteration 0:  Log likelihood = -8589.8314
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -8589.8314 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.126417 .0761474    1.760.078 .9866354 1.286002
+zLE8_TOTALSCOREinv  1.147134 .0374098    4.210.000 1.076106  1.22285
+AGE  1.014739 .0104118    1.430.154 .9945363 1.035353
+SEX         1  (omitted)
+NonWhite   .797354 .1358448   -1.330.184 .5709951 1.113448
+householdsize  1.009964 .0233514    0.430.668 .9652174 1.056785
+SESres   .880221 .0589623   -1.900.057 .7719218 1.003714
+ztownsend   1.07145 .0334755    2.210.027 1.007808 1.139112
+comorbid   1.07012 .0142513    5.090.000  1.04255  1.09842
+ 
+srhbr 
+2   1.189546 .1401158    1.470.141 .9443193 1.498455
+3   2.004887 .2574646    5.420.000 1.558762 2.578695
+4    3.02324 .4814989    6.950.000 2.212612 4.130855
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.03588     1.32    10.2498
+zLE8_TO~Einv-0.01610     0.29    10.5881
+AGE 0.14049    17.42    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.02341     0.57    10.4483
+households~e 0.04998     3.46    10.0630
+SESres-0.06517     4.42    10.0355
+ztownsend-0.01576     0.25    10.6163
+comorbid 0.00489     0.02    10.8792
+1b.srhbr       .        .    1    .
+2.srhbr 0.01090     0.12    10.7276
+3.srhbr 0.01748     0.31    10.5786
+4.srhbr-0.02747     0.79    10.3738
+
+ Global test     36.84   110.0001
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf1wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_LIFESTYLEinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr if SEX==2 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -8736.6408
+Iteration 1:  Log likelihood = -8629.6655
+Iteration 2:  Log likelihood = -8590.1682
+Iteration 3:  Log likelihood = -8588.7027
+Iteration 4:  Log likelihood = -8588.6979
+Refining estimates:
+Iteration 0:  Log likelihood = -8588.6979
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -8588.6979 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.122945  .075908    1.720.086 .9836021 1.282027
+zLE8_LIFESTYLEinv  1.154985 .0370962    4.490.000 1.084519  1.23003
+AGE  1.018422  .010445    1.780.075 .9981544 1.039101
+SEX         1  (omitted)
+NonWhite  .8311463 .1415559   -1.090.278 .5952589  1.16051
+householdsize  1.009934 .0232381    0.430.667 .9653996 1.056522
+SESres   .875192 .0583942   -2.000.046 .7679091 .9974632
+ztownsend  1.069913 .0334245    2.160.031 1.006367 1.137471
+comorbid  1.071257 .0141488    5.210.000 1.043882  1.09935
+ 
+srhbr 
+2   1.205842 .1416495    1.590.111 .9578562 1.518031
+3   2.032648 .2597076    5.550.000 1.582362 2.611071
+4   3.027746 .4804658    6.980.000 2.218423 4.132326
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.03583     1.32    10.2502
+zLE8_LIFES~v-0.00900     0.09    10.7625
+AGE 0.13774    16.56    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.02441     0.62    10.4303
+households~e 0.05107     3.58    10.0586
+SESres-0.06589     4.49    10.0341
+ztownsend-0.01478     0.22    10.6391
+comorbid 0.00198     0.00    10.9513
+1b.srhbr       .        .    1    .
+2.srhbr 0.00844     0.07    10.7873
+3.srhbr 0.01326     0.18    10.6739
+4.srhbr-0.03059     0.98    10.3233
+
+ Global test     35.96   110.0002
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf2wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. stcox gfapbr zLE8_BIOLOGICALinv AGE SEX NonWhite householdsize SESres ztownsend comorbid i.srhbr  if SEX==2 & sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+note:  omitted because of collinearity.
+Iteration 0:  Log likelihood = -8736.6408
+Iteration 1:  Log likelihood = -8629.6655
+Iteration 2:  Log likelihood = -8590.1682
+Iteration 3:  Log likelihood = -8588.7027
+Iteration 4:  Log likelihood = -8588.6979
+Refining estimates:
+Iteration 0:  Log likelihood = -8588.6979
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -8588.6979 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.122945  .075908    1.720.086 .9836021 1.282027
+zLE8_BIOLOGICALinv  1.154985 .0370962    4.490.000 1.084519  1.23003
+AGE  1.018422  .010445    1.780.075 .9981544 1.039101
+SEX         1  (omitted)
+NonWhite  .8311463 .1415559   -1.090.278 .5952589  1.16051
+householdsize  1.009934 .0232381    0.430.667 .9653996 1.056522
+SESres   .875192 .0583942   -2.000.046 .7679091 .9974632
+ztownsend  1.069913 .0334245    2.160.031 1.006367 1.137471
+comorbid  1.071257 .0141488    5.210.000 1.043882  1.09935
+ 
+srhbr 
+2   1.205842 .1416495    1.590.111 .9578562 1.518031
+3   2.032648 .2597076    5.550.000 1.582362 2.611071
+4   3.027746 .4804658    6.980.000 2.218423 4.132326
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.03583     1.32    10.2502
+zLE8_BIOLO~v-0.00900     0.09    10.7625
+AGE 0.13774    16.56    10.0000
+o.SEX       .        .    1    .
+NonWhite-0.02441     0.62    10.4303
+households~e 0.05107     3.58    10.0586
+SESres-0.06589     4.49    10.0341
+ztownsend-0.01478     0.22    10.6391
+comorbid 0.00198     0.00    10.9513
+1b.srhbr       .        .    1    .
+2.srhbr 0.00844     0.07    10.7873
+3.srhbr 0.01326     0.18    10.6739
+4.srhbr-0.03059     0.98    10.3233
+
+ Global test     35.96   110.0002
+
+
+. capture drop scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM
+
+. predict scaledsch1demA scaledsch1demB scaledsch1demC scaledsch1demD scaledsch1demE scaledsch1demF scaledsch1demG scaledsch1demH scaledsch1demI scaledsch1demJ scaledsch1demK scaledsch1demL scaledsch1demM if sample_final==1, scaledsch
+
+. lowess scaledsch1demA  _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3wgfap.gph",replace
+
+(file 
+/opt/notebooks/ Baydoun_folder\UK_BIOBANK_PROJECT\UKB_PAPER11_NFLGFAPDEMPDMORT_METAB\FIGURES_UPDATED\scaledsch1MORTf3wgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. ************************************************INTERACTION BY SEX***************************
+. 
+. 
+. stcox gfapbr##SEX c.zLE8_TOTALSCOREinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22603.613
+Iteration 2:  Log likelihood =  -22406.47
+Iteration 3:  Log likelihood = -22398.687
+Iteration 4:  Log likelihood = -22398.651
+Refining estimates:
+Iteration 0:  Log likelihood = -22398.651
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22398.651 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+2.gfapbr  1.080398 .0569902    1.470.143 .9742791 1.198075
+2.SEX  .5850564 .0380721   -8.240.000  .514999 .6646439
+ 
+gfapbr#SEX 
+2 2   1.029709 .0861622    0.350.726 .8739549 1.213221
+ 
+zLE8_TOTALSCOREinv  1.136386 .0241055    6.030.000 1.090108 1.184628
+AGE   1.02261 .0067314    3.400.001 1.009502 1.035889
+NonWhite  .8825814 .0957956   -1.150.250 .7134526 1.091803
+householdsize  .9705491 .0217692   -1.330.183 .9288065 1.014168
+SESres  .8335259 .0342065   -4.440.000 .7691077 .9033395
+ztownsend   1.11858 .0218296    5.740.000 1.076602 1.162194
+comorbid  1.068918 .0097771    7.290.000 1.049926 1.088253
+ 
+srhbr 
+2   1.243457 .0975244    2.780.005  1.06628 1.450076
+3   2.069508 .1743405    8.630.000 1.754526 2.441038
+4   3.477142 .3494564   12.400.000 2.855458 4.234178
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+1b.gfapbr       .        .    1    .
+2.gfapbr 0.00995     0.25    10.6190
+1b.SEX       .        .    1    .
+2.SEX-0.00721     0.13    10.7170
+1b.gfapbr#~X       .        .    1    .
+1b.gfapbr#~X       .        .    1    .
+2o.gfapbr#~X       .        .    1    .
+2.gfapbr#2~X 0.01456     0.53    10.4649
+zLE8_TO~Einv-0.00849     0.19    10.6627
+AGE 0.16086    59.12    10.0000
+NonWhite-0.00174     0.01    10.9303
+households~e 0.05456    14.95    10.0001
+SESres-0.01109     0.30    10.5823
+ztownsend-0.02244     1.27    10.2598
+comorbid 0.00853     0.18    10.6706
+1b.srhbr       .        .    1    .
+2.srhbr 0.00953     0.23    10.6326
+3.srhbr 0.00024     0.00    10.9906
+4.srhbr-0.02377     1.46    10.2265
+
+ Global test     89.33   130.0000
+
+
+. 
+. 
+. 
+. stcox c.gfapbr##SEX c.zLE8_LIFESTYLEinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22600.306
+Iteration 2:  Log likelihood = -22401.238
+Iteration 3:  Log likelihood = -22393.386
+Iteration 4:  Log likelihood =  -22393.35
+Refining estimates:
+Iteration 0:  Log likelihood =  -22393.35
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22393.35 = 
+
+
+               _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.075897 .0567022    1.390.165 .9703099 1.192974
+2.SEX  .5636168 .0789194   -4.090.000 .4283473 .7416035
+ 
+SEX#c.gfapbr 
+2   1.033439 .0864733    0.390.694 .8771227 1.217613
+ 
+zLE8_LIFESTYLEinv  1.148881 .0231872    6.880.000 1.104323 1.195238
+AGE  1.024943 .0067508    3.740.000 1.011797  1.03826
+NonWhite  .9050756  .098258   -0.920.358 .7316031 1.119681
+householdsize  .9699273 .0217177   -1.360.173 .9282819 1.013441
+SESres  .8323789 .0341275   -4.470.000 .7681072 .9020286
+ztownsend  1.111153 .0217617    5.380.000 1.069309 1.154634
+comorbid   1.07159 .0096923    7.640.000 1.052761 1.090756
+ 
+srhbr 
+2   1.255281 .0982346    2.910.004 1.076783 1.463367
+3   2.093205 .1752371    8.820.000 1.776444 2.466448
+4   3.453135 .3455407   12.380.000 2.838163 4.201358
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.01229     0.38    10.5392
+1b.SEX       .        .    1    .
+2.SEX-0.00923     0.21    10.6429
+1b.SEX#co.~r       .        .    1    .
+2.SEX#c.gf~r 0.01261     0.40    10.5270
+zLE8_LIFES~v 0.00198     0.01    10.9173
+AGE 0.16003    58.11    10.0000
+NonWhite-0.00213     0.01    10.9147
+households~e 0.05471    14.99    10.0001
+SESres-0.01156     0.33    10.5667
+ztownsend-0.02096     1.10    10.2941
+comorbid 0.00807     0.16    10.6899
+1b.srhbr       .        .    1    .
+2.srhbr 0.00775     0.15    10.6979
+3.srhbr-0.00312     0.02    10.8763
+4.srhbr-0.02744     1.94    10.1642
+
+ Global test     87.99   130.0000
+
+
+. 
+. 
+. stcox c.gfapbr##SEX c.zLE8_BIOLOGICALinv AGE  NonWhite householdsize SESres ztownsend comorbid i.srhbr  if sample_final==1
+
+Failure : died==1
+Analysis time : Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22600.306
+Iteration 2:  Log likelihood = -22401.238
+Iteration 3:  Log likelihood = -22393.386
+Iteration 4:  Log likelihood =  -22393.35
+Refining estimates:
+Iteration 0:  Log likelihood =  -22393.35
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  = 
+No. of failures = 
+Time at risk    = 
+)} = 
+Log likelihood = -22393.35 = 
+
+
+                _t Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
+
+gfapbr  1.075897 .0567022    1.390.165 .9703099 1.192974
+2.SEX  .5636168 .0789194   -4.090.000 .4283473 .7416035
+ 
+SEX#c.gfapbr 
+2   1.033439 .0864733    0.390.694 .8771227 1.217613
+ 
+zLE8_BIOLOGICALinv  1.148881 .0231872    6.880.000 1.104323 1.195238
+AGE  1.024943 .0067508    3.740.000 1.011797  1.03826
+NonWhite  .9050756  .098258   -0.920.358 .7316031 1.119681
+householdsize  .9699273 .0217177   -1.360.173 .9282819 1.013441
+SESres  .8323789 .0341275   -4.470.000 .7681072 .9020286
+ztownsend  1.111153 .0217617    5.380.000 1.069309 1.154634
+comorbid   1.07159 .0096923    7.640.000 1.052761 1.090756
+ 
+srhbr 
+2   1.255281 .0982346    2.910.004 1.076783 1.463367
+3   2.093205 .1752371    8.820.000 1.776444 2.466448
+4   3.453135 .3455407   12.380.000 2.838163 4.201358
+
+
+. estat phtest, det
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+
+                     rho     chi2       df    Prob>chi2
+
+gfapbr 0.01229     0.38    10.5392
+1b.SEX       .        .    1    .
+2.SEX-0.00923     0.21    10.6429
+1b.SEX#co.~r       .        .    1    .
+2.SEX#c.gf~r 0.01261     0.40    10.5270
+zLE8_BIOLO~v 0.00198     0.01    10.9173
+AGE 0.16003    58.11    10.0000
+NonWhite-0.00213     0.01    10.9147
+households~e 0.05471    14.99    10.0001
+SESres-0.01156     0.33    10.5667
+ztownsend-0.02096     1.10    10.2941
+comorbid 0.00807     0.16    10.6899
+1b.srhbr       .        .    1    .
+2.srhbr 0.00775     0.15    10.6979
+3.srhbr-0.00312     0.02    10.8763
+4.srhbr-0.02744     1.94    10.1642
+
+ Global test     87.99   130.0000
+
+
+. 
+.  
+. save, replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin.dta
+saved
+
+
+. 
+. capture log close
+

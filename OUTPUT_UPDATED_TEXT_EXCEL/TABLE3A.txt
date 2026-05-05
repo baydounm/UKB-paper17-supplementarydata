@@ -1,0 +1,204 @@
+
+
+. 
+. *****************************************TABLE 3: MULTISTATE REGRESSION MODELS OVERALL AND BY SEX*******************************
+. 
+. 
+. use "/opt/notebooks/finaldata_unimputedfin",clear
+
+. 
+. **search and install msset**
+. 
+. 
+. msset if sample_final==1,  id(n_eid) states(_d_PD _d_dementia _d_death) times (_t_PD _t_dementia _t_death) covariates(AGE ztownsend)
+Warning: 27 observations experienced events _d_PD and _d_dementia at the same time
+         _d_dementia has been recoded to censored for these observations.
+         They can be identified using _flag==1
+Warning: 5 observations experienced events _d_PD and _d_death at the same time
+         _d_death has been recoded to censored for these observations.
+         They can be identified using _flag==1
+Warning: 19 observations experienced events _d_dementia and _d_death at the same time
+         _d_death has been recoded to censored for these observations.
+         They can be identified using _flag==1
+variables AGE_trans1 to AGE_trans6 created
+variables ztownsend_trans1 to ztownsend_trans6 created
+
+. 
+. mat tmat = r(transmatrix)
+
+. 
+. mat list tmat
+
+tmat[4,4]
+                           to:          to:          to:          to:
+                        start        _d_PD  _d_dementia     _d_death
+      from:start            .            1            2            3
+      from:_d_PD            .            .            4            5
+from:_d_dementia            .            .            .            6
+   from:_d_death            .            .            .            .
+
+. 
+. msboxes, transmat(tmat) id(n_eid) xvalues(0.2 0.7 0.6 0.5) yvalues(0.7 0.6 1.2 0.2) /opt/notebooks/
+> statenames("Healthy" "PD" "Dementia" "Death" )
+
+. 
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE2.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE2.gph
+not found)
+
+file  saved
+
+. 
+. gen _time = _stop - _start
+
+. 
+. stset _stop if sample_final==1, enter(_start) failure(_status=1) scale(1)
+
+Survival-time data settings
+
+Failure event: _status==1
+Observed time interval: (0, _stop]
+Enter on or after: time _start
+Exit on or before: failure
+Keep observations 
+ }: sample_final==1
+
+
+     60,322  total observations
+         39  observations end on or before 
+
+     60,283  observations remaining, representing
+      3,526  failures in single-record/opt/notebooks/ data
+  4,411,522  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =  86.71594
+
+. 
+. save "/opt/notebooks/ finaldata_unimputedfin_MULTISTATE", replace
+
+file 
+/opt/notebooks/ finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. *********This part takes a long time to run*******
+. msaj, transmat(tmat) ci
+
+. line P_AJ_1* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE3A.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE3A.gph
+not found)
+
+file  saved
+
+. line P_AJ_2* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE3B.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE3B.gph
+not found)
+
+file  saved
+
+. line P_AJ_3* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE3C.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE3C.gph
+not found)
+
+file  saved
+
+. line P_AJ_4* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE3D.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE3D.gph
+not found)
+
+file  saved
+
+. 
+. graph combine "/opt/notebooks/ FIGURES_UPDATED\FIGURE3A.gph" "/opt/notebooks/ FIGURES_UPDATED\FIGURE3B.gph" "/opt/notebooks/ FIGURES_UPDATED\FIGURE3C.gph" "/opt/notebooks/ FIGURES_UPDATED\FIGURE3D.gph"
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE3.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE3.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **Transition probability from state 2: PD**
+. cap drop P_AJ*
+
+. msaj, transmat(tmat) from(2) ltruncated(50) exit(85) ci
+Warning: Exit time is greater than last event time
+
+. line P_AJ_2* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE4A.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE4A.gph
+not found)
+
+file  saved
+
+. 
+. **Transition probability from state 3: Dementia**
+. cap drop P_AJ*
+
+. msaj, transmat(tmat) from(3) ltruncated(50) exit(85) ci
+Warning: Exit time is greater than last event time
+
+. line P_AJ_3* _t, sort connect(stairstep stairstep stairstep)
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE4B.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE4B.gph
+not found)
+
+file  saved
+
+. 
+. 
+. graph combine "/opt/notebooks/ FIGURES_UPDATED\FIGURE4A.gph" "/opt/notebooks/ FIGURES_UPDATED\FIGURE4B.gph" 
+
+. graph save "/opt/notebooks/ FIGURES_UPDATED\FIGURE4.gph",replace
+
+(file 
+/opt/notebooks/ FIGURES_UPDATED\FIGURE4.gph
+not found)
+
+file  saved
+
+. 
+. save "/opt/notebooks/finaldata_unimputedfin_MULTISTATE",replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin_MULTISTATE.dta
+saved
+
+
+. 
+. 
+. 
+. 
+. capture log close
+

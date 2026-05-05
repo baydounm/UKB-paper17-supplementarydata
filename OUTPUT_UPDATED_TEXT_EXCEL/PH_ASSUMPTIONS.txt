@@ -1,0 +1,684 @@
+. use "/opt/notebooks/finaldata_unimputedfin",clear
+
+. 
+. 
+. ****************************NEFL************************
+. 
+. **Dementia**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        692  failures in single-failure-per-subject data
+ 274,619.59  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox neflbr  if sample_final==1, 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6153.9828
+Iteration 2:  Log likelihood = -6153.2626
+Iteration 3:  Log likelihood =  -6153.262
+Refining estimates:
+Iteration 0:  Log likelihood =  -6153.262
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 692
+Time at risk    = 274,619.594
+LR chi2(1) = 97.86
+Log likelihood = -6153.262Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.372394 .2219814    9.230.000 1.974882 2.849919
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+neflbr|-0.09440     6.39    10.0115
++
+ Global test |     6.39    10.0115
+
+
+. capture drop scaledsch1dem
+
+. predict scaledsch1dem if sample_final==1, scaledsch
+
+. lowess scaledsch1dem _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch1demnfl.gph",replace
+
+(file 
+/opt/notebooks/scaledsch1demnfl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. **AD**
+. 
+. stset Age_AD, failure(ad_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: ad_diag==1
+Observed time interval: (Age_AD[_n-1], Age_AD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        332  failures in single-failure-per-subject data
+ 275,767.08  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox neflbr  if sample_final==1
+
+Failure _d: ad_diag==1
+Analysis time _t: Age_AD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -2950.5648
+Iteration 1:  Log likelihood = -2927.1586
+Iteration 2:  Log likelihood = -2926.7481
+Iteration 3:  Log likelihood = -2926.7476
+Refining estimates:
+Iteration 0:  Log likelihood = -2926.7476
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 332
+Time at risk    = 275,767.076
+LR chi2(1) = 47.63
+Log likelihood = -2926.7476Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.417017 .3329263    6.410.000 1.845156 3.166113
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+neflbr|-0.07321     1.81    10.1782
++
+ Global test |     1.81    10.1782
+
+
+. capture drop scaledsch2AD
+
+. predict scaledsch2AD if sample_final==1, scaledsch
+
+. lowess scaledsch2AD _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch2ADnfl.gph",replace
+
+(file 
+/opt/notebooks/scaledsch2ADnfl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        400  failures in single-failure-per-subject data
+    274,700  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. stcox neflbr  if sample_final==1
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3675.2024
+Iteration 2:  Log likelihood =  -3675.131
+Iteration 3:  Log likelihood =  -3675.131
+Refining estimates:
+Iteration 0:  Log likelihood =  -3675.131
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 400
+Time at risk    = 274,700.002
+LR chi2(1) = 41.64
+Log likelihood = -3675.131Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 2.003227 .2233928    6.230.000  1.60993 2.492603
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+neflbr|-0.06987     2.02    10.1551
++
+ Global test |     2.02    10.1551
+
+
+. capture drop scaledsch3PD
+
+. predict scaledsch3PD if sample_final==1, scaledsch
+
+. lowess scaledsch3PD _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch3PDnfl.gph",replace
+
+(file 
+/opt/notebooks/scaledsch3PDnfl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **Mortality**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+      2,515  failures in single-failure-per-subject data
+ 276,947.89  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox neflbr  if sample_final==1 
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22842.603
+Iteration 2:  Log likelihood = -22842.379
+Iteration 3:  Log likelihood = -22842.379
+Refining estimates:
+Iteration 0:  Log likelihood = -22842.379
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 2,515
+Time at risk    = 276,947.889
+LR chi2(1) = 157.33
+Log likelihood = -22842.379Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+neflbr | 1.716257 .0759542   12.210.000 1.573663 1.871771
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+neflbr|-0.01834     0.86    10.3537
++
+ Global test |     0.86    10.3537
+
+
+. capture drop scaledsch4MORT
+
+. predict scaledsch4MORT if sample_final==1, scaledsch
+
+. lowess scaledsch4MORT _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch4MORTnfl.gph",replace
+
+(file 
+/opt/notebooks/scaledsch4MORTnfl.gph
+not found)
+
+file  saved
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. ****************************GFAP************************
+. 
+. **Dementia**
+. 
+. stset Age_dementia, failure(dem_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: dem_diag==1
+Observed time interval: (Age_dementia[_n-1], Age_dementia]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        692  failures in single-failure-per-subject data
+ 274,619.59  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox gfapbr  if sample_final==1, 
+
+Failure _d: dem_diag==1
+Analysis time _t: Age_dementia
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -6202.1908
+Iteration 1:  Log likelihood = -6152.3302
+Iteration 2:  Log likelihood = -6151.7321
+Iteration 3:  Log likelihood = -6151.7318
+Refining estimates:
+Iteration 0:  Log likelihood = -6151.7318
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 692
+Time at risk    = 274,619.594
+LR chi2(1) = 100.92
+Log likelihood = -6151.7318Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 2.349119 .2129746    9.420.000 1.966681 2.805926
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+gfapbr|-0.01786     0.22    10.6379
++
+ Global test |     0.22    10.6379
+
+
+. capture drop scaledsch1dem
+
+. predict scaledsch1dem if sample_final==1, scaledsch
+
+. lowess scaledsch1dem _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch1demgfap.gph",replace
+
+(file 
+/opt/notebooks/scaledsch1demgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. **AD**
+. 
+. stset Age_AD, failure(ad_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: ad_diag==1
+Observed time interval: (Age_AD[_n-1], Age_AD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        332  failures in single-failure-per-subject data
+ 275,767.08  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox gfapbr  if sample_final==1
+
+Failure _d: ad_diag==1
+Analysis time _t: Age_AD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -2950.5648
+Iteration 1:  Log likelihood = -2907.4108
+Iteration 2:  Log likelihood = -2906.0618
+Iteration 3:  Log likelihood = -2906.0557
+Refining estimates:
+Iteration 0:  Log likelihood = -2906.0557
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 332
+Time at risk    = 275,767.076
+LR chi2(1) = 89.02
+Log likelihood = -2906.0557Prob > chi2 = 0.0000
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 3.463446 .5143512    8.360.000 2.588796 4.633606
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+gfapbr|-0.11070     4.15    10.0417
++
+ Global test |     4.15    10.0417
+
+
+. capture drop scaledsch2AD
+
+. predict scaledsch2AD if sample_final==1, scaledsch
+
+. lowess scaledsch2AD _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch2ADgfap.gph",replace
+
+(file 
+/opt/notebooks/scaledsch2ADgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **PD**
+. 
+. stset Age_PD, failure(PD_diag==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: PD_diag==1
+Observed time interval: (Age_PD[_n-1], Age_PD]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+        400  failures in single-failure-per-subject data
+    274,700  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. stcox gfapbr  if sample_final==1
+
+Failure _d: PD_diag==1
+Analysis time _t: Age_PD
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -3695.9505
+Iteration 1:  Log likelihood = -3695.9302
+Iteration 2:  Log likelihood = -3695.9302
+Refining estimates:
+Iteration 0:  Log likelihood = -3695.9302
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 400
+Time at risk    = 274,700.002
+LR chi2(1) = 0.04
+Log likelihood = -3695.9302Prob > chi2 = 0.8405
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | .9797359 .0996457   -0.200.840 .8026684 1.195864
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+gfapbr|-0.03671     0.55    10.4589
++
+ Global test |     0.55    10.4589
+
+
+. capture drop scaledsch3PD
+
+. predict scaledsch3PD if sample_final==1, scaledsch
+
+. lowess scaledsch3PD _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch3PDgfap.gph",replace
+
+(file 
+/opt/notebooks/scaledsch3PDgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. 
+. **Mortality**
+. 
+. stset Age_death, failure(died==1) enter(AGE) id(n_eid) scale(1)
+
+Survival-time data settings
+
+ID variable: n_eid
+Failure event: died==1
+Observed time interval: (Age_death[_n-1], Age_death]
+Enter on or after: time AGE
+Exit on or before: failure
+
+
+     19,639  total observations
+          0  exclusions
+
+     19,639  observations remaining, representing
+     19,639  subjects
+      2,515  failures in single-failure-per-subject data
+ 276,947.89  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =  50.00137
+                                          Last observed exit t =  86.71594
+
+. 
+. stcox gfapbr  if sample_final==1 
+
+Failure _d: died==1
+Analysis time _t: Age_death
+Enter on or after: time AGE
+ID variable: n_eid
+
+Iteration 0:  Log likelihood = -22921.043
+Iteration 1:  Log likelihood = -22920.736
+Iteration 2:  Log likelihood = -22920.736
+Refining estimates:
+Iteration 0:  Log likelihood = -22920.736
+
+Cox regression with Breslow method for ties
+
+No. of subjects = 19,639Number of obs = 19,639
+No. of failures = 2,515
+Time at risk    = 276,947.889
+LR chi2(1) = 0.61
+Log likelihood = -22920.736Prob > chi2 = 0.4335
+
+
+          _t| Haz. ratio   Std. err.      z   P>|z|     [95% conf. interval]
++
+gfapbr | 1.032506  .042201    0.780.434 .9530201 1.118622
+
+
+. estat phtest, rank detail
+
+Test of proportional-hazards assumption
+
+Time function: Rank of analysis time
+
+             |        rho     chi2       df    Prob>chi2
++
+gfapbr| 0.04404     4.82    10.0282
++
+ Global test |     4.82    10.0282
+
+
+. capture drop scaledsch4MORT
+
+. predict scaledsch4MORT if sample_final==1, scaledsch
+
+. lowess scaledsch4MORT _t, mean noweight title("") note("") m(o)
+
+. graph save "/opt/notebooks/scaledsch4MORTgfap.gph",replace
+
+(file 
+/opt/notebooks/scaledsch4MORTgfap.gph
+not found)
+
+file  saved
+
+. 
+. 
+. save, replace
+
+file 
+/opt/notebooks/finaldata_unimputedfin.dta
+saved
+
+
+. 
+. 
+. 
+. capture log close

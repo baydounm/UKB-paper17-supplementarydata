@@ -1,0 +1,971 @@
+. 
+. cd "/opt/notebooks/"
+/opt/notebooks/DATA
+
+. 
+. clear
+
+. forval x=1(1)50 {
+  2. use n_eid s_31_0_0 n_21022_0_0  n_34_0_0 s_52_0_0 s_6138_0_0 n_22189_0_0 s_53_*_0 s_40000_0_0 s_40000_1_0  s_21000_0_0 s_709_0_0 s_738_0_0   s_1239_0_0 s_3456_0_0 n_22507_0_0  s_1279_0_0 s_1269_0_0 n_20162_0_0 s_1558_0_0 n_100022_0_0 s_981_0_0 s_971_0_0 s_894_0_0 s_884_0_0 s_914_0_0 s_904_0_0 s_1289_0_0 s_1299_0_0 s_1309_0_0 s_1319_0_0 s_1329_0_0 s_1339_0_0 s_1349_0_0 s_1359_0_0 s_1369_0_0 s_1379_0_0 s_1389_0_0 s_6144_0_0 s_6144_2_0 s_6144_3_0 s_6144_1_0 s_10855_0_0 s_1408_0_0 s_1418_0_0 s_1428_0_0 s_1438_0_0 s_1448_0_0 s_2654_0_0   s_1458_0_0 s_1468_0_0 s_1478_0_0 s_1548_0_0 n_30890_0_0 n_30070_0_0 s_1031_0_0 s_6160_0_* s_2110_0_0 n_135_0_0 n_134_0_0 s_2178_0_0 n_21001_0_0 n_21001_0_0 n_48_0_0 n_49_0_0 n_30600_0_0 n_30710_0_0  n_30690_0_0 n_30760_0_0 n_30750_0_0 n_102_0_0 n_4080_0_0 n_4079_0_0 n_21022_0_0 n_20009_0_* n_20002_0_* s_41202_0_* n_34_0_0 s_52_0_0 s_53_0_0 s_40000_*_0  n_40007_*_0 s_42018_0_0 s_42020_0_0  n_20023_0_0 n_399_0_1 n_399_0_2  s_400_0_1 s_400_0_2 s_20003_0_* s_20004_0_* s_6153_0_0  n_25010_2_0 n_25008_2_0 n_25006_2_0 n_25006_2_0 n_2501*_2_0 n_2502*_2_0 n_257*_2_0 n_258*_2_0 n_259*_2_0  n_26521_2_0 n_25010_3_0 n_25008_3_0 n_25006_3_0 n_25006_3_0 n_2501*_3_0 n_2502*_3_0 n_257*_3_0 n_258*_3_0 n_259*_3_0  n_26521_3_0  s_53_0_0 s_53_2_0 n_250*_2_0 n_251*_2_0 n_252*_2_0 n_253*_2_0 n_254*_2_0 n_250*_3_0 n_251*_3_0 n_252*_3_0 n_253*_3_0 n_254*_3_0 n_262*_0_0 s_2443_0_0 s_1160_0_0 n_20023_0_0 s_42018_0_0 s_42020_0_0 n_26521_2_0   s_23074_0_0 s_23050_0_0 s_23051_0_0  s_23052_0_0 s_23053_0_0 s_23054_0_0 s_23055_0_0 s_23058_0_0 s_23059_0_0 s_23060_0_0 s_23061_0_0 s_23062_0_0 s_23063_0_0 s_23064_0_0 s_23065_0_0 s_23066_0_0 s_23067_0_0 s_23075_0_0 s_23069_0_0 s_23071_0_0 n_23039_0_0 n_23043_0_0 n_23041_0_0 n_23044_0_0 n_23040_0_0 s_6149_0_0 s_42030_0_0 s_42031_0_0 s_42032_0_0 s_42033_0_0 s_42034_0_0 s_42035_0_0 s_42036_0_0 s_42037_0_0 s_20277_0_0 s_20119_0_0  n_137_0_0 s_6177_0_* s_6153_0_* s_6155_0_* s_6179_0_* n_234* n_235* n_236* s_237* s_238* s_239* s_23074_0_0 s_23050_0_0 s_23051_0_0  s_23052_0_0 s_23053_0_0 s_23054_0_0 s_23055_0_0 s_23058_0_0 s_23059_0_0 s_23060_0_0 s_23061_0_0 s_23062_0_0 s_23063_0_0 s_23064_0_0 s_23065_0_0 s_23066_0_0 s_23067_0_0 s_23075_0_0 s_23069_0_0 s_23071_0_0 n_23039_0_0 n_23040_0_0 n_23041_0_0 n_23042_0_0 n_23043_0_0  n_23044_0_0  n_24016_0_0 n_24017_0_0 n_24018_0_0 n_24003_0_0 n_24004_0_0  n_24019_0_0 n_24005_0_0 n_24007_0_0 n_24006_0_0 n_24008_0_0 n_24024_0_0 n_24503_0_0    using "/opt/notebooks/chunk`x'final.dta"
+  3. save "/opt/notebooks/chunk`x'small.dta", replace
+  4. }
+
+file 
+/opt/notebooks/chunk1small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk2small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk3small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk4small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk5small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk6small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk7small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk8small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk9small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk10small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk11small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk12small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk13small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk14small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk15small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk16small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk17small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk18small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk19small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk20small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk21small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk22small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk23small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk24small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk25small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk26small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk27small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk28small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk29small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk30small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk31small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk32small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk33small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk34small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk35small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk36small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk37small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk38small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk39small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk40small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk41small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk42small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk43small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk44small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk45small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk46small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk47small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk48small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk49small.dta
+saved
+
+
+file 
+/opt/notebooks/chunk50small.dta
+saved
+
+
+. 
+. 
+. cd "/opt/notebooks/"
+/opt/notebooks/DATA
+
+. 
+. use "chunk1small.dta",replace
+
+. append using "chunk2small.dta"
+
+(variable
+s_2395_3_0 was str9, now str11 to accommodate using data's values)
+
+
+(variable
+s_3456_0_0 was str19, now str20 to accommodate using data's values)
+
+
+(variable
+s_20003_0_0 was str58, now str59 to accommodate using data's values)
+
+
+(variable
+s_20003_0_3 was str57, now str60 to accommodate using data's values)
+
+
+(variable
+s_20003_0_6 was str46, now str56 to accommodate using data's values)
+
+
+(variable
+s_20003_0_8 was str39, now str41 to accommodate using data's values)
+
+
+(variable
+s_20003_0_9 was str39, now str59 to accommodate using data's values)
+
+
+(variable
+s_20003_0_11 was str39, now str48 to accommodate using data's values)
+
+
+(variable
+s_20003_0_13 was str35, now str44 to accommodate using data's values)
+
+
+(variable
+s_20003_0_14 was str35, now str45 to accommodate using data's values)
+
+
+(variable
+s_20003_0_15 was str33, now str39 to accommodate using data's values)
+
+
+(variable
+s_20003_0_16 was str22, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_19 was str24, now str30 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str17, now str23 to accommodate using data's values)
+
+
+(variable
+s_20004_0_3 was str51, now str52 to accommodate using data's values)
+
+
+(variable
+s_20004_0_5 was str50, now str52 to accommodate using data's values)
+
+
+(variable
+s_20004_0_10 was str28, now str36 to accommodate using data's values)
+
+
+(variable
+s_20004_0_11 was str33, now str40 to accommodate using data's values)
+
+
+(variable
+n_20009_0_15 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_16 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_17 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_18 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_19 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_20 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_21 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_22 was byte, now float to accommodate using data's values)
+
+
+(variable
+s_23744_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23750_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23751_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23757_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23774_1_0 was str14, now str29 to accommodate using data's values)
+
+
+. append using "chunk3small.dta"
+
+(variable
+s_2395_1_0 was str9, now str11 to accommodate using data's values)
+
+
+(variable
+s_10855_0_0 was str25, now str29 to accommodate using data's values)
+
+
+(variable
+s_20003_0_0 was str59, now str60 to accommodate using data's values)
+
+
+(variable
+s_20003_0_6 was str56, now str58 to accommodate using data's values)
+
+
+(variable
+s_20003_0_8 was str41, now str44 to accommodate using data's values)
+
+
+(variable
+s_20003_0_10 was str54, now str60 to accommodate using data's values)
+
+
+(variable
+s_20003_0_11 was str48, now str51 to accommodate using data's values)
+
+
+(variable
+s_20003_0_22 was str25, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_23 was str20, now str26 to accommodate using data's values)
+
+
+(variable
+s_20004_0_7 was str43, now str50 to accommodate using data's values)
+
+
+(variable
+s_20004_0_8 was str36, now str50 to accommodate using data's values)
+
+
+. append using "chunk4small.dta"
+
+(variable
+s_6144_3_0 was str68, now strL to accommodate using data's values)
+
+
+(variable
+s_20003_0_6 was str58, now str60 to accommodate using data's values)
+
+
+(variable
+s_20003_0_8 was str44, now str48 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str23, now str29 to accommodate using data's values)
+
+
+(variable
+s_20003_0_24 was str11, now str18 to accommodate using data's values)
+
+
+(variable
+s_20004_0_10 was str36, now str42 to accommodate using data's values)
+
+
+(variable
+s_20004_0_14 was str19, now str36 to accommodate using data's values)
+
+
+(variable
+s_20119_0_0 was str32, now str48 to accommodate using data's values)
+
+
+(variable
+s_23764_0_0 was str12, now str21 to accommodate using data's values)
+
+
+(variable
+s_23767_0_0 was str12, now str21 to accommodate using data's values)
+
+
+. append using "chunk5small.dta"
+
+(variable
+s_20003_0_13 was str44, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_16 was str35, now str60 to accommodate using data's values)
+
+
+(variable
+s_20004_0_6 was str50, now str51 to accommodate using data's values)
+
+
+(variable
+s_20004_0_12 was str26, now str38 to accommodate using data's values)
+
+
+(variable
+s_20004_0_15 was str15, now str16 to accommodate using data's values)
+
+
+(variable
+n_25025_3_0 was int, now long to accommodate using data's values)
+
+
+. append using "chunk6small.dta"
+
+(variable
+s_10855_0_0 was str29, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_7 was str57, now str60 to accommodate using data's values)
+
+
+(variable
+s_20003_0_8 was str48, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_11 was str51, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_18 was str30, now str37 to accommodate using data's values)
+
+
+(variable
+s_20003_0_19 was str30, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str29, now str31 to accommodate using data's values)
+
+
+(variable
+s_20003_0_23 was str26, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_24 was str18, now str47 to accommodate using data's values)
+
+
+(variable
+s_20004_0_7 was str50, now str51 to accommodate using data's values)
+
+
+. append using "chunk7small.dta"
+
+(variable
+s_2395_1_0 was str11, now str20 to accommodate using data's values)
+
+
+(variable
+s_20003_0_15 was str39, now str45 to accommodate using data's values)
+
+
+(variable
+s_20003_0_20 was str30, now str34 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str31, now str34 to accommodate using data's values)
+
+
+(variable
+n_20009_0_23 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_24 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_25 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_26 was byte, now float to accommodate using data's values)
+
+
+(variable
+n_20009_0_27 was byte, now float to accommodate using data's values)
+
+
+(variable
+s_23763_0_0 was str15, now str21 to accommodate using data's values)
+
+
+(variable
+s_23774_1_1 was str12, now str14 to accommodate using data's values)
+
+
+. append using "chunk8small.dta"
+
+(variable
+s_20003_0_11 was str57, now str59 to accommodate using data's values)
+
+
+(variable
+s_20003_0_17 was str35, now str36 to accommodate using data's values)
+
+
+. append using "chunk9small.dta"
+
+(variable
+s_23774_1_1 was str14, now str29 to accommodate using data's values)
+
+
+. append using "chunk10small.dta"
+
+(variable
+s_23764_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23775_1_0 was str21, now str29 to accommodate using data's values)
+
+
+. append using "chunk11small.dta"
+
+(variable
+n_399_0_2 was byte, now int to accommodate using data's values)
+
+
+(variable
+s_20004_0_9 was str50, now str51 to accommodate using data's values)
+
+
+. append using "chunk12small.dta"
+
+(variable
+s_20004_0_13 was str32, now str40 to accommodate using data's values)
+
+
+. append using "chunk13small.dta"
+
+(variable
+s_20003_0_5 was str58, now str59 to accommodate using data's values)
+
+
+(variable
+s_20003_0_17 was str36, now str56 to accommodate using data's values)
+
+
+(variable
+s_20003_0_20 was str34, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str34, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_27 was str30, now str35 to accommodate using data's values)
+
+
+(variable
+s_20003_0_29 was str8, now str30 to accommodate using data's values)
+
+
+. append using "chunk14small.dta"
+
+(variable
+n_20009_0_28 was byte, now float to accommodate using data's values)
+
+
+. append using "chunk15small.dta"
+
+. append using "chunk16small.dta"
+
+(variable
+s_23747_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23748_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23754_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23755_0_0 was str21, now str29 to accommodate using data's values)
+
+
+. append using "chunk17small.dta"
+
+(variable
+s_23763_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23768_0_0 was str21, now str29 to accommodate using data's values)
+
+
+. append using "chunk18small.dta"
+
+. append using "chunk19small.dta"
+
+(variable
+s_20003_0_13 was str57, now str60 to accommodate using data's values)
+
+
+(variable
+s_20004_0_7 was str51, now str52 to accommodate using data's values)
+
+
+(variable
+s_20004_0_10 was str42, now str50 to accommodate using data's values)
+
+
+(variable
+s_23779_0_0 was str21, now str29 to accommodate using data's values)
+
+
+. append using "chunk20small.dta"
+
+(variable
+s_20003_0_5 was str59, now str60 to accommodate using data's values)
+
+
+(variable
+s_20004_0_6 was str51, now str52 to accommodate using data's values)
+
+
+. append using "chunk21small.dta"
+
+(variable
+s_20004_0_15 was str16, now str23 to accommodate using data's values)
+
+
+(variable
+s_20004_0_16 was str23, now str28 to accommodate using data's values)
+
+
+. append using "chunk22small.dta"
+
+(variable
+s_10855_0_0 was str35, now str40 to accommodate using data's values)
+
+
+(variable
+s_20003_0_17 was str56, now str57 to accommodate using data's values)
+
+
+(variable
+s_20003_0_21 was str35, now str57 to accommodate using data's values)
+
+
+(variable
+s_20004_0_10 was str50, now str51 to accommodate using data's values)
+
+
+(variable
+s_20004_0_15 was str23, now str25 to accommodate using data's values)
+
+
+(variable
+s_20004_0_16 was str28, now str29 to accommodate using data's values)
+
+
+. append using "chunk23small.dta"
+
+. append using "chunk24small.dta"
+
+(variable
+s_20003_0_15 was str45, now str59 to accommodate using data's values)
+
+
+. append using "chunk25small.dta"
+
+(variable
+s_20003_0_25 was str23, now str26 to accommodate using data's values)
+
+
+. append using "chunk26small.dta"
+
+. append using "chunk27small.dta"
+
+(variable
+s_20003_0_9 was str59, now str60 to accommodate using data's values)
+
+
+(variable
+s_20004_0_8 was str50, now str51 to accommodate using data's values)
+
+
+(variable
+s_42018_0_0 was str10, now str15 to accommodate using data's values)
+
+
+. append using "chunk28small.dta"
+
+. append using "chunk29small.dta"
+
+(variable
+s_20003_0_8 was str57, now str58 to accommodate using data's values)
+
+
+(variable
+s_20004_0_11 was str40, now str50 to accommodate using data's values)
+
+
+(variable
+s_20004_0_14 was str36, now str42 to accommodate using data's values)
+
+
+. append using "chunk30small.dta"
+
+(variable
+s_20003_0_12 was str57, now str59 to accommodate using data's values)
+
+
+(variable
+s_20003_0_18 was str37, now str44 to accommodate using data's values)
+
+
+(variable
+s_20003_0_22 was str35, now str36 to accommodate using data's values)
+
+
+(variable
+s_23775_0_0 was str29, now str31 to accommodate using data's values)
+
+
+. append using "chunk31small.dta"
+
+(variable
+s_20003_0_8 was str58, now str60 to accommodate using data's values)
+
+
+. append using "chunk32small.dta"
+
+(variable
+s_20003_0_25 was str26, now str31 to accommodate using data's values)
+
+
+(variable
+s_20003_0_28 was str26, now str30 to accommodate using data's values)
+
+
+(variable
+s_20004_0_15 was str25, now str28 to accommodate using data's values)
+
+
+. append using "chunk33small.dta"
+
+. append using "chunk34small.dta"
+
+(variable
+s_20003_0_11 was str59, now str60 to accommodate using data's values)
+
+
+(variable
+s_20004_0_12 was str38, now str40 to accommodate using data's values)
+
+
+(variable
+s_23778_0_0 was str17, now str21 to accommodate using data's values)
+
+
+. append using "chunk35small.dta"
+
+. append using "chunk36small.dta"
+
+. append using "chunk37small.dta"
+
+(variable
+s_20003_0_30 was str17, now str18 to accommodate using data's values)
+
+
+(variable
+s_20003_0_31 was str7, now str29 to accommodate using data's values)
+
+
+(variable
+s_20003_0_34 was str5, now str25 to accommodate using data's values)
+
+
+. append using "chunk38small.dta"
+
+. append using "chunk39small.dta"
+
+(variable
+s_20004_0_11 was str50, now str52 to accommodate using data's values)
+
+
+. append using "chunk40small.dta"
+
+(variable
+s_20003_0_30 was str18, now str35 to accommodate using data's values)
+
+
+. append using "chunk41small.dta"
+
+. append using "chunk42small.dta"
+
+(variable
+s_20003_0_20 was str35, now str46 to accommodate using data's values)
+
+
+. append using "chunk43small.dta"
+
+. append using "chunk44small.dta"
+
+(variable
+s_20004_0_17 was str11, now str21 to accommodate using data's values)
+
+
+(variable
+s_20004_0_20 was str23, now str50 to accommodate using data's values)
+
+
+(variable
+s_20004_0_21 was str14, now str50 to accommodate using data's values)
+
+
+. append using "chunk45small.dta"
+
+. append using "chunk46small.dta"
+
+. append using "chunk47small.dta"
+
+. append using "chunk48small.dta"
+
+. append using "chunk49small.dta"
+
+(variable
+s_20004_0_12 was str40, now str51 to accommodate using data's values)
+
+
+(variable
+s_23737_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23749_0_0 was str21, now str29 to accommodate using data's values)
+
+
+(variable
+s_23756_0_0 was str21, now str29 to accommodate using data's values)
+
+
+. append using "chunk50small.dta"
+
+(variable
+s_20003_0_14 was str45, now str59 to accommodate using data's values)
+
+
+. 
+. save "/opt/notebooks/SMALLERDATASETUKB", replace
+
+file 
+/opt/notebooks/SMALLERDATASETUKB.dta
+saved
+
+
+. 
+. cd "/opt/notebooks/DATA"
+/opt/notebooks/DATA
+
+. 
+. 
+. capture log close
